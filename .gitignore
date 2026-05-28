@@ -12,6 +12,9 @@ venv/
 # Built vector index (rebuilt by install.sh)
 knowledge_base/_index/
 
+# Learning-path per-learner progress (local state, never committed)
+.learning_progress.json
+
 # Python cache
 __pycache__/
 *.py[cod]

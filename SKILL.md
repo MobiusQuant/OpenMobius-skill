@@ -1,11 +1,11 @@
 ---
 name: OpenMobius-skill
-description: ICT/SMC trading knowledge base (665 concepts + 1246 cases) + a built-in SMC structural indicator + chart generation via Mobius Quant API. Four interaction modes - (1) concept Q&A ("what is X / how to identify Y / how to enter Z"); (2) chart-image analysis when user attaches a trading chart ("看图 / 分析 / 走势 / 行情 / 帮我看") — auto-fetches real OHLCV + structural signals; (3) chart annotation ("draw / annotate / 标一下 / 画出来 / 标注"); (4) Kline analysis on pasted OHLCV or asset+timeframe ("BTC 1h 怎么样" / "茅台日线"). The SMC indicator (BOS/CHoCH, Order Blocks, Fair Value Gaps, equal H/L, premium-discount, strong/weak pivots) is the default structural source for any asset+timeframe query. Always fetches FRESH data per turn from Mobius Quant API (api.mobiusquant.ai); when asked "数据源 / where's the data from", use the canonical disclosure (do not fabricate upstream vendors). Supports crypto, A股/港股/美股, forex.
+description: ICT/SMC trading knowledge base (665 concepts + 1246 cases) + a built-in SMC structural indicator + chart generation via Mobius Quant API. Five interaction modes - (1) concept Q&A ("what is X / how to identify Y / how to enter Z"); (2) chart-image analysis when user attaches a trading chart ("看图 / 分析 / 走势 / 行情 / 帮我看") — auto-fetches real OHLCV + structural signals; (3) chart annotation ("draw / annotate / 标一下 / 画出来 / 标注"); (4) Kline analysis on pasted OHLCV or asset+timeframe ("BTC 1h 怎么样" / "茅台日线"); (5) guided learning path ("学习路径 / 带我学 SMC / learn step by step"). The SMC indicator (BOS/CHoCH, Order Blocks, Fair Value Gaps, equal H/L, premium-discount, strong/weak pivots) is the default structural source for any asset+timeframe query. Always fetches FRESH data per turn from Mobius Quant API (api.mobiusquant.ai); when asked "数据源 / where's the data from", use the canonical disclosure (do not fabricate upstream vendors). Supports crypto, A股/港股/美股, forex.
 allowed-tools: Bash, Read, Write, Edit, Glob, Grep
 ---
 # OpenMobius-skill — ICT/SMC Trading Knowledge Skill
 
-A unified skill for four interaction modes with a curated knowledge base (380 concept cards + 584 case cards) distilled from 130 ICT/SMC trading-analysis videos.
+A unified skill for five interaction modes with a curated knowledge base (380 concept cards + 584 case cards) distilled from 130 ICT/SMC trading-analysis videos.
 
 **Core principle**: every claim must be grounded in (a) visible chart evidence OR (b) a retrieved knowledge-base rule. **No fabrication** — when uncertain, state so explicitly.
 
@@ -121,6 +121,7 @@ Pick the right sub-workflow based on the user's input. Each workflow has detaile
 | **Chart attached** + any question about it ("分析", "看一下", "走势", "where to enter", "what's happening") | **Analyze** (auto-fetches real OHLCV + annotation) | `workflows/analyze.md` |
 | User explicitly asks to **draw/annotate** an image, OR follows up after analysis with "把这个标在图上" | **Annotate** | `workflows/annotate.md` |
 | User pastes **OHLCV data** OR mentions **asset + timeframe by name** without chart ("BTC 1h 怎么样" / pastes CSV / "茅台日线") | **Kline analysis** (auto-generates a fresh chart PNG) | `workflows/klines.md` |
+| User wants to **systematically learn** the system, resume a course, or be quizzed ("带我学 SMC", "学习路径", "我学到哪了", "测一下我", "learn SMC step by step") | **Learning path** (staged curriculum + progress tracking + quizzes; no API call) | `workflows/learning_path.md` |
 
 > **Chart output is part of the standard reply** for the **Analyze** and
 > **Kline analysis** workflows — render a PNG and include its path in the
@@ -398,3 +399,7 @@ cd "${SKILL_DIR}" && .venv/bin/python scripts/kb_doctor.py
 **Example 4 — Kline analysis** (no user-supplied chart):
 > User: "BTC 1h 现在怎么样" (or pastes a CSV of OHLCV)
 > → Read `workflows/klines.md` → fetch/parse → analyze (extract features) → retrieve → **generate fresh chart PNG** → 5-section reply citing precise data-grounded prices + chart path
+
+**Example 5 — Learning path** (systematic study, no API call):
+> User: "带我系统学一下 SMC" (or "我学到哪了" / "测一下我")
+> → Read `workflows/learning_path.md` → load `.learning_progress.json` → teach a stage's concept cards (cite rule numbers) → case practice via `illustrated_by_cases` → quiz → update progress
