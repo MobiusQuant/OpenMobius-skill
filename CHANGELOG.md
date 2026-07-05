@@ -8,6 +8,46 @@ the project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [0.3.0] — 2026-07-05
+
+### 📚 Knowledge base — full rebuild & expansion
+
+1. **KB expanded: 665 concepts + 1,246 cases → 726 concepts + 1,288
+   cases**, now merged from 12 curated source collections (300+ teaching
+   videos & live lessons) through an audited cross-collection pipeline.
+
+2. **New school: ChanLun (缠论).** 58 concept cards + 52 case cards
+   covering 笔 / 中枢 / 买卖点 applied to US equities — the skill now
+   answers 缠论 questions with dedicated cards instead of generic
+   price-action knowledge.
+
+3. **New source collections**: live-lesson series (gold / crude
+   intraday trading, 153 cases), SMC Strong/Weak supplement, and
+   additional SMC supplement playlists.
+
+4. **Audited concept merge.** Every concept card now comes from the
+   cross-collection fusion pass with sampled model audit; per-source
+   definitions are preserved on each card (`definition_per_source`) so
+   school-specific nuances aren't averaged away.
+
+5. **Content-level case deduplication.** Duplicate case extractions
+   across collections (same video, same time range) are removed via
+   time-range overlap matching with an asset-consistency guard —
+   ~280 bilingual duplicates dropped, zero distinct cases lost
+   (verified against v0.2.0: 665/665 concepts and 890/890 unique case
+   contents carried over).
+
+6. **Terminology continuity.** All v0.2.0 canonical terms and aliases
+   are preserved in `term_aliases.json` — older spellings (MSS, CSD,
+   IFVG variants, …) still retrieve the new cards.
+
+### 📝 Docs
+
+- README (EN/中文), SKILL description, and per-platform frontmatter
+  updated to the new KB stats; added a Contributors section.
+
+---
+
 ## [0.2.0] — 2026-05-23
 
 ### ✨ New features

@@ -4,7 +4,7 @@
 
 **给 AI 编程 Agent 的 ICT/SMC 交易知识 Skill**
 
-符合 `SKILL.md` 标准的能力包，把 964 张精选知识卡 + 实时行情 + 技术指标 +
+符合 `SKILL.md` 标准的能力包，把 2014 张精选知识卡 + 实时行情 + 技术指标 +
 图表生成 带给 **Claude Code**、**Codex**、**OpenClaw**、**Hermes** 四个平台。
 
 <br>
@@ -13,7 +13,7 @@
 [![Python](https://img.shields.io/badge/python-3.10%2B-3776ab.svg)](https://www.python.org/)
 [![Website](https://img.shields.io/badge/🌐_website-mobiusquant.ai-FF7E29.svg)](https://www.mobiusquant.ai/)
 [![Platforms](https://img.shields.io/badge/platforms-Claude_Code_·_Codex_·_OpenClaw_·_Hermes-9333ea.svg)](#平台支持)
-[![Knowledge Base](https://img.shields.io/badge/knowledge_base-964_cards-22c55e.svg)](#核心能力)
+[![Knowledge Base](https://img.shields.io/badge/knowledge_base-2014_cards-22c55e.svg)](#核心能力)
 
 [English](./README.md) · [中文](./README.zh.md) · 📜 [更新日志](./CHANGELOG.zh.md)
 
@@ -25,6 +25,26 @@
 > follow [`README_AGENT.md`](./README_AGENT.md) for the step-by-step
 > procedure (pre-flight checks, install command, verification, error
 > handling).
+
+---
+
+## 交流群
+
+项目方微信：**MobiusProject** —— 欢迎添加，入群交流。
+
+<div align="center">
+  <img src="./docs/assets/wechat_mobiusproject.jpg" alt="微信：MobiusProject" width="220">
+  <br>
+  <sub>扫一扫添加项目方微信，备注「OpenMobius」入群</sub>
+</div>
+
+## 贡献者
+
+感谢以下贡献者对 OpenMobius-skill 的帮助：
+
+<a href="https://github.com/xwzbupt"><img src="https://github.com/xwzbupt.png" width="64" height="64" alt="@xwzbupt"/></a>
+
+- [@xwzbupt](https://github.com/xwzbupt)
 
 ---
 
@@ -116,12 +136,14 @@ N 倍下载。
 
 ## 核心能力
 
-### 知识库 —— 380 概念 + 584 案例
+### 知识库 —— 726 概念 + 1288 案例
 
-从 130 个 ICT/SMC 教学视频萃取。每张概念卡含：识别规则、交易意义、
-常见错误、关联概念。每张案例卡含：市场上下文、关键观察、分析步骤、
-经验教训。通过本地 ChromaDB + 多语言 `nomic-embed-text-v1.5` 检索 ——
-检索本身不需要 API key。
+从 12 个精选来源合集（300+ 教学视频与直播课程）跨合集融合萃取，经模型
+抽样审计与内容级去重。覆盖 13 个流派 —— ICT、SMC、Price Action、
+指标体系、缠论、风险管理、Order Flow 等。每张概念卡含：识别规则、
+交易意义、常见错误、关联概念、分来源定义。每张案例卡含：市场上下文、
+关键观察、分析步骤、经验教训、源视频时间段溯源。通过本地 ChromaDB +
+多语言 `nomic-embed-text-v1.5` 检索 —— 检索本身不需要 API key。
 
 ### 实时行情 + 60+ 技术指标
 
@@ -151,15 +173,15 @@ Skill 会路由到 4 个 workflow 之一：
 
 **知识库**
 
-- **ICT/SMC 知识补全** —— 本期从 130 个教学视频萃取了 ICT 主干；
-  后续补全 ICT 子流派（Inner Circle Mentorship 系列、Silver Bullet、
-  Power of 3 细分模式）+ SMC 全量覆盖。
+- **ICT/SMC 知识补全** —— 前两轮已从 300+ 教学视频萃取 ICT 主干 +
+  SMC 补充系列；后续补全 ICT 子流派（Inner Circle Mentorship 系列、
+  Silver Bullet、Power of 3 细分模式）+ SMC 全量覆盖。
 - **基本面知识库** —— 构建新闻时事 / 政策解读 / 经济数据发布
   （CPI / NFP / FOMC）/ 财报季 的解读方法论卡片，与现有 ICT 技术面知识库
   平级。
-- **多流派扩展** —— 在 ICT/SMC 基础上，纳入 Wyckoff（成交量价行为）、
-  VSA（Volume Spread Analysis）、Volume Profile / Market Profile
-  （拍卖市场理论）、经典 Price Action（Al Brooks 风格）。
+- **多流派扩展** —— 缠论已随 v0.3.0 落地；接下来纳入 Wyckoff
+  （成交量价行为）、VSA（Volume Spread Analysis）、Volume Profile /
+  Market Profile（拍卖市场理论）、经典 Price Action（Al Brooks 风格）。
 
 **指标 & 工具**
 
@@ -193,7 +215,7 @@ OpenMobius-skill/
 │   ├── kb_doctor.py                  # 环境健康检查
 │   ├── chart_render/                 # lightweight-charts + headless chromium
 │   └── _lib/                         # embedder + retriever
-├── knowledge_base/                   # 380 概念 + 584 案例
+├── knowledge_base/                   # 726 概念 + 1288 案例
 ├── install.py                        # 跨平台安装器
 └── README.md / INSTALL.md
 ```

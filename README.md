@@ -4,7 +4,7 @@
 
 **ICT/SMC trading-knowledge skill for AI coding agents**
 
-A `SKILL.md`-standard skill bringing 964 curated knowledge cards, real-time
+A `SKILL.md`-standard skill bringing 2014 curated knowledge cards, real-time
 market data, technical indicators, and chart generation to
 **Claude Code**, **Codex**, **OpenClaw**, and **Hermes**.
 
@@ -14,7 +14,7 @@ market data, technical indicators, and chart generation to
 [![Python](https://img.shields.io/badge/python-3.10%2B-3776ab.svg)](https://www.python.org/)
 [![Website](https://img.shields.io/badge/🌐_website-mobiusquant.ai-FF7E29.svg)](https://www.mobiusquant.ai/)
 [![Platforms](https://img.shields.io/badge/platforms-Claude_Code_·_Codex_·_OpenClaw_·_Hermes-9333ea.svg)](#platform-support)
-[![Knowledge Base](https://img.shields.io/badge/knowledge_base-964_cards-22c55e.svg)](#features)
+[![Knowledge Base](https://img.shields.io/badge/knowledge_base-2014_cards-22c55e.svg)](#features)
 
 [English](./README.md) · [中文](./README.zh.md) · 📜 [Changelog](./CHANGELOG.md)
 
@@ -26,6 +26,16 @@ market data, technical indicators, and chart generation to
 > follow [`README_AGENT.md`](./README_AGENT.md) for the step-by-step
 > procedure (pre-flight checks, install command, verification, error
 > handling).
+
+---
+
+## Contributors
+
+Thanks to the people who help improve OpenMobius-skill:
+
+<a href="https://github.com/xwzbupt"><img src="https://github.com/xwzbupt.png" width="64" height="64" alt="@xwzbupt"/></a>
+
+- [@xwzbupt](https://github.com/xwzbupt)
 
 ---
 
@@ -121,13 +131,17 @@ doesn't N× the download.
 
 ## Features
 
-### Knowledge base — 380 concepts + 584 cases
+### Knowledge base — 726 concepts + 1288 cases
 
-Distilled from 130 ICT/SMC teaching videos. Each concept card carries:
-identification rules, trading implications, common mistakes, related
-concepts. Each case card carries: market context, key observation, analysis
-steps, lessons. Retrieved via local ChromaDB + multilingual
-`nomic-embed-text-v1.5` — no API key needed for retrieval.
+Distilled from 300+ teaching videos and live lessons across 12 curated
+source collections, cross-merged with model-audited term fusion and
+content-level deduplication. Coverage spans 13 schools — ICT, SMC, Price
+Action, Indicator-Based, ChanLun (缠论), Risk Management, Order Flow and
+more. Each concept card carries: identification rules, trading
+implications, common mistakes, related concepts, per-source definitions.
+Each case card carries: market context, key observation, analysis steps,
+lessons, and source time-range provenance. Retrieved via local ChromaDB +
+multilingual `nomic-embed-text-v1.5` — no API key needed for retrieval.
 
 ### Real-time data + 60+ indicators
 
@@ -158,14 +172,15 @@ skill routes to one of four workflows:
 
 **Knowledge base**
 
-- **ICT/SMC coverage completion** — Round 1 distilled the ICT trunk from 130
-  teaching videos; upcoming rounds complete ICT sub-schools (Inner Circle
-  Mentorship, Silver Bullet, Power of 3 variants) and full SMC coverage.
+- **ICT/SMC coverage completion** — Rounds 1–2 distilled the ICT trunk plus
+  SMC supplements from 300+ teaching videos; upcoming rounds complete ICT
+  sub-schools (Inner Circle Mentorship, Silver Bullet, Power of 3 variants)
+  and full SMC coverage.
 - **Fundamental knowledge base** — interpretation methodologies for news,
   policy reads, economic releases (CPI / NFP / FOMC) and earnings seasons.
-- **Multi-school expansion** — beyond ICT/SMC, add Wyckoff (volume/price
-  action), VSA, Volume Profile / Market Profile, and classic Price Action
-  (Al Brooks style).
+- **Multi-school expansion** — ChanLun (缠论) landed in v0.3.0; next up:
+  Wyckoff (volume/price action), VSA, Volume Profile / Market Profile, and
+  classic Price Action (Al Brooks style).
 
 **Indicators & tools**
 
@@ -201,7 +216,7 @@ OpenMobius-skill/
 │   ├── kb_doctor.py                  # env health check
 │   ├── chart_render/                 # lightweight-charts + headless chromium
 │   └── _lib/                         # embedder + retriever
-├── knowledge_base/                   # 380 concepts + 584 cases
+├── knowledge_base/                   # 726 concepts + 1288 cases
 ├── install.py                        # cross-platform installer
 └── README.md / INSTALL.md
 ```

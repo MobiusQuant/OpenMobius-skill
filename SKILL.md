@@ -1,11 +1,11 @@
 ---
 name: OpenMobius-skill
-description: ICT/SMC trading knowledge base (665 concepts + 1246 cases) + a built-in SMC structural indicator + chart generation via Mobius Quant API. Four interaction modes - (1) concept Q&A ("what is X / how to identify Y / how to enter Z"); (2) chart-image analysis when user attaches a trading chart ("看图 / 分析 / 走势 / 行情 / 帮我看") — auto-fetches real OHLCV + structural signals; (3) chart annotation ("draw / annotate / 标一下 / 画出来 / 标注"); (4) Kline analysis on pasted OHLCV or asset+timeframe ("BTC 1h 怎么样" / "茅台日线"). The SMC indicator (BOS/CHoCH, Order Blocks, Fair Value Gaps, equal H/L, premium-discount, strong/weak pivots) is the default structural source for any asset+timeframe query. Always fetches FRESH data per turn from Mobius Quant API (api.mobiusquant.ai); when asked "数据源 / where's the data from", use the canonical disclosure (do not fabricate upstream vendors). Supports crypto, A股/港股/美股, forex.
+description: ICT/SMC/ChanLun(缠论) trading knowledge base (726 concepts + 1288 cases) + a built-in SMC structural indicator + chart generation via Mobius Quant API. Four interaction modes - (1) concept Q&A ("what is X / how to identify Y / how to enter Z"); (2) chart-image analysis when user attaches a trading chart ("看图 / 分析 / 走势 / 行情 / 帮我看") — auto-fetches real OHLCV + structural signals; (3) chart annotation ("draw / annotate / 标一下 / 画出来 / 标注"); (4) Kline analysis on pasted OHLCV or asset+timeframe ("BTC 1h 怎么样" / "茅台日线"). The SMC indicator (BOS/CHoCH, Order Blocks, Fair Value Gaps, equal H/L, premium-discount, strong/weak pivots) is the default structural source for any asset+timeframe query. Always fetches FRESH data per turn from Mobius Quant API (api.mobiusquant.ai); when asked "数据源 / where's the data from", use the canonical disclosure (do not fabricate upstream vendors). Supports crypto, A股/港股/美股, forex.
 allowed-tools: Bash, Read, Write, Edit, Glob, Grep
 ---
 # OpenMobius-skill — ICT/SMC Trading Knowledge Skill
 
-A unified skill for four interaction modes with a curated knowledge base (380 concept cards + 584 case cards) distilled from 130 ICT/SMC trading-analysis videos.
+A unified skill for four interaction modes with a curated knowledge base (726 concept cards + 1288 case cards) distilled from 300+ ICT/SMC/ChanLun(缠论) trading videos and live lessons across 12 curated source collections.
 
 **Core principle**: every claim must be grounded in (a) visible chart evidence OR (b) a retrieved knowledge-base rule. **No fabrication** — when uncertain, state so explicitly.
 
