@@ -1,56 +1,43 @@
 {
-  "card_id": "risk_management_in_scalping",
+  "global_card_id": "risk_management_in_scalping",
+  "global_canonical": "Risk Management in Scalping",
   "type": "merged_concept",
-  "canonical_term": "Risk Management in Scalping",
+  "school": "Risk Management",
   "aliases": [
     "头皮交易风险管理",
     "快速交易风险控制"
   ],
-  "school": "Risk Management",
   "definition": "在头皮交易中通过快速止损、小仓位规模和部分平仓策略来控制风险。交易者快速判断错误并立即止损，同时在达到目标时分批获利，最小化单笔损失。",
+  "definition_per_source": {
+    "Education - ICT": "在头皮交易中通过快速止损、小仓位规模和部分平仓策略来控制风险。交易者快速判断错误并立即止损，同时在达到目标时分批获利，最小化单笔损失。"
+  },
   "identification_rules": [
     "设置止损位于明确的结构高点或低点（如FVG边界、摆动点），确保错误时快速出场",
     "使用较小的头寸规模，使单笔亏损金额可控且不影响账户",
     "在达到OTE或斐波那契回撤水平（如0.62）时分批平仓，而非持有至完整目标",
     "交易周期为15秒至1分钟级别，快速识别入场和出场信号"
   ],
-  "trading_implication": "头皮交易中的风险管理强调快速反应和小额风险。交易者在低时间框架（15秒图）寻找FVG、OB等微观结构，快速入场后若判断错误立即止损；若判断正确则在达到部分目标（如OTE或0.62斐波那契位）时分批出场获利。这种方法允许交易者频繁交易，每笔风险小但累积收益可观。",
   "common_mistakes": [
     "持有头皮交易头寸过长，期望获得完整的大级别目标而非部分获利",
     "止损位设置过宽，导致单笔亏损过大，违反头皮交易的小风险原则",
     "在低时间框架上没有明确的入场和出场规则，凭感觉交易而非结构确认"
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "头皮交易中的风险管理强调快速反应和小额风险。交易者在低时间框架（15秒图）寻找FVG、OB等微观结构，快速入场后若判断错误立即止损；若判断正确则在达到部分目标（如OTE或0.62斐波那契位）时分批出场获利。这种方法允许交易者频繁交易，每笔风险小但累积收益可观。",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "ivirRu3fc4o",
-      "original_card_id": "ivirRu3fc4o_concept_risk_management_in_scalping",
-      "segment_ids": [
-        "seg_002"
-      ],
-      "time_range": [
-        188.959,
-        355.0
-      ],
-      "extraction_confidence": "high"
+      "project": "Education - ICT",
+      "card_id": "risk_management_in_scalping",
+      "source_canonical_term": "Risk Management in Scalping",
+      "source_school": "Risk Management",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-13T15:59:04.135461Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "risk_management_in_scalping",
+  "canonical_term": "Risk Management in Scalping",
   "_embedding": [
     0.06682126224040985,
     0.0494915135204792,

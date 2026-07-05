@@ -1,12 +1,15 @@
 {
-  "card_id": "cheat_code_entry",
+  "global_card_id": "cheat_code_entry",
+  "global_canonical": "Cheat Code Entry",
   "type": "merged_concept",
-  "canonical_term": "Cheat Code Entry",
+  "school": "ICT",
   "aliases": [
     "快速入场法"
   ],
-  "school": "ICT",
   "definition": "在Mitigation Block形成后，当该K线收盘时立即在下一根K线开盘价入场，止损设在该K线上方1点，以获得优异的风险回报比。",
+  "definition_per_source": {
+    "Education - ICT": "在Mitigation Block形成后，当该K线收盘时立即在下一根K线开盘价入场，止损设在该K线上方1点，以获得优异的风险回报比。"
+  },
   "identification_rules": [
     "识别一个Mitigation Block（通常是在趋势中被打破的订单块）",
     "等待该K线完全收盘",
@@ -14,51 +17,31 @@
     "止损设置在Mitigation Block上方1点（做空）或下方1点（做多）",
     "目标指向趋势的既定目标或更低的目标"
   ],
-  "trading_implication": "Cheat Code Entry是一种激进的入场方式，相比等待Mitigation Block被回测后再入场，它在K线收盘时就提前入场。这种方法的优势在于能获得极优的风险回报比——由于止损仅为1点，而目标通常是多个点位，因此风险回报比非常有利。适用于在明确的趋势中，当Mitigation Block形成后立即执行。",
   "common_mistakes": [
     "在Mitigation Block尚未完全形成或收盘前就提前入场",
     "止损设置过大，未能严格控制在1点",
     "在非趋势环境中使用该方法，导致虚假信号",
     "忽视确认Mitigation Block的有效性就盲目入场"
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [
-    {
-      "card_id": "NgFIza9qsGQ_case_002_s_p_500_e_mini期货看跌mitigation_blo",
-      "video_id": "NgFIza9qsGQ",
-      "title": "ES期货5分钟FVG看跌Mitigation Block多次成功触及目标"
-    }
-  ],
+  "trading_implication": "Cheat Code Entry是一种激进的入场方式，相比等待Mitigation Block被回测后再入场，它在K线收盘时就提前入场。这种方法的优势在于能获得极优的风险回报比——由于止损仅为1点，而目标通常是多个点位，因此风险回报比非常有利。适用于在明确的趋势中，当Mitigation Block形成后立即执行。",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "NgFIza9qsGQ",
-      "original_card_id": "NgFIza9qsGQ_concept_cheat_code_entry",
-      "segment_ids": [
-        "seg_001",
-        "seg_003"
-      ],
-      "time_range": [
-        7.359,
-        545.04
-      ],
-      "extraction_confidence": "high"
+      "project": "Education - ICT",
+      "card_id": "cheat_code_entry",
+      "source_canonical_term": "Cheat Code Entry",
+      "source_school": "ICT",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-13T15:59:04.131685Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "illustrated_by_cases": [
+    "Education_-_ICT__NgFIza9qsGQ_case_002_s_p_500_e_mini期货看跌mitigation_blo"
+  ],
+  "card_id": "cheat_code_entry",
+  "canonical_term": "Cheat Code Entry",
   "_embedding": [
     0.058993224054574966,
     0.036215126514434814,

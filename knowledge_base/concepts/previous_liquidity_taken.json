@@ -1,57 +1,43 @@
 {
-  "card_id": "previous_liquidity_taken",
+  "global_card_id": "previous_liquidity_taken",
+  "global_canonical": "Previous Liquidity Taken",
   "type": "merged_concept",
-  "canonical_term": "Previous Liquidity Taken",
+  "school": "ICT",
   "aliases": [
     "先前流动性",
     "已吸收流动性"
   ],
-  "school": "ICT",
   "definition": "价格在之前的摆动高点或低点积累的流动性（订单）。一旦被吸收，价格倾向于向相反方向分配以获利。",
+  "definition_per_source": {
+    "Education - ICT": "价格在之前的摆动高点或低点积累的流动性（订单）。一旦被吸收，价格倾向于向相反方向分配以获利。"
+  },
   "identification_rules": [
     "识别前期摆动高点（Swing High）或摆动低点（Swing Low）的位置",
     "确认价格已经触及或穿过这些水平，表明流动性已被吸收",
     "观察价格是否在吸收后改变方向，向相反方向移动以分配流动性",
     "在多时间框架上标记这些水平，作为后续价格目标的参考"
   ],
-  "trading_implication": "Previous Liquidity Taken是确定日线偏向的首要因素。若下方流动性已被吸收，价格倾向向上分配；若上方流动性已被吸收，价格倾向向下分配。交易者应等待流动性被吸收后再顺势交易，避免逆势入场。这是ICT框架中预测价格方向的核心逻辑。",
   "common_mistakes": [
     "未能正确识别流动性所在的具体水平，导致目标设定错误",
     "在流动性未被完全吸收前过早建立头寸，被虚假突破扫出",
     "忽视多时间框架的流动性分布，仅关注单一时间框架"
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "Previous Liquidity Taken是确定日线偏向的首要因素。若下方流动性已被吸收，价格倾向向上分配；若上方流动性已被吸收，价格倾向向下分配。交易者应等待流动性被吸收后再顺势交易，避免逆势入场。这是ICT框架中预测价格方向的核心逻辑。",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "tZMgGsTqqVM",
-      "original_card_id": "tZMgGsTqqVM_concept_previous_liquidity_taken",
-      "segment_ids": [
-        "seg_001",
-        "seg_003"
-      ],
-      "time_range": [
-        6.96,
-        345.32
-      ],
-      "extraction_confidence": "high"
+      "project": "Education - ICT",
+      "card_id": "previous_liquidity_taken",
+      "source_canonical_term": "Previous Liquidity Taken",
+      "source_school": "ICT",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-13T15:59:04.134976Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "previous_liquidity_taken",
+  "canonical_term": "Previous Liquidity Taken",
   "_embedding": [
     0.06936966627836227,
     0.032154131680727005,

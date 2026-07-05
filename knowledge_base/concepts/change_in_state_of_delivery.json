@@ -1,4205 +1,1244 @@
 {
-  "card_id": "change_in_state_of_delivery",
+  "global_card_id": "change_in_state_of_delivery",
+  "global_canonical": "Change in State of Delivery",
   "type": "merged_concept",
-  "canonical_term": "Change In State Of Delivery",
+  "school": "ICT",
   "aliases": [
-    "change in the state of delivery",
-    "Change in the State of Delivery",
-    "Change of State of Delivery",
-    "change of state of delivery",
-    "change the state of delivery",
-    "CHoCH",
-    "CID",
-    "CISD",
-    "cisd",
-    "Closure through opposing candles",
     "CSD",
-    "csd",
-    "inversion",
+    "CISD",
+    "CID",
+    "Change in the State of Delivery",
+    "change in the state of delivery",
+    "Change of State of Delivery",
+    "change the state of delivery",
+    "change in state of delivery",
+    "State of Delivery Change",
+    "state of delivery shift",
+    "state of delivery confirmation",
     "opposing candles",
     "reversal sequence completion",
-    "Shift in Structure",
-    "State of Delivery Change",
-    "state of delivery confirmation",
-    "state of delivery shift",
-    "Structure Shift",
+    "Delivery State Change",
+    "Shift of Trend",
+    "State of Delivery Shift",
     "交付状态改变",
-    "市场结构转变（在伦敦反转背景下）",
+    "状态转变",
     "状态交付改变",
-    "状态改变"
+    "状态改变",
+    "交付状态转变",
+    "Closure through opposing candles",
+    "Bearish CISD",
+    "Bearish CSD",
+    "Bullish CISD",
+    "Shift in Structure"
   ],
-  "school": "ICT",
-  "definition": "A directional bias shift confirmed when price closes beyond the opening price/body of a consecutive series of same-direction candles (above down-close for bullish, below up-close for bearish). Signals the end of the prior delivery direction and the start of a reversal or continuation. The series becomes the order block for the new bias.",
+  "definition": "Change in State of Delivery（CSD/CISD）是 ICT 体系中的交付状态转变信号：当价格以实体收盘穿过一系列同向K线（全为上涨或下跌收盘）的开盘价/主体，或前期有效摆动高低点时，标志市场交付方向由一方转向另一方。收盘突破下跌序列上方为看涨，跌破上涨序列下方为看跌。它常伴随位移（Displacement）和公允价值缺口，通常发生于流动性扫荡后，是比市场结构转变（MSS）更早的确认信号，并将被穿越的K线序列验证为新订单块。",
+  "definition_per_source": {
+    "Daily Profiles": "当价格收盘突破一系列同向K线时确认的方向偏差转变：收盘高于下跌序列高点为看涨，低于上涨序列低点为看跌。标志前一交付方向结束、反转或延续开始。被穿越的同向K线序列成为新方向偏差的订单块。",
+    "Education - ICT (csd_基础)": "价格突破前一个有效摆动高点或低点，预示市场结构转变和短期趋势可能反转的价格行为，常在关键时间水平附近发生。",
+    "Education - ICT (synthesis综合)": "价格收盘突破形成摆动高/低点的一系列同向K线序列（或单根K线开盘价），标志市场从卖方交付转向买方交付（或反之）。先于市场结构转变发生，是趋势反转或延续的中期确认信号，常伴随位移和FVG形成。",
+    "Education - ICT (Bearish)": "价格在高时间框架内突破特定K线结构后，预示看跌趋势形成或延续的结构转变。与看涨CISD相对，常用不同颜色标记以区分方向。",
+    "Education - ICT (CISD)": "价格在高时间框架内突破特定K线结构（如扫过前一根K线高低点后回到内部），预示短期趋势可能反转的结构性转变。看涨为突破下方结构后反向上行，看跌反之。",
+    "Education - ICT (csd_位移)": "价格以收盘价确认穿越前一有效摆动高/低点（或关键K线开盘价/收盘价水平），标志短期交付阶段方向转变。常伴位移，用于确认高时间框架K线影线已形成或受保护摆动点已建立，预示反转或延续。",
+    "Education - ICT (Updated)": "当价格收盘穿过一系列对向K线的开盘价/主体时确认的交付方向转变（看涨突破下跌收盘上方，看跌突破上涨收盘下方），通常发生在高时间框架兴趣点的流动性扫荡之后。该收盘验证受保护摆动点，是比MSS更早的确认，并支持跨分形时间框架的入场对齐。",
+    "The Foundation": "当价格收盘穿过单根或一系列同向K线开盘价时交付状态转变：突破下跌序列开盘价为看涨，跌破上涨序列开盘价为看跌。多根时取第一根开盘价为关键水平，该序列同时被验证为订单块。"
+  },
   "identification_rules": [
-    "Identify a consecutive series of same-direction candles (all down-close or all up-close) on the working time frame (typically 5M, 15M, 30M, 1H, 4H, daily).",
-    "For a bullish CISD: wait for a candle to close above the opening price/high of the down-close series (use the first candle's opening if multiple). For a bearish CISD: wait for a candle to close below the opening price/low of the up-close series.",
-    "Confirmation requires a full candle body close beyond the series boundary — a wick touch, intrabar breach, or close that does not clear the series does not qualify.",
-    "If price fails to close beyond the series, the state of delivery has NOT changed; anticipate continuation in the original direction.",
-    "The entire series of same-direction candles that price closes beyond is marked as the candidate order block zone for the new directional bias.",
-    "The confirmed close should ideally occur with aggressive displacement (a strong, impulsive move), not a slow grind through the level.",
-    "The CISD is most valid when it occurs after a liquidity sweep (manipulation phase) in the opposing direction and aligns with a Kill Zone (London 02:00–05:00 EST or New York AM 08:30–12:00 EST) and a higher time frame PD Array or key level.",
-    "If the candle series is messy on the current time frame, step up one time frame (e.g., from 15M to 30M) to find a cleaner series for identification.",
-    "After a failed CISD attempt, re-identify the new series of same-direction candles formed after the failure — this new series becomes the updated order block for the eventual valid signal.",
-    "Apply fractally: use a lower time frame (e.g., 5-minute for hourly, hourly for daily) to confirm the higher time frame swing as protected; the closure on the lower time frame validates the higher time frame wick.",
-    "When SMT divergence is present on a correlated asset, a prior liquidity sweep is not strictly required.",
-    "If a new swing high/low forms before the closure occurs, abandon the old series and re-identify using the newest swing point.",
-    "Ensure the CISD aligns with the higher time frame bias; avoid countertrend CISD without clear higher time frame support.",
-    "In a reversal sequence, CISD typically follows Turtle Soup (liquidity sweep) and Inversion Fair Value Gap as the third confirmation step."
+    "识别一系列连续同向收盘K线（全部上涨收盘或全部下跌收盘）；极端情况下可为单根K线（The Foundation 与综合源强调单根为特殊情况）。",
+    "标记关键水平：The Foundation 与多数源主张取该序列【第一根】K线的开盘价/主体边界作为CSD水平；Daily Profiles 则以整个序列的高/低点边界为参考。",
+    "看涨CSD：等待一根K线收盘价高于下跌序列的开盘价/高点；看跌CSD：等待收盘价低于上涨序列的开盘价/低点。",
+    "必须是【实体收盘】完全穿越，仅以影线触及、盘中突破或未清越序列均不成立。",
+    "确认应伴随明显位移（Displacement）——快速有力的实体突破，而非缓慢盘整后的穿越；K线在水平处长时间盘整后才慢慢穿过通常不构成有效CSD。",
+    "CSD 应发生在重要价格水平附近（FVG、订单块、前期摆动高低点、高时间框架PD Array、关键时间水平如日开盘、8:30、9:30、10:00、14:00）。",
+    "CSD 遵循分形原理，可在任意时间框架识别（日线、4小时、1小时、30/15/5/1分钟）；高时间框架CSD对低时间框架具指导意义，应与更高时间框架偏差方向一致。",
+    "多时间框架联用：高时间框架出现Candle 2/3反向闭合或影线形成后，在低时间框架确认对应CSD作为精确入场（Education-ICT 与 Updated 强调低TF收盘验证高TF摆动点）。",
+    "CSD 确认后，被穿越的同向K线序列同时被验证为新方向的订单块（Order Block），用于止损与回测入场。",
+    "若在收盘发生前形成了新的摆动高/低点，应放弃旧序列并以最新摆动点重新识别（Daily Profiles 与 Updated 均强调失败后重置序列）。",
+    "结合SMT（相关资产分歧）可强化有效性；当存在SMT分歧时，前置流动性扫荡非严格必需（Updated 源特别指出）。",
+    "在反转序列中，CSD 通常作为第三步确认，出现于流动性扫荡/Turtle Soup 与 Inversion FVG（或 Inversion）之后（The Foundation 与综合源强调顺序性）。",
+    "观察受保护摆动点（Protected Swing）：开盘后形成较浅反向影线后价格突破该影线方向且不再创新极值，即确认受保护摆动点已建立。",
+    "Bearish/Bullish CISD 可由指标自动标记并以不同颜色区分方向（Bearish CISD 与 CISD 源），常与Candle 1 Sweep、T-Spot、C2/C3/C4 分形模型配合。",
+    "The Foundation 额外参考：CSD 水平的50%（Mean Threshold）可作为价格是否尊重该水平的判断——未以实体收盘越过0.5视为有效。"
   ],
-  "trading_implication": "A confirmed CISD marks the end of manipulation and start of distribution in the Power of Three model. The series of candles closed beyond forms the order block for entry on retest. Enter at that order block or a fair value gap created by the displacement candle, place a stop beyond the manipulation swing extreme, and target external liquidity (Previous Day High/Low, session highs/lows, failure swings, equal highs/lows). CISD enables fractal alignment: a lower timeframe CISD validates the higher timeframe swing, allowing continuation trades targeting opposite liquidity or standard deviation projections for a minimum 2R. Without CISD, a swing remains unconfirmed and trades should not be taken.",
   "common_mistakes": [
-    "Calling a CISD on a wick breach rather than waiting for a candle close beyond the series of same-direction candles.",
-    "Identifying the CISD on the wrong time frame — using a higher time frame series when a lower time frame series is the operative one, or failing to step up when the current time frame series is messy.",
-    "Entering immediately on the CISD candle close without waiting for a retracement into the order block or fair value gap, reducing risk/reward quality.",
-    "Failing to first confirm a liquidity sweep (manipulation) in the opposing direction before looking for the CISD, leading to premature bias shifts.",
-    "Treating a CISD that occurs away from a Kill Zone or without a higher time frame PD Array as a valid trade trigger; a 'fake' CISD can occur to run liquidity in the original direction before the true reversal.",
-    "Confusing a London-session CISD with a New York Reversal setup when London has not yet reached a relevant higher time frame level.",
-    "Attempting to trade the CISD during London session rather than waiting for the New York session continuation, which offers a cleaner entry via the order block retest.",
-    "Treating a single candle close as sufficient without confirming a clear series of same-direction candles preceding it.",
-    "Ignoring the New York manipulation move (opposing run at 08:30 or 09:30) that often precedes the true continuation, causing premature entries in the wrong direction.",
-    "Confusing CISD with Market Structure Shift: CISD focuses on close through candle series opening, MSS on break of swing high/low.",
-    "Using the wrong candle as the reference when a series exists (should close through the first candle's opening, not the last).",
-    "Assuming a swing point is protected before a CISD confirms it.",
-    "Not updating the protected swing as new opposing candle series form after the initial CISD.",
-    "Ignoring the higher time frame bias, leading to trading against the dominant trend.",
-    "Taking a CISD signal that lacks aggressive displacement, often seen in slow, ranging consolidations.",
-    "Failing to reset the opposing candle series when a new swing high/low forms before closure.",
-    "Entering directly on the CISD without waiting for a retracement to an order block or fair value gap when risk-to-reward is poor.",
-    "Calling a CISD on a single candle without confirming a series (unless explicitly a single-candle series).",
-    "Using the last candle's opening instead of the first when multiple same-direction candles exist.",
-    "Ignoring the time of the CISD formation: a CISD formed late in the candle does not support expansion within that candle; wait for the next candle.",
-    "Simultaneously marking multiple PD Arrays (CISD, FVG, Breaker Block) leading to chart clutter and unclear entry points.",
-    "Expecting price to reach -2 or -2.5 standard deviation targets on large manipulation legs without considering the excessive range.",
-    "Confusing CISD with Candle 3 Closure; they are different patterns and should not be used interchangeably.",
-    "Using CISD without a preceding reversal sequence (Turtle Soup or Inversion FVG) when applicable.",
-    "Missing the use of old trend FVGs as support/resistance for new trend, missing reaccumulation or redistribution entries.",
-    "Judging CISD before high resistance liquidity is formed, leading to premature entries before low resistance liquidity is swept."
+    "仅凭影线穿越（开盘价或关键水平）即认定CSD成立，未等待实体收盘确认。",
+    "将单根K线突破误认为CSD，忽视需要识别一系列同向收盘K线序列的要求。",
+    "多根同向K线时错误使用最后一根而非第一根K线的开盘价作为CSD水平（The Foundation 与 Updated 均指出应以第一根开盘价为基准）。",
+    "将CSD与市场结构转变（MSS/BOS）混淆：CSD 是更早的信号，强调收盘穿越K线序列开盘价及交付意图改变，不要求突破到摆动点之外；MSS 关注更大摆动结构转变。",
+    "将CSD与简单价格突破完全等同——CSD 必须伴随明显位移和结构改变。",
+    "缺少前置流动性扫荡/操纵腿或高时间框架PD Array/关键水平背景就单独使用CSD入场。",
+    "忽视更高时间框架偏差，在与高TF方向相反处寻找CSD，导致逆势交易。",
+    "未在多个时间框架逐级确认，直接在低TF入场，增加虚假信号；或仅看高TF Candle 2/3闭合而未在低TF验证，导致进入盘整而非趋势。",
+    "在CSD完全形成前过早入场，被诱导（Inducement）或浅影线扫出止损；大幅反向运动后仍期待同一K线内的CSD，应等待下一根K线。",
+    "在CSD成立后立即入场而不等待回测至订单块/FVG，损害风险回报；或未随后续新对向序列更新受保护摆动点。",
+    "未确认价格真正触及高TF关键水平或未扫出摆动极值（无配对SMT时）就判断CSD成立，把盘整/操纵阶段误认为有效突破。",
+    "K线末期形成的CSD不支持该K线内扩张，应等待下一根K线；大影线日线上过早交易反转，应等待次日延续确认。",
+    "同时标注过多PD Array（CSD、FVG、Breaker等）导致图表混乱，难以确定明确入场点；大操纵腿时仍期望价格到达-2/-2.5标准差目标。",
+    "混淆CSD与Candle 3 Closure，两者属不同形态，不应用于同一交易逻辑（综合源）。",
+    "未区分看涨/看跌CISD的方向性或忽视时间框架过滤器设置，导致方向错误或识别虚假信号（CISD 源）。",
+    "忽略旧趋势遗留FVG可作为新趋势支撑/阻力（再积累/再分配入场）的用途（The Foundation）。",
+    "Bearish CISD 源材料未明确说明常见误区。"
   ],
-  "related_concepts": [
-    {
-      "term": "Power of Three"
-    },
-    {
-      "term": "Accumulation, Manipulation, Distribution"
-    },
-    {
-      "term": "Displacement"
-    },
-    {
-      "term": "Fair Value Gap"
-    },
-    {
-      "term": "Order Block"
-    },
-    {
-      "term": "Propulsion Block"
-    },
-    {
-      "term": "Liquidity Sweep"
-    },
-    {
-      "term": "New York Manipulation Profile"
-    },
-    {
-      "term": "New York Reversal"
-    },
-    {
-      "term": "London Reversal"
-    },
-    {
-      "term": "Kill Zone"
-    },
-    {
-      "term": "Buy-Side Liquidity"
-    },
-    {
-      "term": "Sell-Side Liquidity"
-    },
-    {
-      "term": "Low Resistance Liquidity"
-    },
-    {
-      "term": "Previous Day High"
-    },
-    {
-      "term": "Previous Day Low"
-    },
-    {
-      "term": "Failure Swing"
-    },
-    {
-      "term": "Daily Profile"
-    },
-    {
-      "term": "London Session"
-    },
-    {
-      "term": "New York Open"
-    },
-    {
-      "term": "Higher Time Frame"
-    },
-    {
-      "term": "Lower Time Frame"
-    },
-    {
-      "term": "Market Structure Shift"
-    },
-    {
-      "term": "Internal Range Liquidity"
-    },
-    {
-      "term": "External Range Liquidity"
-    },
-    {
-      "term": "Protected Swing"
-    },
-    {
-      "term": "Expansion"
-    },
-    {
-      "term": "Swing High"
-    },
-    {
-      "term": "Smart Money Technique"
-    },
-    {
-      "term": "Equilibrium"
-    },
-    {
-      "term": "Premium/Discount"
-    },
-    {
-      "term": "Candle 2 Closure"
-    },
-    {
-      "term": "Candle 3 Closure"
-    },
-    {
-      "term": "Fractal Model"
-    },
-    {
-      "term": "Time Frame Alignment"
-    },
-    {
-      "term": "Inversion"
-    },
-    {
-      "term": "Breaker Block"
-    },
-    {
-      "term": "Mitigation Block"
-    },
-    {
-      "term": "Reversal Candle"
-    },
-    {
-      "term": "Expansion Candle"
-    },
-    {
-      "term": "Opposing Run"
-    },
-    {
-      "term": "Opposing Candle"
-    },
-    {
-      "term": "Reversal Sequence"
-    },
-    {
-      "term": "Wick"
-    },
-    {
-      "term": "HTF Key Level"
-    },
-    {
-      "term": "Candle Two Closure"
-    },
-    {
-      "term": "Candle Three Closure"
-    },
-    {
-      "term": "Swing Point"
-    },
-    {
-      "term": "Inducement"
-    },
-    {
-      "term": "Consolidation"
-    },
-    {
-      "term": "Fibonacci Projection"
-    },
-    {
-      "term": "Manipulation Leg"
-    },
-    {
-      "term": "Midweek Reversal"
-    },
-    {
-      "term": "Point of Interest"
-    },
-    {
-      "term": "Mean Threshold"
-    },
-    {
-      "term": "Premium/Discount Array"
-    },
-    {
-      "term": "Phases of Price"
-    },
-    {
-      "term": "Smart Money Reversal"
-    },
-    {
-      "term": "Buyside Liquidity"
-    },
-    {
-      "term": "Sellside Liquidity"
-    },
-    {
-      "term": "Retracement"
-    },
-    {
-      "term": "Candle Closure"
-    },
-    {
-      "term": "HTF / LTF"
-    },
-    {
-      "term": "Price Action"
-    },
-    {
-      "term": "2R"
-    },
-    {
-      "term": "AMD"
-    },
-    {
-      "term": "Box Setup"
-    },
-    {
-      "term": "Classic Expansion"
-    },
-    {
-      "term": "Consolidation Reversal"
-    },
-    {
-      "term": "Consequent Encroachment"
-    },
-    {
-      "term": "Continuation Entry"
-    },
-    {
-      "term": "Continuation OB"
-    },
-    {
-      "term": "Cracking Correlation"
-    },
-    {
-      "term": "Daily Bias"
-    },
-    {
-      "term": "Daily Closure"
-    },
-    {
-      "term": "Daily Open"
-    },
-    {
-      "term": "Discount"
-    },
-    {
-      "term": "Down-Close Candle"
-    },
-    {
-      "term": "Draw on Liquidity"
-    },
-    {
-      "term": "External Liquidity"
-    },
-    {
-      "term": "High Resistance Liquidity"
-    },
-    {
-      "term": "Intermediate-Term High"
-    },
-    {
-      "term": "Internal Liquidity"
-    },
-    {
-      "term": "Intraweek Reversal"
-    },
-    {
-      "term": "Inversion Fair Value Gap"
-    },
-    {
-      "term": "Judas Swing"
-    },
-    {
-      "term": "Lower Time Frame Confirmation"
-    },
-    {
-      "term": "Market Maker Buy Model"
-    },
-    {
-      "term": "Midnight Open"
-    },
-    {
-      "term": "New York Continuation"
-    },
-    {
-      "term": "Order of Reversal"
-    },
-    {
-      "term": "OTE"
-    },
-    {
-      "term": "PD Array"
-    },
-    {
-      "term": "Premium"
-    },
-    {
-      "term": "PSP"
-    },
-    {
-      "term": "Relevant High/Low"
-    },
-    {
-      "term": "Standard Deviation Projection"
-    },
-    {
-      "term": "Swing Low"
-    },
-    {
-      "term": "Top Down Analysis"
-    },
-    {
-      "term": "T-Spot"
-    },
-    {
-      "term": "Turtle Soup"
-    },
-    {
-      "term": "Up-Close Candle"
-    },
-    {
-      "term": "V-Shape Reversal"
-    },
-    {
-      "term": "Weekly Profile"
-    },
-    {
-      "term": "Break of Structure"
-    },
-    {
-      "term": "Directional Candle"
-    },
-    {
-      "term": "Entry"
-    },
-    {
-      "term": "Structure"
-    },
-    {
-      "term": "Projection"
-    },
-    {
-      "term": "Bias"
-    },
-    {
-      "term": "Timeframe Alignment"
-    }
-  ],
-  "merge_strategy": "llm_synthesis",
-  "merge_model": "deepseek/deepseek-chat",
-  "merge_notes": "All four projects are ICT school; no school conflict. One project (Daily Profiles) uses 'CHoCH' as primary alias, while others use 'CISD'/'CSD'; unified card uses 'CISD' as primary alias. Definitions agree on close through opposing candle series; minor nuance: some specify first candle's opening, others general opening/body. Identification rules combined; special cases (SMT, fractal application, reset on new swing) preserved. Trading implications merged with emphasis on fractal alignment and standard deviation projections.",
-  "warnings": [],
-  "illustrated_by_cases": [
-    {
-      "card_id": "IeXtmeKqjnQ_case_001_nasdaq_100_e_mini_futures_nq1_bu",
-      "video_id": "IeXtmeKqjnQ",
-      "title": "NQ1! Bullish NY Manipulation Profile – 26 April 2024 Long Trade"
-    },
-    {
-      "card_id": "IeXtmeKqjnQ_case_002_light_crude_oil_futures_cl1_bull",
-      "video_id": "IeXtmeKqjnQ",
-      "title": "CL1! Bullish NY Manipulation Profile on 9 February 2024 – Range Sweep and Reversal"
-    },
-    {
-      "card_id": "IeXtmeKqjnQ_case_003_light_crude_oil_futures_cl1_bear",
-      "video_id": "IeXtmeKqjnQ",
-      "title": "CL1! Bearish NY Manipulation Profile – London Consolidation, NY Double Sweep, Short Entry 3 May 2024"
-    },
-    {
-      "card_id": "IeXtmeKqjnQ_case_004_nasdaq_100_e_mini_futures_nq1_bu",
-      "video_id": "IeXtmeKqjnQ",
-      "title": "NQ1! Bullish NY Manipulation Profile on 7 May 2024 – CHoCH Entry to PDH"
-    },
-    {
-      "card_id": "xdzyejskSKE_case_001_light_crude_oil_cl1_new_york_rev",
-      "video_id": "xdzyejskSKE",
-      "title": "CL1! 15M New York Reversal: Sell-Side Liquidity Sweep and Bullish Recovery"
-    },
-    {
-      "card_id": "xdzyejskSKE_case_002_light_crude_oil_cl1_fake_london_",
-      "video_id": "xdzyejskSKE",
-      "title": "CL1! Fake London Reversal Becomes New York Reversal with Low Resistance Liquidity Run"
-    },
-    {
-      "card_id": "xdzyejskSKE_case_003_light_crude_oil_cl1_daily_revers",
-      "video_id": "xdzyejskSKE",
-      "title": "CL1! New York Reversal with Propulsion Block Formation for Bearish Continuation"
-    },
-    {
-      "card_id": "xdzyejskSKE_case_004_nasdaq_100_nq1_new_york_reversal",
-      "video_id": "xdzyejskSKE",
-      "title": "NQ1! New York Reversal: London Sweeps Low, NY Takes Previous Day High and Reverses"
-    },
-    {
-      "card_id": "xdzyejskSKE_case_005_s_p_500_es1_new_york_reversal_wi",
-      "video_id": "xdzyejskSKE",
-      "title": "ES1! New York Reversal Using HTF Fair Value Gap and Order Block Entry"
-    },
-    {
-      "card_id": "y6SnEdASVLY_case_001_bullish_london_reversal_in_light",
-      "video_id": "y6SnEdASVLY",
-      "title": "Bullish London Reversal in CL1! – London Sweeps Low, NY Continues Higher to 2R"
-    },
-    {
-      "card_id": "y6SnEdASVLY_case_002_bearish_london_reversal_in_light",
-      "video_id": "y6SnEdASVLY",
-      "title": "Bearish London Reversal in CL1! – February 2024 Short from Order Block at 2R"
-    },
-    {
-      "card_id": "y6SnEdASVLY_case_003_london_reversal_with_new_york_re",
-      "video_id": "y6SnEdASVLY",
-      "title": "London Reversal with New York Retracement – Light Crude Oil CL1! Short Setup"
-    },
-    {
-      "card_id": "y6SnEdASVLY_case_004_es_s_p_500_london_reversal_with_",
-      "video_id": "y6SnEdASVLY",
-      "title": "ES London Reversal: 8:30 News Manipulation into OB, Short to 9:30 and 10:00 AM Levels"
-    },
-    {
-      "card_id": "y6SnEdASVLY_case_005_multi_day_bullish_reversal_in_li",
-      "video_id": "y6SnEdASVLY",
-      "title": "Light Crude Oil Multi-Day Bullish Reversal: London OB Retest and NY Continuation"
-    },
-    {
-      "card_id": "3eVxTV_7L2U_case_007_指数三角完整顶部交易_nq_ym从日线到3分钟",
-      "video_id": "3eVxTV_7L2U",
-      "title": "NQ/YM日线三角顶部：从SMT到PSP再到3分钟CSD确认交易"
-    },
-    {
-      "card_id": "4Gm8p6O7Ebs_case_001_黄金小时图扩张走势分析",
-      "video_id": "4Gm8p6O7Ebs",
-      "title": "黄金1小时图三天扩张走势追踪"
-    },
-    {
-      "card_id": "4Gm8p6O7Ebs_case_003_黄金日线扩张与盘整交替",
-      "video_id": "4Gm8p6O7Ebs",
-      "title": "黄金日线扩张-盘整-扩张循环与分形结构"
-    },
-    {
-      "card_id": "5fnFOh5YuM0_case_002_eth多时间框架延续交易",
-      "video_id": "5fnFOh5YuM0",
-      "title": "ETH多时间框架延续交易：日线摆动确认到1H和5M入场"
-    },
-    {
-      "card_id": "5fnFOh5YuM0_case_003_欧元美元日线看涨设置",
-      "video_id": "5fnFOh5YuM0",
-      "title": "欧元美元日线看涨设置：低阻力流动性与摆动结构确认"
-    },
-    {
-      "card_id": "8BWkRGhuj1k_case_001_nq1_5月27日至6月2日的扩张_整理_反转交易案例",
-      "video_id": "8BWkRGhuj1k",
-      "title": "NQ1! 5月27日-6月2日扩张-整理-反转交易案例"
-    },
-    {
-      "card_id": "8BWkRGhuj1k_case_003_usd_日线7月2日至7月29日的整理_反转_延续案例",
-      "video_id": "8BWkRGhuj1k",
-      "title": "USD日线7月2-29日整理-反转-延续案例分析"
-    },
-    {
-      "card_id": "8BWkRGhuj1k_case_004_usd_日线7月23日至7月29日的空头交易设置",
-      "video_id": "8BWkRGhuj1k",
-      "title": "USD日线空头交易设置：从日线识别到15分钟精确入场"
-    },
-    {
-      "card_id": "CHIK5oBRKiw_case_004_nq11月1日box_setup与订单块结合案例",
-      "video_id": "CHIK5oBRKiw",
-      "title": "NQ1! 11月1日Box Setup与订单块结合做多案例"
-    },
-    {
-      "card_id": "E89d1HArbgM_case_002_原油期货月线至日线的多级别分析",
-      "video_id": "E89d1HArbgM",
-      "title": "原油期货月线至日线的多级别订单流分析"
-    },
-    {
-      "card_id": "F0G31iLVpVg_case_001_nq1小时线回撤案例",
-      "video_id": "F0G31iLVpVg",
-      "title": "NQ1小时线扩张-回撤-扩张循环分析"
-    },
-    {
-      "card_id": "FAKWJ-1NlLE_case_005_nq_多时间框架综合分析案例",
-      "video_id": "FAKWJ-1NlLE",
-      "title": "NQ 多时间框架综合分析：6点反转到10点延续交易"
-    },
-    {
-      "card_id": "FgP2lc9nneM_case_001_eth_4小时日线对齐交易案例",
-      "video_id": "FgP2lc9nneM",
-      "title": "ETH 4小时日线对齐交易案例：多时间框架联动反转"
-    },
-    {
-      "card_id": "FgP2lc9nneM_case_003_原油_ol_周线到日线的高级对齐案例",
-      "video_id": "FgP2lc9nneM",
-      "title": "原油(OL)周线到日线的高级多时间框架对齐案例"
-    },
-    {
-      "card_id": "IJcfC6wAPZU_case_004_纳指期货_nq_盘整突破后的多次延续机会",
-      "video_id": "IJcfC6wAPZU",
-      "title": "NQ盘整突破后的多次延续交易机会"
-    },
-    {
-      "card_id": "IJcfC6wAPZU_case_005_标普500_es_范围突破的延续交易",
-      "video_id": "IJcfC6wAPZU",
-      "title": "ES范围突破后的多次延续入场与2R目标达成"
-    },
-    {
-      "card_id": "IPZjNI1B5a0_case_001_btc日线扩张走势中的均衡点应用",
-      "video_id": "IPZjNI1B5a0",
-      "title": "ETH日线扩张走势中的均衡点应用与PD数组匹配"
-    },
-    {
-      "card_id": "LKNQDAdId4s_case_001_btc日线wick被尊重后的小时级扩展",
-      "video_id": "LKNQDAdId4s",
-      "title": "BTC日线wick被尊重后的小时级扩展"
-    },
-    {
-      "card_id": "LKNQDAdId4s_case_008_原油_cl_多时间框架wick分析",
-      "video_id": "LKNQDAdId4s",
-      "title": "原油(CL)多时间框架wick 0.5位置尊重分析"
-    },
-    {
-      "card_id": "Pcbyc9TdNsU_case_002_box设置与标准差结合的交易案例",
-      "video_id": "Pcbyc9TdNsU",
-      "title": "Box框架与标准差结合的操纵腿投影与反转交易"
-    },
-    {
-      "card_id": "SlWxhzhLo3A_case_003_原油日线范围交易案例",
-      "video_id": "SlWxhzhLo3A",
-      "title": "原油日线范围交易：失败摇摆反转与目标设定"
-    },
-    {
-      "card_id": "SlWxhzhLo3A_case_004_黄金15分钟多重反转扩张案例",
-      "video_id": "SlWxhzhLo3A",
-      "title": "黄金15分钟多重反转扩张案例"
-    },
-    {
-      "card_id": "TNybDCtwBnc_case_002_黄金第二个交易案例_扫盘后反转做多",
-      "video_id": "TNybDCtwBnc",
-      "title": "黄金日线扫盘后反转做多——多时间框架确认"
-    },
-    {
-      "card_id": "TNybDCtwBnc_case_003_nq第三个交易案例_日线反转后多日延续",
-      "video_id": "TNybDCtwBnc",
-      "title": "NQ日线反转后多日延续，小时线CSD确认，5分钟扫盘后入场获5.63R"
-    },
-    {
-      "card_id": "TNybDCtwBnc_case_004_英镑第四个交易案例_简化分析做多",
-      "video_id": "TNybDCtwBnc",
-      "title": "GBPUSD日线四根K线判断看涨，小时线CSD确认后5分钟做多"
-    },
-    {
-      "card_id": "TfHlNgAZ_II_case_001_黄金周线至15分钟多时间框架交易案例",
-      "video_id": "TfHlNgAZ_II",
-      "title": "黄金周线至15分钟多时间框架交易案例"
-    },
-    {
-      "card_id": "TfHlNgAZ_II_case_004_usd_jpy日线趋势延续案例",
-      "video_id": "TfHlNgAZ_II",
-      "title": "USD/JPY日线趋势延续：从内部流动性到外部流动性的机制化交易"
-    },
-    {
-      "card_id": "VD4xb9VfMHA_case_002_usd_1小时图_前期高点反转案例",
-      "video_id": "VD4xb9VfMHA",
-      "title": "USD 1小时图：扩张反转与低点扫除的理想结构"
-    },
-    {
-      "card_id": "VD4xb9VfMHA_case_004_spx500_1小时图_反转与回测流程",
-      "video_id": "VD4xb9VfMHA",
-      "title": "SPX500 1H：V形反转与摆动低点回测"
-    },
-    {
-      "card_id": "WFqLwOp2pXw_case_003_spy_1小时多重盘整的延续交易",
-      "video_id": "WFqLwOp2pXw",
-      "title": "SPY 1小时多重盘整的延续交易策略"
-    },
-    {
-      "card_id": "caaS6_Q7O78_case_002_btc日线与小时线的联动交易",
-      "video_id": "caaS6_Q7O78",
-      "title": "BTC日线反转信号与小时线精确入场执行"
-    },
-    {
-      "card_id": "eywpZT3z6GQ_case_001_黄金小时线看涨扩张交易案例",
-      "video_id": "eywpZT3z6GQ",
-      "title": "黄金小时线看涨扩张交易案例"
-    },
-    {
-      "card_id": "eywpZT3z6GQ_case_005_高级反转k线看跌交易案例",
-      "video_id": "eywpZT3z6GQ",
-      "title": "高级反转K线看跌交易：930时间窗口入场达成2R目标"
-    },
-    {
-      "card_id": "hKCMqh0ZsY0_case_001_nasdaq周线交易案例",
-      "video_id": "hKCMqh0ZsY0",
-      "title": "FOMC/NFP周期内的周线操纵-分布交易案例"
-    },
-    {
-      "card_id": "hKCMqh0ZsY0_case_002_core_pce新闻交易案例",
-      "video_id": "hKCMqh0ZsY0",
-      "title": "Core PCE新闻交易：周四扫低反转，周五标准差投影目标"
-    },
-    {
-      "card_id": "hKCMqh0ZsY0_case_003_audcad周线交易案例",
-      "video_id": "hKCMqh0ZsY0",
-      "title": "AUDCAD周线交易案例：CPI后的订单块与公允价值缺口确认"
-    },
-    {
-      "card_id": "iEaMbuFZb24_case_001_pdf示例_从看涨到看跌的多时间框架转变",
-      "video_id": "iEaMbuFZb24",
-      "title": "低时间框架看涨订单块被高时间框架看跌结构破坏"
-    },
-    {
-      "card_id": "iEaMbuFZb24_case_002_日线到5分钟的三层级交易案例",
-      "video_id": "iEaMbuFZb24",
-      "title": "日线偏向到小时线结构再到5分钟入场的三层级交易"
-    },
-    {
-      "card_id": "iEaMbuFZb24_case_005_黄金日线看涨结构的回测和扩张",
-      "video_id": "iEaMbuFZb24",
-      "title": "黄金日线看涨结构回测判断与小时线扩张"
-    },
-    {
-      "card_id": "jKuXaC84Qx4_case_003_第三个例子_eq失效导致下行",
-      "video_id": "jKuXaC84Qx4",
-      "title": "汽油期货：EQ失效导致看跌对立设置与下行"
-    },
-    {
-      "card_id": "kTWXpAo1uE8_case_001_第一个反转案例_上升后下跌的标准差投影",
-      "video_id": "kTWXpAo1uE8",
-      "title": "NQ1! 60m上升后激进下跌的标准差投影分析"
-    },
-    {
-      "card_id": "m4k_1pF5zFI_case_006_usd日线大幅扩张后反转案例",
-      "video_id": "m4k_1pF5zFI",
-      "title": "USD日线大幅扩张后反转交易案例"
-    },
-    {
-      "card_id": "q1NmxUTm4n4_case_004_es_2分钟图的低时间框架交易",
-      "video_id": "q1NmxUTm4n4",
-      "title": "ES 2分钟图基于15分钟SMT信号的低时间框架做空交易"
-    },
-    {
-      "card_id": "qdQYhePcvGE_case_010_gll_5分钟图的candle_3与candle_4交易",
-      "video_id": "qdQYhePcvGE",
-      "title": "GLL 5分钟图candle 3失败后的candle 4延续交易"
-    },
-    {
-      "card_id": "qdQYhePcvGE_case_011_spx_1小时反转与5分钟延续",
-      "video_id": "qdQYhePcvGE",
-      "title": "USD 1小时反转失败后5分钟延续交易"
-    },
-    {
-      "card_id": "r_UF8U-hsL8_case_001_apoz资产的反转与延续交易案例",
-      "video_id": "r_UF8U-hsL8",
-      "title": "APOZ反转序列与延续做空交易案例"
-    },
-    {
-      "card_id": "ubCe509_JLY_case_002_黄金日线到5分钟的反转交易",
-      "video_id": "ubCe509_JLY",
-      "title": "黄金日线3天扩张反转至5分钟做空"
-    },
-    {
-      "card_id": "ubCe509_JLY_case_004_欧元兑美元日线到5分钟的整固交易",
-      "video_id": "ubCe509_JLY",
-      "title": "欧元兑美元日线整固到5分钟多时间框架做空"
-    },
-    {
-      "card_id": "wik00c9_2nk_case_002_日线偏差与小时线反转案例",
-      "video_id": "wik00c9_2nk",
-      "title": "日线偏差后小时线反转与亚洲高点突破"
-    },
-    {
-      "card_id": "xP-o11jRCyg_case_003_btc扫盘与多时间框架breaker_block交易",
-      "video_id": "xP-o11jRCyg",
-      "title": "BTC多时间框架Breaker Block空头交易"
-    },
-    {
-      "card_id": "xP-o11jRCyg_case_005_nq等值高点与smt配合的1分钟breaker交易",
-      "video_id": "xP-o11jRCyg",
-      "title": "ETH 1分钟等值高点SMT配合Breaker交易"
-    },
-    {
-      "card_id": "xdzyejskSKE_case_003_原油期货的推进块交易",
-      "video_id": "xdzyejskSKE",
-      "title": "原油期货推进块交易：多时间框架汇聚点的连续交易"
-    },
-    {
-      "card_id": "xdzyejskSKE_case_004_外部流动性扫除与范围反转",
-      "video_id": "xdzyejskSKE",
-      "title": "轻质原油外部流动性扫除与范围反转交易"
-    },
-    {
-      "card_id": "-GkOTMYoJT4_case_004_nasdaq_100_4_hour_multiple_induc",
-      "video_id": "-GkOTMYoJT4",
-      "title": "NASDAQ 100 4-Hour Chart: Two Inducement Moves Within a Single Price Leg"
-    },
-    {
-      "card_id": "-GkOTMYoJT4_case_005_nasdaq_100_1_minute_trending_mar",
-      "video_id": "-GkOTMYoJT4",
-      "title": "NASDAQ 100 1-minute uptrend: using sequential low runs as inducement entries"
-    },
-    {
-      "card_id": "-KKuZb5Z5aU_case_001_ym_bullish_continuation_with_can",
-      "video_id": "-KKuZb5Z5aU",
-      "title": "YM Bullish Continuation Day Confirmed by Candle Two Closure into Daily Fair Value Gap"
-    },
-    {
-      "card_id": "-KKuZb5Z5aU_case_002_usdcad_bearish_continuation_with",
-      "video_id": "-KKuZb5Z5aU",
-      "title": "USDCAD 1H Bearish Continuation via Candle Three Closure into Previous Day Low"
-    },
-    {
-      "card_id": "-KKuZb5Z5aU_case_003_ym_reversal_with_protected_swing",
-      "video_id": "-KKuZb5Z5aU",
-      "title": "YM hourly reversal off previous day low with SMT and change in state of delivery"
-    },
-    {
-      "card_id": "-KKuZb5Z5aU_case_004_gbpusd_bullish_bias_with_retrace",
-      "video_id": "-KKuZb5Z5aU",
-      "title": "GBPUSD Bullish Bias: Hourly Retracement at Previous Day High then Continuation Higher"
-    },
-    {
-      "card_id": "-KKuZb5Z5aU_case_005_gbpusd_hourly_reversal_fractal_o",
-      "video_id": "-KKuZb5Z5aU",
-      "title": "GBPUSD Hourly Reversal Framed on 5-Minute Using Fractal Candle 2 Model"
-    },
-    {
-      "card_id": "-KKuZb5Z5aU_case_006_usdcad_4_hour_consolidation_brea",
-      "video_id": "-KKuZb5Z5aU",
-      "title": "USDCAD 4H Consolidation Sweep with 15M Reversal Entry Using Fractal Model"
-    },
-    {
-      "card_id": "-KKuZb5Z5aU_case_007_usd_index_hourly_continuation_wi",
-      "video_id": "-KKuZb5Z5aU",
-      "title": "NQ Hourly Bearish Continuation Entry from Fair Value Gap After Candle 2 Closure"
-    },
-    {
-      "card_id": "-gyDd_E_qD4_case_001_usd_midweek_reversal_with_bank_h",
-      "video_id": "-gyDd_E_qD4",
-      "title": "USD Midweek Reversal: Bank Holiday Mon-Tue Consolidation, Wed Candle-2 Closure Drives Bullish Continuation"
-    },
-    {
-      "card_id": "-gyDd_E_qD4_case_002_bll_wednesday_high_of_week_with_",
-      "video_id": "-gyDd_E_qD4",
-      "title": "BLL Wednesday High of Week confirmed by Thursday's delayed candle-3 closure"
-    },
-    {
-      "card_id": "-gyDd_E_qD4_case_003_usd_midweek_reversal_forming_wee",
-      "video_id": "-gyDd_E_qD4",
-      "title": "USD Midweek Reversal Forming Weekly Low with Time Frame Alignment"
-    },
-    {
-      "card_id": "-gyDd_E_qD4_case_004_usd_range_sweep_reversal_with_ho",
-      "video_id": "-gyDd_E_qD4",
-      "title": "Wednesday Range Low Sweep with Hourly CISD Confirmation for Bullish Continuation"
-    },
-    {
-      "card_id": "-wr4xATE37g_case_001_eur_usd_daily_reversal_with_prot",
-      "video_id": "-wr4xATE37g",
-      "title": "EUR/USD Daily Bearish Continuation via Protected High Formation on Hourly Timeframe"
-    },
-    {
-      "card_id": "-wr4xATE37g_case_002_eur_usd_hourly_continuation_with",
-      "video_id": "-wr4xATE37g",
-      "title": "EUR/USD Hourly Continuation Lower Tracked Through Multiple Protected Swing Highs"
-    },
-    {
-      "card_id": "-wr4xATE37g_case_003_es_4_hour_to_15_minute_protected",
-      "video_id": "-wr4xATE37g",
-      "title": "ES 4-Hour Bearish Continuation Refined to 15-Minute Protected Swing Entry"
-    },
-    {
-      "card_id": "-wr4xATE37g_case_004_silver_1_hour_protected_swing_en",
-      "video_id": "-wr4xATE37g",
-      "title": "Silver 1H Bearish Protected Swing Entry at Fair Value Gap Targeting 2R"
-    },
-    {
-      "card_id": "-wr4xATE37g_case_005_silver_bullish_reversal_with_pro",
-      "video_id": "-wr4xATE37g",
-      "title": "Silver 1H Bullish Reversal: Protected Low Confirmation After Previous Day Low Sweep"
-    },
-    {
-      "card_id": "27S9gjgcSlI_case_004_eur_usd_vs_gbp_usd_forex_smt_wit",
-      "video_id": "27S9gjgcSlI",
-      "title": "EUR/USD vs GBP/USD Forex SMT Reversal with Breaker Block Unicorn Entry"
-    },
-    {
-      "card_id": "27S9gjgcSlI_case_005_es_vs_nq_post_cpi_smt_with_high_",
-      "video_id": "27S9gjgcSlI",
-      "title": "ES vs NQ Post-CPI SMT Divergence with High Resistance Liquidity Stop on NQ Short"
-    },
-    {
-      "card_id": "27S9gjgcSlI_case_006_nq_15_minute_to_1_minute_confirm",
-      "video_id": "27S9gjgcSlI",
-      "title": "NQ post-CPI short: 15-minute breaker block entry with 1-minute confirmation fallback"
-    },
-    {
-      "card_id": "3OivsP1j_UE_case_003_gbp_jpy_weekly_to_4_hour_market_",
-      "video_id": "3OivsP1j_UE",
-      "title": "GBP/JPY Weekly External-to-Internal Liquidity with 4-Hour Market Maker Buy Model Entry"
-    },
-    {
-      "card_id": "3eVxTV_7L2U_case_006_indices_triad_ym_top_down_trade_",
-      "video_id": "3eVxTV_7L2U",
-      "title": "YM Top-Down Bearish Trade: Daily Range High to 3-Minute CSD Entry Targeting Range Low"
-    },
-    {
-      "card_id": "3eVxTV_7L2U_case_009_e_mini_russell_2000_rty_weekly_l",
-      "video_id": "3eVxTV_7L2U",
-      "title": "RTY Weekly Low with 4-Hour Expansion and SMT Fill vs YM Targeting External High"
-    },
-    {
-      "card_id": "4Gm8p6O7Ebs_case_001_gold_xauusd_hourly_expansion_wit",
-      "video_id": "4Gm8p6O7Ebs",
-      "title": "Gold (XAUUSD) Hourly Expansion with Protected Swings After Daily Reversal"
-    },
-    {
-      "card_id": "4Gm8p6O7Ebs_case_002_gold_xauusd_reversal_at_previous",
-      "video_id": "4Gm8p6O7Ebs",
-      "title": "Gold (XAUUSD) Reversal at Previous Day High Triggers New Expansion Phase Lower"
-    },
-    {
-      "card_id": "4Gm8p6O7Ebs_case_003_silver_daily_expansion_met_with_",
-      "video_id": "4Gm8p6O7Ebs",
-      "title": "Silver Daily Expansion Met with Expansion Signals New Phase of Price"
-    },
-    {
-      "card_id": "4Gm8p6O7Ebs_case_005_nq_nasdaq_london_reversal_and_ne",
-      "video_id": "4Gm8p6O7Ebs",
-      "title": "NQ 1H London Reversal forming session low followed by New York continuation expansion"
-    },
-    {
-      "card_id": "4Gm8p6O7Ebs_case_007_gold_bullish_daily_setup_with_ga",
-      "video_id": "4Gm8p6O7Ebs",
-      "title": "Gold Bullish Daily Closure Gaps Up, Hits Previous Day High, Then Reverses Bearish"
-    },
-    {
-      "card_id": "4Gm8p6O7Ebs_case_008_gold_expansion_lower_with_consol",
-      "video_id": "4Gm8p6O7Ebs",
-      "title": "Gold Hourly Expansion Lower with Consolidation-Reversal Continuation Pattern"
-    },
-    {
-      "card_id": "4jU547ocod4_case_001_eth_reversal_off_previous_day_hi",
-      "video_id": "4jU547ocod4",
-      "title": "ETH Reversal Off Previous Day High with Hourly–5-Minute Alignment and 1-Minute Inversion Entry"
-    },
-    {
-      "card_id": "4jU547ocod4_case_002_nq_consolidation_range_breakout_",
-      "video_id": "4jU547ocod4",
-      "title": "NQ Consolidation Range: 10AM 4-Hour Closure with 1-Minute Inversion Entry"
-    },
-    {
-      "card_id": "4jU547ocod4_case_003_three_drive_consolidation_with_s",
-      "video_id": "4jU547ocod4",
-      "title": "Three-Drive Consolidation Sweep with Hourly Closure Back In for Bullish Reversal"
-    },
-    {
-      "card_id": "4jU547ocod4_case_004_downtrend_reversal_off_previous_",
-      "video_id": "4jU547ocod4",
-      "title": "Downtrend Reversal Off Previous Day Low Using Failure Swing Sweep and Multi-Timeframe Confirmation"
-    },
-    {
-      "card_id": "4jU547ocod4_case_005_hourly_1_minute_inversion_entry_",
-      "video_id": "4jU547ocod4",
-      "title": "Hourly-1-Minute Inversion Entry on ETH with Wick Formed Prior to New Hourly Candle Open"
-    },
-    {
-      "card_id": "5fnFOh5YuM0_case_001_eth_daily_swing_low_with_london_",
-      "video_id": "5fnFOh5YuM0",
-      "title": "ETH Daily Swing Low Holds via SMT with ES, London Reversal and NY Continuation for 2R"
-    },
-    {
-      "card_id": "5fnFOh5YuM0_case_002_usd_daily_consolidation_with_swi",
-      "video_id": "5fnFOh5YuM0",
-      "title": "ETH Daily Consolidation Sweep with Confirmed Swing Low and Hourly/5-Minute Continuation Entry"
-    },
-    {
-      "card_id": "5fnFOh5YuM0_case_003_eur_usd_failure_swings_with_draw",
-      "video_id": "5fnFOh5YuM0",
-      "title": "EUR/USD daily failure swings used as draw on liquidity with hourly and 5-minute swing point entries"
-    },
-    {
-      "card_id": "5fnFOh5YuM0_case_004_btc_daily_expansion_candle_with_",
-      "video_id": "5fnFOh5YuM0",
-      "title": "BTC/ETH Daily Expansion Candle Continuation Short via 5-Minute Protected High Entry"
-    },
-    {
-      "card_id": "6zTz7WMdMWg_case_003_gbp_usd_4_hour_swing_point_and_f",
-      "video_id": "6zTz7WMdMWg",
-      "title": "GBP/USD 4-Hour Swing Point and Fair Value Gap Next Candle Model Walkthrough"
-    },
-    {
-      "card_id": "6zTz7WMdMWg_case_004_gbp_usd_multi_timeframe_entry_fr",
-      "video_id": "6zTz7WMdMWg",
-      "title": "GBP/USD Top-Down Analysis: 4-Hour Bias to 1-Minute Order Block Entry"
-    },
-    {
-      "card_id": "75S4vwD4P1U_case_002_bearish_breaker_block_on_eurusd_",
-      "video_id": "75S4vwD4P1U",
-      "title": "Bearish Breaker Block with Unicorn Model Confluence on EURUSD 5-Minute"
-    },
-    {
-      "card_id": "7p9MBFk8EEM_case_001_dxy_daily_reversal_using_order_b",
-      "video_id": "7p9MBFk8EEM",
-      "title": "DXY Daily Bullish Reversal Using Order Block and Fair Value Gap"
-    },
-    {
-      "card_id": "7p9MBFk8EEM_case_002_us_oil_daily_reversal_with_previ",
-      "video_id": "7p9MBFk8EEM",
-      "title": "US Oil Daily Reversal Using Previous Month's High and Weekly FVG as Overlapping PD Arrays"
-    },
-    {
-      "card_id": "7p9MBFk8EEM_case_003_nq_5_minute_reversal_from_daily_",
-      "video_id": "7p9MBFk8EEM",
-      "title": "NQ 5-Minute Bullish Reversal Using Down-Close Candle as Support After Daily Swing Low Sweep"
-    },
-    {
-      "card_id": "8BWkRGhuj1k_case_001_nq1_hourly_chart_expansion_conso",
-      "video_id": "8BWkRGhuj1k",
-      "title": "NQ1! Hourly Live Example: Blending Phases of Price with Daily Bias for Continuation and Reversal Entries"
-    },
-    {
-      "card_id": "8BWkRGhuj1k_case_002_apoz_daily_and_intraday_multi_ti",
-      "video_id": "8BWkRGhuj1k",
-      "title": "APOZ Multi-Timeframe Short Setup: Blending Daily Phases with Hourly and 15-Minute Entry"
-    },
-    {
-      "card_id": "8BWkRGhuj1k_case_003_es1_daily_and_intraday_consolida",
-      "video_id": "8BWkRGhuj1k",
-      "title": "ES1! Daily Bias Top-Down: Daily Closure to 4H Retracement to 15M Short Entry with NQ SMT"
-    },
-    {
-      "card_id": "8BWkRGhuj1k_case_004_nq1_5_minute_chart_fractal_model",
-      "video_id": "8BWkRGhuj1k",
-      "title": "NQ1! 5-Minute Fractal Model Using Hourly Bias for Bearish Continuation Entries"
-    },
-    {
-      "card_id": "9AL41xON3hA_case_001_xauusd_daily_reversal_with_hourl",
-      "video_id": "9AL41xON3hA",
-      "title": "XAUUSD Daily Bearish Reversal with Hourly Continuation into Daily Fair Value Gap"
-    },
-    {
-      "card_id": "9AL41xON3hA_case_003_crude_oil_hourly_consolidation_w",
-      "video_id": "9AL41xON3hA",
-      "title": "Crude Oil Hourly: Failed Continuations Turn Into Consolidation, Avoided Until Range Breakout"
-    },
-    {
-      "card_id": "9BY-MQRNy-Y_case_001_nq_weekly_to_hourly_bearish_swin",
-      "video_id": "9BY-MQRNy-Y",
-      "title": "NQ Weekly Bearish Bias Cascaded to Daily Candle 2 Closure and Hourly Entries Targeting Failure Swings"
-    },
-    {
-      "card_id": "9BY-MQRNy-Y_case_002_ng_natural_gas_weekly_to_hourly_",
-      "video_id": "9BY-MQRNy-Y",
-      "title": "NG Natural Gas Weekly Swing Point Bullish Bias with Daily V-Shaped Reversal and Hourly SMT Entry"
-    },
-    {
-      "card_id": "9BY-MQRNy-Y_case_003_btc_weekly_to_4h_bearish_swing_w",
-      "video_id": "9BY-MQRNy-Y",
-      "title": "BTC Weekly-to-4H Bearish Swing Trade with Timeframe Adjustment for Clarity"
-    },
-    {
-      "card_id": "9BY-MQRNy-Y_case_004_btc_4h_to_15m_fractal_entry_with",
-      "video_id": "9BY-MQRNy-Y",
-      "title": "BTC Multi-Timeframe Drill-Down: 4H Fair Value Gap Target with 15M Fractal Entry"
-    },
-    {
-      "card_id": "9BY-MQRNy-Y_case_005_btc_weekly_to_4h_direct_fractal_",
-      "video_id": "9BY-MQRNy-Y",
-      "title": "BTC Weekly-to-4H Direct Fractal Swing Trade with Protected Swing Entry"
-    },
-    {
-      "card_id": "9PKJ0U1gl4g_case_002_crude_oil_hourly_propulsion_bloc",
-      "video_id": "9PKJ0U1gl4g",
-      "title": "Crude Oil Hourly Entry Using Daily Propulsion Block Context"
-    },
-    {
-      "card_id": "9PKJ0U1gl4g_case_004_usd_jpy_daily_propulsion_block_e",
-      "video_id": "9PKJ0U1gl4g",
-      "title": "USD/JPY Daily Propulsion Block Short After Buy-Stop Sweep and Displacement Lower"
-    },
-    {
-      "card_id": "AdmnWLjf8rY_case_001_nq_1_minute_entry_with_hourly_dr",
-      "video_id": "AdmnWLjf8rY",
-      "title": "NQ 1-Minute Entry Using Hourly Equal Highs as Draw on Liquidity"
-    },
-    {
-      "card_id": "AdmnWLjf8rY_case_002_nq_multi_timeframe_reversal_with",
-      "video_id": "AdmnWLjf8rY",
-      "title": "NQ Multi-Timeframe Reversal: London Highs Sweep with ES SMT Confirmation and 1-Minute FVG Entry"
-    },
-    {
-      "card_id": "CHIK5oBRKiw_case_001_nq_5_minute_reversal_with_cisd_a",
-      "video_id": "CHIK5oBRKiw",
-      "title": "NQ 5-minute CISD reversal after buy-side sweep targeting London lows (8/11/2023)"
-    },
-    {
-      "card_id": "CHIK5oBRKiw_case_002_nq_daily_to_2_minute_multi_timef",
-      "video_id": "CHIK5oBRKiw",
-      "title": "NQ top-down: daily FVG draw, hourly CISD, 2-minute short entry targeting equal lows (10/12/2023)"
-    },
-    {
-      "card_id": "CHIK5oBRKiw_case_003_es_1_minute_bearish_entry_with_o",
-      "video_id": "CHIK5oBRKiw",
-      "title": "ES 1-minute bearish entry: range manipulation, CISD, order block entry with projection targets"
-    },
-    {
-      "card_id": "CHIK5oBRKiw_case_004_es_1_minute_bullish_reversal_wit",
-      "video_id": "CHIK5oBRKiw",
-      "title": "ES 1-minute bullish reversal: manipulation below range, CISD entry, targeting -2 to -2.5 standard deviations"
-    },
-    {
-      "card_id": "CHIK5oBRKiw_case_005_nq_box_setup_with_order_block_co",
-      "video_id": "CHIK5oBRKiw",
-      "title": "NQ Box setup with order block confirmation and FVG confluence on 11/1/2023"
-    },
-    {
-      "card_id": "CHIK5oBRKiw_case_006_nq_bullish_box_setup_with_order_",
-      "video_id": "CHIK5oBRKiw",
-      "title": "NQ 1-minute bullish box setup: order block entry after manipulation with FVG target"
-    },
-    {
-      "card_id": "CqMIh-Vvhbg_case_001_eur_aud_daily_to_hourly_reversal",
-      "video_id": "CqMIh-Vvhbg",
-      "title": "EUR/AUD Daily-to-Hourly Reversal Setup with New York Entry"
-    },
-    {
-      "card_id": "CqMIh-Vvhbg_case_002_eur_usd_5_minute_fractal_model_e",
-      "video_id": "CqMIh-Vvhbg",
-      "title": "EUR/AUD Hourly Fractal Model Bearish Setup with T-Spot Wick Formation and Continuation Lower"
-    },
-    {
-      "card_id": "CqMIh-Vvhbg_case_003_gc_gold_hourly_to_5_minute_confl",
-      "video_id": "CqMIh-Vvhbg",
-      "title": "GC Gold Hourly-to-5-Minute T-Spot Confluence Long Setup"
-    },
-    {
-      "card_id": "CqMIh-Vvhbg_case_004_es_s_p_500_daily_candle_2_closur",
-      "video_id": "CqMIh-Vvhbg",
-      "title": "ES Daily Candle 2 Closure with NY Consolidation Manipulation and Expansion to Previous Day Low"
-    },
-    {
-      "card_id": "DMUiDBnTYc8_case_002_eth_hourly_fair_value_gap_with_5",
-      "video_id": "DMUiDBnTYc8",
-      "title": "ETH hourly fair value gap paired with 5-minute order block entry reaches 2R target"
-    },
-    {
-      "card_id": "DMUiDBnTYc8_case_003_oil_5_minute_order_block_with_me",
-      "video_id": "DMUiDBnTYc8",
-      "title": "Oil 5-minute order block entry using mean threshold to improve risk-to-reward"
-    },
-    {
-      "card_id": "DMUiDBnTYc8_case_004_eth_15_minute_smart_money_revers",
-      "video_id": "DMUiDBnTYc8",
-      "title": "ETH 15-minute smart money reversal entry with continuation order block on retest"
-    },
-    {
-      "card_id": "DMUiDBnTYc8_case_005_crude_oil_daily_continuation_wit",
-      "video_id": "DMUiDBnTYc8",
-      "title": "Crude oil daily continuation using stacked order blocks at previous month high"
-    },
-    {
-      "card_id": "E89d1HArbgM_case_001_dxy_daily_chart_change_in_state_",
-      "video_id": "E89d1HArbgM",
-      "title": "Conceptual Comparison: Change in State of Delivery vs Market Structure Shift Timing"
-    },
-    {
-      "card_id": "E89d1HArbgM_case_002_eth_and_nq_1_minute_chart_order_",
-      "video_id": "E89d1HArbgM",
-      "title": "NQ 1-Minute: Comparing Change in State of Delivery vs Market Structure Shift for Short Entries"
-    },
-    {
-      "card_id": "E89d1HArbgM_case_003_oil_futures_cl_monthly_to_daily_",
-      "video_id": "E89d1HArbgM",
-      "title": "Oil Futures (CL) Monthly-to-Daily: Three Sequential Order Flow Shift Signals After Buy-Stop Raid"
-    },
-    {
-      "card_id": "EYzP7c24AwM_case_002_cl_bullish_continuation_with_10_",
-      "video_id": "EYzP7c24AwM",
-      "title": "CL bullish continuation: 6 AM sweep and closure above down-close candles, 10 AM forms 4H low, 2 PM expands to take liquidity highs"
-    },
-    {
-      "card_id": "EYzP7c24AwM_case_003_nq_bullish_setup_with_8_30_oppos",
-      "video_id": "EYzP7c24AwM",
-      "title": "NQ Bullish Setup: 8:30 Opposing Run Forms Order Block, 10 AM Drives Continuation Higher"
-    },
-    {
-      "card_id": "EYzP7c24AwM_case_004_es_bearish_order_block_formation",
-      "video_id": "EYzP7c24AwM",
-      "title": "ES 15-minute: 8:30 bearish order block formation followed by 9:30 distribution lower"
-    },
-    {
-      "card_id": "EYzP7c24AwM_case_005_eth_fair_value_gap_support_with_",
-      "video_id": "EYzP7c24AwM",
-      "title": "ETH holds fair value gap as support with 9:30 volatility entry driving continuation higher"
-    },
-    {
-      "card_id": "F0G31iLVpVg_case_001_nq1_1_hour_retracement_into_fair",
-      "video_id": "F0G31iLVpVg",
-      "title": "NQ1! 1-hour expansion-retracement-expansion cycle with candle 2 closure and protected swing entry"
-    },
-    {
-      "card_id": "F0G31iLVpVg_case_003_eur_usd_5_minute_protected_swing",
-      "video_id": "F0G31iLVpVg",
-      "title": "EUR/USD 5-minute protected swing formation and bullish continuation entry via fair value gap"
-    },
-    {
-      "card_id": "F0G31iLVpVg_case_004_ng1_daily_candle_2_closure_with_",
-      "video_id": "F0G31iLVpVg",
-      "title": "NG1! daily candle 2 closure with retracement into fair value gap forming monthly wick"
-    },
-    {
-      "card_id": "F0G31iLVpVg_case_005_nq1_3_minute_multi_phase_price_a",
-      "video_id": "F0G31iLVpVg",
-      "title": "NQ1! 3-minute multi-phase price action: tracking protected swings through expansion, retracement, and consolidation until reversal"
-    },
-    {
-      "card_id": "FAKWJ-1NlLE_case_001_ym_bullish_daily_reversal_with_4",
-      "video_id": "FAKWJ-1NlLE",
-      "title": "YM Bullish Daily Reversal with 4-Hour London Reversal and New York Continuation Entry"
-    },
-    {
-      "card_id": "FAKWJ-1NlLE_case_002_usd_jpy_forex_reversal_with_cont",
-      "video_id": "FAKWJ-1NlLE",
-      "title": "USD/JPY Forex Reversal with 15-Minute Continuation Entry from Weekly Bullish Bias"
-    },
-    {
-      "card_id": "FAKWJ-1NlLE_case_003_gold_gc_4_hour_power_of_three_wi",
-      "video_id": "FAKWJ-1NlLE",
-      "title": "Gold (GC) 4-Hour Power of Three Reversal with 3-Minute Fractal Entry (GXT Model)"
-    },
-    {
-      "card_id": "FAKWJ-1NlLE_case_005_es_multi_timeframe_setup_6_am_re",
-      "video_id": "FAKWJ-1NlLE",
-      "title": "NQ Multi-Timeframe Setup: 6 AM Reversal to 10 AM Continuation with Multiple Entries"
-    },
-    {
-      "card_id": "FGkb_50BfT8_case_001_es_5_minute_chart_failure_swings",
-      "video_id": "FGkb_50BfT8",
-      "title": "ES 5-minute: Sweep of equal lows creates HRL; target failure swing highs as LRL"
-    },
-    {
-      "card_id": "FGkb_50BfT8_case_007_es_5_minute_order_block_entries_",
-      "video_id": "FGkb_50BfT8",
-      "title": "ES 5-minute: Order block entries validated by mean threshold and propulsion block formation"
-    },
-    {
-      "card_id": "FKTBkTzsmUA_case_002_eur_usd_15_minute_valid_ifvg_wit",
-      "video_id": "FKTBkTzsmUA",
-      "title": "EUR/USD 15-minute: Valid bearish IFVG with sweep of 4H high and change in state of delivery"
-    },
-    {
-      "card_id": "FKTBkTzsmUA_case_003_btc_usdt_1_minute_failed_ifvg_wi",
-      "video_id": "FKTBkTzsmUA",
-      "title": "Failed IFVG entry: sweep without V-shape reversal leads to consolidation, avoid"
-    },
-    {
-      "card_id": "FKTBkTzsmUA_case_004_eth_3_minute_ifvg_with_large_opp",
-      "video_id": "FKTBkTzsmUA",
-      "title": "ETH 3-minute IFVG entry after consolidation sweep with large opposing run, waiting for next HTF candle open"
-    },
-    {
-      "card_id": "FKTBkTzsmUA_case_005_eth_daily_to_15_minute_top_down_",
-      "video_id": "FKTBkTzsmUA",
-      "title": "ETH top-down reversal: daily bias to 15-minute IFVG entry after three expansion days"
-    },
-    {
-      "card_id": "FXJBFbZQbck_case_004_bearish_structure_with_order_blo",
-      "video_id": "FXJBFbZQbck",
-      "title": "Bearish Daily Structure: Validating Up-Close Candles as Order Blocks Targeting PDL"
-    },
-    {
-      "card_id": "FXJBFbZQbck_case_007_eth_wednesday_8_30_news_manipula",
-      "video_id": "FXJBFbZQbck",
-      "title": "ETH Wednesday: 8:30 News Manipulation Down into PDH Distribution via Box Setup"
-    },
-    {
-      "card_id": "FvOUvQ7odiw_case_001_apo2_usd_intraweek_reversal_with",
-      "video_id": "FvOUvQ7odiw",
-      "title": "APO2 USD Intraweek Reversal: Monday Low, Wednesday Candle 2 Closure with Hourly CISD"
-    },
-    {
-      "card_id": "FvOUvQ7odiw_case_003_xauusd_mixed_reversal_candle_wit",
-      "video_id": "FvOUvQ7odiw",
-      "title": "XAUUSD Mixed Daily Reversal Candle Resolved by Thursday Reversal and Friday Continuation"
-    },
-    {
-      "card_id": "IJcfC6wAPZU_case_001_gc_gold_3_hour_continuation_entr",
-      "video_id": "IJcfC6wAPZU",
-      "title": "GC Gold 5-Minute Continuation Short via Fair Value Gap Retest and Closure Through Up-Close Candles"
-    },
-    {
-      "card_id": "IJcfC6wAPZU_case_002_gc_gold_4_hour_to_15_minute_cont",
-      "video_id": "IJcfC6wAPZU",
-      "title": "GC (Gold) 4H to 15M Continuation: Shallow Retracement into FVG with Multiple Order Block Entries"
-    },
-    {
-      "card_id": "IJcfC6wAPZU_case_003_cl_oil_daily_reversal_with_aggre",
-      "video_id": "IJcfC6wAPZU",
-      "title": "CL (Oil) 1H Reversal: Aggressive Displacement Lower with Retest Continuation Entry"
-    },
-    {
-      "card_id": "IJcfC6wAPZU_case_004_nq_nasdaq_consolidation_range_br",
-      "video_id": "IJcfC6wAPZU",
-      "title": "NQ Consolidation Range Breakout with Multiple 5-Minute Continuation Entries"
-    },
-    {
-      "card_id": "IJcfC6wAPZU_case_005_es_s_p_500_premium_zone_continua",
-      "video_id": "IJcfC6wAPZU",
-      "title": "ES Premium Zone Bearish Continuation: Candle 2 Closure with Multiple 5-Minute Continuation Entries"
-    },
-    {
-      "card_id": "IJcfC6wAPZU_case_006_gbp_usd_daily_to_monthly_range_c",
-      "video_id": "IJcfC6wAPZU",
-      "title": "GBP/USD Daily Range Reversal Sequence with Inversion, CISD, and Continuation Entries to Range High"
-    },
-    {
-      "card_id": "IPZjNI1B5a0_case_001_eth_daily_expansion_with_equilib",
-      "video_id": "IPZjNI1B5a0",
-      "title": "ETH Multi-Day Bullish Expansion Respecting Previous Day's Equilibrium"
-    },
-    {
-      "card_id": "IPZjNI1B5a0_case_002_ym_bearish_expansion_with_daily_",
-      "video_id": "IPZjNI1B5a0",
-      "title": "YM Bearish Daily Closure: EQ Respect Confirms Bearish Expansion to Previous Day Low"
-    },
-    {
-      "card_id": "IPZjNI1B5a0_case_003_multi_day_price_action_with_eq_a",
-      "video_id": "IPZjNI1B5a0",
-      "title": "Multi-Day Walkthrough Pairing Daily Closures with Equilibrium to Anticipate Directional Expansion"
-    },
-    {
-      "card_id": "IPZjNI1B5a0_case_004_eur_usd_short_setup_with_opposin",
-      "video_id": "IPZjNI1B5a0",
-      "title": "EUR/USD Hourly Short at Previous Daily EQ with Opposing Candle and CISD Confirmation"
-    },
-    {
-      "card_id": "IPZjNI1B5a0_case_005_retracement_into_lower_half_with",
-      "video_id": "IPZjNI1B5a0",
-      "title": "EURUSD Retracement into Lower Half of Daily Wick Continues Lower via CISD at Sweep"
-    },
-    {
-      "card_id": "IPZjNI1B5a0_case_006_eth_fair_value_gap_miss_and_retu",
-      "video_id": "IPZjNI1B5a0",
-      "title": "ETH Hourly Fair Value Gap Miss with Return to Daily Open Before Continuation Lower"
-    },
-    {
-      "card_id": "IPZjNI1B5a0_case_007_eth_4_hour_fractal_model_with_mu",
-      "video_id": "IPZjNI1B5a0",
-      "title": "ETH 4-Hour Fractal Application of Equilibrium Across Multiple Expansion Phases"
-    },
-    {
-      "card_id": "IeXtmeKqjnQ_case_001_nq_bullish_new_york_manipulation",
-      "video_id": "IeXtmeKqjnQ",
-      "title": "NQ Bullish New York Manipulation Profile Targeting Previous Day High"
-    },
-    {
-      "card_id": "IeXtmeKqjnQ_case_002_oil_bearish_new_york_manipulatio",
-      "video_id": "IeXtmeKqjnQ",
-      "title": "Oil bearish New York manipulation: range sweep with discount order block entry"
-    },
-    {
-      "card_id": "IeXtmeKqjnQ_case_003_oil_failure_swing_to_range_rever",
-      "video_id": "IeXtmeKqjnQ",
-      "title": "Oil Failure Swing to Range Reversal Setup via 5-min CISD After 8:30 Sweep"
-    },
-    {
-      "card_id": "IeXtmeKqjnQ_case_004_nq_continuation_with_ob_and_fvg_",
-      "video_id": "IeXtmeKqjnQ",
-      "title": "NQ Long Continuation: Daily Bias to 5-Min OB/FVG Entry Targeting Previous Day High"
-    },
-    {
-      "card_id": "JHVaSKtE1Ys_case_001_ym_5_minute_trend_continuation_w",
-      "video_id": "JHVaSKtE1Ys",
-      "title": "YM 5-minute bullish continuation entries via protected swings and fair value gaps"
-    },
-    {
-      "card_id": "JHVaSKtE1Ys_case_002_es_hourly_reversal_with_continua",
-      "video_id": "JHVaSKtE1Ys",
-      "title": "ES hourly reversal confirmed, then 5-minute continuation entries using T-spot and FVG"
-    },
-    {
-      "card_id": "JHVaSKtE1Ys_case_003_gold_4_hour_to_15_minute_protect",
-      "video_id": "JHVaSKtE1Ys",
-      "title": "Gold 4H retest of fair value gap, dropping to 15M to identify protected swing for bearish reversal entry"
-    },
-    {
-      "card_id": "JHVaSKtE1Ys_case_004_oil_hourly_reversal_off_previous",
-      "video_id": "JHVaSKtE1Ys",
-      "title": "Oil hourly reversal off previous day high with 5-minute protected swing entry"
-    },
-    {
-      "card_id": "Kf4c41_qO1s_case_001_usdcad_15_minute_bearish_continu",
-      "video_id": "Kf4c41_qO1s",
-      "title": "USDCAD 15-minute Bearish Continuation Trade with Daily-4H-15M Timeframe Alignment"
-    },
-    {
-      "card_id": "Kf4c41_qO1s_case_002_nq1_5_minute_bullish_setup_with_",
-      "video_id": "Kf4c41_qO1s",
-      "title": "NQ1! 5-minute Bullish Setup Despite Daily Headwind via 4H and Hourly Alignment"
-    },
-    {
-      "card_id": "LKNQDAdId4s_case_001_nq_daily_reversal_with_wick_resp",
-      "video_id": "LKNQDAdId4s",
-      "title": "NQ Daily Previous Day Low Sweep with Hourly Wick Respect Confirmation"
-    },
-    {
-      "card_id": "LKNQDAdId4s_case_002_es_daily_high_sweep_with_wick_di",
-      "video_id": "LKNQDAdId4s",
-      "title": "ES Daily Previous Day High Sweep with 0.5 Wick Respect Confirming Bearish Reversal"
-    },
-    {
-      "card_id": "LKNQDAdId4s_case_003_es_fair_value_gap_entry_with_wic",
-      "video_id": "LKNQDAdId4s",
-      "title": "ES Hourly Fair Value Gap Closure with Wick Respect for Bullish Expansion on 5-Minute"
-    },
-    {
-      "card_id": "LKNQDAdId4s_case_004_cl_hourly_high_sweep_with_wick_d",
-      "video_id": "LKNQDAdId4s",
-      "title": "CL Hourly High Sweep Fails as 5-Minute Disrespects Wick and Expands Higher"
-    },
-    {
-      "card_id": "LKNQDAdId4s_case_006_gold_consolidation_with_wick_res",
-      "video_id": "LKNQDAdId4s",
-      "title": "Gold Hourly Consolidation: Wick Disrespect on 5M Confirms Lower Expansion"
-    },
-    {
-      "card_id": "LKNQDAdId4s_case_007_cl_fair_value_gap_reversal_with_",
-      "video_id": "LKNQDAdId4s",
-      "title": "CL Fair Value Gap Reversal with Wick Respect and 5-Minute Expansion to 2R"
-    },
-    {
-      "card_id": "MPeeE55rNOw_case_001_nq1_daily_price_action_through_m",
-      "video_id": "MPeeE55rNOw",
-      "title": "NQ1! Intraday Session Analysis: Asia Sweep, London Manipulation, and New York Distribution"
-    },
-    {
-      "card_id": "McJflkKuvrI_case_001_usd_daily_consolidation_reversal",
-      "video_id": "McJflkKuvrI",
-      "title": "USD Daily Consolidation Reversal with Hourly CISD Confirmation for Friday Expansion"
-    },
-    {
-      "card_id": "McJflkKuvrI_case_002_bullish_consolidation_reversal_w",
-      "video_id": "McJflkKuvrI",
-      "title": "Consolidation Reversal Weekly Profile: Thursday Candle 2 Closure Sets Up Friday Expansion"
-    },
-    {
-      "card_id": "McJflkKuvrI_case_003_ym_daily_consolidation_reversal_",
-      "video_id": "McJflkKuvrI",
-      "title": "YM Daily Consolidation-Reversal Weekly Profile with Hourly CISD and SMT Confirmation"
-    },
-    {
-      "card_id": "MsuEQQl7L6s_case_002_eur_usd_daily_chart_candle_three",
-      "video_id": "MsuEQQl7L6s",
-      "title": "EUR/USD Daily: Candle Three Closure Confirms Bullish Reversal from Fair Value Gap"
-    },
-    {
-      "card_id": "MsuEQQl7L6s_case_003_nq_4_hour_chart_candle_three_clo",
-      "video_id": "MsuEQQl7L6s",
-      "title": "NQ 4-Hour Candle Three Closure: Swing Low Sweep with Equilibrium Entry"
-    },
-    {
-      "card_id": "MsuEQQl7L6s_case_005_nq_15_minute_chart_candle_three_",
-      "video_id": "MsuEQQl7L6s",
-      "title": "NQ 15-Minute Candle Three Closure with Protected Swing Entry Achieving 2R"
-    },
-    {
-      "card_id": "MsuEQQl7L6s_case_006_nq_15_minute_chart_consolidation",
-      "video_id": "MsuEQQl7L6s",
-      "title": "NQ 15-Minute Consolidation Sweep Without Valid Candle 2 or Candle 3 Closure"
-    },
-    {
-      "card_id": "PQiRV0JMhIQ_case_001_ideal_continuation_on_xauusd_15_",
-      "video_id": "PQiRV0JMhIQ",
-      "title": "Ideal Continuation Setup on XAUUSD 15-Minute with V-Shaped Recovery into Fair Value Gap"
-    },
-    {
-      "card_id": "PQiRV0JMhIQ_case_002_consolidation_failure_on_eth_1_h",
-      "video_id": "PQiRV0JMhIQ",
-      "title": "Consolidation Failure on ETH 1-Hour: Closure Through Down-Close Candle Without V-Shape Recovery"
-    },
-    {
-      "card_id": "PQiRV0JMhIQ_case_003_continuation_failure_with_slow_c",
-      "video_id": "PQiRV0JMhIQ",
-      "title": "ETH 15-minute continuation failure: slow non-V-shaped recovery into FVG signals consolidation"
-    },
-    {
-      "card_id": "PQiRV0JMhIQ_case_004_valid_continuation_after_liquidi",
-      "video_id": "PQiRV0JMhIQ",
-      "title": "Valid Continuation After Liquidity Sweep on ETH 15-minute"
-    },
-    {
-      "card_id": "PQiRV0JMhIQ_case_005_continuation_at_short_term_highs",
-      "video_id": "PQiRV0JMhIQ",
-      "title": "ETH 15-minute: Risk of Continuation Entries at Short-Term Highs Without a Point of Interest"
-    },
-    {
-      "card_id": "PQiRV0JMhIQ_case_006_breakout_of_consolidation_on_eth",
-      "video_id": "PQiRV0JMhIQ",
-      "title": "ETH Breakout of Range High Fails to Continue, Returns Across Range"
-    },
-    {
-      "card_id": "PQiRV0JMhIQ_case_007_continuation_at_short_term_low_o",
-      "video_id": "PQiRV0JMhIQ",
-      "title": "ETH 1-minute T-spot continuation lower while sweeping a short-term low"
-    },
-    {
-      "card_id": "PQiRV0JMhIQ_case_008_blended_consolidation_and_short_",
-      "video_id": "PQiRV0JMhIQ",
-      "title": "Blended Consolidation and Short-Term High Sweep Scenario on ETH 1-minute"
-    },
-    {
-      "card_id": "PQiRV0JMhIQ_case_009_ideal_continuation_with_change_i",
-      "video_id": "PQiRV0JMhIQ",
-      "title": "Ideal Continuation with Change in State of Delivery on ETH 1-hour"
-    },
-    {
-      "card_id": "PQiRV0JMhIQ_case_010_consolidation_with_slow_closure_",
-      "video_id": "PQiRV0JMhIQ",
-      "title": "ETH 15-minute consolidation: slow closure and short-term high sweep invalidate continuation"
-    },
-    {
-      "card_id": "PQiRV0JMhIQ_case_011_consolidation_breakout_with_cont",
-      "video_id": "PQiRV0JMhIQ",
-      "title": "ETH 15-minute consolidation breakout traded lower via continuation entry into point of interest"
-    },
-    {
-      "card_id": "PQiRV0JMhIQ_case_012_failed_continuation_with_reversa",
-      "video_id": "PQiRV0JMhIQ",
-      "title": "Failed Continuation Becomes Reversal on ETH 15-Minute: Waiting for Confirmation Avoids Shorting the Lows"
-    },
-    {
-      "card_id": "PQiRV0JMhIQ_case_013_twitter_case_slow_continuation_f",
-      "video_id": "PQiRV0JMhIQ",
-      "title": "Twitter Case: Slow Continuation Failure on ETHUSD 5-minute"
-    },
-    {
-      "card_id": "PQiRV0JMhIQ_case_014_twitter_case_continuation_at_sho",
-      "video_id": "PQiRV0JMhIQ",
-      "title": "ETH 5-minute: Avoiding a Failed Continuation by Waiting for Higher Time Frame Wick Formation"
-    },
-    {
-      "card_id": "PQiRV0JMhIQ_case_015_advanced_continuation_entry_on_e",
-      "video_id": "PQiRV0JMhIQ",
-      "title": "Advanced ETH 5-minute continuation entry into fair value gap targeting 2R"
-    },
-    {
-      "card_id": "Pcbyc9TdNsU_case_001_nq_5_minute_amd_with_standard_de",
-      "video_id": "Pcbyc9TdNsU",
-      "title": "NQ 5-minute AMD setup with standard deviation projections for distribution targets"
-    },
-    {
-      "card_id": "Pcbyc9TdNsU_case_002_nq_1_minute_box_setup_with_amd_p",
-      "video_id": "Pcbyc9TdNsU",
-      "title": "NQ 1-minute Box Setup combined with AMD and Standard Deviation Projections"
-    },
-    {
-      "card_id": "Qt7Ek4keMzs_case_001_tsla_classic_expansion_with_tues",
-      "video_id": "Qt7Ek4keMzs",
-      "title": "TSLA Classic Expansion: Tuesday Low Confirmed by Hourly CISD Drives Wednesday–Thursday Continuation"
-    },
-    {
-      "card_id": "Qt7Ek4keMzs_case_002_nq_classic_expansion_with_tuesda",
-      "video_id": "Qt7Ek4keMzs",
-      "title": "NQ Classic Expansion: Tuesday Low Candle Two Closure in FVG with Hourly CISD Confirmation"
-    },
-    {
-      "card_id": "Qt7Ek4keMzs_case_003_ym_classic_expansion_with_monday",
-      "video_id": "Qt7Ek4keMzs",
-      "title": "YM Classic Expansion Weekly Profile with Monday Low Formation"
-    },
-    {
-      "card_id": "Qt7Ek4keMzs_case_004_ym_imperfect_weekly_profile_with",
-      "video_id": "Qt7Ek4keMzs",
-      "title": "YM Imperfect Weekly Profile: Tuesday Reversal with Delayed Hourly Confirmation"
-    },
-    {
-      "card_id": "SlWxhzhLo3A_case_001_silver_apo2_reversal_off_previou",
-      "video_id": "SlWxhzhLo3A",
-      "title": "Silver (APO2) hourly reversal off previous day high with shallow wick and change in state of delivery"
-    },
-    {
-      "card_id": "SlWxhzhLo3A_case_002_nq_nq1_large_opposing_run_and_ta",
-      "video_id": "SlWxhzhLo3A",
-      "title": "NQ1! large opposing run triggers target adjustment from PDH to daily open via FVG"
-    },
-    {
-      "card_id": "SlWxhzhLo3A_case_003_oil_cl_range_reversal_and_contin",
-      "video_id": "SlWxhzhLo3A",
-      "title": "Oil (CL) daily range reversal with large-wick candle targeting daily open, followed by small-wick expansion lower"
-    },
-    {
-      "card_id": "SlWxhzhLo3A_case_004_gold_gc_15_minute_fractal_contin",
-      "video_id": "SlWxhzhLo3A",
-      "title": "Gold 15-Minute Fractal Continuation: Small Wick Expansion Lower After CISD and SMT Confirmation"
-    },
-    {
-      "card_id": "SlWxhzhLo3A_case_005_es_es1_1_minute_reversal_and_con",
-      "video_id": "SlWxhzhLo3A",
-      "title": "ES1! 1-minute reversal via candle-2 closure and continuation entry at new candle open with SMT confirmation"
-    },
-    {
-      "card_id": "TCFvsZeYvV8_case_002_5_minute_amd_sellside_liquidity_",
-      "video_id": "TCFvsZeYvV8",
-      "title": "5-Minute NQ1!: Sellside Liquidity Sweep from Consolidation Low, Entry at Inversion Targeting Failure Swing High"
-    },
-    {
-      "card_id": "TCFvsZeYvV8_case_003_daily_candle_amd_london_manipula",
-      "video_id": "TCFvsZeYvV8",
-      "title": "London Session Manipulates Asia Range to Form Daily Candle Wick, Then Distributes Higher"
-    },
-    {
-      "card_id": "TfHlNgAZ_II_case_001_gold_gc_weekly_bullish_continuat",
-      "video_id": "TfHlNgAZ_II",
-      "title": "Gold weekly bullish continuation using 4H internal range liquidity (FVG) and external range liquidity (previous week high) with 15-minute CISD entry"
-    },
-    {
-      "card_id": "TfHlNgAZ_II_case_002_crude_oil_cl_daily_reversal_afte",
-      "video_id": "TfHlNgAZ_II",
-      "title": "Crude Oil Daily Reversal After Sweeping Daily Low with Hourly IRL and 5-Minute Propulsion Block Entry"
-    },
-    {
-      "card_id": "TfHlNgAZ_II_case_003_crude_oil_cl_trend_continuation_",
-      "video_id": "TfHlNgAZ_II",
-      "title": "Crude Oil (CL) Trend Continuation with Higher Lows and Retracement into Hourly Fair Value Gap"
-    },
-    {
-      "card_id": "TfHlNgAZ_II_case_004_usd_jpy_daily_trend_continuation",
-      "video_id": "TfHlNgAZ_II",
-      "title": "USD/JPY Daily Bullish Trend Continuation via Daily IRL (FVG) and ERL (High) with Hourly CISD Confirmation"
-    },
-    {
-      "card_id": "bbWPoajy2MY_case_001_gbpusd_mitigation_block_failure_",
-      "video_id": "bbWPoajy2MY",
-      "title": "GBPUSD 60-minute mitigation block retest forming failure swing without high sweep, leading to downside move"
-    },
-    {
-      "card_id": "c_mh19e3mhI_case_003_week_of_jul_31_aug_4_daily_relat",
-      "video_id": "c_mh19e3mhI",
-      "title": "Daily Relative Strength Analysis of ES vs NQ for Week of Jul 31–Aug 4, 2023 Using Ratio Chart and SMT"
-    },
-    {
-      "card_id": "caaS6_Q7O78_case_001_daily_chart_example_on_ty_10_yea",
-      "video_id": "caaS6_Q7O78",
-      "title": "TY Daily Chart Next-Day Model Application with Hourly Propulsion Block Entry"
-    },
-    {
-      "card_id": "caaS6_Q7O78_case_002_bitcoin_daily_and_hourly_bias_wi",
-      "video_id": "caaS6_Q7O78",
-      "title": "Bitcoin daily bias using Next Day Model, confirmed on hourly with OB and propulsion block for 2R short"
-    },
-    {
-      "card_id": "caaS6_Q7O78_case_003_hourly_ty_trade_using_next_day_m",
-      "video_id": "caaS6_Q7O78",
-      "title": "Hourly TY bearish trade using Next Day Model: expansion into retracement, close back inside range, then 5-minute CISD entry with V-shape reversal"
-    },
-    {
-      "card_id": "eywpZT3z6GQ_case_001_gold_daily_bullish_trend_scalpin",
-      "video_id": "eywpZT3z6GQ",
-      "title": "Gold Daily Bullish Trend Scalping Setup Using Hourly Bias, 15m Swing Point, and 1m Fractal Entry"
-    },
-    {
-      "card_id": "eywpZT3z6GQ_case_004_advanced_reversal_candle_scalpin",
-      "video_id": "eywpZT3z6GQ",
-      "title": "Advanced bearish reversal scalping using hourly candle 3 closure, 15-min CISD, and 1-min protected swing continuation"
-    },
-    {
-      "card_id": "g3oDYq4P9ZE_case_001_ym1_daily_chart_using_previous_d",
-      "video_id": "g3oDYq4P9ZE",
-      "title": "YM1! Daily Chart Analysis Using Previous Day High/Low as Draw on Liquidity and Reversal Triggers"
-    },
-    {
-      "card_id": "g3oDYq4P9ZE_case_002_ttrades_edu_daily_chart_using_pr",
-      "video_id": "g3oDYq4P9ZE",
-      "title": "Bullish reversal after sweeping previous week's low, targeting previous week's high on daily chart"
-    },
-    {
-      "card_id": "iEaMbuFZb24_case_001_crude_oil_bullish_continuation_f",
-      "video_id": "iEaMbuFZb24",
-      "title": "Crude Oil Bullish Continuation from Daily Swing Low with Propulsion Block Entry"
-    },
-    {
-      "card_id": "iEaMbuFZb24_case_002_silver_bearish_continuation_afte",
-      "video_id": "iEaMbuFZb24",
-      "title": "Silver Bearish Continuation After Weekly Swing High Sweep and CISD on 4H/15M"
-    },
-    {
-      "card_id": "iEaMbuFZb24_case_003_usdjpy_bullish_bias_with_multipl",
-      "video_id": "iEaMbuFZb24",
-      "title": "USDJPY Bullish Bias with Multiple Lower Timeframe Entries After Daily FVG Retest and Protected Low"
-    },
-    {
-      "card_id": "iEaMbuFZb24_case_004_gold_bullish_retracement_after_b",
-      "video_id": "iEaMbuFZb24",
-      "title": "Gold Bullish Retracement After Bearish Daily Close with Hourly CISD and 5-Minute Entry"
-    },
-    {
-      "card_id": "nWHint4Yano_case_001_dxy_reversal_off_july_low_with_b",
-      "video_id": "nWHint4Yano",
-      "title": "DXY reversal off July low confirmed by EURGBP bullish trend leading to GBPUSD short setup"
-    },
-    {
-      "card_id": "qdQYhePcvGE_case_001_eur_usd_daily_tuesday_reversal_l",
-      "video_id": "qdQYhePcvGE",
-      "title": "EUR/USD Daily Tuesday Reversal Candle with Large Wick, Followed by Wednesday Continuation Entry After Change in State of Delivery"
-    },
-    {
-      "card_id": "qdQYhePcvGE_case_002_gll_5_minute_bearish_continuatio",
-      "video_id": "qdQYhePcvGE",
-      "title": "GLL 5-Minute Bearish Continuation After Hourly Reversal Candle with FVG and CISD"
-    },
-    {
-      "card_id": "qdQYhePcvGE_case_004_es1_daily_reversal_and_hourly_co",
-      "video_id": "qdQYhePcvGE",
-      "title": "ES1! daily reversal candle with V-shaped hourly reversal and SMT-confirmed continuation entry targeting buy-side liquidity"
-    },
-    {
-      "card_id": "qdQYhePcvGE_case_005_es1_4_hour_and_15_minute_continu",
-      "video_id": "qdQYhePcvGE",
-      "title": "ES1! 4-Hour Reversal Candle Followed by 15-Minute Continuation After Change in State of Delivery"
-    },
-    {
-      "card_id": "qdQYhePcvGE_case_006_gll_hourly_lower_probability_con",
-      "video_id": "qdQYhePcvGE",
-      "title": "GLL Hourly Lower Probability Continuation Due to Prior Expansion and Demand for LTF Confirmation"
-    },
-    {
-      "card_id": "qdQYhePcvGE_case_007_apo2_hourly_reversal_fail_and_su",
-      "video_id": "qdQYhePcvGE",
-      "title": "apo2 Hourly Reversal Fail Followed by Three Drives Setup with SMT Entry"
-    },
-    {
-      "card_id": "qdQYhePcvGE_case_008_xageur_strong_hourly_bias_and_lo",
-      "video_id": "qdQYhePcvGE",
-      "title": "XAGEUR bearish hourly bias with 1-minute reversal entry using SMT and order block stop"
-    },
-    {
-      "card_id": "qdQYhePcvGE_case_010_es1_monthly_daily_blending_candl",
-      "video_id": "qdQYhePcvGE",
-      "title": "ES1! Monthly high sweep with V-shaped reversal, candle 2-3-4 blending for bearish bias and lower timeframe entries"
-    },
-    {
-      "card_id": "rXMVPUZPw4A_case_003_nasdaq_1_minute_unicorn_setup_hi",
-      "video_id": "rXMVPUZPw4A",
-      "title": "NASDAQ 1-Minute Unicorn Setup: Bullish Breaker Block Overlapping FVG, Entry at Mean Threshold, 2.14R Target Hit"
-    },
-    {
-      "card_id": "r_UF8U-hsL8_case_001_apoz_5_minute_reversal_and_conti",
-      "video_id": "r_UF8U-hsL8",
-      "title": "apoZ 5-minute reversal and continuation using change in state of delivery as primary PD array"
-    },
-    {
-      "card_id": "sIcsLFSNoXM_case_003_es_15_minute_bullish_reversal_af",
-      "video_id": "sIcsLFSNoXM",
-      "title": "ES 15-Minute Bullish Reversal After Liquidity Sweep at NY Session"
-    },
-    {
-      "card_id": "uDJI2AbyyCs_case_003_gold_daily_old_fvg_reaccumulatio",
-      "video_id": "uDJI2AbyyCs",
-      "title": "Gold Daily Chart: Reaccumulation Using Old Bearish FVG as Support After Smart Money Reversal"
-    },
-    {
-      "card_id": "uPUNOi_R9fA_case_001_first_thursday_counter_example_o",
-      "video_id": "uPUNOi_R9fA",
-      "title": "Thursday Counter Weekly Profile: Monday–Wednesday expansion higher, Thursday reversal with SMT/CISD, Friday continuation lower to weekly open"
-    },
-    {
-      "card_id": "uPUNOi_R9fA_case_003_successful_thursday_counter_on_n",
-      "video_id": "uPUNOi_R9fA",
-      "title": "Successful Thursday Counter on NQ after Friday Reversal: hourly CISD confirms bearish reversal for Friday continuation"
-    },
-    {
-      "card_id": "vn1RYjhJUnQ_case_001_nq_1_hour_bearish_c2_with_cisd_a",
-      "video_id": "vn1RYjhJUnQ",
-      "title": "NQ 1-hour bearish Candle 2 closure with lower-time-frame CISD confirming continuation lower"
-    },
-    {
-      "card_id": "vn1RYjhJUnQ_case_002_nq_bullish_c2_after_sweep_of_pri",
-      "video_id": "vn1RYjhJUnQ",
-      "title": "NQ bullish C2 closure after sweeping prior day low, confirmed by LTF CISD"
-    },
-    {
-      "card_id": "vn1RYjhJUnQ_case_003_monthly_c2_with_daily_cisd_and_t",
-      "video_id": "vn1RYjhJUnQ",
-      "title": "Monthly Candle 2 Closure validated by daily Change in State of Delivery and T-spot reaction on NQ1!"
-    },
-    {
-      "card_id": "vn1RYjhJUnQ_case_004_invalid_c2_failure_to_form_cisd_",
-      "video_id": "vn1RYjhJUnQ",
-      "title": "Invalid C2 closure without lower-timeframe CISD led to false reversal signal and price sweep"
-    },
-    {
-      "card_id": "vn1RYjhJUnQ_case_005_consolidation_after_failed_cisd_",
-      "video_id": "vn1RYjhJUnQ",
-      "title": "Consolidation after failed bearish CISD, followed by range expansion with liquidity sweeps"
-    },
-    {
-      "card_id": "vn1RYjhJUnQ_case_006_nq_15_min_bullish_c2_with_cisd_a",
-      "video_id": "vn1RYjhJUnQ",
-      "title": "NQ 15-min bullish C2 closure with CISD, retracement to POI, continuation OB, and move to prior highs"
-    },
-    {
-      "card_id": "vn1RYjhJUnQ_case_007_usdcad_15_min_bearish_c2_with_sm",
-      "video_id": "vn1RYjhJUnQ",
-      "title": "USDCAD 15-min bearish C2 closure with SMT divergence and continuation order block setup"
-    },
-    {
-      "card_id": "wik00c9_2nk_case_001_cl1_consolidation_range_reversal",
-      "video_id": "wik00c9_2nk",
-      "title": "CL1! 3-minute consolidation range reversal: manipulation of low, inversion, change in state of delivery, then expansion to range high"
-    },
-    {
-      "card_id": "wik00c9_2nk_case_002_gc1_bullish_bias_with_asia_highs",
-      "video_id": "wik00c9_2nk",
-      "title": "GC1! Bullish Bias with Asia Highs: Turtle Soup, Inversion, and Change in State of Delivery Leading to Continuation Higher"
-    },
-    {
-      "card_id": "wik00c9_2nk_case_003_ym1_bearish_reversal_with_sweep_",
-      "video_id": "wik00c9_2nk",
-      "title": "YM1! Bearish Reversal After Sweep of High with Turtle Soup, Inversion, and Breaker Block"
-    },
-    {
-      "card_id": "xP-o11jRCyg_case_001_eth_range_low_sweep_and_breaker_",
-      "video_id": "xP-o11jRCyg",
-      "title": "ETH 1H Range Low Sweep Followed by 5M Breaker Block Continuation to Range High"
-    },
-    {
-      "card_id": "xP-o11jRCyg_case_002_nq_daily_high_sweep_and_hourly_b",
-      "video_id": "xP-o11jRCyg",
-      "title": "NQ Daily High Sweep Followed by Hourly Breaker Block Continuation Lower to 2R Target"
-    },
-    {
-      "card_id": "xP-o11jRCyg_case_003_eth_nq_after_selloff_bullish_bre",
-      "video_id": "xP-o11jRCyg",
-      "title": "NQ1! After Selloff: Bullish Breaker Continuation Entry Validated by SMT on 5-Minute Chart"
-    },
-    {
-      "card_id": "xP-o11jRCyg_case_004_eth_after_expansion_retracement_",
-      "video_id": "xP-o11jRCyg",
-      "title": "ETH After Expansion Retracement: Bearish Breaker Continuation Setup on Hourly and 5-Minute"
-    },
-    {
-      "card_id": "xP-o11jRCyg_case_005_eth_with_equal_highs_and_smt_bul",
-      "video_id": "xP-o11jRCyg",
-      "title": "ETH 1-Minute Bullish Breaker Continuation After Equal Highs and NQ SMT Divergence"
-    },
-    {
-      "card_id": "y6SnEdASVLY_case_001_bullish_oil_london_reversal_exam",
-      "video_id": "y6SnEdASVLY",
-      "title": "Bullish Oil London Reversal: CISD during London session followed by NY continuation to range equilibrium and daily FVG"
-    },
-    {
-      "card_id": "y6SnEdASVLY_case_002_bearish_oil_london_reversal_exam",
-      "video_id": "y6SnEdASVLY",
-      "title": "Bearish Oil London Reversal: Sweep of High, CISD on 30-min, NY Manipulation into OB then Continuation Lower"
-    },
-    {
-      "card_id": "y6SnEdASVLY_case_003_another_bearish_oil_new_york_con",
-      "video_id": "y6SnEdASVLY",
-      "title": "Bearish Oil Continuation After London Reversal and NY 8:30 Manipulation"
-    },
-    {
-      "card_id": "y6SnEdASVLY_case_004_bearish_es_london_reversal_examp",
-      "video_id": "y6SnEdASVLY",
-      "title": "Bearish ES London Reversal: Sweep of Asia Range High, CISD, 8:30 Manipulation into OB, then Lower Move at 9:30"
-    },
-    {
-      "card_id": "y6SnEdASVLY_case_005_bullish_oil_reversal_candle_and_",
-      "video_id": "y6SnEdASVLY",
-      "title": "Bullish Oil Daily Reversal Candle with Sweep Below Prior Day Low and Next-Day London Continuation"
-    },
-    {
-      "card_id": "01 - Open High Low Close - Understanding Candlesticks_case_005_es标普期货纽约盘看涨反转k线案例",
-      "video_id": "01 - Open High Low Close - Understanding Candlesticks",
-      "title": "ES标普期货纽约盘15分钟看涨反转K线识别案例"
-    },
-    {
-      "card_id": "01 - Open High Low Close - Understanding Candlesticks_case_008_cl原油日线三种k线类型序列综合案例",
-      "video_id": "01 - Open High Low Close - Understanding Candlesticks",
-      "title": "CL原油日线三种K线类型序列综合实战案例"
-    },
-    {
-      "card_id": "07 - Internal & External Liquidity (Daily Bias) - ICT Concepts_case_003_gbp_jpy周线至4小时自上而下做多案例",
-      "video_id": "07 - Internal & External Liquidity (Daily Bias) - ICT Concepts",
-      "title": "GBP/JPY周线至4小时自上而下多时间框架做多案例"
-    },
-    {
-      "card_id": "10 - Inversion Fair Value Gaps (IFVG) - ICT Concepts_case_005_黄金日线_旧fvg支撑再积累做多案例",
-      "video_id": "10 - Inversion Fair Value Gaps (IFVG) - ICT Concepts",
-      "title": "黄金日线旧看跌FVG转支撑再积累做多案例"
-    },
-    {
-      "card_id": "11 - Order Blocks Simplified - ICT Concepts_case_003_usoil_5分钟图_均值阈值入场提升风险回报比",
-      "video_id": "11 - Order Blocks Simplified - ICT Concepts",
-      "title": "USOIL 5分钟图——均值阈值入场将风险回报比从1.3提升至2.6"
-    },
-    {
-      "card_id": "11 - Order Blocks Simplified - ICT Concepts_case_004_nq1_15分钟图_买侧曲线订单块_扫亚洲低点后做多",
-      "video_id": "11 - Order Blocks Simplified - ICT Concepts",
-      "title": "NQ1! 15分钟图——扫亚洲低点后买侧曲线订单块做多"
-    },
-    {
-      "card_id": "13 - Change In State Of Delivery [CISD] - Orderblock Formation - ICT Concepts_case_001_nq_2023年8月11日_5分钟图_cisd做空案例",
-      "video_id": "13 - Change In State Of Delivery [CISD] - Orderblock Formation - ICT Concepts",
-      "title": "NQ 2023年8月11日 5分钟图 CISD识别与Order Block做空案例"
-    },
-    {
-      "card_id": "13 - Change In State Of Delivery [CISD] - Orderblock Formation - ICT Concepts_case_002_nq_2023年10月13日_多时间框架做空案例",
-      "video_id": "13 - Change In State Of Delivery [CISD] - Orderblock Formation - ICT Concepts",
-      "title": "NQ 2023年10月13日 日线FVG看跌偏差多时间框架做空案例"
-    },
-    {
-      "card_id": "13 - Change In State Of Delivery [CISD] - Orderblock Formation - ICT Concepts_case_003_es_2023年10月11日_1分钟图做空后做多案例",
-      "video_id": "13 - Change In State Of Delivery [CISD] - Orderblock Formation - ICT Concepts",
-      "title": "ES 2023年10月11日1分钟图看跌操纵做空后看涨操纵做多"
-    },
-    {
-      "card_id": "13 - Change In State Of Delivery [CISD] - Orderblock Formation - ICT Concepts_case_004_nq_2023年11月1日_box_setup结合订单块做多案例",
-      "video_id": "13 - Change In State Of Delivery [CISD] - Orderblock Formation - ICT Concepts",
-      "title": "NQ 2023年11月1日 Box Setup结合Order Block做多案例"
-    },
-    {
-      "card_id": "16 - Reversal Sequence (TTRS) - How To Blend PD Arrays_case_001_指数日内盘整区间反转序列完整演示_案例一",
-      "video_id": "16 - Reversal Sequence (TTRS) - How To Blend PD Arrays",
-      "title": "指数日内盘整区间反转序列五步完整演示（Tue 03 Dec）"
-    },
-    {
-      "card_id": "16 - Reversal Sequence (TTRS) - How To Blend PD Arrays_case_002_黄金_gc_日内反转序列案例_案例二",
-      "video_id": "16 - Reversal Sequence (TTRS) - How To Blend PD Arrays",
-      "title": "黄金GC1!日线看涨偏差下15分钟CISD与Breaker Block反转入场"
-    },
-    {
-      "card_id": "16 - Reversal Sequence (TTRS) - How To Blend PD Arrays_case_003_道指_ym_日内看跌反转序列案例_案例三",
-      "video_id": "16 - Reversal Sequence (TTRS) - How To Blend PD Arrays",
-      "title": "道指（YM1!）日内看跌反转四步序列案例（Wed 23 Oct）"
-    },
-    {
-      "card_id": "17 - SMT Divergence - ICT Concepts_case_004_nq_2024年1月11日cpi后smt背离做空案例",
-      "video_id": "17 - SMT Divergence - ICT Concepts",
-      "title": "NQ 2024年1月11日CPI后SMT背离做空案例"
-    },
-    {
-      "card_id": "18 - Trade Like TTrades - Top Down Analysis_case_001_教学示意图_错误的单时间框架ob交易与正确的多时间框架对齐",
-      "video_id": "18 - Trade Like TTrades - Top Down Analysis",
-      "title": "示意图：单时间框架看涨OB入场被止损与多时间框架看跌对齐正确做法"
-    },
-    {
-      "card_id": "18 - Trade Like TTrades - Top Down Analysis_case_002_原油期货_cl1_日线_1小时_5分钟多头案例",
-      "video_id": "18 - Trade Like TTrades - Top Down Analysis",
-      "title": "CL1! 原油期货日线-1小时-5分钟自顶向下多头案例"
-    },
-    {
-      "card_id": "18 - Trade Like TTrades - Top Down Analysis_case_003_白银期货_si1_周线_4小时_15分钟空头案例",
-      "video_id": "18 - Trade Like TTrades - Top Down Analysis",
-      "title": "白银期货SI1!周线-4小时-15分钟三时间框架空头案例"
-    },
-    {
-      "card_id": "18 - Trade Like TTrades - Top Down Analysis_case_004_美元兑日元_usdjpy_日线_1小时_5分钟多头案例",
-      "video_id": "18 - Trade Like TTrades - Top Down Analysis",
-      "title": "USDJPY 日线FVG确立看涨偏差，1小时OB结构，5分钟伦敦时段CISD入场4R多头"
-    },
-    {
-      "card_id": "18 - Trade Like TTrades - Top Down Analysis_case_005_黄金期货_gc1_日线_1小时_5分钟多头案例",
-      "video_id": "18 - Trade Like TTrades - Top Down Analysis",
-      "title": "黄金期货GC1!日线-1小时-5分钟自上而下多头入场案例"
-    },
-    {
-      "card_id": "19 - Timeframe Alignment： How To Align Timeframes For Expansion_case_001_es1_周线_4小时_15分钟三层对齐空头案例",
-      "video_id": "19 - Timeframe Alignment： How To Align Timeframes For Expansion",
-      "title": "ES1! 周线旧高兴趣点驱动的三层时间框架对齐空头案例"
-    },
-    {
-      "card_id": "19 - Timeframe Alignment： How To Align Timeframes For Expansion_case_002_gc1_黄金日线_1小时_5分钟三层对齐空头案例",
-      "video_id": "19 - Timeframe Alignment： How To Align Timeframes For Expansion",
-      "title": "GC1! 黄金日线旧高扫出后1小时CISD确认空头三层时间框架对齐案例"
-    },
-    {
-      "card_id": "19 - Timeframe Alignment： How To Align Timeframes For Expansion_case_003_ym1_道指30分钟_3分钟smt多头反转案例",
-      "video_id": "19 - Timeframe Alignment： How To Align Timeframes For Expansion",
-      "title": "YM1! 道指30分钟/3分钟SMT多头反转三层时间框架对齐案例"
-    },
-    {
-      "card_id": "19 - Timeframe Alignment： How To Align Timeframes For Expansion_case_004_eurusd_日线_1小时_5分钟三层对齐空头案例",
-      "video_id": "19 - Timeframe Alignment： How To Align Timeframes For Expansion",
-      "title": "EURUSD 日线/1小时/5分钟三层时间框架对齐空头案例"
-    },
-    {
-      "card_id": "20 - High Resistance vs Low Resistance Liquidity - ICT Concepts_case_001_es_5分钟图_扫出等低点后向failure_swing高点运行",
-      "video_id": "20 - High Resistance vs Low Resistance Liquidity - ICT Concepts",
-      "title": "ES 5分钟图：扫出等低点形成高阻力流动性后向Failure Swing高点运行"
-    },
-    {
-      "card_id": "23 - Candle 3 Closure： TTrades Fractal Model_case_006_nq_4小时_15分钟多时间框架candle_three_clo",
-      "video_id": "23 - Candle 3 Closure： TTrades Fractal Model",
-      "title": "NQ 4小时Candle Three Closure结合15分钟CISD保护摆动点多头入场"
-    }
-  ],
+  "trading_implication": "CSD/CISD 确认后交易者切换至新方向交易，核心流程为：在流动性扫荡/操纵腿后等待CSD实体收盘确认，随后在CSD水平、被验证的订单块或位移产生的FVG处寻找回测入场，止损置于被扫的摆动极值/操纵腿高低点之外，目标为外部流动性（前日高低、等高低、对侧BSL/SSL、failure swing）。多源一致强调多时间框架对齐——高TF确认偏差，低TF CISD 触发入场，价格扩张最易发生。差异点：Daily Profiles 框架为Power of Three，London CSD 确立偏差、New York 续作并经订单块回测入场（建议不在London直接交易）；Education-ICT 与 The Foundation 强调以受保护摆动点设止损，并触发斐波那契/标准差投影（-1至-4.5σ，最低约2R），影线较大时目标应收缩至开盘价或当日高低点而非盲目追扩张；Education-ICT(Updated) 强调CISD 验证受保护摆动后可在下一根K线或回测入场，无CSD则摆动未确认、不交易。CSD 还可结合SMT 提升可靠性，作为比MSS 更早的入场触发信号。",
+  "merge_notes": "关键分歧：(1) 关键水平定义不同——Daily Profiles 以同向序列的【高/低点边界】为穿越基准，而 The Foundation、Education-ICT(Updated) 及综合源以序列【第一根K线的开盘价/主体】为基准，二者数值可能不同。(2) 与MSS的关系——Updated 源明确CISD 不要求突破到摆动点之外、是更早信号；csd_基础源却将CSD 直接等同于突破前一摆动高低点，定义边界存在差异。(3) 流动性扫荡的必要性——多数源视前置扫荡为必要，但 Updated 源指出存在SMT 分歧时可豁免。(4) 反转序列顺序——The Foundation 与综合源将CSD 定位为Turtle Soup/Inversion 之后的第三步确认，其他源未强调此顺序。(5) Bearish CISD 与 CISD 源偏向指标自动标记/分形模型(C2-C4)视角，与手动序列识别的源在操作粒度上不同。",
   "source_cards": [
     {
-      "video_id": "IeXtmeKqjnQ",
-      "original_card_id": "IeXtmeKqjnQ_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003"
-      ],
-      "time_range": [
-        10.08,
-        538.92
-      ],
-      "extraction_confidence": "high"
+      "project": "Daily Profiles",
+      "card_id": "change_in_the_state_of_delivery",
+      "source_canonical_term": "Change in the State of Delivery",
+      "source_school": "ICT",
+      "source_merge_strategy": "llm_synthesis"
     },
     {
-      "video_id": "xdzyejskSKE",
-      "original_card_id": "xdzyejskSKE_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003",
-        "seg_004"
-      ],
-      "time_range": [
-        10.599,
-        726.92
-      ],
-      "extraction_confidence": "high"
+      "project": "Education - ICT",
+      "card_id": "change_in_state_of_delivery_csd",
+      "source_canonical_term": "Change in State of Delivery (CSD)",
+      "source_school": "ICT",
+      "source_merge_strategy": "single_source"
     },
     {
-      "video_id": "y6SnEdASVLY",
-      "original_card_id": "y6SnEdASVLY_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003"
-      ],
-      "time_range": [
-        11.24,
-        524.48
-      ],
-      "extraction_confidence": "high"
+      "project": "Education - ICT",
+      "card_id": "change_in_the_state_of_delivery",
+      "source_canonical_term": "Change in the state of delivery",
+      "source_school": "ICT",
+      "source_merge_strategy": "llm_synthesis"
     },
     {
-      "video_id": "3OivsP1j_UE",
-      "original_card_id": "3OivsP1j_UE_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_003",
-        "seg_004"
-      ],
-      "time_range": [
-        351.84000000000003,
-        713.88
-      ],
-      "extraction_confidence": "high"
+      "project": "Education - ICT",
+      "card_id": "change_in_the_state_of_delivery_bearish",
+      "source_canonical_term": "Change in the State of Delivery (Bearish)",
+      "source_school": "ICT",
+      "source_merge_strategy": "single_source"
     },
     {
-      "video_id": "4Gm8p6O7Ebs",
-      "original_card_id": "4Gm8p6O7Ebs_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_007",
-        "seg_013",
-        "seg_022"
-      ],
-      "time_range": [
-        66.24,
-        1092.16
-      ],
-      "extraction_confidence": "high"
+      "project": "Education - ICT",
+      "card_id": "change_in_the_state_of_delivery_cisd",
+      "source_canonical_term": "Change in the State of Delivery (CISD)",
+      "source_school": "ICT",
+      "source_merge_strategy": "single_source"
     },
     {
-      "video_id": "5fnFOh5YuM0",
-      "original_card_id": "5fnFOh5YuM0_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_004"
-      ],
-      "time_range": [
-        11.12,
-        726.48
-      ],
-      "extraction_confidence": "high"
+      "project": "Education - ICT",
+      "card_id": "change_in_the_state_of_delivery_csd",
+      "source_canonical_term": "Change in the State of Delivery (CSD)",
+      "source_school": "ICT",
+      "source_merge_strategy": "llm_synthesis"
     },
     {
-      "video_id": "9BY-MQRNy-Y",
-      "original_card_id": "9BY-MQRNy-Y_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_010"
-      ],
-      "time_range": [
-        49.12,
-        502.44
-      ],
-      "extraction_confidence": "high"
+      "project": "Education - ICT (Updated)",
+      "card_id": "change_in_state_of_delivery",
+      "source_canonical_term": "Change in State of Delivery",
+      "source_school": "ICT",
+      "source_merge_strategy": "llm_synthesis"
     },
     {
-      "video_id": "CqMIh-Vvhbg",
-      "original_card_id": "CqMIh-Vvhbg_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_004"
-      ],
-      "time_range": [
-        10.92,
-        725.0
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "DMUiDBnTYc8",
-      "original_card_id": "DMUiDBnTYc8_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_003"
-      ],
-      "time_range": [
-        336.24,
-        516.919
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "E89d1HArbgM",
-      "original_card_id": "E89d1HArbgM_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003"
-      ],
-      "time_range": [
-        10.44,
-        546.92
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "F0G31iLVpVg",
-      "original_card_id": "F0G31iLVpVg_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_014",
-        "seg_017"
-      ],
-      "time_range": [
-        144.4,
-        820.399
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "FgP2lc9nneM",
-      "original_card_id": "FgP2lc9nneM_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_003",
-        "seg_004",
-        "seg_007",
-        "seg_009"
-      ],
-      "time_range": [
-        111.52000000000001,
-        368.68
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "IJcfC6wAPZU",
-      "original_card_id": "IJcfC6wAPZU_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_003",
-        "seg_004",
-        "seg_006"
-      ],
-      "time_range": [
-        10.96,
-        1029.6
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "IPZjNI1B5a0",
-      "original_card_id": "IPZjNI1B5a0_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_003",
-        "seg_004",
-        "seg_005"
-      ],
-      "time_range": [
-        191.28,
-        907.12
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "IeXtmeKqjnQ",
-      "original_card_id": "IeXtmeKqjnQ_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003"
-      ],
-      "time_range": [
-        10.08,
-        538.92
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "JHVaSKtE1Ys",
-      "original_card_id": "JHVaSKtE1Ys_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_003"
-      ],
-      "time_range": [
-        43.52,
-        287.12
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "LKNQDAdId4s",
-      "original_card_id": "LKNQDAdId4s_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_004"
-      ],
-      "time_range": [
-        192.959,
-        709.92
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "MsuEQQl7L6s",
-      "original_card_id": "MsuEQQl7L6s_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_012",
-        "seg_016"
-      ],
-      "time_range": [
-        468.6,
-        710.16
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "PQiRV0JMhIQ",
-      "original_card_id": "PQiRV0JMhIQ_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_003",
-        "seg_015",
-        "seg_019"
-      ],
-      "time_range": [
-        189.28,
-        1129.36
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "SlWxhzhLo3A",
-      "original_card_id": "SlWxhzhLo3A_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_004",
-        "seg_010",
-        "seg_011",
-        "seg_012",
-        "seg_014",
-        "seg_016",
-        "seg_020",
-        "seg_023",
-        "seg_024",
-        "seg_028",
-        "seg_031"
-      ],
-      "time_range": [
-        149.68,
-        1532.48
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "TNybDCtwBnc",
-      "original_card_id": "TNybDCtwBnc_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_004",
-        "seg_006",
-        "seg_010",
-        "seg_012",
-        "seg_016",
-        "seg_023"
-      ],
-      "time_range": [
-        11.04,
-        1064.88
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "TfHlNgAZ_II",
-      "original_card_id": "TfHlNgAZ_II_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003",
-        "seg_004",
-        "seg_005"
-      ],
-      "time_range": [
-        11.0,
-        877.56
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "VD4xb9VfMHA",
-      "original_card_id": "VD4xb9VfMHA_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_005",
-        "seg_006",
-        "seg_012",
-        "seg_013",
-        "seg_014",
-        "seg_015",
-        "seg_016",
-        "seg_017",
-        "seg_018",
-        "seg_019",
-        "seg_020",
-        "seg_021",
-        "seg_022"
-      ],
-      "time_range": [
-        107.03999999999999,
-        1072.28
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "WFqLwOp2pXw",
-      "original_card_id": "WFqLwOp2pXw_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_005",
-        "seg_007",
-        "seg_008",
-        "seg_011",
-        "seg_015"
-      ],
-      "time_range": [
-        206.07999999999998,
-        674.16
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "WwmS47Gb3M0",
-      "original_card_id": "WwmS47Gb3M0_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003"
-      ],
-      "time_range": [
-        10.84,
-        551.2
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "eywpZT3z6GQ",
-      "original_card_id": "eywpZT3z6GQ_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_013"
-      ],
-      "time_range": [
-        10.88,
-        781.2
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "hKCMqh0ZsY0",
-      "original_card_id": "hKCMqh0ZsY0_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_003",
-        "seg_004",
-        "seg_005"
-      ],
-      "time_range": [
-        191.76,
-        776.56
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "iEaMbuFZb24",
-      "original_card_id": "iEaMbuFZb24_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003",
-        "seg_004",
-        "seg_005",
-        "seg_006"
-      ],
-      "time_range": [
-        11.0,
-        1085.76
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "kTWXpAo1uE8",
-      "original_card_id": "kTWXpAo1uE8_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002"
-      ],
-      "time_range": [
-        10.559,
-        311.36
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "nWHint4Yano",
-      "original_card_id": "nWHint4Yano_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_004",
-        "seg_012"
-      ],
-      "time_range": [
-        243.04,
-        658.399
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "qdQYhePcvGE",
-      "original_card_id": "qdQYhePcvGE_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_005",
-        "seg_007",
-        "seg_010",
-        "seg_013",
-        "seg_021",
-        "seg_026",
-        "seg_034",
-        "seg_037"
-      ],
-      "time_range": [
-        11.2,
-        1996.159
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "r_UF8U-hsL8",
-      "original_card_id": "r_UF8U-hsL8_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_003",
-        "seg_007",
-        "seg_008"
-      ],
-      "time_range": [
-        77.439,
-        632.72
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "r_UF8U-hsL8",
-      "original_card_id": "r_UF8U-hsL8_concept_opposing_candles",
-      "segment_ids": [
-        "seg_007",
-        "seg_008"
-      ],
-      "time_range": [
-        393.84000000000003,
-        632.72
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "tyoxl1l-6iI",
-      "original_card_id": "tyoxl1l-6iI_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_006",
-        "seg_007",
-        "seg_009"
-      ],
-      "time_range": [
-        358.96,
-        705.76
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "uDJI2AbyyCs",
-      "original_card_id": "uDJI2AbyyCs_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_004"
-      ],
-      "time_range": [
-        471.24,
-        616.64
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "upHS7SDL9kg",
-      "original_card_id": "upHS7SDL9kg_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_004",
-        "seg_005",
-        "seg_012"
-      ],
-      "time_range": [
-        42.64,
-        485.52
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "wik00c9_2nk",
-      "original_card_id": "wik00c9_2nk_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_003",
-        "seg_004",
-        "seg_005",
-        "seg_006"
-      ],
-      "time_range": [
-        192.959,
-        1016.639
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "xdzyejskSKE",
-      "original_card_id": "xdzyejskSKE_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003",
-        "seg_004"
-      ],
-      "time_range": [
-        10.599,
-        726.92
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "y6SnEdASVLY",
-      "original_card_id": "y6SnEdASVLY_concept_change_in_the_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003",
-        "seg_004"
-      ],
-      "time_range": [
-        11.24,
-        675.519
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "-KKuZb5Z5aU",
-      "original_card_id": "-KKuZb5Z5aU_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_003",
-        "seg_004",
-        "seg_010",
-        "seg_014",
-        "seg_016",
-        "seg_020",
-        "seg_021"
-      ],
-      "time_range": [
-        77.88,
-        887.0
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "-gyDd_E_qD4",
-      "original_card_id": "-gyDd_E_qD4_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_006",
-        "seg_012",
-        "seg_015",
-        "seg_016"
-      ],
-      "time_range": [
-        77.88,
-        713.68
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "-wr4xATE37g",
-      "original_card_id": "-wr4xATE37g_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_003",
-        "seg_004",
-        "seg_005",
-        "seg_006"
-      ],
-      "time_range": [
-        73.84,
-        472.08
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "0xygpCMwxbQ",
-      "original_card_id": "0xygpCMwxbQ_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_003"
-      ],
-      "time_range": [
-        367.8,
-        548.1
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "27S9gjgcSlI",
-      "original_card_id": "27S9gjgcSlI_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_005"
-      ],
-      "time_range": [
-        559.44,
-        741.48
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "3OivsP1j_UE",
-      "original_card_id": "3OivsP1j_UE_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_003",
-        "seg_004"
-      ],
-      "time_range": [
-        351.84000000000003,
-        713.88
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "3eVxTV_7L2U",
-      "original_card_id": "3eVxTV_7L2U_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_023",
-        "seg_031"
-      ],
-      "time_range": [
-        1300.96,
-        1961.039
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "4Gm8p6O7Ebs",
-      "original_card_id": "4Gm8p6O7Ebs_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_007",
-        "seg_010",
-        "seg_013",
-        "seg_022"
-      ],
-      "time_range": [
-        66.24,
-        1092.16
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "4jU547ocod4",
-      "original_card_id": "4jU547ocod4_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003",
-        "seg_004",
-        "seg_005",
-        "seg_006"
-      ],
-      "time_range": [
-        11.0,
-        1077.799
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "5fnFOh5YuM0",
-      "original_card_id": "5fnFOh5YuM0_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003",
-        "seg_004",
-        "seg_005"
-      ],
-      "time_range": [
-        11.12,
-        904.88
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "7p9MBFk8EEM",
-      "original_card_id": "7p9MBFk8EEM_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_011",
-        "seg_013"
-      ],
-      "time_range": [
-        483.039,
-        571.279
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "8BWkRGhuj1k",
-      "original_card_id": "8BWkRGhuj1k_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_010",
-        "seg_012",
-        "seg_013",
-        "seg_014",
-        "seg_015",
-        "seg_016",
-        "seg_017",
-        "seg_018",
-        "seg_019",
-        "seg_020",
-        "seg_021",
-        "seg_022",
-        "seg_023",
-        "seg_026",
-        "seg_027",
-        "seg_028",
-        "seg_030",
-        "seg_031"
-      ],
-      "time_range": [
-        538.8,
-        1653.279
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "9AL41xON3hA",
-      "original_card_id": "9AL41xON3hA_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_003",
-        "seg_004",
-        "seg_008",
-        "seg_012"
-      ],
-      "time_range": [
-        103.439,
-        760.639
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "9BY-MQRNy-Y",
-      "original_card_id": "9BY-MQRNy-Y_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_010"
-      ],
-      "time_range": [
-        49.12,
-        502.44
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "AdmnWLjf8rY",
-      "original_card_id": "AdmnWLjf8rY_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_006"
-      ],
-      "time_range": [
-        545.519,
-        696.92
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "CHIK5oBRKiw",
-      "original_card_id": "CHIK5oBRKiw_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_003",
-        "seg_004",
-        "seg_005",
-        "seg_006"
-      ],
-      "time_range": [
-        10.48,
-        846.72
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "CqMIh-Vvhbg",
-      "original_card_id": "CqMIh-Vvhbg_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_004",
-        "seg_006"
-      ],
-      "time_range": [
-        10.92,
-        1082.88
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "DMUiDBnTYc8",
-      "original_card_id": "DMUiDBnTYc8_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003",
-        "seg_004"
-      ],
-      "time_range": [
-        10.4,
-        698.8389999999999
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "E89d1HArbgM",
-      "original_card_id": "E89d1HArbgM_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003"
-      ],
-      "time_range": [
-        10.44,
-        546.92
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "EYzP7c24AwM",
-      "original_card_id": "EYzP7c24AwM_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_003",
-        "seg_004",
-        "seg_005"
-      ],
-      "time_range": [
-        191.84,
-        904.56
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "F0G31iLVpVg",
-      "original_card_id": "F0G31iLVpVg_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_014",
-        "seg_017"
-      ],
-      "time_range": [
-        144.4,
-        820.399
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "FAKWJ-1NlLE",
-      "original_card_id": "FAKWJ-1NlLE_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_004",
-        "seg_005",
-        "seg_008",
-        "seg_014",
-        "seg_021",
-        "seg_024"
-      ],
-      "time_range": [
-        171.519,
-        1219.6
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "FGkb_50BfT8",
-      "original_card_id": "FGkb_50BfT8_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_003",
-        "seg_004"
-      ],
-      "time_range": [
-        10.719,
-        694.519
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "FKTBkTzsmUA",
-      "original_card_id": "FKTBkTzsmUA_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_005",
-        "seg_010",
-        "seg_012",
-        "seg_014",
-        "seg_015",
-        "seg_016"
-      ],
-      "time_range": [
-        223.6,
-        720.6
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "FXJBFbZQbck",
-      "original_card_id": "FXJBFbZQbck_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_003",
-        "seg_005"
-      ],
-      "time_range": [
-        371.88,
-        738.959
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "FgP2lc9nneM",
-      "original_card_id": "FgP2lc9nneM_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_003",
-        "seg_004",
-        "seg_007",
-        "seg_009",
-        "seg_011",
-        "seg_018"
-      ],
-      "time_range": [
-        111.52000000000001,
-        778.399
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "FvOUvQ7odiw",
-      "original_card_id": "FvOUvQ7odiw_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_006",
-        "seg_009"
-      ],
-      "time_range": [
-        50.56,
-        356.76
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "HbOeD_JVens",
-      "original_card_id": "HbOeD_JVens_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_008"
-      ],
-      "time_range": [
-        524.8,
-        565.36
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "IJcfC6wAPZU",
-      "original_card_id": "IJcfC6wAPZU_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003",
-        "seg_004",
-        "seg_005"
-      ],
-      "time_range": [
-        10.96,
-        910.04
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "IPZjNI1B5a0",
-      "original_card_id": "IPZjNI1B5a0_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_003",
-        "seg_004",
-        "seg_005"
-      ],
-      "time_range": [
-        191.28,
-        907.12
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "IeXtmeKqjnQ",
-      "original_card_id": "IeXtmeKqjnQ_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003"
-      ],
-      "time_range": [
-        10.08,
-        538.92
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "JHVaSKtE1Ys",
-      "original_card_id": "JHVaSKtE1Ys_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_003",
-        "seg_007",
-        "seg_011"
-      ],
-      "time_range": [
-        43.52,
-        697.12
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "Kf4c41_qO1s",
-      "original_card_id": "Kf4c41_qO1s_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_004",
-        "seg_006",
-        "seg_012"
-      ],
-      "time_range": [
-        130.879,
-        678.0
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "LKNQDAdId4s",
-      "original_card_id": "LKNQDAdId4s_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_004"
-      ],
-      "time_range": [
-        192.959,
-        709.92
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "MPeeE55rNOw",
-      "original_card_id": "MPeeE55rNOw_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_004"
-      ],
-      "time_range": [
-        550.6,
-        729.6
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "McJflkKuvrI",
-      "original_card_id": "McJflkKuvrI_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_003",
-        "seg_006",
-        "seg_010"
-      ],
-      "time_range": [
-        10.96,
-        473.92
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "MsuEQQl7L6s",
-      "original_card_id": "MsuEQQl7L6s_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_012",
-        "seg_014"
-      ],
-      "time_range": [
-        468.6,
-        626.32
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "PQiRV0JMhIQ",
-      "original_card_id": "PQiRV0JMhIQ_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_003",
-        "seg_005",
-        "seg_015",
-        "seg_020"
-      ],
-      "time_range": [
-        54.079,
-        1174.0
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "Pcbyc9TdNsU",
-      "original_card_id": "Pcbyc9TdNsU_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_003"
-      ],
-      "time_range": [
-        10.36,
-        415.96
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "Qt7Ek4keMzs",
-      "original_card_id": "Qt7Ek4keMzs_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_005",
-        "seg_010",
-        "seg_012",
-        "seg_013",
-        "seg_016"
-      ],
-      "time_range": [
-        45.48,
-        675.6
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "SlWxhzhLo3A",
-      "original_card_id": "SlWxhzhLo3A_concept_change_in_state_of_delivery_cisd",
-      "segment_ids": [
-        "seg_004",
-        "seg_011",
-        "seg_016"
-      ],
-      "time_range": [
-        149.68,
-        828.32
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "TfHlNgAZ_II",
-      "original_card_id": "TfHlNgAZ_II_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_003",
-        "seg_004",
-        "seg_005"
-      ],
-      "time_range": [
-        192.4,
-        877.56
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "eywpZT3z6GQ",
-      "original_card_id": "eywpZT3z6GQ_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_013"
-      ],
-      "time_range": [
-        10.88,
-        781.2
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "iEaMbuFZb24",
-      "original_card_id": "iEaMbuFZb24_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003",
-        "seg_004",
-        "seg_005",
-        "seg_006",
-        "seg_007"
-      ],
-      "time_range": [
-        11.0,
-        1215.88
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "qdQYhePcvGE",
-      "original_card_id": "qdQYhePcvGE_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_003",
-        "seg_004",
-        "seg_010",
-        "seg_011",
-        "seg_013",
-        "seg_016",
-        "seg_017",
-        "seg_020",
-        "seg_021",
-        "seg_023",
-        "seg_026",
-        "seg_027",
-        "seg_028",
-        "seg_029",
-        "seg_034",
-        "seg_037"
-      ],
-      "time_range": [
-        11.2,
-        1996.159
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "r_UF8U-hsL8",
-      "original_card_id": "r_UF8U-hsL8_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003",
-        "seg_005",
-        "seg_007",
-        "seg_008",
-        "seg_009"
-      ],
-      "time_range": [
-        11.12,
-        684.88
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "xP-o11jRCyg",
-      "original_card_id": "xP-o11jRCyg_concept_change_in_state_of_delivery_cisd",
-      "segment_ids": [
-        "seg_002",
-        "seg_003",
-        "seg_004"
-      ],
-      "time_range": [
-        192.04,
-        726.6
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "y6SnEdASVLY",
-      "original_card_id": "y6SnEdASVLY_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003"
-      ],
-      "time_range": [
-        11.24,
-        524.48
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "01 - Open High Low Close - Understanding Candlesticks",
-      "original_card_id": "01 - Open High Low Close - Understanding Candlesticks_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_004"
-      ],
-      "time_range": [
-        549.32,
-        726.04
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "07 - Internal & External Liquidity (Daily Bias) - ICT Concepts",
-      "original_card_id": "07 - Internal & External Liquidity (Daily Bias) - ICT Concepts_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_003",
-        "seg_004"
-      ],
-      "time_range": [
-        351.84000000000003,
-        713.88
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "10 - Inversion Fair Value Gaps (IFVG) - ICT Concepts",
-      "original_card_id": "10 - Inversion Fair Value Gaps (IFVG) - ICT Concepts_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_004"
-      ],
-      "time_range": [
-        471.24,
-        616.64
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "11 - Order Blocks Simplified - ICT Concepts",
-      "original_card_id": "11 - Order Blocks Simplified - ICT Concepts_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_003"
-      ],
-      "time_range": [
-        336.24,
-        516.919
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "13 - Change In State Of Delivery [CISD] - Orderblock Formation - ICT Concepts",
-      "original_card_id": "13 - Change In State Of Delivery [CISD] - Orderblock Formation - ICT Concepts_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003",
-        "seg_004",
-        "seg_005",
-        "seg_006"
-      ],
-      "time_range": [
-        10.48,
-        846.72
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "16 - Reversal Sequence (TTRS) - How To Blend PD Arrays",
-      "original_card_id": "16 - Reversal Sequence (TTRS) - How To Blend PD Arrays_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_002",
-        "seg_003",
-        "seg_004",
-        "seg_005",
-        "seg_006"
-      ],
-      "time_range": [
-        192.959,
-        1016.639
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "17 - SMT Divergence - ICT Concepts",
-      "original_card_id": "17 - SMT Divergence - ICT Concepts_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_005"
-      ],
-      "time_range": [
-        559.44,
-        741.48
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "18 - Trade Like TTrades - Top Down Analysis",
-      "original_card_id": "18 - Trade Like TTrades - Top Down Analysis_concept_cisd",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003",
-        "seg_004",
-        "seg_005",
-        "seg_006",
-        "seg_007"
-      ],
-      "time_range": [
-        11.0,
-        1215.88
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "19 - Timeframe Alignment： How To Align Timeframes For Expansion",
-      "original_card_id": "19 - Timeframe Alignment： How To Align Timeframes For Expansion_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003",
-        "seg_004",
-        "seg_005",
-        "seg_006"
-      ],
-      "time_range": [
-        11.04,
-        968.959
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "20 - High Resistance vs Low Resistance Liquidity - ICT Concepts",
-      "original_card_id": "20 - High Resistance vs Low Resistance Liquidity - ICT Concepts_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        10.719,
-        193.599
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "23 - Candle 3 Closure： TTrades Fractal Model",
-      "original_card_id": "23 - Candle 3 Closure： TTrades Fractal Model_concept_change_in_state_of_delivery",
-      "segment_ids": [
-        "seg_012",
-        "seg_016"
-      ],
-      "time_range": [
-        468.6,
-        710.16
-      ],
-      "extraction_confidence": "medium"
+      "project": "The Foundation",
+      "card_id": "change_in_state_of_delivery",
+      "source_canonical_term": "Change In State Of Delivery",
+      "source_school": "ICT",
+      "source_merge_strategy": "llm_synthesis"
     }
   ],
-  "stats": {
-    "source_count": 98,
-    "source_videos": 71,
-    "n_projects": 4
-  },
-  "merged_at": "2026-05-23T12:59:52.318534+00:00",
+  "merge_strategy": "cross_project_synthesis",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
+  "merge_model": "claude-opus-4-8",
+  "illustrated_by_cases": [
+    "Daily_Profiles__IeXtmeKqjnQ_case_001_nasdaq_100_e_mini_futures_nq1_bu",
+    "Daily_Profiles__IeXtmeKqjnQ_case_002_light_crude_oil_futures_cl1_bull",
+    "Daily_Profiles__IeXtmeKqjnQ_case_003_light_crude_oil_futures_cl1_bear",
+    "Daily_Profiles__IeXtmeKqjnQ_case_004_nasdaq_100_e_mini_futures_nq1_bu",
+    "Daily_Profiles__xdzyejskSKE_case_001_light_crude_oil_cl1_new_york_rev",
+    "Daily_Profiles__xdzyejskSKE_case_003_light_crude_oil_cl1_daily_revers",
+    "Daily_Profiles__xdzyejskSKE_case_004_nasdaq_100_nq1_new_york_reversal",
+    "Daily_Profiles__xdzyejskSKE_case_005_s_p_500_es1_new_york_reversal_wi",
+    "Daily_Profiles__y6SnEdASVLY_case_001_bullish_london_reversal_in_light",
+    "Daily_Profiles__y6SnEdASVLY_case_002_bearish_london_reversal_in_light",
+    "Daily_Profiles__y6SnEdASVLY_case_003_london_reversal_with_new_york_re",
+    "Daily_Profiles__y6SnEdASVLY_case_004_es_s_p_500_london_reversal_with_",
+    "Daily_Profiles__y6SnEdASVLY_case_005_multi_day_bullish_reversal_in_li",
+    "Education_-_ICT_(Updated)__-GkOTMYoJT4_case_004_nasdaq_100_4_hour_multiple_induc",
+    "Education_-_ICT_(Updated)__-GkOTMYoJT4_case_005_nasdaq_100_1_minute_trending_mar",
+    "Education_-_ICT_(Updated)__-KKuZb5Z5aU_case_001_ym_bullish_continuation_with_can",
+    "Education_-_ICT_(Updated)__-KKuZb5Z5aU_case_002_usdcad_bearish_continuation_with",
+    "Education_-_ICT_(Updated)__-KKuZb5Z5aU_case_003_ym_reversal_with_protected_swing",
+    "Education_-_ICT_(Updated)__-KKuZb5Z5aU_case_004_gbpusd_bullish_bias_with_retrace",
+    "Education_-_ICT_(Updated)__-KKuZb5Z5aU_case_005_gbpusd_hourly_reversal_fractal_o",
+    "Education_-_ICT_(Updated)__-KKuZb5Z5aU_case_006_usdcad_4_hour_consolidation_brea",
+    "Education_-_ICT_(Updated)__-KKuZb5Z5aU_case_007_usd_index_hourly_continuation_wi",
+    "Education_-_ICT_(Updated)__-gyDd_E_qD4_case_001_usd_midweek_reversal_with_bank_h",
+    "Education_-_ICT_(Updated)__-gyDd_E_qD4_case_002_bll_wednesday_high_of_week_with_",
+    "Education_-_ICT_(Updated)__-gyDd_E_qD4_case_003_usd_midweek_reversal_forming_wee",
+    "Education_-_ICT_(Updated)__-gyDd_E_qD4_case_004_usd_range_sweep_reversal_with_ho",
+    "Education_-_ICT_(Updated)__-wr4xATE37g_case_001_eur_usd_daily_reversal_with_prot",
+    "Education_-_ICT_(Updated)__-wr4xATE37g_case_002_eur_usd_hourly_continuation_with",
+    "Education_-_ICT_(Updated)__-wr4xATE37g_case_003_es_4_hour_to_15_minute_protected",
+    "Education_-_ICT_(Updated)__-wr4xATE37g_case_004_silver_1_hour_protected_swing_en",
+    "Education_-_ICT_(Updated)__-wr4xATE37g_case_005_silver_bullish_reversal_with_pro",
+    "Education_-_ICT_(Updated)__27S9gjgcSlI_case_004_eur_usd_vs_gbp_usd_forex_smt_wit",
+    "Education_-_ICT_(Updated)__27S9gjgcSlI_case_005_es_vs_nq_post_cpi_smt_with_high_",
+    "Education_-_ICT_(Updated)__27S9gjgcSlI_case_006_nq_15_minute_to_1_minute_confirm",
+    "Education_-_ICT_(Updated)__3OivsP1j_UE_case_003_gbp_jpy_weekly_to_4_hour_market_",
+    "Education_-_ICT_(Updated)__3eVxTV_7L2U_case_006_indices_triad_ym_top_down_trade_",
+    "Education_-_ICT_(Updated)__3eVxTV_7L2U_case_009_e_mini_russell_2000_rty_weekly_l",
+    "Education_-_ICT_(Updated)__4Gm8p6O7Ebs_case_001_gold_xauusd_hourly_expansion_wit",
+    "Education_-_ICT_(Updated)__4Gm8p6O7Ebs_case_002_gold_xauusd_reversal_at_previous",
+    "Education_-_ICT_(Updated)__4Gm8p6O7Ebs_case_003_silver_daily_expansion_met_with_",
+    "Education_-_ICT_(Updated)__4Gm8p6O7Ebs_case_005_nq_nasdaq_london_reversal_and_ne",
+    "Education_-_ICT_(Updated)__4Gm8p6O7Ebs_case_007_gold_bullish_daily_setup_with_ga",
+    "Education_-_ICT_(Updated)__4Gm8p6O7Ebs_case_008_gold_expansion_lower_with_consol",
+    "Education_-_ICT_(Updated)__4jU547ocod4_case_001_eth_reversal_off_previous_day_hi",
+    "Education_-_ICT_(Updated)__4jU547ocod4_case_002_nq_consolidation_range_breakout_",
+    "Education_-_ICT_(Updated)__4jU547ocod4_case_003_three_drive_consolidation_with_s",
+    "Education_-_ICT_(Updated)__4jU547ocod4_case_004_downtrend_reversal_off_previous_",
+    "Education_-_ICT_(Updated)__4jU547ocod4_case_005_hourly_1_minute_inversion_entry_",
+    "Education_-_ICT_(Updated)__5fnFOh5YuM0_case_001_eth_daily_swing_low_with_london_",
+    "Education_-_ICT_(Updated)__5fnFOh5YuM0_case_002_usd_daily_consolidation_with_swi",
+    "Education_-_ICT_(Updated)__5fnFOh5YuM0_case_003_eur_usd_failure_swings_with_draw",
+    "Education_-_ICT_(Updated)__5fnFOh5YuM0_case_004_btc_daily_expansion_candle_with_",
+    "Education_-_ICT_(Updated)__6zTz7WMdMWg_case_003_gbp_usd_4_hour_swing_point_and_f",
+    "Education_-_ICT_(Updated)__6zTz7WMdMWg_case_004_gbp_usd_multi_timeframe_entry_fr",
+    "Education_-_ICT_(Updated)__75S4vwD4P1U_case_002_bearish_breaker_block_on_eurusd_",
+    "Education_-_ICT_(Updated)__7p9MBFk8EEM_case_001_dxy_daily_reversal_using_order_b",
+    "Education_-_ICT_(Updated)__7p9MBFk8EEM_case_002_us_oil_daily_reversal_with_previ",
+    "Education_-_ICT_(Updated)__7p9MBFk8EEM_case_003_nq_5_minute_reversal_from_daily_",
+    "Education_-_ICT_(Updated)__8BWkRGhuj1k_case_001_nq1_hourly_chart_expansion_conso",
+    "Education_-_ICT_(Updated)__8BWkRGhuj1k_case_002_apoz_daily_and_intraday_multi_ti",
+    "Education_-_ICT_(Updated)__8BWkRGhuj1k_case_003_es1_daily_and_intraday_consolida",
+    "Education_-_ICT_(Updated)__8BWkRGhuj1k_case_004_nq1_5_minute_chart_fractal_model",
+    "Education_-_ICT_(Updated)__9AL41xON3hA_case_001_xauusd_daily_reversal_with_hourl",
+    "Education_-_ICT_(Updated)__9AL41xON3hA_case_003_crude_oil_hourly_consolidation_w",
+    "Education_-_ICT_(Updated)__9BY-MQRNy-Y_case_001_nq_weekly_to_hourly_bearish_swin",
+    "Education_-_ICT_(Updated)__9BY-MQRNy-Y_case_002_ng_natural_gas_weekly_to_hourly_",
+    "Education_-_ICT_(Updated)__9BY-MQRNy-Y_case_003_btc_weekly_to_4h_bearish_swing_w",
+    "Education_-_ICT_(Updated)__9BY-MQRNy-Y_case_004_btc_4h_to_15m_fractal_entry_with",
+    "Education_-_ICT_(Updated)__9BY-MQRNy-Y_case_005_btc_weekly_to_4h_direct_fractal_",
+    "Education_-_ICT_(Updated)__9PKJ0U1gl4g_case_002_crude_oil_hourly_propulsion_bloc",
+    "Education_-_ICT_(Updated)__9PKJ0U1gl4g_case_004_usd_jpy_daily_propulsion_block_e",
+    "Education_-_ICT_(Updated)__AdmnWLjf8rY_case_001_nq_1_minute_entry_with_hourly_dr",
+    "Education_-_ICT_(Updated)__AdmnWLjf8rY_case_002_nq_multi_timeframe_reversal_with",
+    "Education_-_ICT_(Updated)__CHIK5oBRKiw_case_001_nq_5_minute_reversal_with_cisd_a",
+    "Education_-_ICT_(Updated)__CHIK5oBRKiw_case_002_nq_daily_to_2_minute_multi_timef",
+    "Education_-_ICT_(Updated)__CHIK5oBRKiw_case_003_es_1_minute_bearish_entry_with_o",
+    "Education_-_ICT_(Updated)__CHIK5oBRKiw_case_004_es_1_minute_bullish_reversal_wit",
+    "Education_-_ICT_(Updated)__CHIK5oBRKiw_case_005_nq_box_setup_with_order_block_co",
+    "Education_-_ICT_(Updated)__CHIK5oBRKiw_case_006_nq_bullish_box_setup_with_order_",
+    "Education_-_ICT_(Updated)__CqMIh-Vvhbg_case_001_eur_aud_daily_to_hourly_reversal",
+    "Education_-_ICT_(Updated)__CqMIh-Vvhbg_case_002_eur_usd_5_minute_fractal_model_e",
+    "Education_-_ICT_(Updated)__CqMIh-Vvhbg_case_003_gc_gold_hourly_to_5_minute_confl",
+    "Education_-_ICT_(Updated)__CqMIh-Vvhbg_case_004_es_s_p_500_daily_candle_2_closur",
+    "Education_-_ICT_(Updated)__DMUiDBnTYc8_case_002_eth_hourly_fair_value_gap_with_5",
+    "Education_-_ICT_(Updated)__DMUiDBnTYc8_case_003_oil_5_minute_order_block_with_me",
+    "Education_-_ICT_(Updated)__DMUiDBnTYc8_case_004_eth_15_minute_smart_money_revers",
+    "Education_-_ICT_(Updated)__DMUiDBnTYc8_case_005_crude_oil_daily_continuation_wit",
+    "Education_-_ICT_(Updated)__E89d1HArbgM_case_001_dxy_daily_chart_change_in_state_",
+    "Education_-_ICT_(Updated)__E89d1HArbgM_case_002_eth_and_nq_1_minute_chart_order_",
+    "Education_-_ICT_(Updated)__E89d1HArbgM_case_003_oil_futures_cl_monthly_to_daily_",
+    "Education_-_ICT_(Updated)__EYzP7c24AwM_case_002_cl_bullish_continuation_with_10_",
+    "Education_-_ICT_(Updated)__EYzP7c24AwM_case_003_nq_bullish_setup_with_8_30_oppos",
+    "Education_-_ICT_(Updated)__EYzP7c24AwM_case_004_es_bearish_order_block_formation",
+    "Education_-_ICT_(Updated)__EYzP7c24AwM_case_005_eth_fair_value_gap_support_with_",
+    "Education_-_ICT_(Updated)__F0G31iLVpVg_case_001_nq1_1_hour_retracement_into_fair",
+    "Education_-_ICT_(Updated)__F0G31iLVpVg_case_003_eur_usd_5_minute_protected_swing",
+    "Education_-_ICT_(Updated)__F0G31iLVpVg_case_004_ng1_daily_candle_2_closure_with_",
+    "Education_-_ICT_(Updated)__F0G31iLVpVg_case_005_nq1_3_minute_multi_phase_price_a",
+    "Education_-_ICT_(Updated)__FAKWJ-1NlLE_case_001_ym_bullish_daily_reversal_with_4",
+    "Education_-_ICT_(Updated)__FAKWJ-1NlLE_case_002_usd_jpy_forex_reversal_with_cont",
+    "Education_-_ICT_(Updated)__FAKWJ-1NlLE_case_003_gold_gc_4_hour_power_of_three_wi",
+    "Education_-_ICT_(Updated)__FAKWJ-1NlLE_case_005_es_multi_timeframe_setup_6_am_re",
+    "Education_-_ICT_(Updated)__FGkb_50BfT8_case_001_es_5_minute_chart_failure_swings",
+    "Education_-_ICT_(Updated)__FGkb_50BfT8_case_007_es_5_minute_order_block_entries_",
+    "Education_-_ICT_(Updated)__FKTBkTzsmUA_case_002_eur_usd_15_minute_valid_ifvg_wit",
+    "Education_-_ICT_(Updated)__FKTBkTzsmUA_case_003_btc_usdt_1_minute_failed_ifvg_wi",
+    "Education_-_ICT_(Updated)__FKTBkTzsmUA_case_004_eth_3_minute_ifvg_with_large_opp",
+    "Education_-_ICT_(Updated)__FKTBkTzsmUA_case_005_eth_daily_to_15_minute_top_down_",
+    "Education_-_ICT_(Updated)__FXJBFbZQbck_case_004_bearish_structure_with_order_blo",
+    "Education_-_ICT_(Updated)__FXJBFbZQbck_case_007_eth_wednesday_8_30_news_manipula",
+    "Education_-_ICT_(Updated)__FvOUvQ7odiw_case_001_apo2_usd_intraweek_reversal_with",
+    "Education_-_ICT_(Updated)__FvOUvQ7odiw_case_003_xauusd_mixed_reversal_candle_wit",
+    "Education_-_ICT_(Updated)__IJcfC6wAPZU_case_001_gc_gold_3_hour_continuation_entr",
+    "Education_-_ICT_(Updated)__IJcfC6wAPZU_case_002_gc_gold_4_hour_to_15_minute_cont",
+    "Education_-_ICT_(Updated)__IJcfC6wAPZU_case_003_cl_oil_daily_reversal_with_aggre",
+    "Education_-_ICT_(Updated)__IJcfC6wAPZU_case_004_nq_nasdaq_consolidation_range_br",
+    "Education_-_ICT_(Updated)__IJcfC6wAPZU_case_005_es_s_p_500_premium_zone_continua",
+    "Education_-_ICT_(Updated)__IJcfC6wAPZU_case_006_gbp_usd_daily_to_monthly_range_c",
+    "Education_-_ICT_(Updated)__IPZjNI1B5a0_case_001_eth_daily_expansion_with_equilib",
+    "Education_-_ICT_(Updated)__IPZjNI1B5a0_case_002_ym_bearish_expansion_with_daily_",
+    "Education_-_ICT_(Updated)__IPZjNI1B5a0_case_003_multi_day_price_action_with_eq_a",
+    "Education_-_ICT_(Updated)__IPZjNI1B5a0_case_004_eur_usd_short_setup_with_opposin",
+    "Education_-_ICT_(Updated)__IPZjNI1B5a0_case_005_retracement_into_lower_half_with",
+    "Education_-_ICT_(Updated)__IPZjNI1B5a0_case_006_eth_fair_value_gap_miss_and_retu",
+    "Education_-_ICT_(Updated)__IPZjNI1B5a0_case_007_eth_4_hour_fractal_model_with_mu",
+    "Education_-_ICT_(Updated)__IeXtmeKqjnQ_case_001_nq_bullish_new_york_manipulation",
+    "Education_-_ICT_(Updated)__IeXtmeKqjnQ_case_002_oil_bearish_new_york_manipulatio",
+    "Education_-_ICT_(Updated)__IeXtmeKqjnQ_case_003_oil_failure_swing_to_range_rever",
+    "Education_-_ICT_(Updated)__IeXtmeKqjnQ_case_004_nq_continuation_with_ob_and_fvg_",
+    "Education_-_ICT_(Updated)__JHVaSKtE1Ys_case_001_ym_5_minute_trend_continuation_w",
+    "Education_-_ICT_(Updated)__JHVaSKtE1Ys_case_002_es_hourly_reversal_with_continua",
+    "Education_-_ICT_(Updated)__JHVaSKtE1Ys_case_003_gold_4_hour_to_15_minute_protect",
+    "Education_-_ICT_(Updated)__JHVaSKtE1Ys_case_004_oil_hourly_reversal_off_previous",
+    "Education_-_ICT_(Updated)__Kf4c41_qO1s_case_001_usdcad_15_minute_bearish_continu",
+    "Education_-_ICT_(Updated)__Kf4c41_qO1s_case_002_nq1_5_minute_bullish_setup_with_",
+    "Education_-_ICT_(Updated)__LKNQDAdId4s_case_001_nq_daily_reversal_with_wick_resp",
+    "Education_-_ICT_(Updated)__LKNQDAdId4s_case_002_es_daily_high_sweep_with_wick_di",
+    "Education_-_ICT_(Updated)__LKNQDAdId4s_case_003_es_fair_value_gap_entry_with_wic",
+    "Education_-_ICT_(Updated)__LKNQDAdId4s_case_004_cl_hourly_high_sweep_with_wick_d",
+    "Education_-_ICT_(Updated)__LKNQDAdId4s_case_006_gold_consolidation_with_wick_res",
+    "Education_-_ICT_(Updated)__LKNQDAdId4s_case_007_cl_fair_value_gap_reversal_with_",
+    "Education_-_ICT_(Updated)__MPeeE55rNOw_case_001_nq1_daily_price_action_through_m",
+    "Education_-_ICT_(Updated)__McJflkKuvrI_case_001_usd_daily_consolidation_reversal",
+    "Education_-_ICT_(Updated)__McJflkKuvrI_case_002_bullish_consolidation_reversal_w",
+    "Education_-_ICT_(Updated)__McJflkKuvrI_case_003_ym_daily_consolidation_reversal_",
+    "Education_-_ICT_(Updated)__MsuEQQl7L6s_case_002_eur_usd_daily_chart_candle_three",
+    "Education_-_ICT_(Updated)__MsuEQQl7L6s_case_003_nq_4_hour_chart_candle_three_clo",
+    "Education_-_ICT_(Updated)__MsuEQQl7L6s_case_005_nq_15_minute_chart_candle_three_",
+    "Education_-_ICT_(Updated)__MsuEQQl7L6s_case_006_nq_15_minute_chart_consolidation",
+    "Education_-_ICT_(Updated)__PQiRV0JMhIQ_case_001_ideal_continuation_on_xauusd_15_",
+    "Education_-_ICT_(Updated)__PQiRV0JMhIQ_case_002_consolidation_failure_on_eth_1_h",
+    "Education_-_ICT_(Updated)__PQiRV0JMhIQ_case_003_continuation_failure_with_slow_c",
+    "Education_-_ICT_(Updated)__PQiRV0JMhIQ_case_004_valid_continuation_after_liquidi",
+    "Education_-_ICT_(Updated)__PQiRV0JMhIQ_case_005_continuation_at_short_term_highs",
+    "Education_-_ICT_(Updated)__PQiRV0JMhIQ_case_006_breakout_of_consolidation_on_eth",
+    "Education_-_ICT_(Updated)__PQiRV0JMhIQ_case_007_continuation_at_short_term_low_o",
+    "Education_-_ICT_(Updated)__PQiRV0JMhIQ_case_008_blended_consolidation_and_short_",
+    "Education_-_ICT_(Updated)__PQiRV0JMhIQ_case_009_ideal_continuation_with_change_i",
+    "Education_-_ICT_(Updated)__PQiRV0JMhIQ_case_010_consolidation_with_slow_closure_",
+    "Education_-_ICT_(Updated)__PQiRV0JMhIQ_case_011_consolidation_breakout_with_cont",
+    "Education_-_ICT_(Updated)__PQiRV0JMhIQ_case_012_failed_continuation_with_reversa",
+    "Education_-_ICT_(Updated)__PQiRV0JMhIQ_case_013_twitter_case_slow_continuation_f",
+    "Education_-_ICT_(Updated)__PQiRV0JMhIQ_case_014_twitter_case_continuation_at_sho",
+    "Education_-_ICT_(Updated)__PQiRV0JMhIQ_case_015_advanced_continuation_entry_on_e",
+    "Education_-_ICT_(Updated)__Pcbyc9TdNsU_case_001_nq_5_minute_amd_with_standard_de",
+    "Education_-_ICT_(Updated)__Pcbyc9TdNsU_case_002_nq_1_minute_box_setup_with_amd_p",
+    "Education_-_ICT_(Updated)__Qt7Ek4keMzs_case_001_tsla_classic_expansion_with_tues",
+    "Education_-_ICT_(Updated)__Qt7Ek4keMzs_case_002_nq_classic_expansion_with_tuesda",
+    "Education_-_ICT_(Updated)__Qt7Ek4keMzs_case_003_ym_classic_expansion_with_monday",
+    "Education_-_ICT_(Updated)__Qt7Ek4keMzs_case_004_ym_imperfect_weekly_profile_with",
+    "Education_-_ICT_(Updated)__SlWxhzhLo3A_case_001_silver_apo2_reversal_off_previou",
+    "Education_-_ICT_(Updated)__SlWxhzhLo3A_case_002_nq_nq1_large_opposing_run_and_ta",
+    "Education_-_ICT_(Updated)__SlWxhzhLo3A_case_003_oil_cl_range_reversal_and_contin",
+    "Education_-_ICT_(Updated)__SlWxhzhLo3A_case_004_gold_gc_15_minute_fractal_contin",
+    "Education_-_ICT_(Updated)__SlWxhzhLo3A_case_005_es_es1_1_minute_reversal_and_con",
+    "Education_-_ICT_(Updated)__TCFvsZeYvV8_case_002_5_minute_amd_sellside_liquidity_",
+    "Education_-_ICT_(Updated)__TCFvsZeYvV8_case_003_daily_candle_amd_london_manipula",
+    "Education_-_ICT_(Updated)__TfHlNgAZ_II_case_001_gold_gc_weekly_bullish_continuat",
+    "Education_-_ICT_(Updated)__TfHlNgAZ_II_case_002_crude_oil_cl_daily_reversal_afte",
+    "Education_-_ICT_(Updated)__TfHlNgAZ_II_case_003_crude_oil_cl_trend_continuation_",
+    "Education_-_ICT_(Updated)__TfHlNgAZ_II_case_004_usd_jpy_daily_trend_continuation",
+    "Education_-_ICT_(Updated)__bbWPoajy2MY_case_001_gbpusd_mitigation_block_failure_",
+    "Education_-_ICT_(Updated)__c_mh19e3mhI_case_003_week_of_jul_31_aug_4_daily_relat",
+    "Education_-_ICT_(Updated)__caaS6_Q7O78_case_001_daily_chart_example_on_ty_10_yea",
+    "Education_-_ICT_(Updated)__caaS6_Q7O78_case_002_bitcoin_daily_and_hourly_bias_wi",
+    "Education_-_ICT_(Updated)__caaS6_Q7O78_case_003_hourly_ty_trade_using_next_day_m",
+    "Education_-_ICT_(Updated)__eywpZT3z6GQ_case_001_gold_daily_bullish_trend_scalpin",
+    "Education_-_ICT_(Updated)__eywpZT3z6GQ_case_004_advanced_reversal_candle_scalpin",
+    "Education_-_ICT_(Updated)__g3oDYq4P9ZE_case_001_ym1_daily_chart_using_previous_d",
+    "Education_-_ICT_(Updated)__g3oDYq4P9ZE_case_002_ttrades_edu_daily_chart_using_pr",
+    "Education_-_ICT_(Updated)__iEaMbuFZb24_case_001_crude_oil_bullish_continuation_f",
+    "Education_-_ICT_(Updated)__iEaMbuFZb24_case_002_silver_bearish_continuation_afte",
+    "Education_-_ICT_(Updated)__iEaMbuFZb24_case_003_usdjpy_bullish_bias_with_multipl",
+    "Education_-_ICT_(Updated)__iEaMbuFZb24_case_004_gold_bullish_retracement_after_b",
+    "Education_-_ICT_(Updated)__nWHint4Yano_case_001_dxy_reversal_off_july_low_with_b",
+    "Education_-_ICT_(Updated)__qdQYhePcvGE_case_001_eur_usd_daily_tuesday_reversal_l",
+    "Education_-_ICT_(Updated)__qdQYhePcvGE_case_002_gll_5_minute_bearish_continuatio",
+    "Education_-_ICT_(Updated)__qdQYhePcvGE_case_004_es1_daily_reversal_and_hourly_co",
+    "Education_-_ICT_(Updated)__qdQYhePcvGE_case_005_es1_4_hour_and_15_minute_continu",
+    "Education_-_ICT_(Updated)__qdQYhePcvGE_case_006_gll_hourly_lower_probability_con",
+    "Education_-_ICT_(Updated)__qdQYhePcvGE_case_007_apo2_hourly_reversal_fail_and_su",
+    "Education_-_ICT_(Updated)__qdQYhePcvGE_case_008_xageur_strong_hourly_bias_and_lo",
+    "Education_-_ICT_(Updated)__qdQYhePcvGE_case_010_es1_monthly_daily_blending_candl",
+    "Education_-_ICT_(Updated)__rXMVPUZPw4A_case_003_nasdaq_1_minute_unicorn_setup_hi",
+    "Education_-_ICT_(Updated)__r_UF8U-hsL8_case_001_apoz_5_minute_reversal_and_conti",
+    "Education_-_ICT_(Updated)__sIcsLFSNoXM_case_003_es_15_minute_bullish_reversal_af",
+    "Education_-_ICT_(Updated)__uDJI2AbyyCs_case_003_gold_daily_old_fvg_reaccumulatio",
+    "Education_-_ICT_(Updated)__uPUNOi_R9fA_case_001_first_thursday_counter_example_o",
+    "Education_-_ICT_(Updated)__uPUNOi_R9fA_case_003_successful_thursday_counter_on_n",
+    "Education_-_ICT_(Updated)__vn1RYjhJUnQ_case_001_nq_1_hour_bearish_c2_with_cisd_a",
+    "Education_-_ICT_(Updated)__vn1RYjhJUnQ_case_002_nq_bullish_c2_after_sweep_of_pri",
+    "Education_-_ICT_(Updated)__vn1RYjhJUnQ_case_003_monthly_c2_with_daily_cisd_and_t",
+    "Education_-_ICT_(Updated)__vn1RYjhJUnQ_case_004_invalid_c2_failure_to_form_cisd_",
+    "Education_-_ICT_(Updated)__vn1RYjhJUnQ_case_005_consolidation_after_failed_cisd_",
+    "Education_-_ICT_(Updated)__vn1RYjhJUnQ_case_006_nq_15_min_bullish_c2_with_cisd_a",
+    "Education_-_ICT_(Updated)__vn1RYjhJUnQ_case_007_usdcad_15_min_bearish_c2_with_sm",
+    "Education_-_ICT_(Updated)__wik00c9_2nk_case_001_cl1_consolidation_range_reversal",
+    "Education_-_ICT_(Updated)__wik00c9_2nk_case_002_gc1_bullish_bias_with_asia_highs",
+    "Education_-_ICT_(Updated)__wik00c9_2nk_case_003_ym1_bearish_reversal_with_sweep_",
+    "Education_-_ICT_(Updated)__xP-o11jRCyg_case_001_eth_range_low_sweep_and_breaker_",
+    "Education_-_ICT_(Updated)__xP-o11jRCyg_case_002_nq_daily_high_sweep_and_hourly_b",
+    "Education_-_ICT_(Updated)__xP-o11jRCyg_case_003_eth_nq_after_selloff_bullish_bre",
+    "Education_-_ICT_(Updated)__xP-o11jRCyg_case_004_eth_after_expansion_retracement_",
+    "Education_-_ICT_(Updated)__xP-o11jRCyg_case_005_eth_with_equal_highs_and_smt_bul",
+    "Education_-_ICT_(Updated)__y6SnEdASVLY_case_001_bullish_oil_london_reversal_exam",
+    "Education_-_ICT_(Updated)__y6SnEdASVLY_case_002_bearish_oil_london_reversal_exam",
+    "Education_-_ICT_(Updated)__y6SnEdASVLY_case_003_another_bearish_oil_new_york_con",
+    "Education_-_ICT_(Updated)__y6SnEdASVLY_case_004_bearish_es_london_reversal_examp",
+    "Education_-_ICT_(Updated)__y6SnEdASVLY_case_005_bullish_oil_reversal_candle_and_",
+    "Education_-_ICT__3eVxTV_7L2U_case_007_指数三角完整顶部交易_nq_ym从日线到3分钟",
+    "Education_-_ICT__4Gm8p6O7Ebs_case_001_黄金小时图扩张走势分析",
+    "Education_-_ICT__4Gm8p6O7Ebs_case_003_黄金日线扩张与盘整交替",
+    "Education_-_ICT__5fnFOh5YuM0_case_002_eth多时间框架延续交易",
+    "Education_-_ICT__5fnFOh5YuM0_case_003_欧元美元日线看涨设置",
+    "Education_-_ICT__8BWkRGhuj1k_case_001_nq1_5月27日至6月2日的扩张_整理_反转交易案例",
+    "Education_-_ICT__8BWkRGhuj1k_case_003_usd_日线7月2日至7月29日的整理_反转_延续案例",
+    "Education_-_ICT__8BWkRGhuj1k_case_004_usd_日线7月23日至7月29日的空头交易设置",
+    "Education_-_ICT__CHIK5oBRKiw_case_004_nq11月1日box_setup与订单块结合案例",
+    "Education_-_ICT__CqMIh-Vvhbg_case_002_eur_aud小时线与5分钟线的多时间框架分析",
+    "Education_-_ICT__E89d1HArbgM_case_002_原油期货月线至日线的多级别分析",
+    "Education_-_ICT__F0G31iLVpVg_case_001_nq1小时线回撤案例",
+    "Education_-_ICT__FAKWJ-1NlLE_case_005_nq_多时间框架综合分析案例",
+    "Education_-_ICT__FgP2lc9nneM_case_001_eth_4小时日线对齐交易案例",
+    "Education_-_ICT__FgP2lc9nneM_case_003_原油_ol_周线到日线的高级对齐案例",
+    "Education_-_ICT__IJcfC6wAPZU_case_001_黄金期货_gc_日线至5分钟多时间框架延续交易",
+    "Education_-_ICT__IJcfC6wAPZU_case_004_纳指期货_nq_盘整突破后的多次延续机会",
+    "Education_-_ICT__IJcfC6wAPZU_case_005_标普500_es_范围突破的延续交易",
+    "Education_-_ICT__IPZjNI1B5a0_case_001_btc日线扩张走势中的均衡点应用",
+    "Education_-_ICT__IeXtmeKqjnQ_case_001_纳斯达克期货_nq_看涨操纵案例",
+    "Education_-_ICT__IeXtmeKqjnQ_case_004_纳斯达克期货_nq_多日连续突破案例",
+    "Education_-_ICT__LKNQDAdId4s_case_001_btc日线wick被尊重后的小时级扩展",
+    "Education_-_ICT__LKNQDAdId4s_case_008_原油_cl_多时间框架wick分析",
+    "Education_-_ICT__MsuEQQl7L6s_case_007_usd_15分钟图交易设置案例",
+    "Education_-_ICT__PQiRV0JMhIQ_case_001_btc_1小时图_理想的v形反转continuation",
+    "Education_-_ICT__Pcbyc9TdNsU_case_002_box设置与标准差结合的交易案例",
+    "Education_-_ICT__SlWxhzhLo3A_case_003_原油日线范围交易案例",
+    "Education_-_ICT__SlWxhzhLo3A_case_004_黄金15分钟多重反转扩张案例",
+    "Education_-_ICT__TNybDCtwBnc_case_002_黄金第二个交易案例_扫盘后反转做多",
+    "Education_-_ICT__TNybDCtwBnc_case_003_nq第三个交易案例_日线反转后多日延续",
+    "Education_-_ICT__TNybDCtwBnc_case_004_英镑第四个交易案例_简化分析做多",
+    "Education_-_ICT__TfHlNgAZ_II_case_001_黄金周线至15分钟多时间框架交易案例",
+    "Education_-_ICT__TfHlNgAZ_II_case_004_usd_jpy日线趋势延续案例",
+    "Education_-_ICT__VD4xb9VfMHA_case_002_usd_1小时图_前期高点反转案例",
+    "Education_-_ICT__VD4xb9VfMHA_case_004_spx500_1小时图_反转与回测流程",
+    "Education_-_ICT__WFqLwOp2pXw_case_003_spy_1小时多重盘整的延续交易",
+    "Education_-_ICT__WFqLwOp2pXw_case_005_usd_jpy_1小时18小时盘整的空头延续",
+    "Education_-_ICT__caaS6_Q7O78_case_002_btc日线与小时线的联动交易",
+    "Education_-_ICT__eywpZT3z6GQ_case_001_黄金小时线看涨扩张交易案例",
+    "Education_-_ICT__eywpZT3z6GQ_case_005_高级反转k线看跌交易案例",
+    "Education_-_ICT__hKCMqh0ZsY0_case_001_nasdaq周线交易案例",
+    "Education_-_ICT__hKCMqh0ZsY0_case_002_core_pce新闻交易案例",
+    "Education_-_ICT__hKCMqh0ZsY0_case_003_audcad周线交易案例",
+    "Education_-_ICT__iEaMbuFZb24_case_001_pdf示例_从看涨到看跌的多时间框架转变",
+    "Education_-_ICT__iEaMbuFZb24_case_002_日线到5分钟的三层级交易案例",
+    "Education_-_ICT__iEaMbuFZb24_case_005_黄金日线看涨结构的回测和扩张",
+    "Education_-_ICT__jKuXaC84Qx4_case_003_第三个例子_eq失效导致下行",
+    "Education_-_ICT__kTWXpAo1uE8_case_001_第一个反转案例_上升后下跌的标准差投影",
+    "Education_-_ICT__m4k_1pF5zFI_case_006_usd日线大幅扩张后反转案例",
+    "Education_-_ICT__q1NmxUTm4n4_case_004_es_2分钟图的低时间框架交易",
+    "Education_-_ICT__qdQYhePcvGE_case_008_usd多层级延续交易的完整案例",
+    "Education_-_ICT__qdQYhePcvGE_case_010_gll_5分钟图的candle_3与candle_4交易",
+    "Education_-_ICT__qdQYhePcvGE_case_011_spx_1小时反转与5分钟延续",
+    "Education_-_ICT__qdQYhePcvGE_case_016_usd_4小时与15分钟的反转与延续交易",
+    "Education_-_ICT__r_UF8U-hsL8_case_001_apoz资产的反转与延续交易案例",
+    "Education_-_ICT__tyoxl1l-6iI_case_003_usd期货月线到日线到小时线的多级分形",
+    "Education_-_ICT__ubCe509_JLY_case_002_黄金日线到5分钟的反转交易",
+    "Education_-_ICT__ubCe509_JLY_case_004_欧元兑美元日线到5分钟的整固交易",
+    "Education_-_ICT__upHS7SDL9kg_case_001_btc_4小时图周线级别投影案例",
+    "Education_-_ICT__upHS7SDL9kg_case_002_黄金1小时图投影目标验证",
+    "Education_-_ICT__upHS7SDL9kg_case_003_ym_5分钟图大操纵腿处理",
+    "Education_-_ICT__upHS7SDL9kg_case_004_bll_1小时图多阶段投影追踪",
+    "Education_-_ICT__wik00c9_2nk_case_002_日线偏差与小时线反转案例",
+    "Education_-_ICT__wik00c9_2nk_case_004_btc_1小时盘整与反转案例",
+    "Education_-_ICT__xP-o11jRCyg_case_001_rb范围突破与breaker_block延续交易",
+    "Education_-_ICT__xP-o11jRCyg_case_003_btc扫盘与多时间框架breaker_block交易",
+    "Education_-_ICT__xP-o11jRCyg_case_004_扩张_回撤_扩张后的breaker_block空头交易",
+    "Education_-_ICT__xP-o11jRCyg_case_005_nq等值高点与smt配合的1分钟breaker交易",
+    "Education_-_ICT__xdzyejskSKE_case_003_原油期货的推进块交易",
+    "Education_-_ICT__xdzyejskSKE_case_004_外部流动性扫除与范围反转",
+    "Education_-_ICT__y6SnEdASVLY_case_005_轻质原油期货看涨反转延续案例",
+    "The_Foundation__01 - Open High Low Close - Understanding Candlesticks_case_005_es标普期货纽约盘看涨反转k线案例",
+    "The_Foundation__01 - Open High Low Close - Understanding Candlesticks_case_008_cl原油日线三种k线类型序列综合案例",
+    "The_Foundation__07 - Internal & External Liquidity (Daily Bias) - ICT Concepts_case_003_gbp_jpy周线至4小时自上而下做多案例",
+    "The_Foundation__10 - Inversion Fair Value Gaps (IFVG) - ICT Concepts_case_005_黄金日线_旧fvg支撑再积累做多案例",
+    "The_Foundation__11 - Order Blocks Simplified - ICT Concepts_case_003_usoil_5分钟图_均值阈值入场提升风险回报比",
+    "The_Foundation__11 - Order Blocks Simplified - ICT Concepts_case_004_nq1_15分钟图_买侧曲线订单块_扫亚洲低点后做多",
+    "The_Foundation__13 - Change In State Of Delivery [CISD] - Orderblock Formation - ICT Concepts_case_001_nq_2023年8月11日_5分钟图_cisd做空案例",
+    "The_Foundation__13 - Change In State Of Delivery [CISD] - Orderblock Formation - ICT Concepts_case_002_nq_2023年10月13日_多时间框架做空案例",
+    "The_Foundation__13 - Change In State Of Delivery [CISD] - Orderblock Formation - ICT Concepts_case_003_es_2023年10月11日_1分钟图做空后做多案例",
+    "The_Foundation__13 - Change In State Of Delivery [CISD] - Orderblock Formation - ICT Concepts_case_004_nq_2023年11月1日_box_setup结合订单块做多案例",
+    "The_Foundation__16 - Reversal Sequence (TTRS) - How To Blend PD Arrays_case_001_指数日内盘整区间反转序列完整演示_案例一",
+    "The_Foundation__16 - Reversal Sequence (TTRS) - How To Blend PD Arrays_case_002_黄金_gc_日内反转序列案例_案例二",
+    "The_Foundation__16 - Reversal Sequence (TTRS) - How To Blend PD Arrays_case_003_道指_ym_日内看跌反转序列案例_案例三",
+    "The_Foundation__17 - SMT Divergence - ICT Concepts_case_004_nq_2024年1月11日cpi后smt背离做空案例",
+    "The_Foundation__18 - Trade Like TTrades - Top Down Analysis_case_001_教学示意图_错误的单时间框架ob交易与正确的多时间框架对齐",
+    "The_Foundation__18 - Trade Like TTrades - Top Down Analysis_case_002_原油期货_cl1_日线_1小时_5分钟多头案例",
+    "The_Foundation__18 - Trade Like TTrades - Top Down Analysis_case_003_白银期货_si1_周线_4小时_15分钟空头案例",
+    "The_Foundation__18 - Trade Like TTrades - Top Down Analysis_case_004_美元兑日元_usdjpy_日线_1小时_5分钟多头案例",
+    "The_Foundation__18 - Trade Like TTrades - Top Down Analysis_case_005_黄金期货_gc1_日线_1小时_5分钟多头案例",
+    "The_Foundation__19 - Timeframe Alignment： How To Align Timeframes For Expansion_case_001_es1_周线_4小时_15分钟三层对齐空头案例",
+    "The_Foundation__19 - Timeframe Alignment： How To Align Timeframes For Expansion_case_002_gc1_黄金日线_1小时_5分钟三层对齐空头案例",
+    "The_Foundation__19 - Timeframe Alignment： How To Align Timeframes For Expansion_case_003_ym1_道指30分钟_3分钟smt多头反转案例",
+    "The_Foundation__19 - Timeframe Alignment： How To Align Timeframes For Expansion_case_004_eurusd_日线_1小时_5分钟三层对齐空头案例",
+    "The_Foundation__20 - High Resistance vs Low Resistance Liquidity - ICT Concepts_case_001_es_5分钟图_扫出等低点后向failure_swing高点运行",
+    "The_Foundation__23 - Candle 3 Closure： TTrades Fractal Model_case_006_nq_4小时_15分钟多时间框架candle_three_clo"
+  ],
+  "card_id": "change_in_state_of_delivery",
+  "canonical_term": "Change in State of Delivery",
   "_embedding": [
-    0.024492081254720688,
-    0.027212265878915787,
-    -0.20661012828350067,
-    -0.06290306150913239,
-    0.012178695760667324,
-    0.004007385578006506,
-    0.01627916283905506,
-    0.017693379893898964,
-    0.015552839264273643,
-    -0.02346828766167164,
-    -0.02931935526430607,
-    0.01946277916431427,
-    0.0914677083492279,
-    0.013813215307891369,
-    0.04233648627996445,
-    -0.03504350781440735,
-    0.019071847200393677,
-    -0.019165853038430214,
-    0.009172949939966202,
-    0.08266961574554443,
-    -0.02773262746632099,
-    -0.007730431854724884,
-    -0.04421878978610039,
-    -0.02460459992289543,
-    0.0638400986790657,
-    0.03537357226014137,
-    -0.002882489236071706,
-    -0.03980625793337822,
-    -0.021298952400684357,
-    0.009941640309989452,
-    0.0473303496837616,
-    -0.02885737642645836,
-    0.01108309905976057,
-    -0.02109256200492382,
-    -0.08445708453655243,
-    -0.038461145013570786,
-    0.03685961291193962,
-    -0.022732842713594437,
-    -0.017375973984599113,
-    0.011451690457761288,
-    0.05063576251268387,
-    0.05283178761601448,
-    0.04302508383989334,
-    -0.06366066634654999,
-    0.05828378349542618,
-    0.005403267685323954,
-    0.07307843118906021,
-    0.029638823121786118,
-    0.007764197885990143,
-    -0.0504889152944088,
-    0.03873804211616516,
-    0.024239037185907364,
-    -0.00013538156053982675,
-    -0.006669304333627224,
-    0.08469513803720474,
-    0.023403435945510864,
-    -0.014769853092730045,
-    0.03345848619937897,
-    0.006486627273261547,
-    -0.020101483911275864,
-    0.026777854189276695,
-    0.019218089058995247,
-    0.029137343168258667,
-    0.0542059950530529,
-    0.036443255841732025,
-    -0.014855961315333843,
-    -0.022493043914437294,
-    0.06760601699352264,
-    0.0064595770090818405,
-    -0.06737883388996124,
-    0.03865521028637886,
-    0.04009336978197098,
-    0.024486510083079338,
-    0.02097126841545105,
-    -0.03265465423464775,
-    -0.004125409759581089,
-    -0.039120253175497055,
-    -0.03481745719909668,
-    -0.010467142798006535,
-    0.00105840724427253,
-    0.013481409288942814,
-    -0.008860955946147442,
-    0.08891016989946365,
-    0.0007428268436342478,
-    0.08060996979475021,
-    0.030200334265828133,
-    0.013229507952928543,
-    0.0091368667781353,
-    -0.034824442118406296,
-    0.04527689516544342,
-    -0.0028842801693826914,
-    -0.022604044526815414,
-    0.0015016404213383794,
-    0.02244643308222294,
-    -0.08061697334051132,
-    0.026227641850709915,
-    0.0022337341215461493,
-    0.009854061529040337,
-    -0.03719111159443855,
-    -0.024803437292575836,
-    -0.018616273999214172,
-    -0.0533398762345314,
-    -0.025021303445100784,
-    0.007140205707401037,
-    -0.004550940822809935,
-    0.05309133231639862,
-    0.010602585971355438,
-    0.004842196591198444,
-    0.0036972975358366966,
-    -0.003507333341985941,
-    -0.09963181614875793,
-    0.04726995527744293,
-    -0.060836661607027054,
-    -0.027603236958384514,
-    0.03485807031393051,
-    0.023646945133805275,
-    0.0641903281211853,
-    -0.02767557092010975,
-    0.007498195860534906,
-    -0.012926850467920303,
-    -0.004027402028441429,
-    -0.018960783258080482,
-    -0.014452310279011726,
-    0.06224837899208069,
-    0.022258490324020386,
-    0.047931868582963943,
-    -0.0893108993768692,
-    -0.026371397078037262,
-    0.0230812206864357,
-    -0.037619102746248245,
-    -0.00836277473717928,
-    0.005779676139354706,
-    -0.0012872758088633418,
-    0.018827401101589203,
-    -0.007916254922747612,
-    0.035205207765102386,
-    0.018855134025216103,
-    -0.026975426822900772,
-    -0.00035532773472368717,
-    0.04988093301653862,
-    0.0038377312012016773,
-    0.008409988135099411,
-    0.012080712243914604,
-    0.00079003581777215,
-    0.010212677530944347,
-    -0.019971385598182678,
-    0.022377973422408104,
-    -0.035572249442338943,
-    -0.027609359472990036,
-    0.007806313224136829,
-    0.038935936987400055,
-    0.026030315086245537,
-    0.018318219110369682,
-    0.03023705445230007,
-    0.02748299017548561,
-    -0.0346735343337059,
-    0.01729465462267399,
-    0.028682516887784004,
-    -0.010152151808142662,
-    0.049216654151678085,
-    0.036323849111795425,
-    -0.03068677894771099,
-    -0.07420073449611664,
-    0.02528506889939308,
-    -0.02634643390774727,
-    -0.068814218044281,
-    -0.0074329739436507225,
-    0.040747057646512985,
-    0.004415886010974646,
-    0.008396892808377743,
-    -0.06344231218099594,
-    0.0005153540405444801,
-    -0.005288109183311462,
-    -0.008703072555363178,
-    0.021000180393457413,
-    0.023882165551185608,
-    0.02310975082218647,
-    -0.07771695405244827,
-    0.015623828396201134,
-    -0.020801786333322525,
-    0.03917368873953819,
-    -0.05298011749982834,
-    0.04636682569980621,
-    0.03993505612015724,
-    -0.020654968917369843,
-    -0.03410256281495094,
-    0.03545718640089035,
-    -0.020136436447501183,
-    -0.05418514087796211,
-    -0.012893388979136944,
-    0.0335344634950161,
-    0.01649964042007923,
-    -0.05036666616797447,
-    -0.004411154426634312,
-    -0.05081278458237648,
-    -0.050542473793029785,
-    0.037637002766132355,
-    -0.011172477155923843,
-    -0.003575344802811742,
-    -0.042837969958782196,
-    -0.04026151821017265,
-    -0.0027440921403467655,
-    -0.03715306147933006,
-    0.014254380948841572,
-    -0.04139452427625656,
-    0.10539180785417557,
-    -0.022014165297150612,
-    0.04452793672680855,
-    -0.032053690403699875,
-    0.029560653492808342,
-    0.07434185594320297,
-    -0.024865953251719475,
-    -0.0030647560488432646,
-    -0.010466165840625763,
-    0.0029897105414420366,
-    0.014227895066142082,
-    0.023992493748664856,
-    -0.040355730801820755,
-    -0.008050976321101189,
-    0.025392333045601845,
-    0.024663377553224564,
-    -0.004670500755310059,
-    0.013555377721786499,
-    0.015146690420806408,
-    0.016193469986319542,
-    0.013445676304399967,
-    -0.01834515854716301,
-    -0.012060408480465412,
-    -0.0035423110239207745,
-    0.002979937708005309,
-    -0.03286606818437576,
-    -0.08122850954532623,
-    0.023863598704338074,
-    0.0195565577596426,
-    0.04647880792617798,
-    0.014821911230683327,
-    -0.007197659928351641,
-    0.02839425392448902,
-    0.022724702954292297,
-    0.005764157976955175,
-    0.0004725487087853253,
-    0.03172370791435242,
-    -0.010159752331674099,
-    -0.025382675230503082,
-    -0.07613345980644226,
-    0.0126207135617733,
-    0.045103125274181366,
-    -0.028271567076444626,
-    0.019082210958003998,
-    0.048678766936063766,
-    0.011647279374301434,
-    0.015941429883241653,
-    0.03142191097140312,
-    0.0029270958621054888,
-    0.037133414298295975,
-    -0.02429279126226902,
-    -0.06871633231639862,
-    0.055326130241155624,
-    -0.03558788821101189,
-    0.03525092452764511,
-    -0.017718078568577766,
-    -0.05023409426212311,
-    0.08461762964725494,
-    -0.07016941159963608,
-    0.01000835932791233,
-    -0.05153145641088486,
-    -0.013968231156468391,
-    -0.02135339565575123,
-    0.0110826650634408,
-    -0.016383852809667587,
-    -0.002055895747616887,
-    0.009781278669834137,
-    0.010634203441441059,
-    0.05612815171480179,
-    0.013029880821704865,
-    -0.0011258722515776753,
-    0.008248391561210155,
-    -0.03687094897031784,
-    -0.037528399378061295,
-    0.05075352266430855,
-    -0.01125386543571949,
-    -0.016672132536768913,
-    -0.0321645624935627,
-    -0.00492958864197135,
-    -0.016008051112294197,
-    0.05000485107302666,
-    0.015364520251750946,
-    0.03758614882826805,
-    0.015444539487361908,
-    0.021040968596935272,
-    0.015615970827639103,
-    0.015312700532376766,
-    -0.005559264682233334,
-    0.06064697355031967,
-    0.009639531373977661,
-    0.05340433120727539,
-    0.052470967173576355,
-    -0.03511522710323334,
-    -0.0031170863658189774,
-    -0.0405292809009552,
-    0.025142941623926163,
-    0.04189538583159447,
-    0.05990161746740341,
-    0.014225623570382595,
-    -0.00796726904809475,
-    -0.029962962493300438,
-    0.004224845208227634,
-    -0.041749294847249985,
-    0.015603164210915565,
-    0.01303691603243351,
-    -0.04210557043552399,
-    -0.006710176821798086,
-    -0.07320011407136917,
-    0.004586679860949516,
-    -0.06747309118509293,
-    0.018772659823298454,
-    0.04155079275369644,
-    0.05334070697426796,
-    0.02934807725250721,
-    0.01764591597020626,
-    0.023696737363934517,
-    -0.004737932700663805,
-    -0.039976734668016434,
-    -0.04133990779519081,
-    0.04860532656311989,
-    0.05427757650613785,
-    -0.008952302858233452,
-    -0.0033673245925456285,
-    -0.02951556071639061,
-    -0.033560026437044144,
-    0.04563042148947716,
-    0.03780128061771393,
-    0.024708807468414307,
-    -0.025750193744897842,
-    -0.02689976617693901,
-    -0.013454955071210861,
-    -0.04328851401805878,
-    0.028224248439073563,
-    0.020591827109456062,
-    0.06626524031162262,
-    0.06344857066869736,
-    -0.002521919785067439,
-    0.040362630039453506,
-    -0.03234042972326279,
-    0.011840705759823322,
-    -0.027363622561097145,
-    -0.044466517865657806,
-    0.029852431267499924,
-    0.03633419796824455,
-    0.026881875470280647,
-    0.011983443982899189,
-    -0.008441155776381493,
-    -0.02259209379553795,
-    0.01461233850568533,
-    0.05468715727329254,
-    0.026181988418102264,
-    0.050925176590681076,
-    0.006157640367746353,
-    0.026757456362247467,
-    0.007536397781223059,
-    0.04178665950894356,
-    -0.004339294508099556,
-    -0.035881780087947845,
-    -0.021717602387070656,
-    -0.004410233348608017,
-    0.013882418163120747,
-    0.05730019509792328,
-    -0.016146402806043625,
-    0.03196755051612854,
-    -0.007825780659914017,
-    -0.039601486176252365,
-    -0.014486928470432758,
-    -0.03605316951870918,
-    0.03957238793373108,
-    0.028019316494464874,
-    -0.01017332635819912,
-    -0.05782906711101532,
-    0.01974351517856121,
-    -0.036990027874708176,
-    0.03787248209118843,
-    0.00717164808884263,
-    -0.05535737797617912,
-    -0.01797333173453808,
-    -0.006677983328700066,
-    0.022342901676893234,
-    -0.010622427798807621,
-    -0.011179276742041111,
-    -0.044524047523736954,
-    -0.033081065863370895,
-    -0.0019234386272728443,
-    -0.008914848789572716,
-    -0.02302571013569832,
-    -0.02194371074438095,
-    -0.021647678688168526,
-    0.03539128229022026,
-    0.002379920333623886,
-    0.019889170303940773,
-    0.014202085323631763,
-    -0.040954239666461945,
-    0.010488935746252537,
-    -0.037152621895074844,
-    -0.07654327899217606,
-    0.009383335709571838,
-    0.005647614132612944,
-    -0.01643633469939232,
-    0.020383885130286217,
-    -0.02855437807738781,
-    -0.04949947074055672,
-    0.06194092705845833,
-    -0.003043728182092309,
-    0.04488936439156532,
-    0.03686075285077095,
-    -0.02932838350534439,
-    -0.06064421311020851,
-    0.036322951316833496,
-    0.03001398965716362,
-    0.10274209082126617,
-    0.004888954106718302,
-    0.007041180972009897,
-    0.011280365288257599,
-    0.03032241389155388,
-    0.04279745742678642,
-    -0.004564522299915552,
-    0.017648566514253616,
-    0.017706071957945824,
-    0.04268438741564751,
-    0.023184580728411674,
-    0.006543921772390604,
-    0.023596443235874176,
-    -0.06973916292190552,
-    0.020833199843764305,
-    0.018441492691636086,
-    0.05084815248847008,
-    -0.027339136227965355,
-    0.00428815558552742,
-    -0.023420147597789764,
-    0.024371355772018433,
-    0.017627732828259468,
-    -0.016903502866625786,
-    0.05607985705137253,
-    0.019654452800750732,
-    -0.030267657712101936,
-    -0.062166351824998856,
-    -0.031238313764333725,
-    0.020523449406027794,
-    0.06232213228940964,
-    0.03947879374027252,
-    -0.03596331179141998,
-    -0.003100171685218811,
-    0.03447074070572853,
-    -0.0012956038117408752,
-    0.06660067290067673,
-    0.05013715475797653,
-    0.03081350214779377,
-    0.08720856159925461,
-    -0.05206315591931343,
-    0.013303999789059162,
-    0.02567099779844284,
-    -0.01950165070593357,
-    0.02069503627717495,
-    0.021717490628361702,
-    0.03583894297480583,
-    -0.06431320309638977,
-    -0.02098713256418705,
-    0.026216434314846992,
-    0.0014392414595931768,
-    0.0031171522568911314,
-    -0.012646927498281002,
-    0.014923762530088425,
-    0.06238619238138199,
-    -0.06768962740898132,
-    0.017231954261660576,
-    0.003943263553082943,
-    0.012154096737504005,
-    0.019483940675854683,
-    -0.03606164827942848,
-    0.0067008561454713345,
-    -0.007384186144918203,
-    0.0386715866625309,
-    0.028384285047650337,
-    0.022033965215086937,
-    0.0014534747460857034,
-    0.013687885366380215,
-    -0.004391723312437534,
-    -0.016081374138593674,
-    0.02266213670372963,
-    0.034414924681186676,
-    -0.03927494212985039,
-    0.027319462969899178,
-    -0.033957093954086304,
-    0.05183538421988487,
-    0.03822632506489754,
-    -0.026315689086914062,
-    -0.02476033940911293,
-    -0.021444732323288918,
-    0.013461253605782986,
-    -0.015378500334918499,
-    0.017497468739748,
-    0.004603245295584202,
-    0.025450432673096657,
-    -0.022829322144389153,
-    0.06063644960522652,
-    0.03126877546310425,
-    -0.006096321158111095,
-    0.06366042047739029,
-    -0.02900146320462227,
-    0.05429800599813461,
-    -0.0771799236536026,
-    -0.0612666979432106,
-    0.022317631170153618,
-    -0.016639411449432373,
-    0.03123760037124157,
-    0.0003910808591172099,
-    0.030892226845026016,
-    0.05935699865221977,
-    -0.043536264449357986,
-    -0.007623344659805298,
-    -0.028384780511260033,
-    -0.02664314955472946,
-    -0.027138257399201393,
-    -0.047968778759241104,
-    0.0022823733743280172,
-    -0.02481357753276825,
-    -0.010633436031639576,
-    -0.04822107404470444,
-    0.00759342173114419,
-    0.0001390116522088647,
-    -0.05318878963589668,
-    0.05924247205257416,
-    -0.013146182522177696,
-    0.004473831970244646,
-    0.03898727893829346,
-    -0.0052254293113946915,
-    -0.020933307707309723,
-    -0.03436606749892235,
-    -0.0038066732231527567,
-    -0.042007818818092346,
-    0.06692470610141754,
-    0.013219804503023624,
-    0.039782289415597916,
-    -0.039433613419532776,
-    -0.012585393153131008,
-    -0.021049637347459793,
-    0.001860705902799964,
-    0.013428308069705963,
-    0.0012185845989733934,
-    0.0031353312078863382,
-    -0.006290774792432785,
-    -0.04893156886100769,
-    -0.05590147152543068,
-    0.031003205105662346,
-    -0.024150948971509933,
-    -0.0235738642513752,
-    -0.04395433887839317,
-    0.07327035814523697,
-    -0.02828134037554264,
-    0.01294813770800829,
-    -0.0311004426330328,
-    -0.03370073065161705,
-    -0.04846707358956337,
-    -0.004941920284181833,
-    0.004652123898267746,
-    0.08222658187150955,
-    0.02087152563035488,
-    0.06131588667631149,
-    -0.01651606895029545,
-    -0.024979202076792717,
-    0.01659993827342987,
-    0.014530965127050877,
-    0.015093018300831318,
-    0.02492627687752247,
-    -0.0612846314907074,
-    -0.0002255826984765008,
-    -0.027519728988409042,
-    -0.019107889384031296,
-    -0.019953539595007896,
-    -0.0245981328189373,
-    -0.056546539068222046,
-    -0.06580783426761627,
-    0.008507595397531986,
-    -0.007431976497173309,
-    -0.02210613340139389,
-    0.027757301926612854,
-    0.0462336465716362,
-    -0.014207897707819939,
-    0.00672129075974226,
-    -0.044474732130765915,
-    -0.00657361326739192,
-    0.052568770945072174,
-    -0.03584037721157074,
-    -0.02120690420269966,
-    -0.005219927057623863,
-    0.012566099874675274,
-    -0.05308603122830391,
-    0.010547314770519733,
-    0.017500581219792366,
-    -0.04115583747625351,
-    -0.0387006476521492,
-    -0.025707943364977837,
-    -0.06901314109563828,
-    -0.04637371003627777,
-    0.03770303353667259,
-    0.032952360808849335,
-    -0.05147329345345497,
-    0.01653790846467018,
-    0.048082154244184494,
-    -0.0016614814521744847,
-    0.04063810035586357,
-    0.010062755085527897,
-    -0.03627718240022659,
-    0.06885716319084167,
-    -0.015080866403877735,
-    0.009455287829041481,
-    -0.035227544605731964,
-    -0.005017174407839775,
-    -0.038125813007354736,
-    0.050255876034498215,
-    0.008000806905329227,
-    -0.01031635981053114,
-    -0.017092624679207802,
-    -0.027509277686476707,
-    -0.05558536946773529,
-    0.06628984212875366,
-    -0.013167793862521648,
-    0.039350152015686035,
-    0.017000941559672356,
-    -0.04938128963112831,
-    -0.06408270448446274,
-    -0.0038874002639204264,
-    0.0915970504283905,
-    -0.049917493015527725,
-    -0.02771260403096676,
-    -0.0806288942694664,
-    -0.04368037357926369,
-    -0.03181934356689453,
-    0.014114388264715672,
-    -0.04103567451238632,
-    0.05405891686677933,
-    -0.047808125615119934,
-    0.04902146756649017,
-    0.03189662843942642,
-    -0.027759697288274765,
-    0.006383094005286694,
-    0.017572129145264626,
-    0.03219107910990715,
-    -0.04872048646211624,
-    0.030734391883015633,
-    0.05192353576421738,
-    0.031499408185482025,
-    -0.03811737895011902,
-    0.05310411378741264,
-    0.0711221843957901,
-    -0.0036461849231272936,
-    0.005520225968211889,
-    0.010313757695257664,
-    0.004352506250143051,
-    0.046031881123781204,
-    -0.016115302219986916,
-    -0.054143644869327545,
-    -0.04893961921334267,
-    0.002661288483068347,
-    -0.01845412887632847,
-    -0.00878374744206667,
-    0.017264828085899353,
-    -0.004696345422416925,
-    -0.004522779490798712,
-    -0.012517803348600864,
-    -0.021702012047171593,
-    -0.04522024095058441,
-    -0.010374635457992554,
-    0.04248439893126488,
-    0.04291124269366264,
-    0.012884829193353653,
-    -0.03746993467211723,
-    0.028776757419109344,
-    -0.007507942616939545,
-    0.041387468576431274,
-    0.08417566120624542,
-    -0.010190042667090893,
-    -0.05089721456170082,
-    -0.04494674131274223,
-    0.007583512458950281,
-    0.020113928243517876,
-    -0.03965016081929207,
-    -0.04413256421685219,
-    -0.027460945770144463,
-    -0.01614825613796711,
-    -0.009390708990395069,
-    -0.023772262036800385,
-    -0.02571316994726658,
-    -0.036131083965301514,
-    -0.04607027769088745,
-    -0.014615618623793125,
-    0.04170272499322891,
-    0.01936587318778038,
-    -0.0024433606304228306,
-    0.013652744702994823,
-    -0.004111253656446934,
-    -0.031978584825992584,
-    0.022350851446390152,
-    -0.02946772798895836,
-    0.039596132934093475,
-    -0.01715114153921604,
-    0.04525891691446304,
-    -0.04020296409726143,
-    0.004526237491518259,
-    0.013494810089468956,
-    -0.009528163820505142,
-    0.009002109058201313,
-    0.02597387693822384,
-    0.01830531470477581,
-    -0.017791029065847397,
-    -0.0037201493978500366,
-    0.02278350293636322,
-    0.006795333232730627,
-    0.015749631449580193,
-    -0.02901911549270153,
-    -0.09637902677059174,
-    -0.017503347247838974,
-    0.027788279578089714,
-    0.029647832736372948,
-    0.00907644908875227,
-    -0.05994776263833046,
-    -0.006975090596824884,
-    -0.013906092382967472,
-    -0.04533042386174202,
-    0.01697182096540928,
-    -0.024825559929013252,
-    -0.008928900584578514,
-    -0.015015536919236183,
-    -0.02280760183930397,
-    -0.03163539245724678,
-    -0.006076009478420019,
-    0.04984358325600624,
-    -0.04911501705646515,
-    0.03437594324350357,
-    -0.0557771660387516,
-    -0.04340104013681412,
-    -0.04644446447491646,
-    -0.022286849096417427,
-    -0.04397336393594742,
-    -0.021409673616290092,
-    -0.001980917062610388,
-    -0.025011558085680008,
-    0.0028592213056981564,
-    -0.06517001241445541,
-    -0.01175928208976984,
-    0.025094322860240936,
-    0.005437775049358606,
-    -0.020982185378670692,
-    0.0202243160456419,
-    -0.03319009020924568,
-    -0.04634792357683182,
-    0.0009481989545747638,
-    -0.04149433597922325,
-    0.04634092375636101,
-    0.0413656011223793,
-    0.02140423282980919,
-    0.09368086606264114,
-    -0.0016402349574491382,
-    0.036157164722681046,
-    -0.04900161921977997,
-    0.0263093002140522,
-    -0.03403260558843613,
-    -0.03717421367764473,
-    -0.04033995047211647,
-    -0.06733731180429459,
-    -0.01586095616221428
+    0.03178524598479271,
+    0.04883132502436638,
+    -0.17543919384479523,
+    -0.029336370527744293,
+    -0.02358286641538143,
+    0.0067664096131920815,
+    0.030788594856858253,
+    0.043877992779016495,
+    0.003796082455664873,
+    -0.048411376774311066,
+    -0.025232085958123207,
+    0.007549037225544453,
+    0.06911765784025192,
+    -0.0017977799288928509,
+    0.02948792092502117,
+    -0.03549012541770935,
+    -0.041210174560546875,
+    0.007305048406124115,
+    -0.01854507438838482,
+    0.046288736164569855,
+    -0.028039738535881042,
+    0.017294548451900482,
+    -0.044395264238119125,
+    -0.04891315847635269,
+    0.04244928061962128,
+    0.03187919035553932,
+    -0.01374761201441288,
+    -0.01910432241857052,
+    -0.013411369174718857,
+    -0.009322689846158028,
+    0.07410618662834167,
+    -0.02346361055970192,
+    -0.012222781777381897,
+    -0.010312153957784176,
+    -0.0720788910984993,
+    -0.0345272570848465,
+    0.03975316509604454,
+    0.0029797679744660854,
+    -0.006767698097974062,
+    -0.006331235636025667,
+    0.05554484575986862,
+    0.02105378359556198,
+    0.052177272737026215,
+    -0.05886268615722656,
+    0.05126345157623291,
+    -0.008064107969403267,
+    0.050330039113759995,
+    0.01851474680006504,
+    0.03203628584742546,
+    -0.04641994461417198,
+    -0.00973763968795538,
+    -0.00426764041185379,
+    -0.03361859917640686,
+    -0.0013650116743519902,
+    0.07517529278993607,
+    0.010001658461987972,
+    -0.050828125327825546,
+    0.005877277813851833,
+    -0.0042444318532943726,
+    -0.032946813851594925,
+    0.027145659551024437,
+    0.026409892365336418,
+    0.03442488983273506,
+    0.007021986413747072,
+    0.05192126706242561,
+    -0.020379437133669853,
+    0.011355329304933548,
+    0.08652503043413162,
+    0.022630661725997925,
+    -0.05157424136996269,
+    0.06343728303909302,
+    0.0550890788435936,
+    0.03732401132583618,
+    0.02588597685098648,
+    -0.022398289293050766,
+    -0.022044308483600616,
+    -0.04595131427049637,
+    -0.042854100465774536,
+    -0.021052220836281776,
+    -0.002213528612628579,
+    0.020864950492978096,
+    -0.019054386764764786,
+    0.10400231182575226,
+    -0.008797828108072281,
+    0.08178450167179108,
+    0.02032504975795746,
+    -0.004006386734545231,
+    -0.006181884091347456,
+    -0.004995792172849178,
+    0.035346757620573044,
+    -0.019132930785417557,
+    -0.011524217203259468,
+    -0.0220441073179245,
+    0.025405926629900932,
+    -0.05429422855377197,
+    -0.00019767991034314036,
+    0.03556862100958824,
+    0.005699194967746735,
+    -0.039982110261917114,
+    -0.00920530129224062,
+    -0.018657397478818893,
+    -0.07542476803064346,
+    0.0017786172684282064,
+    0.00897684134542942,
+    -0.011045641265809536,
+    0.07011625915765762,
+    -0.01710987463593483,
+    0.03190358355641365,
+    -0.03431659936904907,
+    -0.0009003310697153211,
+    -0.06367863714694977,
+    0.05049143731594086,
+    -0.044861260801553726,
+    0.011734884232282639,
+    0.07369989156723022,
+    0.039268892258405685,
+    0.03727078065276146,
+    -0.015924815088510513,
+    -0.027799829840660095,
+    -0.03752768412232399,
+    -0.005301814991980791,
+    -0.046740464866161346,
+    -0.01115290354937315,
+    0.028688721358776093,
+    0.02969951368868351,
+    0.06352569907903671,
+    -0.08599796146154404,
+    -0.05426613241434097,
+    0.041239358484745026,
+    -0.06423302739858627,
+    -0.023156248033046722,
+    0.021159376949071884,
+    0.0035466444678604603,
+    0.01846817508339882,
+    0.0023706292267888784,
+    0.02228623814880848,
+    -0.024876071140170097,
+    -0.03163425624370575,
+    -0.008449845016002655,
+    0.025408737361431122,
+    -0.019115427508950233,
+    0.023356251418590546,
+    0.005177571438252926,
+    -0.006030556745827198,
+    0.02683543972671032,
+    -0.014773196540772915,
+    0.0263105146586895,
+    -0.005484465043991804,
+    -0.025743644684553146,
+    0.003010060405358672,
+    0.05351163446903229,
+    -0.011222243309020996,
+    0.004446347244083881,
+    0.0022065455559641123,
+    0.0213090218603611,
+    -0.03495531529188156,
+    -0.0120520805940032,
+    0.026812739670276642,
+    -0.003373262705281377,
+    0.05797626078128815,
+    -0.004269992001354694,
+    0.022066058591008186,
+    -0.03760739415884018,
+    0.02388487569987774,
+    -0.011099595576524734,
+    -0.08263953775167465,
+    0.011743787676095963,
+    0.053269051015377045,
+    0.01683223992586136,
+    0.012067599222064018,
+    -0.08771735429763794,
+    0.003994467202574015,
+    0.002836026484146714,
+    0.007206270471215248,
+    0.029823752120137215,
+    -0.0156543031334877,
+    -0.027206923812627792,
+    -0.08295918256044388,
+    -0.004837371874600649,
+    -0.03311128541827202,
+    0.010127742774784565,
+    -0.07233183085918427,
+    0.025866758078336716,
+    0.03152633458375931,
+    -0.06500289589166641,
+    -0.031195709481835365,
+    0.02934861183166504,
+    -0.037087682634592056,
+    -0.060281913727521896,
+    0.0011419531656429172,
+    0.0161038339138031,
+    -0.014016036875545979,
+    0.00028431747341528535,
+    -0.0033141449093818665,
+    -0.029563020914793015,
+    -0.059845179319381714,
+    0.05314203351736069,
+    0.020084518939256668,
+    -0.0005994814564473927,
+    -0.047254353761672974,
+    -0.016566993668675423,
+    0.04098975658416748,
+    -0.05825459212064743,
+    -0.01161370798945427,
+    -0.036326099187135696,
+    0.08089234679937363,
+    -0.04629014432430267,
+    0.060264281928539276,
+    -0.07063508033752441,
+    0.02650141716003418,
+    0.060190942138433456,
+    -0.024306820705533028,
+    0.003982409369200468,
+    -0.009549969807267189,
+    0.04438751935958862,
+    0.005608740728348494,
+    0.03389643505215645,
+    -0.06512713432312012,
+    -0.03767982870340347,
+    0.02690581977367401,
+    0.05203687772154808,
+    -0.018292373046278954,
+    0.014624813571572304,
+    0.0006633714074268937,
+    0.042262300848960876,
+    0.026518743485212326,
+    -0.011858354322612286,
+    0.015522198751568794,
+    0.0156038086861372,
+    -0.01042364351451397,
+    -0.03876902163028717,
+    -0.07425867766141891,
+    0.009107748046517372,
+    0.015990061685442924,
+    0.03618089482188225,
+    0.029112039133906364,
+    -0.03387054428458214,
+    0.011852203868329525,
+    0.02983362227678299,
+    0.03272579237818718,
+    0.009578162804245949,
+    0.03070027008652687,
+    -0.02624075673520565,
+    -0.04775802046060562,
+    -0.07742664963006973,
+    0.029742242768406868,
+    0.005219931248575449,
+    -0.024343056604266167,
+    0.0318094864487648,
+    0.00859830155968666,
+    0.05281027778983116,
+    0.007620727177709341,
+    0.052844077348709106,
+    0.00535445474088192,
+    0.0609409362077713,
+    -0.011844584718346596,
+    -0.06641291081905365,
+    0.01390709076076746,
+    -0.013078108429908752,
+    0.016447128728032112,
+    -0.03006598725914955,
+    -0.07847465574741364,
+    0.07534566521644592,
+    -0.04472245275974274,
+    0.034839436411857605,
+    -0.018408814445137978,
+    -0.03313067927956581,
+    0.010569061152637005,
+    0.0008072910131886601,
+    -0.0019308461342006922,
+    -0.008742599748075008,
+    0.013919378630816936,
+    -0.04598187282681465,
+    0.1020660251379013,
+    0.014470944181084633,
+    -0.014772862195968628,
+    0.007666695863008499,
+    -0.014486118219792843,
+    -0.0646345391869545,
+    0.008569460362195969,
+    -0.04904977232217789,
+    -0.015483100898563862,
+    0.003942087758332491,
+    0.0010946289403364062,
+    -0.029290560632944107,
+    0.025815123692154884,
+    0.020460858941078186,
+    0.02407904341816902,
+    0.01489630714058876,
+    0.05674741044640541,
+    0.026238959282636642,
+    -0.015921413898468018,
+    0.0048757027834653854,
+    0.0711900070309639,
+    -0.013755344785749912,
+    0.06206944212317467,
+    0.022007839754223824,
+    -0.021857071667909622,
+    -0.01174258068203926,
+    -0.03304172679781914,
+    0.045251064002513885,
+    0.01426885649561882,
+    0.06382197141647339,
+    0.007751863915473223,
+    -0.03493257984519005,
+    -0.044658467173576355,
+    0.012984954752027988,
+    -0.014484304003417492,
+    0.025787033140659332,
+    -0.01826644502580166,
+    -0.042056046426296234,
+    -0.01564985327422619,
+    -0.02674712985754013,
+    0.020531408488750458,
+    -0.0714384987950325,
+    0.02325422130525112,
+    0.03598096966743469,
+    0.02745424397289753,
+    0.030945181846618652,
+    0.01968628540635109,
+    0.01665082946419716,
+    -0.022976668551564217,
+    -0.05073903873562813,
+    -0.024828163906931877,
+    0.04280184581875801,
+    0.04798749089241028,
+    -0.0004503810778260231,
+    -0.02436872012913227,
+    0.0073023270815610886,
+    -0.009563714265823364,
+    0.027166971936821938,
+    0.01882803626358509,
+    0.026919608935713768,
+    -0.03930899500846863,
+    -0.017728829756379128,
+    0.028212353587150574,
+    -0.04726178199052811,
+    0.05303651839494705,
+    0.016665788367390633,
+    0.053616032004356384,
+    0.03736695274710655,
+    0.030531886965036392,
+    0.02874692901968956,
+    -0.015297230333089828,
+    0.010947136208415031,
+    -0.03435266390442848,
+    -0.012765847146511078,
+    0.024294471368193626,
+    0.013396332040429115,
+    0.01331876777112484,
+    0.024008281528949738,
+    -0.0031456039287149906,
+    -0.04029504954814911,
+    0.0033777784556150436,
+    0.02391176111996174,
+    0.02410872094333172,
+    0.02156367525458336,
+    0.002010525669902563,
+    0.009868557564914227,
+    -0.0006290401797741652,
+    0.04007715359330177,
+    -0.002715523587539792,
+    -0.013781130313873291,
+    0.011283539235591888,
+    -0.024220358580350876,
+    0.02668444998562336,
+    0.05835559219121933,
+    -0.029569050297141075,
+    0.040692076086997986,
+    0.005902948323637247,
+    -0.04756251350045204,
+    0.009905342943966389,
+    -0.02227317914366722,
+    0.0182090662419796,
+    0.02201038971543312,
+    0.015095723792910576,
+    -0.08226509392261505,
+    0.015068814158439636,
+    -0.055525459349155426,
+    -0.002510988852009177,
+    -0.0055561065673828125,
+    -0.07132460176944733,
+    0.0074762883596122265,
+    0.0016759418649598956,
+    -0.004434050526469946,
+    -0.02474517561495304,
+    0.018863188102841377,
+    -0.01740659773349762,
+    -0.04064275696873665,
+    0.017785411328077316,
+    -0.02265990525484085,
+    -0.042771369218826294,
+    -0.03467484191060066,
+    -0.01652984321117401,
+    0.04810713231563568,
+    -0.004386763088405132,
+    0.011165461502969265,
+    0.030783595517277718,
+    0.001976660219952464,
+    0.0236718337982893,
+    -0.05105631425976753,
+    -0.05809987708926201,
+    0.024345004931092262,
+    0.015383666381239891,
+    -0.01453157514333725,
+    0.012077808380126953,
+    -0.0012609271798282862,
+    -0.05684412643313408,
+    0.07845029979944229,
+    0.0026803219225257635,
+    0.0504588782787323,
+    0.01574590615928173,
+    -0.028547275811433792,
+    -0.034847013652324677,
+    0.034124705940485,
+    0.03655775636434555,
+    0.07527009397745132,
+    0.014580481685698032,
+    0.02132907509803772,
+    0.05172939971089363,
+    0.016473079100251198,
+    0.01873948983848095,
+    -0.019074836745858192,
+    0.01439733523875475,
+    0.009554170072078705,
+    0.03339957818388939,
+    0.010925080627202988,
+    0.000533451559022069,
+    0.025644471868872643,
+    -0.04591793194413185,
+    0.008732177317142487,
+    0.04519437253475189,
+    0.006070693489164114,
+    -0.011161912232637405,
+    0.02819778397679329,
+    0.001762827392667532,
+    0.0086050508543849,
+    0.014826382510364056,
+    0.005166250746697187,
+    0.039319686591625214,
+    0.03443112224340439,
+    -0.028648128733038902,
+    -0.06212689355015755,
+    -0.046432264149188995,
+    -0.0015085666673257947,
+    0.04428074508905411,
+    0.018790997564792633,
+    -0.045868001878261566,
+    -0.020328406244516373,
+    0.022349702194333076,
+    -0.019518684595823288,
+    0.02100064978003502,
+    0.049286894500255585,
+    0.0340636782348156,
+    0.11015026271343231,
+    -0.06479863822460175,
+    0.0016804967308416963,
+    -0.020462095737457275,
+    -0.0206132959574461,
+    0.03613658249378204,
+    0.01390689518302679,
+    0.05164622142910957,
+    -0.0387236662209034,
+    -0.05882606282830238,
+    0.008057935163378716,
+    0.003748466493561864,
+    -0.006518951151520014,
+    -0.04784558713436127,
+    0.0017163989832624793,
+    0.07291713356971741,
+    -0.006371400319039822,
+    0.003997365944087505,
+    -0.008241715840995312,
+    -0.003213343443349004,
+    0.04984061419963837,
+    -0.01598251238465309,
+    -0.012700671330094337,
+    -0.016733741387724876,
+    0.034200288355350494,
+    0.03317777067422867,
+    0.043988119810819626,
+    -0.0021995974238961935,
+    -0.02058984898030758,
+    -0.021071521565318108,
+    -0.015166329219937325,
+    0.013594061136245728,
+    0.04054028540849686,
+    -0.002996070310473442,
+    0.013338422402739525,
+    -0.039498500525951385,
+    0.06661258637905121,
+    0.04705706611275673,
+    -0.009401323273777962,
+    -0.02088397927582264,
+    -0.014055433683097363,
+    0.033735599368810654,
+    -0.05156826972961426,
+    0.00618978776037693,
+    0.0037590779829770327,
+    0.03277092054486275,
+    -0.022599337622523308,
+    0.031263433396816254,
+    0.02389034442603588,
+    0.014258278533816338,
+    0.06277720630168915,
+    -0.035527199506759644,
+    0.06498339772224426,
+    -0.062199126929044724,
+    -0.052824001759290695,
+    0.03117547370493412,
+    -0.04111877456307411,
+    0.012715636752545834,
+    0.017686428502202034,
+    -0.007867848500609398,
+    0.04187804460525513,
+    -0.04557455703616142,
+    -0.031726572662591934,
+    -0.027332643046975136,
+    -0.002734678564593196,
+    -0.029482388868927956,
+    -0.009167548269033432,
+    -0.010704176500439644,
+    0.00042433509952388704,
+    0.004438362084329128,
+    -0.0762329027056694,
+    -0.0086387163028121,
+    0.022130176424980164,
+    -0.06743844598531723,
+    0.06876933574676514,
+    0.0237103383988142,
+    0.0007857893942855299,
+    0.03998548537492752,
+    -0.030809970572590828,
+    -0.024042002856731415,
+    -0.03830515220761299,
+    -0.027593305334448814,
+    -0.04176737368106842,
+    0.06028173491358757,
+    0.04319797828793526,
+    0.04382675141096115,
+    -0.017795993015170097,
+    -0.03645680472254753,
+    -0.02123023383319378,
+    -0.019834004342556,
+    0.008955181576311588,
+    0.020741084590554237,
+    0.012757880613207817,
+    0.011346792802214622,
+    -0.039126209914684296,
+    -0.04470293968915939,
+    0.06263384222984314,
+    -0.05525882914662361,
+    -0.02956891432404518,
+    -0.027114197611808777,
+    0.08966159075498581,
+    -0.015331612899899483,
+    -0.0003927416983060539,
+    0.0037687760777771473,
+    -0.03470199182629585,
+    -0.05772856995463371,
+    0.0019798309076577425,
+    0.04319390282034874,
+    0.0719020664691925,
+    0.016265710815787315,
+    0.06341676414012909,
+    -0.006017413455992937,
+    -0.037226442247629166,
+    0.029962992295622826,
+    0.011965139769017696,
+    0.012955225072801113,
+    0.006010131444782019,
+    -0.056529317051172256,
+    -0.013521033339202404,
+    -0.05903375893831253,
+    -0.04260101914405823,
+    -0.014019906520843506,
+    -0.007228382397443056,
+    -0.035205017775297165,
+    -0.0658133402466774,
+    0.006456418428570032,
+    0.021411877125501633,
+    -0.013044919818639755,
+    0.007399823050945997,
+    0.02258114702999592,
+    -0.0006625614478252828,
+    0.015395557507872581,
+    -0.06406863033771515,
+    -0.028464216738939285,
+    0.047273024916648865,
+    -0.01583811081945896,
+    -0.005792355630546808,
+    0.03042949177324772,
+    0.01543569564819336,
+    -0.02241428755223751,
+    0.008307273499667645,
+    0.015054161660373211,
+    -0.01951231062412262,
+    -0.04032503813505173,
+    -0.013102972880005836,
+    -0.02631393074989319,
+    -0.04113304615020752,
+    0.07260899245738983,
+    0.011538061313331127,
+    -0.030432414263486862,
+    0.014263694174587727,
+    0.05787293240427971,
+    0.0033653290010988712,
+    -0.0038503448013216257,
+    0.040837425738573074,
+    -0.056140754371881485,
+    0.056340690702199936,
+    -0.02290765382349491,
+    -0.009302517399191856,
+    0.008470517583191395,
+    -0.014702856540679932,
+    -0.04838342219591141,
+    0.05370792746543884,
+    -0.011174364946782589,
+    -0.015300052240490913,
+    -0.020499594509601593,
+    -0.008291864767670631,
+    -0.020880267024040222,
+    0.04663577303290367,
+    0.029274221509695053,
+    0.0175466351211071,
+    0.02682647667825222,
+    -0.05278921127319336,
+    -0.05839032679796219,
+    -0.012334581464529037,
+    0.079739511013031,
+    -0.058389320969581604,
+    -0.0103707080706954,
+    -0.06713202595710754,
+    -0.05714002624154091,
+    -0.04088887944817543,
+    0.051061950623989105,
+    0.00014076498337090015,
+    0.017290441319346428,
+    -0.021226104348897934,
+    0.05514514073729515,
+    0.02423473447561264,
+    -0.02994602732360363,
+    0.04090464115142822,
+    -0.012079644948244095,
+    0.061406418681144714,
+    -0.05639396235346794,
+    0.016680458560585976,
+    0.022052278742194176,
+    0.037801459431648254,
+    -0.03187038376927376,
+    0.036447614431381226,
+    0.056919801980257034,
+    -0.031949978321790695,
+    0.026720426976680756,
+    0.04666405916213989,
+    -0.026498477905988693,
+    0.06842397153377533,
+    -0.025526048615574837,
+    -0.0509980246424675,
+    -0.06460089981555939,
+    -0.0015715193003416061,
+    -0.027159376069903374,
+    0.011769691482186317,
+    0.026089472696185112,
+    -0.02987462654709816,
+    0.012630031444132328,
+    -0.008338897489011288,
+    0.004192171152681112,
+    -0.03756297007203102,
+    -0.0025310060009360313,
+    0.05264861509203911,
+    0.06335387378931046,
+    0.008135591633617878,
+    -0.012656359933316708,
+    0.019464511424303055,
+    0.01591845601797104,
+    0.052550338208675385,
+    0.0915454849600792,
+    -0.017307322472333908,
+    -0.04079170152544975,
+    -0.04544380307197571,
+    0.01975070685148239,
+    0.022866209968924522,
+    -0.03402489423751831,
+    -0.0267240758985281,
+    -0.03055012971162796,
+    0.02783350832760334,
+    0.003097713924944401,
+    -0.004863916430622339,
+    -0.01598162204027176,
+    -0.02613413706421852,
+    -0.03870898857712746,
+    -0.012798786163330078,
+    0.07035832852125168,
+    0.0025592376478016376,
+    0.015639951452612877,
+    0.009634220041334629,
+    0.004667668137699366,
+    -0.0338486023247242,
+    0.043179918080568314,
+    -0.03689287230372429,
+    0.022735148668289185,
+    -0.0520755797624588,
+    0.06329607218503952,
+    -0.0324784480035305,
+    0.019569389522075653,
+    -0.02496323361992836,
+    0.0018103531328961253,
+    0.009805695153772831,
+    0.03473725542426109,
+    0.010838170535862446,
+    -0.031009335070848465,
+    0.018025439232587814,
+    0.01827082596719265,
+    -0.00833610538393259,
+    0.03501005470752716,
+    -0.0015619451878592372,
+    -0.035475652664899826,
+    0.00953147653490305,
+    0.0430053249001503,
+    0.0292035061866045,
+    0.005311418790370226,
+    -0.06107466295361519,
+    -0.03596245124936104,
+    -0.0472303181886673,
+    -0.0037321983836591244,
+    0.008406965993344784,
+    -0.04269302263855934,
+    -0.03101542219519615,
+    -0.015593127347528934,
+    -0.03126673027873039,
+    -0.044030383229255676,
+    -0.014631492085754871,
+    0.0695326179265976,
+    -0.028707310557365417,
+    0.02810611017048359,
+    -0.02485411800444126,
+    -0.052566610276699066,
+    -0.045181386172771454,
+    -0.04169710725545883,
+    -0.03806019574403763,
+    0.00142748246435076,
+    0.0015405546873807907,
+    0.0050564114935696125,
+    0.011614206247031689,
+    -0.040034450590610504,
+    -0.012167873792350292,
+    0.0028590259607881308,
+    -0.0024692178703844547,
+    -0.025034768506884575,
+    0.017639921978116035,
+    -0.03325173631310463,
+    -0.030680187046527863,
+    0.01667420193552971,
+    -0.03568655252456665,
+    0.022106099873781204,
+    0.050658218562603,
+    0.021691732108592987,
+    0.07267524302005768,
+    0.006196438334882259,
+    0.03802570700645447,
+    -0.06285668909549713,
+    0.04370303079485893,
+    -0.016354549676179886,
+    -0.03741756081581116,
+    -0.04439252242445946,
+    -0.0637950599193573,
+    -0.03089754655957222
   ],
   "_embedding_model": "nomic-ai/nomic-embed-text-v1.5"
 }

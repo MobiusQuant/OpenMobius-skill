@@ -1,47 +1,34 @@
 {
-  "card_id": "minor_pairs",
+  "global_card_id": "minor_pairs",
+  "global_canonical": "Minor Pairs",
   "type": "merged_concept",
-  "canonical_term": "Minor Pairs",
-  "aliases": [],
   "school": "General",
+  "aliases": [],
   "definition": "Currency pairs that consist of major currencies but exclude the US dollar, such as EUR/GBP or GBP/JPY.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "Currency pairs that consist of major currencies but exclude the US dollar, such as EUR/GBP or GBP/JPY."
+  },
   "identification_rules": [
     "The currency pair does not include the US dollar as either the base or quote currency.",
     "Both currencies are from major economies (e.g., Euro, British Pound, Japanese Yen)."
   ],
-  "trading_implication": "Not explicitly stated in the material. Minor pairs are a standard forex category, but no specific trading approach or characteristics were discussed.",
   "common_mistakes": [],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "Not explicitly stated in the material. Minor pairs are a standard forex category, but no specific trading approach or characteristics were discussed.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "lS-cFGrynUE",
-      "original_card_id": "lS-cFGrynUE_concept_minor_pairs",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        0.16,
-        537.8
-      ],
-      "extraction_confidence": "medium"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "minor_pairs",
+      "source_canonical_term": "Minor Pairs",
+      "source_school": "General",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 0,
-    "medium_confidence_sources": 1,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.640673Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "minor_pairs",
+  "canonical_term": "Minor Pairs",
   "_embedding": [
     0.015849167481064796,
     0.07698297500610352,

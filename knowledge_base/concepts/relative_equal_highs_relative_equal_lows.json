@@ -1,57 +1,42 @@
 {
-  "card_id": "relative_equal_highs_relative_equal_lows",
+  "global_card_id": "relative_equal_highs_relative_equal_lows",
+  "global_canonical": "Relative Equal Highs / Relative Equal Lows",
   "type": "merged_concept",
-  "canonical_term": "Relative Equal Highs / Relative Equal Lows",
+  "school": "ICT",
   "aliases": [
     "相对等高点/等低点"
   ],
-  "school": "ICT",
   "definition": "在特定时间框架内价格相近的多个摆动高点或低点。这些区域是流动性集中地，交易者常在此设置止损单，因此构成重要的流动性风险区域。",
+  "definition_per_source": {
+    "Education - ICT": "在特定时间框架内价格相近的多个摆动高点或低点。这些区域是流动性集中地，交易者常在此设置止损单，因此构成重要的流动性风险区域。"
+  },
   "identification_rules": [
     "在同一时间框架内识别多个摆动高点，观察其价格水平是否相近或相等",
     "在同一时间框架内识别多个摆动低点，观察其价格水平是否相近或相等",
     "相对等高/低点通常出现在价格整理或震荡区间内，而非单一的孤立高低点",
     "可用水平线标记这些相近的价格水平，便于识别流动性集中区"
   ],
-  "trading_implication": "相对等高/低点是寻找日内偏差和价格方向的关键参考。由于大量止损单集中在这些水平之上或之下，价格倾向于扫荡这些流动性。交易者可利用此特性判断价格最可能的运动路径：若要上升需先下行扫荡等低点流动性，若要下行需先上行扫荡等高点流动性。这有助于确认交易偏差和设置合理的进出场点位。",
   "common_mistakes": [
     "将单个高点或低点误认为相对等高/低点，忽视了'相对'和'多个'的要求",
     "在错误的时间框架上识别相对等高/低点，导致流动性目标定位不准确",
     "识别出相对等高/低点后，未能理解价格需要扫荡这些流动性才能继续趋势的含义"
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "相对等高/低点是寻找日内偏差和价格方向的关键参考。由于大量止损单集中在这些水平之上或之下，价格倾向于扫荡这些流动性。交易者可利用此特性判断价格最可能的运动路径：若要上升需先下行扫荡等低点流动性，若要下行需先上行扫荡等高点流动性。这有助于确认交易偏差和设置合理的进出场点位。",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "tZMgGsTqqVM",
-      "original_card_id": "tZMgGsTqqVM_concept_relative_equal_highs_relative_equal_lows",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003"
-      ],
-      "time_range": [
-        6.96,
-        345.32
-      ],
-      "extraction_confidence": "high"
+      "project": "Education - ICT",
+      "card_id": "relative_equal_highs_relative_equal_lows",
+      "source_canonical_term": "Relative Equal Highs / Relative Equal Lows",
+      "source_school": "ICT",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-13T15:59:04.135291Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "relative_equal_highs_relative_equal_lows",
+  "canonical_term": "Relative Equal Highs / Relative Equal Lows",
   "_embedding": [
     0.04324149712920189,
     0.03897688910365105,

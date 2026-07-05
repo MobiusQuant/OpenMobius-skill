@@ -1,2132 +1,1026 @@
 {
-  "card_id": "equilibrium",
+  "global_card_id": "equilibrium",
+  "global_canonical": "Equilibrium",
   "type": "merged_concept",
-  "canonical_term": "Equilibrium",
+  "school": "ICT",
   "aliases": [
-    "0.5 Fib",
-    "0.5 fib",
-    "0.5 fibonacci",
-    "0.5 Fibonacci",
-    "0.5 Fibonacci Level",
-    "0.5 Fibonacci level",
-    "0.5 fibonacci level",
     "0.5 level",
-    "0.5斐波那契水平线",
-    "50% Level",
     "50% level",
     "50% midpoint",
-    "50% Midpoint",
-    "50% of the Wick",
-    "50% of the wick",
-    "50% retracement level",
-    "Candle Equilibrium",
-    "candle equilibrium",
-    "eq",
     "EQ",
-    "eq point",
-    "EQ point",
-    "equilibrium level",
-    "Mean Threshold",
-    "Mean Threshold of the Wick",
-    "mean threshold of the wick",
     "midpoint",
-    "midpoint of range",
+    "0.5斐波那契水平线",
+    "50% Level",
+    "Candle Equilibrium",
+    "Mean Threshold of range",
+    "equilibrium level",
     "中点",
     "中点价格",
     "中线",
-    "均衡点"
+    "均衡点",
+    "EQ point",
+    "Equilibrium (EQ)",
+    "0.5 Fib",
+    "0.5 Fibonacci",
+    "50% Midpoint",
+    "50% of the Wick",
+    "Mean Threshold of the Wick",
+    "Equilibrium Spot",
+    "Candle Equilibrium of wick",
+    "50% retracement level",
+    "equilibrium level (smc)",
+    "midpoint of range",
+    "0.5 Fib of range"
   ],
-  "school": "ICT",
-  "definition": "The 50% midpoint (0.5 Fibonacci level) of a defined price range, calculated as (High + Low) / 2. It divides the range into premium (upper half) and discount (lower half). During consolidation or Seek and Destroy conditions, price gravitates toward equilibrium as a primary internal liquidity magnet when retracing back into a range after deviating outside it. Each new sub-range formed by a swing creates its own equilibrium level.",
+  "definition": "价格区间的50%中点（0.5斐波那契水平），计算为(高点+低点)/2，将区间划分为上方的溢价区（Premium）与下方的折价区（Discount）。可应用于任意明确区间——摆动高低点、前日/会话高低点、FVG、位移范围乃至单根K线影线极值。它既是折价/溢价的方向分界线，也是价格偏离后回归的磁铁点与第一目标位，并可用于延续验证、设置失效判断与止损/风险回报优化，需结合PD数组与多时间框架使用。",
+  "definition_per_source": {
+    "Daily Profiles": "已定义价格区间的50%中点，计算为(High+Low)/2。在盘整或Seek and Destroy条件下，价格在偏离区间外后回归时会向均衡点靠拢，将其作为主要的内部流动性磁铁。每个由新摆动形成的子区间都会产生各自的均衡水平。",
+    "Education - ICT": "价格区间的50%位置（0.5斐波那契水平），是折价区与溢价区的分界线。可应用于摆动范围、FVG、位移范围、单根K线高低点等任意明确区间。上方为溢价区、下方为折价区；也用于衡量K线灯芯大小、预期扩张目标及优化止损位置。",
+    "Education - ICT (eq)": "价格区间的50%中点（等同50%斐波那契水平），是判断折价区（EQ下方，利于做多）与溢价区（EQ上方，利于做空）的分界线。可应用于前一日高低点、摆动高低点或整固区间，也作为交易目标、失效判断依据及浅wick有效性确认参考。",
+    "Education - ICT (Updated)": "价格区间、摆动或单根K线的50%中点（0.5斐波那契水平），从高点到低点（或影线极值）测量，将区间分为上半部溢价与下半部折价。用作偏向判断、入场区域、延续验证的参考，以及在再平衡或区间交易中的目标位。",
+    "SMC-Indicator-Supplement": "50%斐波那契回撤水平，划分下方折价区与上方溢价区，代表价格平衡点，市场在延续趋势前可能在此往返震荡。",
+    "The Foundation": "价格区间的50%中点，以0.5斐波那契水平标记，是Discount与Premium的分界线。可应用于Swing High/Low、前日高低点、单根K线范围等任意参考区间；在此水平入场风险回报比仅为1，不具优势。"
+  },
   "identification_rules": [
-    "Identify a defined price range by selecting a swing high and swing low (or high/low of a candle, session, or wick extremes).",
-    "Calculate the midpoint: (High + Low) / 2, or plot the 0.5 Fibonacci level between the range high and low; this price level is equilibrium.",
-    "Mark the resulting level as a horizontal line on the chart; confirm range boundaries are clearly defined before applying, as an ambiguous range produces an unreliable midpoint.",
-    "Equilibrium above is premium zone, below is discount zone.",
-    "For expansion/continuation trades, price must hold above equilibrium on bullish retracements and below on bearish retracements; a decisive close beyond equilibrium invalidates the continuation bias.",
-    "When a range expands (new swing high/low), redraw equilibrium to the new extremes to keep it current.",
-    "In Seek and Destroy conditions, recalculate and mark equilibrium for each new sub-range (e.g., each new leg up or leg down) as price oscillates.",
-    "For reversal wicks, equilibrium is the 50% level from the candle body extreme to the wick extreme; price must remain on the reversal side of that level for the reversal to proceed.",
-    "In Candle Three Closure model, mark the 50% midpoint of the third candle's full range (high to low).",
-    "Align entries with PD arrays (order blocks, fair value gaps) in the correct half of the range relative to bias (discount for buys, premium for sells).",
-    "Multiple equilibria may exist across nested time frames and ranges; overlay higher time frame equilibrium levels to confirm directional alignment."
+    "确定一个明确的价格区间：选取摆动高低点、前日/会话高低点、整固区间边界，或单根K线的影线极值（高点到低点）。SMC 项目强调从冲击波（impulsive wave）的起点拉到终点。",
+    "计算中点：(高点+低点)÷2，或用斐波那契回撤工具读取0.5水平线，即为均衡点。",
+    "在图表上绘制水平线标记EQ：上方为溢价区（Premium），下方为折价区（Discount）。",
+    "应用前确认区间边界清晰，区间模糊会产生不可靠的中点。",
+    "用于延续/扩张交易时：看涨回撤须守在EQ上方、看跌回撤须守在EQ下方；在对齐时间框架上决定性收盘突破EQ则使延续偏向失效（Education-ICT 与 Updated 强调对齐时间框架的收盘确认）。",
+    "用于反转影线时：以K线实体极值到影线极值的50%为EQ，价格须保持在反转一侧反转才成立（Education-ICT、Updated 独有）。",
+    "价格可能在到达EQ前就形成极值；应在EQ与对侧极值之间寻找兴趣点（如FVG）。",
+    "入场应与PD数组（Order Block、FVG）在相对于偏向的正确半区对齐：做多在折价区、做空在溢价区，越深入风险回报比越有利。",
+    "在Seek and Destroy/盘整条件下，价格偏离EQ后将其作为回归的第一预期目标（磁铁效应）；在K线序列模型中标记前一根K线的EQ，观察后续K线wick是否尊重该水平。",
+    "区间动态扩展：当形成新的摆动高/低点或新子区间时，须重新标记并更新EQ位置。",
+    "多时间框架与嵌套区间存在多个EQ；叠加高时间框架EQ确认方向一致性，避免混淆不同层级。",
+    "The Foundation 独有：在Candle Three Closure模型中，取第三根K线整体范围的50%中点，作为第四根K线入场参考区域；Education-ICT 独有：当Candle 2收盘回到Candle 1范围内后，标记Candle 1的EQ，预期Candle 3的低点形成在该EQ上方。"
   ],
-  "trading_implication": "Equilibrium defines the premium/discount boundary, guiding directional bias and entry zones. It serves as the primary first take-profit target when fading a move outside a range (not a breakout target). For continuation setups, retracements holding above (bullish) or below (bearish) equilibrium confirm expansion. Entries at equilibrium yield 1:1 risk-to-reward; deeper discount/premium entries improve risk-to-reward. Used across time frames, it filters trades and provides invalidation levels.",
   "common_mistakes": [
-    "Attempting to trade breakouts out of the range instead of fading back to equilibrium during Seek and Destroy conditions.",
-    "Failing to update the equilibrium level as new sub-ranges form — after a new swing high or low is made, a new equilibrium for that leg must be recalculated.",
-    "Treating equilibrium as a reversal signal or standalone entry trigger rather than a reversion magnet and take-profit target.",
-    "Expecting deep retracements during expansion phases, when price usually holds above (bullish) or below (bearish) equilibrium on shallow pullbacks.",
-    "Searching for entry setups in the wrong half of the range relative to bias (e.g., longs in premium, shorts in discount).",
-    "Taking continuation entries after price has already closed or traded decisively through equilibrium, invalidating the setup.",
-    "Measuring equilibrium incorrectly, such as using candle bodies instead of wick extremes or neglecting to adjust for large wicks.",
-    "Treating equilibrium as a guaranteed reversal point or expecting precise touches, rather than allowing extremes to form before it.",
-    "Entering at equilibrium itself, yielding an unfavorable 1:1 risk-to-reward.",
-    "Ignoring higher time frame context and nested ranges, leading to confusion over which equilibrium to apply.",
-    "Forcing reversal wick trades after price closes through the wick's equilibrium, ignoring the shift in probability to the opposite extreme.",
-    "Neglecting to readjust the Fibonacci retracement as the impulsive wave extends, causing misplacement of the equilibrium level.",
-    "Assuming every touch of equilibrium will reverse without confirmation from lower time frame change of character or order flow."
+    "在EQ处直接入场：此处风险回报比仅为1:1，应在更深的折价/溢价区寻找入场。",
+    "在相对于偏向错误的半区寻找入场（如溢价区做多、折价区做空），导致风险回报比不利。",
+    "将EQ视为绝对支撑/阻力或保证反转点，期待价格必然精确触及或在此反弹/突破，忽视其作为区域分界线的本质；实际上价格可在EQ附近形成高/低点即视为有效尊重。",
+    "价格已决定性收盘/穿越EQ后仍按原偏向做延续入场，忽视设置已失效；或EQ被跌破后认定价格必然继续下行，未观察后续价格行为与市场结构转变确认。",
+    "测量错误：使用K线实体而非完整影线极值（高点到低点）来计算EQ，或未针对大影线调整。",
+    "未随新摆动高/低点和区间扩展而重新绘制EQ，导致目标失效。",
+    "忽视高时间框架结构与嵌套区间，混淆应使用哪个层级的EQ，导致低时间框架参考失效。",
+    "在扩张阶段错误预期深度回撤，或在回撤阶段而非扩张阶段应用EQ，导致错误预期。",
+    "脱离确认信号单独使用EQ：未等待wick完全形成、CSD/Change of Character、Candle Two/Three Closure 或高时间框架关键水平即提前入场。",
+    "忽视EQ仅是第一目标，价格可能穿过EQ继续运行至OTE或流动性区域。",
+    "在非盘整日（有明确方向扩张的日子）过度依赖EQ作为交易目标，或在大幅影线行情中仍期望扩展至极端目标而忽视EQ作为更现实的调整目标。",
+    "将EQ与Protected Swing混淆，导致止损位置设置不当（Education-ICT 独有）。",
+    "强行交易反转影线：价格收盘穿过影线EQ后仍做反转，忽视概率已转向对侧极值（Updated 独有）。"
   ],
-  "related_concepts": [
-    {
-      "term": "Premium"
-    },
-    {
-      "term": "Discount"
-    },
-    {
-      "term": "Seek and Destroy Profile"
-    },
-    {
-      "term": "Asia Range"
-    },
-    {
-      "term": "Daily Open"
-    },
-    {
-      "term": "Buy-Side Liquidity"
-    },
-    {
-      "term": "Sell-Side Liquidity"
-    },
-    {
-      "term": "External Liquidity"
-    },
-    {
-      "term": "Internal Liquidity"
-    },
-    {
-      "term": "Consequent Encroachment"
-    },
-    {
-      "term": "Fair Value Gap"
-    },
-    {
-      "term": "London Reversal"
-    },
-    {
-      "term": "New York Open"
-    },
-    {
-      "term": "PD Array"
-    },
-    {
-      "term": "Fibonacci Retracement"
-    },
-    {
-      "term": "Order Block"
-    },
-    {
-      "term": "OTE"
-    },
-    {
-      "term": "Displacement"
-    },
-    {
-      "term": "Market Structure Shift"
-    },
-    {
-      "term": "Change in State of Delivery"
-    },
-    {
-      "term": "Protected Swing"
-    },
-    {
-      "term": "Inducement"
-    },
-    {
-      "term": "Consolidation"
-    },
-    {
-      "term": "Expansion"
-    },
-    {
-      "term": "Fractal Model"
-    },
-    {
-      "term": "Power of 3 / AMD"
-    },
-    {
-      "term": "HTF / LTF"
-    },
-    {
-      "term": "Candle 2 Closure"
-    },
-    {
-      "term": "Candle 3"
-    },
-    {
-      "term": "Candle 4"
-    },
-    {
-      "term": "Swing High"
-    },
-    {
-      "term": "Standard Deviation Projection"
-    },
-    {
-      "term": "Balanced Price Range"
-    },
-    {
-      "term": "Risk Management"
-    },
-    {
-      "term": "Manipulation Leg"
-    },
-    {
-      "term": "Reversal"
-    },
-    {
-      "term": "Retracement"
-    },
-    {
-      "term": "Indecision Candle"
-    },
-    {
-      "term": "Direction Bias"
-    },
-    {
-      "term": "Continuation Entry"
-    },
-    {
-      "term": "Continuation OB"
-    },
-    {
-      "term": "Daily Bias"
-    },
-    {
-      "term": "Inversion"
-    },
-    {
-      "term": "London Session"
-    },
-    {
-      "term": "Mean Threshold"
-    },
-    {
-      "term": "Phases of Price"
-    },
-    {
-      "term": "Point of Interest"
-    },
-    {
-      "term": "Previous Day High"
-    },
-    {
-      "term": "Previous Day Low"
-    },
-    {
-      "term": "Propulsion Block"
-    },
-    {
-      "term": "Range"
-    },
-    {
-      "term": "Reversal Candle"
-    },
-    {
-      "term": "Risk to Reward"
-    },
-    {
-      "term": "Stop Raid"
-    },
-    {
-      "term": "Swing Low"
-    },
-    {
-      "term": "T-Spot"
-    },
-    {
-      "term": "Top Down Analysis"
-    },
-    {
-      "term": "SMT"
-    },
-    {
-      "term": "Liquidity Sweep"
-    },
-    {
-      "term": "Draw On Liquidity"
-    },
-    {
-      "term": "Optimal Trade Entry"
-    },
-    {
-      "term": "Candle Three Closure"
-    },
-    {
-      "term": "Candle Two Closure"
-    }
-  ],
-  "merge_strategy": "llm_synthesis",
-  "merge_model": "deepseek/deepseek-chat",
-  "merge_notes": "4 ICT + 1 SMC; picked ICT by majority. SMC card had no related_concepts; union includes all from ICT cards. Some identification rules from Education - ICT (Updated) and The Foundation were merged with similar rules from other cards. No major disagreements; all cards define equilibrium as 50% midpoint dividing premium/discount.",
-  "warnings": [
-    "school_conflict: ['ICT', 'Smart Money Concepts (SMC)']"
-  ],
-  "illustrated_by_cases": [
-    {
-      "card_id": "4WCiIyCiBrQ_case_001_nq_seek_and_destroy_consolidatio",
-      "video_id": "4WCiIyCiBrQ",
-      "title": "NQ Seek and Destroy: Asia Range Consolidation with No Directional Breakout"
-    },
-    {
-      "card_id": "4WCiIyCiBrQ_case_002_eur_usd_15_minute_seek_and_destr",
-      "video_id": "4WCiIyCiBrQ",
-      "title": "EUR/USD 15-Minute Seek and Destroy: London Sweeps Both Sides, No Sustained Expansion"
-    },
-    {
-      "card_id": "y6SnEdASVLY_case_005_multi_day_bullish_reversal_in_li",
-      "video_id": "y6SnEdASVLY",
-      "title": "Light Crude Oil Multi-Day Bullish Reversal: London OB Retest and NY Continuation"
-    },
-    {
-      "card_id": "0xygpCMwxbQ_case_003_标普500_1分钟图表的高点突破交易",
-      "video_id": "0xygpCMwxbQ",
-      "title": "标普500 1分钟图表的高点突破与OTE回测交易"
-    },
-    {
-      "card_id": "0xygpCMwxbQ_case_005_标普500多时间框架从日线到5分钟的交易分析",
-      "video_id": "0xygpCMwxbQ",
-      "title": "标普500多时间框架分析：日线Stop Raid到5分钟精确入场"
-    },
-    {
-      "card_id": "3eVxTV_7L2U_case_009_rbob汽油4小时到30分钟的两阶段smt交易",
-      "video_id": "3eVxTV_7L2U",
-      "title": "RBOB汽油4H-30M两阶段SMT确认V形反转交易"
-    },
-    {
-      "card_id": "4WCiIyCiBrQ_case_001_第一个seek_and_destroy案例_看跌示例",
-      "video_id": "4WCiIyCiBrQ",
-      "title": "Seek and Destroy看跌案例：亚洲区间固守，伦敦无法突破，纽约形成犹豫"
-    },
-    {
-      "card_id": "4WCiIyCiBrQ_case_002_欧美15分钟seek_and_destroy案例",
-      "video_id": "4WCiIyCiBrQ",
-      "title": "欧美15分钟双向失败与区间盘整案例"
-    },
-    {
-      "card_id": "8BWkRGhuj1k_case_001_nq1_5月27日至6月2日的扩张_整理_反转交易案例",
-      "video_id": "8BWkRGhuj1k",
-      "title": "NQ1! 5月27日-6月2日扩张-整理-反转交易案例"
-    },
-    {
-      "card_id": "A8UpRZlRzlg_case_002_纳指100迷你期货模型二案例",
-      "video_id": "A8UpRZlRzlg",
-      "title": "纳指100迷你期货内部流动性扫除后的上升突破与OT入场"
-    },
-    {
-      "card_id": "Gu7FjYYcKhI_case_001_标普500期货周五日内行情分析",
-      "video_id": "Gu7FjYYcKhI",
-      "title": "ES1!日内折价溢价区域识别与交易偏向确定"
-    },
-    {
-      "card_id": "IPZjNI1B5a0_case_001_btc日线扩张走势中的均衡点应用",
-      "video_id": "IPZjNI1B5a0",
-      "title": "ETH日线扩张走势中的均衡点应用与PD数组匹配"
-    },
-    {
-      "card_id": "IeXtmeKqjnQ_case_003_原油期货_cl_范围突破案例",
-      "video_id": "IeXtmeKqjnQ",
-      "title": "原油期货CL日内范围突破与CSD交易案例"
-    },
-    {
-      "card_id": "LKNQDAdId4s_case_001_btc日线wick被尊重后的小时级扩展",
-      "video_id": "LKNQDAdId4s",
-      "title": "BTC日线wick被尊重后的小时级扩展"
-    },
-    {
-      "card_id": "MlMsG7li9zY_case_002_美元指数多个范围内的折价溢价交互",
-      "video_id": "MlMsG7li9zY",
-      "title": "美元指数多个嵌套范围的折价溢价交互分析"
-    },
-    {
-      "card_id": "MsuEQQl7L6s_case_001_eurusd日线candle_two_closure案例",
-      "video_id": "MsuEQQl7L6s",
-      "title": "EURUSD日线FVG处Candle Two Closure反转案例"
-    },
-    {
-      "card_id": "MsuEQQl7L6s_case_003_nq_4小时图candle_three_closure案例",
-      "video_id": "MsuEQQl7L6s",
-      "title": "NQ 4小时图Candle Three Closure确认上升延续"
-    },
-    {
-      "card_id": "Njs-eRpeP9Q_case_004_相等高低点作为后续目标案例",
-      "video_id": "Njs-eRpeP9Q",
-      "title": "相等高低点作为后续做空目标"
-    },
-    {
-      "card_id": "PlZD45uLPjE_case_001_标普500_1小时线seek_and_destroy模式分析",
-      "video_id": "PlZD45uLPjE",
-      "title": "标普500 1小时线Seek and Destroy模式识别与交易入场"
-    },
-    {
-      "card_id": "PlZD45uLPjE_case_003_纳指100多次偏离与流动性扫除",
-      "video_id": "PlZD45uLPjE",
-      "title": "纳指100多次偏离与流动性扫除分析"
-    },
-    {
-      "card_id": "PlZD45uLPjE_case_004_纳指100完整seek_and_destroy周期演示",
-      "video_id": "PlZD45uLPjE",
-      "title": "纳指100完整Seek and Destroy周期演示"
-    },
-    {
-      "card_id": "SlWxhzhLo3A_case_003_原油日线范围交易案例",
-      "video_id": "SlWxhzhLo3A",
-      "title": "原油日线范围交易：失败摇摆反转与目标设定"
-    },
-    {
-      "card_id": "Tjk9bXERZy0_case_004_新闻事件前后的扩张形态演变",
-      "video_id": "Tjk9bXERZy0",
-      "title": "新闻事件前后的扩张形态演变与Power of 3应用"
-    },
-    {
-      "card_id": "WFqLwOp2pXw_case_003_spy_1小时多重盘整的延续交易",
-      "video_id": "WFqLwOp2pXw",
-      "title": "SPY 1小时多重盘整的延续交易策略"
-    },
-    {
-      "card_id": "WFqLwOp2pXw_case_004_eurusd_日线反转至1小时盘整反弹",
-      "video_id": "WFqLwOp2pXw",
-      "title": "EURUSD日线反转至1小时盘整反弹"
-    },
-    {
-      "card_id": "Zm2oKad3Tb8_case_001_标普500期货早盘交易准备分析",
-      "video_id": "Zm2oKad3Tb8",
-      "title": "标普500期货早盘交易准备：从日线到1分钟的多时间框架分析流程"
-    },
-    {
-      "card_id": "dcIdzqD3kMU_case_003_长影线破坏块案例",
-      "video_id": "dcIdzqD3kMU",
-      "title": "长影线破坏块：用收盘价到最低点标记熊市破坏块"
-    },
-    {
-      "card_id": "eywpZT3z6GQ_case_004_整理范围突破后的看涨交易案例",
-      "video_id": "eywpZT3z6GQ",
-      "title": "整理范围突破后的看涨交易案例"
-    },
-    {
-      "card_id": "hKCMqh0ZsY0_case_003_audcad周线交易案例",
-      "video_id": "hKCMqh0ZsY0",
-      "title": "AUDCAD周线交易案例：CPI后的订单块与公允价值缺口确认"
-    },
-    {
-      "card_id": "kTWXpAo1uE8_case_001_第一个反转案例_上升后下跌的标准差投影",
-      "video_id": "kTWXpAo1uE8",
-      "title": "NQ1! 60m上升后激进下跌的标准差投影分析"
-    },
-    {
-      "card_id": "m4k_1pF5zFI_case_002_spy大影线反转案例",
-      "video_id": "m4k_1pF5zFI",
-      "title": "大影线反转：调整目标至日开盘价和会话低点"
-    },
-    {
-      "card_id": "sIcsLFSNoXM_case_004_黄金15分钟图表的犹豫不决k线",
-      "video_id": "sIcsLFSNoXM",
-      "title": "黄金15分钟图表的犹豫不决K线识别"
-    },
-    {
-      "card_id": "sIcsLFSNoXM_case_005_nq100大幅下跌后的犹豫不决k线",
-      "video_id": "sIcsLFSNoXM",
-      "title": "NQ100大幅下跌后的犹豫不决K线形态"
-    },
-    {
-      "card_id": "tyoxl1l-6iI_case_001_apoz日线上的多个k线2收盘识别",
-      "video_id": "tyoxl1l-6iI",
-      "title": "APOZ日线多个K线2收盘的识别与验证"
-    },
-    {
-      "card_id": "tyoxl1l-6iI_case_003_usd期货月线到日线到小时线的多级分形",
-      "video_id": "tyoxl1l-6iI",
-      "title": "USD期货月线到日线到小时线的多级分形交易"
-    },
-    {
-      "card_id": "ubCe509_JLY_case_004_欧元兑美元日线到5分钟的整固交易",
-      "video_id": "ubCe509_JLY",
-      "title": "欧元兑美元日线整固到5分钟多时间框架做空"
-    },
-    {
-      "card_id": "yq4Z7q4E6nU_case_003_多时间框架联动的小时线到5分钟交易案例",
-      "video_id": "yq4Z7q4E6nU",
-      "title": "1小时低点扫除后激进回升，5分钟OTE精确入场"
-    },
-    {
-      "card_id": "-GkOTMYoJT4_case_002_s_p_500_15_minute_stop_run_into_",
-      "video_id": "-GkOTMYoJT4",
-      "title": "S&P 500 15-minute Stop Run into Overlapping Fair Value Gap with Inducement Low"
-    },
-    {
-      "card_id": "-KKuZb5Z5aU_case_001_ym_bullish_continuation_with_can",
-      "video_id": "-KKuZb5Z5aU",
-      "title": "YM Bullish Continuation Day Confirmed by Candle Two Closure into Daily Fair Value Gap"
-    },
-    {
-      "card_id": "-KKuZb5Z5aU_case_002_usdcad_bearish_continuation_with",
-      "video_id": "-KKuZb5Z5aU",
-      "title": "USDCAD 1H Bearish Continuation via Candle Three Closure into Previous Day Low"
-    },
-    {
-      "card_id": "-KKuZb5Z5aU_case_003_ym_reversal_with_protected_swing",
-      "video_id": "-KKuZb5Z5aU",
-      "title": "YM hourly reversal off previous day low with SMT and change in state of delivery"
-    },
-    {
-      "card_id": "-KKuZb5Z5aU_case_007_usd_index_hourly_continuation_wi",
-      "video_id": "-KKuZb5Z5aU",
-      "title": "NQ Hourly Bearish Continuation Entry from Fair Value Gap After Candle 2 Closure"
-    },
-    {
-      "card_id": "0xygpCMwxbQ_case_004_es_daily_to_5_minute_multi_timef",
-      "video_id": "0xygpCMwxbQ",
-      "title": "ES Daily-to-5min Top-Down Short Entry Using Volume Imbalance POI"
-    },
-    {
-      "card_id": "3eVxTV_7L2U_case_007_rbob_gasoline_rb_weekly_profile_",
-      "video_id": "3eVxTV_7L2U",
-      "title": "RBOB Gasoline weekly profile: 3-day expansion creates daily FVG, Thursday reversal with SMT vs Crude Oil"
-    },
-    {
-      "card_id": "3eVxTV_7L2U_case_008_rbob_gasoline_rb_multi_timeframe",
-      "video_id": "3eVxTV_7L2U",
-      "title": "RBOB Gasoline multi-timeframe bullish top-down setup with V-shape reversal and two-stage SMT"
-    },
-    {
-      "card_id": "3eVxTV_7L2U_case_009_e_mini_russell_2000_rty_weekly_l",
-      "video_id": "3eVxTV_7L2U",
-      "title": "RTY Weekly Low with 4-Hour Expansion and SMT Fill vs YM Targeting External High"
-    },
-    {
-      "card_id": "4Gm8p6O7Ebs_case_007_gold_bullish_daily_setup_with_ga",
-      "video_id": "4Gm8p6O7Ebs",
-      "title": "Gold Bullish Daily Closure Gaps Up, Hits Previous Day High, Then Reverses Bearish"
-    },
-    {
-      "card_id": "4Gm8p6O7Ebs_case_008_gold_expansion_lower_with_consol",
-      "video_id": "4Gm8p6O7Ebs",
-      "title": "Gold Hourly Expansion Lower with Consolidation-Reversal Continuation Pattern"
-    },
-    {
-      "card_id": "4WCiIyCiBrQ_case_001_nq_15_minute_seek_and_destroy_ex",
-      "video_id": "4WCiIyCiBrQ",
-      "title": "NQ 15-Minute Seek and Destroy: Asia Range Consolidation with Failed London and NY Breakouts"
-    },
-    {
-      "card_id": "5fnFOh5YuM0_case_003_eur_usd_failure_swings_with_draw",
-      "video_id": "5fnFOh5YuM0",
-      "title": "EUR/USD daily failure swings used as draw on liquidity with hourly and 5-minute swing point entries"
-    },
-    {
-      "card_id": "5fnFOh5YuM0_case_004_btc_daily_expansion_candle_with_",
-      "video_id": "5fnFOh5YuM0",
-      "title": "BTC/ETH Daily Expansion Candle Continuation Short via 5-Minute Protected High Entry"
-    },
-    {
-      "card_id": "8BWkRGhuj1k_case_001_nq1_hourly_chart_expansion_conso",
-      "video_id": "8BWkRGhuj1k",
-      "title": "NQ1! Hourly Live Example: Blending Phases of Price with Daily Bias for Continuation and Reversal Entries"
-    },
-    {
-      "card_id": "9AL41xON3hA_case_002_usd_jpy_monthly_to_daily_to_hour",
-      "video_id": "9AL41xON3hA",
-      "title": "USD/JPY Monthly-to-Daily-to-Hourly Bullish Alignment with Continuation Order Block Entry"
-    },
-    {
-      "card_id": "FAKWJ-1NlLE_case_001_ym_bullish_daily_reversal_with_4",
-      "video_id": "FAKWJ-1NlLE",
-      "title": "YM Bullish Daily Reversal with 4-Hour London Reversal and New York Continuation Entry"
-    },
-    {
-      "card_id": "FAKWJ-1NlLE_case_003_gold_gc_4_hour_power_of_three_wi",
-      "video_id": "FAKWJ-1NlLE",
-      "title": "Gold (GC) 4-Hour Power of Three Reversal with 3-Minute Fractal Entry (GXT Model)"
-    },
-    {
-      "card_id": "IPZjNI1B5a0_case_001_eth_daily_expansion_with_equilib",
-      "video_id": "IPZjNI1B5a0",
-      "title": "ETH Multi-Day Bullish Expansion Respecting Previous Day's Equilibrium"
-    },
-    {
-      "card_id": "IPZjNI1B5a0_case_002_ym_bearish_expansion_with_daily_",
-      "video_id": "IPZjNI1B5a0",
-      "title": "YM Bearish Daily Closure: EQ Respect Confirms Bearish Expansion to Previous Day Low"
-    },
-    {
-      "card_id": "IPZjNI1B5a0_case_003_multi_day_price_action_with_eq_a",
-      "video_id": "IPZjNI1B5a0",
-      "title": "Multi-Day Walkthrough Pairing Daily Closures with Equilibrium to Anticipate Directional Expansion"
-    },
-    {
-      "card_id": "IPZjNI1B5a0_case_004_eur_usd_short_setup_with_opposin",
-      "video_id": "IPZjNI1B5a0",
-      "title": "EUR/USD Hourly Short at Previous Daily EQ with Opposing Candle and CISD Confirmation"
-    },
-    {
-      "card_id": "IPZjNI1B5a0_case_005_retracement_into_lower_half_with",
-      "video_id": "IPZjNI1B5a0",
-      "title": "EURUSD Retracement into Lower Half of Daily Wick Continues Lower via CISD at Sweep"
-    },
-    {
-      "card_id": "IPZjNI1B5a0_case_007_eth_4_hour_fractal_model_with_mu",
-      "video_id": "IPZjNI1B5a0",
-      "title": "ETH 4-Hour Fractal Application of Equilibrium Across Multiple Expansion Phases"
-    },
-    {
-      "card_id": "LKNQDAdId4s_case_003_es_fair_value_gap_entry_with_wic",
-      "video_id": "LKNQDAdId4s",
-      "title": "ES Hourly Fair Value Gap Closure with Wick Respect for Bullish Expansion on 5-Minute"
-    },
-    {
-      "card_id": "LKNQDAdId4s_case_006_gold_consolidation_with_wick_res",
-      "video_id": "LKNQDAdId4s",
-      "title": "Gold Hourly Consolidation: Wick Disrespect on 5M Confirms Lower Expansion"
-    },
-    {
-      "card_id": "LKNQDAdId4s_case_007_cl_fair_value_gap_reversal_with_",
-      "video_id": "LKNQDAdId4s",
-      "title": "CL Fair Value Gap Reversal with Wick Respect and 5-Minute Expansion to 2R"
-    },
-    {
-      "card_id": "MlMsG7li9zY_case_001_nasdaq_daily_range_analysis_with",
-      "video_id": "MlMsG7li9zY",
-      "title": "NASDAQ Daily Premium/Discount Range with Fair Value Gap Long Entry in Discount"
-    },
-    {
-      "card_id": "MlMsG7li9zY_case_002_us_dollar_index_multiple_range_i",
-      "video_id": "MlMsG7li9zY",
-      "title": "DXY Nested Range Equilibrium Tracking with Discount PD Array Entries"
-    },
-    {
-      "card_id": "MsuEQQl7L6s_case_003_nq_4_hour_chart_candle_three_clo",
-      "video_id": "MsuEQQl7L6s",
-      "title": "NQ 4-Hour Candle Three Closure: Swing Low Sweep with Equilibrium Entry"
-    },
-    {
-      "card_id": "SlWxhzhLo3A_case_001_silver_apo2_reversal_off_previou",
-      "video_id": "SlWxhzhLo3A",
-      "title": "Silver (APO2) hourly reversal off previous day high with shallow wick and change in state of delivery"
-    },
-    {
-      "card_id": "eywpZT3z6GQ_case_003_eth_hourly_consolidation_breakou",
-      "video_id": "eywpZT3z6GQ",
-      "title": "ETH Hourly Consolidation Breakout with Gap Fill and 15m/1m Continuation Entries"
-    },
-    {
-      "card_id": "vn1RYjhJUnQ_case_003_monthly_c2_with_daily_cisd_and_t",
-      "video_id": "vn1RYjhJUnQ",
-      "title": "Monthly Candle 2 Closure validated by daily Change in State of Delivery and T-spot reaction on NQ1!"
-    },
-    {
-      "card_id": "y6SnEdASVLY_case_001_bullish_oil_london_reversal_exam",
-      "video_id": "y6SnEdASVLY",
-      "title": "Bullish Oil London Reversal: CISD during London session followed by NY continuation to range equilibrium and daily FVG"
-    },
-    {
-      "card_id": "01 - Open High Low Close - Understanding Candlesticks_case_002_nq期货连续三日看跌方向性k线案例",
-      "video_id": "01 - Open High Low Close - Understanding Candlesticks",
-      "title": "NQ期货连续三日看跌方向性K线在15分钟图上的结构拆解"
-    },
-    {
-      "card_id": "01 - Open High Low Close - Understanding Candlesticks_case_006_黄金期货2024年5月3日日线无方向性_15分钟拆解",
-      "video_id": "01 - Open High Low Close - Understanding Candlesticks",
-      "title": "黄金期货2024年5月3日日线无方向性K线15分钟拆解"
-    },
-    {
-      "card_id": "01 - Open High Low Close - Understanding Candlesticks_case_007_nq期货2024年4月15日大幅下行后犹豫k线案例",
-      "video_id": "01 - Open High Low Close - Understanding Candlesticks",
-      "title": "NQ期货2024年4月15日大幅下行后次日犹豫K线分析"
-    },
-    {
-      "card_id": "04 - Discount & Premium - ICT Concepts_case_001_nasdaq_100_日线折扣溢价范围识别",
-      "video_id": "04 - Discount & Premium - ICT Concepts",
-      "title": "NASDAQ 100 日线折扣溢价范围识别与FVG反弹案例"
-    },
-    {
-      "card_id": "04 - Discount & Premium - ICT Concepts_case_002_美元指数_dxy_日线多范围折扣溢价分析",
-      "video_id": "04 - Discount & Premium - ICT Concepts",
-      "title": "DXY日线多嵌套范围折扣溢价追踪分析"
-    },
-    {
-      "card_id": "23 - Candle 3 Closure： TTrades Fractal Model_case_003_nq_4小时图candle_three_closure看涨反转案",
-      "video_id": "23 - Candle 3 Closure： TTrades Fractal Model",
-      "title": "NQ 4小时图Candle Three Closure看涨反转案例"
-    }
-  ],
+  "trading_implication": "EQ是判断价格相对位置、方向偏向与风险回报基准的核心参考：折价区（EQ下方）利于做多、溢价区（EQ上方）利于做空，在EQ本身入场风险回报比仅1:1，应在更深的折价/溢价区结合FVG、OB、OTE等PD数组入场。作为目标位，Daily Profiles 将其视为价格扫荡外部流动性后回归时的首要内部目标（非突破目标），对侧区间边界为次级目标，并可与Daily Open形成汇合。Education-ICT 与 Updated 强调其延续验证与失效判断功能：回撤守住EQ确认扩张，对齐时间框架决定性收盘突破则预示反向机会，并在大幅影线行情中作为比极端目标更现实的调整位。SMC 强调顺主趋势方向使用——上升趋势在折价区买入、下降趋势在溢价区卖出，获得更优风险回报与更紧止损，并需借助低时间框架CSD/订单流确认而非假设每次触及都反转。The Foundation 则将其用于Candle Three Closure模型中划定第四根K线入场区域。",
+  "merge_notes": "各源在应用侧重上存在差异：Daily Profiles 将EQ主要定位为盘整/Seek and Destroy 条件下的回归磁铁与第一止盈目标；Education-ICT 与 Updated 把EQ扩展为延续/反转的验证与失效阈值，并独有K线影线EQ（实体到影线极值的50%）与反转影线判定，且强调对齐时间框架收盘确认；SMC（单源）聚焦顺势区域入场，框架更简，仅3条规则；The Foundation 与 Education-ICT 引入Candle Closure序列模型的特定用法。各源对'尊重EQ'的精度要求亦有分歧：Education-ICT(eq) 明确价格无需精确触及即可视为有效尊重，而部分源隐含须守住/不收盘突破。",
   "source_cards": [
     {
-      "video_id": "4WCiIyCiBrQ",
-      "original_card_id": "4WCiIyCiBrQ_concept_equilibrium",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003"
-      ],
-      "time_range": [
-        11.0,
-        523.2
-      ],
-      "extraction_confidence": "high"
+      "project": "Daily Profiles",
+      "card_id": "equilibrium",
+      "source_canonical_term": "Equilibrium",
+      "source_school": "ICT",
+      "source_merge_strategy": "llm_synthesis"
     },
     {
-      "video_id": "y6SnEdASVLY",
-      "original_card_id": "y6SnEdASVLY_concept_equilibrium",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        11.24,
-        161.0
-      ],
-      "extraction_confidence": "medium"
+      "project": "Education - ICT",
+      "card_id": "equilibrium",
+      "source_canonical_term": "Equilibrium",
+      "source_school": "ICT",
+      "source_merge_strategy": "llm_synthesis"
     },
     {
-      "video_id": "-GkOTMYoJT4",
-      "original_card_id": "-GkOTMYoJT4_concept_equilibrium",
-      "segment_ids": [
-        "seg_002"
-      ],
-      "time_range": [
-        165.0,
-        345.06
-      ],
-      "extraction_confidence": "medium"
+      "project": "Education - ICT",
+      "card_id": "equilibrium_eq",
+      "source_canonical_term": "Equilibrium (EQ)",
+      "source_school": "ICT",
+      "source_merge_strategy": "llm_synthesis"
     },
     {
-      "video_id": "0xygpCMwxbQ",
-      "original_card_id": "0xygpCMwxbQ_concept_equilibrium",
-      "segment_ids": [
-        "seg_004"
-      ],
-      "time_range": [
-        548.1,
-        650.0
-      ],
-      "extraction_confidence": "high"
+      "project": "Education - ICT (Updated)",
+      "card_id": "equilibrium",
+      "source_canonical_term": "Equilibrium",
+      "source_school": "ICT",
+      "source_merge_strategy": "llm_synthesis"
     },
     {
-      "video_id": "3eVxTV_7L2U",
-      "original_card_id": "3eVxTV_7L2U_concept_equilibrium",
-      "segment_ids": [
-        "seg_002",
-        "seg_003",
-        "seg_004"
-      ],
-      "time_range": [
-        118.719,
-        379.84
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Indicator-Supplement",
+      "card_id": "equilibrium",
+      "source_canonical_term": "Equilibrium",
+      "source_school": "SMC",
+      "source_merge_strategy": "single_source"
     },
     {
-      "video_id": "4Gm8p6O7Ebs",
-      "original_card_id": "4Gm8p6O7Ebs_concept_equilibrium",
-      "segment_ids": [
-        "seg_002",
-        "seg_018",
-        "seg_020",
-        "seg_021"
-      ],
-      "time_range": [
-        66.24,
-        1034.319
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "4WCiIyCiBrQ",
-      "original_card_id": "4WCiIyCiBrQ_concept_equilibrium",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003"
-      ],
-      "time_range": [
-        11.0,
-        523.2
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "5fnFOh5YuM0",
-      "original_card_id": "5fnFOh5YuM0_concept_equilibrium",
-      "segment_ids": [
-        "seg_001",
-        "seg_003"
-      ],
-      "time_range": [
-        11.12,
-        548.56
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "CqMIh-Vvhbg",
-      "original_card_id": "CqMIh-Vvhbg_concept_candle_equilibrium",
-      "segment_ids": [
-        "seg_004"
-      ],
-      "time_range": [
-        546.399,
-        725.0
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "Gu7FjYYcKhI",
-      "original_card_id": "Gu7FjYYcKhI_concept_equilibrium",
-      "segment_ids": [
-        "seg_001",
-        "seg_002"
-      ],
-      "time_range": [
-        6.48,
-        260.84
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "IPZjNI1B5a0",
-      "original_card_id": "IPZjNI1B5a0_concept_equilibrium",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003",
-        "seg_004",
-        "seg_005",
-        "seg_006"
-      ],
-      "time_range": [
-        10.96,
-        1086.88
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "JHVaSKtE1Ys",
-      "original_card_id": "JHVaSKtE1Ys_concept_mean_threshold_50_level",
-      "segment_ids": [
-        "seg_002",
-        "seg_016"
-      ],
-      "time_range": [
-        43.52,
-        885.88
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "MlMsG7li9zY",
-      "original_card_id": "MlMsG7li9zY_concept_equilibrium",
-      "segment_ids": [
-        "seg_001",
-        "seg_002"
-      ],
-      "time_range": [
-        2.82,
-        361.32
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "MsuEQQl7L6s",
-      "original_card_id": "MsuEQQl7L6s_concept_equilibrium",
-      "segment_ids": [
-        "seg_002",
-        "seg_006",
-        "seg_015"
-      ],
-      "time_range": [
-        50.56,
-        696.24
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "Njs-eRpeP9Q",
-      "original_card_id": "Njs-eRpeP9Q_concept_equilibrium",
-      "segment_ids": [
-        "seg_002"
-      ],
-      "time_range": [
-        187.76,
-        283.84000000000003
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "SlWxhzhLo3A",
-      "original_card_id": "SlWxhzhLo3A_concept_equilibrium",
-      "segment_ids": [
-        "seg_011",
-        "seg_012"
-      ],
-      "time_range": [
-        474.08,
-        561.92
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "VD4xb9VfMHA",
-      "original_card_id": "VD4xb9VfMHA_concept_equilibrium",
-      "segment_ids": [
-        "seg_005",
-        "seg_020"
-      ],
-      "time_range": [
-        307.199,
-        972.6
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "WFqLwOp2pXw",
-      "original_card_id": "WFqLwOp2pXw_concept_equilibrium",
-      "segment_ids": [
-        "seg_006",
-        "seg_011",
-        "seg_012",
-        "seg_015"
-      ],
-      "time_range": [
-        241.92,
-        674.16
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "WwmS47Gb3M0",
-      "original_card_id": "WwmS47Gb3M0_concept_equilibrium",
-      "segment_ids": [
-        "seg_002"
-      ],
-      "time_range": [
-        194.28,
-        372.28
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "YmdC_LKT-Pk",
-      "original_card_id": "YmdC_LKT-Pk_concept_equilibrium",
-      "segment_ids": [
-        "seg_004"
-      ],
-      "time_range": [
-        365.82,
-        545.76
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "Zm2oKad3Tb8",
-      "original_card_id": "Zm2oKad3Tb8_concept_equilibrium",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        6.96,
-        187.76
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "eywpZT3z6GQ",
-      "original_card_id": "eywpZT3z6GQ_concept_equilibrium",
-      "segment_ids": [
-        "seg_011"
-      ],
-      "time_range": [
-        567.519,
-        636.48
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "hKCMqh0ZsY0",
-      "original_card_id": "hKCMqh0ZsY0_concept_equilibrium",
-      "segment_ids": [
-        "seg_004",
-        "seg_005"
-      ],
-      "time_range": [
-        549.079,
-        776.56
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "kTWXpAo1uE8",
-      "original_card_id": "kTWXpAo1uE8_concept_equilibrium",
-      "segment_ids": [
-        "seg_002"
-      ],
-      "time_range": [
-        129.52,
-        311.36
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "qdQYhePcvGE",
-      "original_card_id": "qdQYhePcvGE_concept_equilibrium",
-      "segment_ids": [
-        "seg_027",
-        "seg_035"
-      ],
-      "time_range": [
-        1390.4,
-        1868.84
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "sIcsLFSNoXM",
-      "original_card_id": "sIcsLFSNoXM_concept_equilibrium",
-      "segment_ids": [
-        "seg_003"
-      ],
-      "time_range": [
-        371.68,
-        549.32
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "tyoxl1l-6iI",
-      "original_card_id": "tyoxl1l-6iI_concept_equilibrium",
-      "segment_ids": [
-        "seg_004"
-      ],
-      "time_range": [
-        169.44,
-        270.8
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "y6SnEdASVLY",
-      "original_card_id": "y6SnEdASVLY_concept_equilibrium",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        11.24,
-        161.0
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "-GkOTMYoJT4",
-      "original_card_id": "-GkOTMYoJT4_concept_equilibrium",
-      "segment_ids": [
-        "seg_002"
-      ],
-      "time_range": [
-        165.0,
-        345.06
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "-KKuZb5Z5aU",
-      "original_card_id": "-KKuZb5Z5aU_concept_equilibrium",
-      "segment_ids": [
-        "seg_002",
-        "seg_003",
-        "seg_004",
-        "seg_006"
-      ],
-      "time_range": [
-        43.2,
-        313.36
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "0xygpCMwxbQ",
-      "original_card_id": "0xygpCMwxbQ_concept_equilibrium",
-      "segment_ids": [
-        "seg_001",
-        "seg_004"
-      ],
-      "time_range": [
-        2.82,
-        650.0
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "3eVxTV_7L2U",
-      "original_card_id": "3eVxTV_7L2U_concept_equilibrium",
-      "segment_ids": [
-        "seg_002",
-        "seg_004",
-        "seg_008"
-      ],
-      "time_range": [
-        118.719,
-        553.36
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "4Gm8p6O7Ebs",
-      "original_card_id": "4Gm8p6O7Ebs_concept_equilibrium",
-      "segment_ids": [
-        "seg_002",
-        "seg_020",
-        "seg_021"
-      ],
-      "time_range": [
-        66.24,
-        1034.319
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "4WCiIyCiBrQ",
-      "original_card_id": "4WCiIyCiBrQ_concept_equilibrium",
-      "segment_ids": [
-        "seg_002",
-        "seg_003"
-      ],
-      "time_range": [
-        192.36,
-        523.2
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "5fnFOh5YuM0",
-      "original_card_id": "5fnFOh5YuM0_concept_equilibrium",
-      "segment_ids": [
-        "seg_001",
-        "seg_003",
-        "seg_004"
-      ],
-      "time_range": [
-        11.12,
-        726.48
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "8BWkRGhuj1k",
-      "original_card_id": "8BWkRGhuj1k_concept_equilibrium",
-      "segment_ids": [
-        "seg_015",
-        "seg_017",
-        "seg_018",
-        "seg_019",
-        "seg_030"
-      ],
-      "time_range": [
-        733.36,
-        1604.96
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "9AL41xON3hA",
-      "original_card_id": "9AL41xON3hA_concept_equilibrium",
-      "segment_ids": [
-        "seg_010"
-      ],
-      "time_range": [
-        635.36,
-        685.36
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "9BY-MQRNy-Y",
-      "original_card_id": "9BY-MQRNy-Y_concept_equilibrium",
-      "segment_ids": [
-        "seg_007",
-        "seg_016"
-      ],
-      "time_range": [
-        377.52,
-        794.399
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "CqMIh-Vvhbg",
-      "original_card_id": "CqMIh-Vvhbg_concept_equilibrium",
-      "segment_ids": [
-        "seg_004"
-      ],
-      "time_range": [
-        546.399,
-        725.0
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "FAKWJ-1NlLE",
-      "original_card_id": "FAKWJ-1NlLE_concept_equilibrium",
-      "segment_ids": [
-        "seg_006",
-        "seg_013",
-        "seg_015",
-        "seg_018"
-      ],
-      "time_range": [
-        274.08,
-        940.88
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "IPZjNI1B5a0",
-      "original_card_id": "IPZjNI1B5a0_concept_equilibrium",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003",
-        "seg_004",
-        "seg_005",
-        "seg_006",
-        "seg_007"
-      ],
-      "time_range": [
-        10.96,
-        1156.0
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "IeXtmeKqjnQ",
-      "original_card_id": "IeXtmeKqjnQ_concept_equilibrium",
-      "segment_ids": [
-        "seg_002"
-      ],
-      "time_range": [
-        191.48,
-        369.88
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "Kf4c41_qO1s",
-      "original_card_id": "Kf4c41_qO1s_concept_equilibrium",
-      "segment_ids": [
-        "seg_010"
-      ],
-      "time_range": [
-        486.08,
-        550.32
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "LKNQDAdId4s",
-      "original_card_id": "LKNQDAdId4s_concept_equilibrium",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003",
-        "seg_004"
-      ],
-      "time_range": [
-        11.08,
-        709.92
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "MlMsG7li9zY",
-      "original_card_id": "MlMsG7li9zY_concept_equilibrium",
-      "segment_ids": [
-        "seg_001",
-        "seg_002"
-      ],
-      "time_range": [
-        2.82,
-        361.32
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "MsuEQQl7L6s",
-      "original_card_id": "MsuEQQl7L6s_concept_equilibrium",
-      "segment_ids": [
-        "seg_002",
-        "seg_006",
-        "seg_015"
-      ],
-      "time_range": [
-        50.56,
-        696.24
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "eywpZT3z6GQ",
-      "original_card_id": "eywpZT3z6GQ_concept_equilibrium",
-      "segment_ids": [
-        "seg_011"
-      ],
-      "time_range": [
-        567.519,
-        636.48
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "sIcsLFSNoXM",
-      "original_card_id": "sIcsLFSNoXM_concept_equilibrium",
-      "segment_ids": [
-        "seg_002",
-        "seg_005"
-      ],
-      "time_range": [
-        190.959,
-        842.32
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "y6SnEdASVLY",
-      "original_card_id": "y6SnEdASVLY_concept_equilibrium",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        11.24,
-        161.0
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "1ErfpOJTGUg",
-      "original_card_id": "1ErfpOJTGUg_concept_equilibrium",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        0.68,
-        361.08
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "01 - Open High Low Close - Understanding Candlesticks",
-      "original_card_id": "01 - Open High Low Close - Understanding Candlesticks_concept_equilibrium",
-      "segment_ids": [
-        "seg_002",
-        "seg_005"
-      ],
-      "time_range": [
-        190.959,
-        842.32
-      ],
-      "extraction_confidence": "medium"
-    },
-    {
-      "video_id": "04 - Discount & Premium - ICT Concepts",
-      "original_card_id": "04 - Discount & Premium - ICT Concepts_concept_equilibrium",
-      "segment_ids": [
-        "seg_001",
-        "seg_002"
-      ],
-      "time_range": [
-        2.82,
-        361.32
-      ],
-      "extraction_confidence": "high"
-    },
-    {
-      "video_id": "23 - Candle 3 Closure： TTrades Fractal Model",
-      "original_card_id": "23 - Candle 3 Closure： TTrades Fractal Model_concept_equilibrium",
-      "segment_ids": [
-        "seg_002",
-        "seg_006",
-        "seg_015"
-      ],
-      "time_range": [
-        50.56,
-        696.24
-      ],
-      "extraction_confidence": "medium"
+      "project": "The Foundation",
+      "card_id": "equilibrium",
+      "source_canonical_term": "Equilibrium",
+      "source_school": "ICT",
+      "source_merge_strategy": "llm_synthesis"
     }
   ],
-  "stats": {
-    "source_count": 53,
-    "source_videos": 38,
-    "n_projects": 5
-  },
-  "merged_at": "2026-05-23T12:59:45.161687+00:00",
+  "merge_strategy": "cross_project_synthesis",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
+  "merge_model": "claude-opus-4-8",
+  "illustrated_by_cases": [
+    "Daily_Profiles__4WCiIyCiBrQ_case_001_nq_seek_and_destroy_consolidatio",
+    "Daily_Profiles__4WCiIyCiBrQ_case_002_eur_usd_15_minute_seek_and_destr",
+    "Daily_Profiles__y6SnEdASVLY_case_005_multi_day_bullish_reversal_in_li",
+    "Education_-_ICT_(Updated)__-GkOTMYoJT4_case_002_s_p_500_15_minute_stop_run_into_",
+    "Education_-_ICT_(Updated)__-KKuZb5Z5aU_case_001_ym_bullish_continuation_with_can",
+    "Education_-_ICT_(Updated)__-KKuZb5Z5aU_case_002_usdcad_bearish_continuation_with",
+    "Education_-_ICT_(Updated)__-KKuZb5Z5aU_case_003_ym_reversal_with_protected_swing",
+    "Education_-_ICT_(Updated)__-KKuZb5Z5aU_case_007_usd_index_hourly_continuation_wi",
+    "Education_-_ICT_(Updated)__0xygpCMwxbQ_case_004_es_daily_to_5_minute_multi_timef",
+    "Education_-_ICT_(Updated)__3eVxTV_7L2U_case_007_rbob_gasoline_rb_weekly_profile_",
+    "Education_-_ICT_(Updated)__3eVxTV_7L2U_case_008_rbob_gasoline_rb_multi_timeframe",
+    "Education_-_ICT_(Updated)__3eVxTV_7L2U_case_009_e_mini_russell_2000_rty_weekly_l",
+    "Education_-_ICT_(Updated)__4Gm8p6O7Ebs_case_007_gold_bullish_daily_setup_with_ga",
+    "Education_-_ICT_(Updated)__4Gm8p6O7Ebs_case_008_gold_expansion_lower_with_consol",
+    "Education_-_ICT_(Updated)__4WCiIyCiBrQ_case_001_nq_15_minute_seek_and_destroy_ex",
+    "Education_-_ICT_(Updated)__4WCiIyCiBrQ_case_002_eur_usd_15_minute_seek_and_destr",
+    "Education_-_ICT_(Updated)__5fnFOh5YuM0_case_003_eur_usd_failure_swings_with_draw",
+    "Education_-_ICT_(Updated)__5fnFOh5YuM0_case_004_btc_daily_expansion_candle_with_",
+    "Education_-_ICT_(Updated)__8BWkRGhuj1k_case_001_nq1_hourly_chart_expansion_conso",
+    "Education_-_ICT_(Updated)__9AL41xON3hA_case_002_usd_jpy_monthly_to_daily_to_hour",
+    "Education_-_ICT_(Updated)__FAKWJ-1NlLE_case_001_ym_bullish_daily_reversal_with_4",
+    "Education_-_ICT_(Updated)__FAKWJ-1NlLE_case_003_gold_gc_4_hour_power_of_three_wi",
+    "Education_-_ICT_(Updated)__IPZjNI1B5a0_case_001_eth_daily_expansion_with_equilib",
+    "Education_-_ICT_(Updated)__IPZjNI1B5a0_case_002_ym_bearish_expansion_with_daily_",
+    "Education_-_ICT_(Updated)__IPZjNI1B5a0_case_003_multi_day_price_action_with_eq_a",
+    "Education_-_ICT_(Updated)__IPZjNI1B5a0_case_004_eur_usd_short_setup_with_opposin",
+    "Education_-_ICT_(Updated)__IPZjNI1B5a0_case_005_retracement_into_lower_half_with",
+    "Education_-_ICT_(Updated)__IPZjNI1B5a0_case_007_eth_4_hour_fractal_model_with_mu",
+    "Education_-_ICT_(Updated)__LKNQDAdId4s_case_003_es_fair_value_gap_entry_with_wic",
+    "Education_-_ICT_(Updated)__LKNQDAdId4s_case_006_gold_consolidation_with_wick_res",
+    "Education_-_ICT_(Updated)__LKNQDAdId4s_case_007_cl_fair_value_gap_reversal_with_",
+    "Education_-_ICT_(Updated)__MlMsG7li9zY_case_001_nasdaq_daily_range_analysis_with",
+    "Education_-_ICT_(Updated)__MlMsG7li9zY_case_002_us_dollar_index_multiple_range_i",
+    "Education_-_ICT_(Updated)__MsuEQQl7L6s_case_003_nq_4_hour_chart_candle_three_clo",
+    "Education_-_ICT_(Updated)__SlWxhzhLo3A_case_001_silver_apo2_reversal_off_previou",
+    "Education_-_ICT_(Updated)__eywpZT3z6GQ_case_003_eth_hourly_consolidation_breakou",
+    "Education_-_ICT_(Updated)__vn1RYjhJUnQ_case_003_monthly_c2_with_daily_cisd_and_t",
+    "Education_-_ICT_(Updated)__y6SnEdASVLY_case_001_bullish_oil_london_reversal_exam",
+    "Education_-_ICT__-GkOTMYoJT4_case_002_标普500十五分钟图停损扫盘案例",
+    "Education_-_ICT__-KKuZb5Z5aU_case_001_ym日线延续交易案例",
+    "Education_-_ICT__-KKuZb5Z5aU_case_002_usdcad小时线延续交易案例",
+    "Education_-_ICT__-KKuZb5Z5aU_case_003_ym反转交易案例",
+    "Education_-_ICT__-KKuZb5Z5aU_case_004_gbpusd日线到小时线交易案例",
+    "Education_-_ICT__-KKuZb5Z5aU_case_007_nq1日线到小时线延续交易案例",
+    "Education_-_ICT__0xygpCMwxbQ_case_003_标普500_1分钟图表的高点突破交易",
+    "Education_-_ICT__0xygpCMwxbQ_case_005_标普500多时间框架从日线到5分钟的交易分析",
+    "Education_-_ICT__3eVxTV_7L2U_case_008_rbob汽油周线到日线的多头交易",
+    "Education_-_ICT__3eVxTV_7L2U_case_009_rbob汽油4小时到30分钟的两阶段smt交易",
+    "Education_-_ICT__3eVxTV_7L2U_case_011_rty小型罗素指数完整顶部到底部交易",
+    "Education_-_ICT__4Gm8p6O7Ebs_case_006_原油日线扩张与盘整周期",
+    "Education_-_ICT__4WCiIyCiBrQ_case_001_第一个seek_and_destroy案例_看跌示例",
+    "Education_-_ICT__4WCiIyCiBrQ_case_002_欧美15分钟seek_and_destroy案例",
+    "Education_-_ICT__5fnFOh5YuM0_case_001_btc日线第四天交易案例",
+    "Education_-_ICT__6zTz7WMdMWg_case_008_gbp_usd从5分钟到30秒图的多层级分析",
+    "Education_-_ICT__8BWkRGhuj1k_case_001_nq1_5月27日至6月2日的扩张_整理_反转交易案例",
+    "Education_-_ICT__A8UpRZlRzlg_case_002_纳指100迷你期货模型二案例",
+    "Education_-_ICT__CAuN4tvLInQ_case_002_标普500期货多头入场机会分析",
+    "Education_-_ICT__FAKWJ-1NlLE_case_003_黄金期货_3分钟30分钟模型案例",
+    "Education_-_ICT__Gu7FjYYcKhI_case_001_标普500期货周五日内行情分析",
+    "Education_-_ICT__IPZjNI1B5a0_case_001_btc日线扩张走势中的均衡点应用",
+    "Education_-_ICT__IPZjNI1B5a0_case_002_ym指数多日连续扩张的均衡点追踪",
+    "Education_-_ICT__IPZjNI1B5a0_case_003_eth看跌扩张中的均衡点反转案例",
+    "Education_-_ICT__IPZjNI1B5a0_case_004_eur_usd小时线中的均衡点和wick应用",
+    "Education_-_ICT__IPZjNI1B5a0_case_005_eth多日看跌扩张的均衡点确认",
+    "Education_-_ICT__IPZjNI1B5a0_case_006_4小时图表上的均衡点分形应用",
+    "Education_-_ICT__IeXtmeKqjnQ_case_002_原油期货_cl_看涨操纵案例",
+    "Education_-_ICT__IeXtmeKqjnQ_case_003_原油期货_cl_范围突破案例",
+    "Education_-_ICT__JHVaSKtE1Ys_case_002_es_标普500期货_小时图到5分钟图的多头交易",
+    "Education_-_ICT__LKNQDAdId4s_case_001_btc日线wick被尊重后的小时级扩展",
+    "Education_-_ICT__MlMsG7li9zY_case_001_纳斯达克100期货日线折价区做多案例",
+    "Education_-_ICT__MlMsG7li9zY_case_002_美元指数多个范围内的折价溢价交互",
+    "Education_-_ICT__MlMsG7li9zY_case_003_英镑美元日线到15分钟的完整交易设置",
+    "Education_-_ICT__MsuEQQl7L6s_case_001_eurusd日线candle_two_closure案例",
+    "Education_-_ICT__MsuEQQl7L6s_case_003_nq_4小时图candle_three_closure案例",
+    "Education_-_ICT__Njs-eRpeP9Q_case_004_相等高低点作为后续目标案例",
+    "Education_-_ICT__PlZD45uLPjE_case_001_标普500_1小时线seek_and_destroy模式分析",
+    "Education_-_ICT__PlZD45uLPjE_case_003_纳指100多次偏离与流动性扫除",
+    "Education_-_ICT__PlZD45uLPjE_case_004_纳指100完整seek_and_destroy周期演示",
+    "Education_-_ICT__SlWxhzhLo3A_case_001_白银小时图反转扩张案例",
+    "Education_-_ICT__SlWxhzhLo3A_case_003_原油日线范围交易案例",
+    "Education_-_ICT__Tjk9bXERZy0_case_002_nasdaq_100_1小时图表的多层级扩张形态",
+    "Education_-_ICT__Tjk9bXERZy0_case_004_新闻事件前后的扩张形态演变",
+    "Education_-_ICT__VD4xb9VfMHA_case_005_usd_1小时图_范围突破反转失败案例",
+    "Education_-_ICT__VD4xb9VfMHA_case_006_gbpusd_1小时图_多阶段反转与日线对齐",
+    "Education_-_ICT__WFqLwOp2pXw_case_001_usd_15分钟盘整后的延续上升",
+    "Education_-_ICT__WFqLwOp2pXw_case_002_apoz_1小时盘整中的均衡点反应",
+    "Education_-_ICT__WFqLwOp2pXw_case_003_spy_1小时多重盘整的延续交易",
+    "Education_-_ICT__WFqLwOp2pXw_case_004_eurusd_日线反转至1小时盘整反弹",
+    "Education_-_ICT__WwmS47Gb3M0_case_002_纳斯达克_nq_日线_1小时_15分钟做多案例",
+    "Education_-_ICT__WwmS47Gb3M0_case_003_欧元兑加元_eurcad_日线_1小时_15分钟做空案例",
+    "Education_-_ICT__YmdC_LKT-Pk_case_005_标普500从低位上升至高点的完整交易过程",
+    "Education_-_ICT__Zm2oKad3Tb8_case_001_标普500期货早盘交易准备分析",
+    "Education_-_ICT__dcIdzqD3kMU_case_002_e_mini_s_p_500期货牛市破坏块案例",
+    "Education_-_ICT__dcIdzqD3kMU_case_003_长影线破坏块案例",
+    "Education_-_ICT__eywpZT3z6GQ_case_004_整理范围突破后的看涨交易案例",
+    "Education_-_ICT__gZLLuB_rmis_case_003_s_p_500期货1分钟线上的多层ote嵌套",
+    "Education_-_ICT__hKCMqh0ZsY0_case_003_audcad周线交易案例",
+    "Education_-_ICT__hh_kKK4Fhrw_case_001_s_p_500_e_mini期货从高点4300下跌至低点3640",
+    "Education_-_ICT__ivirRu3fc4o_case_001_nq期货多时间框架入场精细化案例",
+    "Education_-_ICT__jKuXaC84Qx4_case_002_第二个例子_汽油期货反向交易",
+    "Education_-_ICT__jKuXaC84Qx4_case_003_第三个例子_eq失效导致下行",
+    "Education_-_ICT__jKuXaC84Qx4_case_004_第四个例子_公允价值缺口与eq失效",
+    "Education_-_ICT__jKuXaC84Qx4_case_005_第五个例子_前一日低点反弹与eq突破",
+    "Education_-_ICT__jKuXaC84Qx4_case_006_第六个例子_月线分形模型确认",
+    "Education_-_ICT__kTWXpAo1uE8_case_001_第一个反转案例_上升后下跌的标准差投影",
+    "Education_-_ICT__lpam8F-N3EM_case_001_纳斯达克100期货15分钟到1分钟的做空案例",
+    "Education_-_ICT__lpam8F-N3EM_case_003_新闻发布前的1分钟做多案例",
+    "Education_-_ICT__m4k_1pF5zFI_case_001_黄金日线反转交易案例",
+    "Education_-_ICT__m4k_1pF5zFI_case_002_spy大影线反转案例",
+    "Education_-_ICT__pWAjzKndWXo_case_001_es_5分钟图空头交易目标分析",
+    "Education_-_ICT__q40pRwjuPYQ_case_003_nq第三个例子_向下扫盘至折价区",
+    "Education_-_ICT__qdQYhePcvGE_case_015_usd日线与小时图的月度交易框架",
+    "Education_-_ICT__sIcsLFSNoXM_case_004_黄金15分钟图表的犹豫不决k线",
+    "Education_-_ICT__sIcsLFSNoXM_case_005_nq100大幅下跌后的犹豫不决k线",
+    "Education_-_ICT__tyoxl1l-6iI_case_001_apoz日线上的多个k线2收盘识别",
+    "Education_-_ICT__tyoxl1l-6iI_case_002_apoz日线到小时线的分形验证",
+    "Education_-_ICT__tyoxl1l-6iI_case_003_usd期货月线到日线到小时线的多级分形",
+    "Education_-_ICT__ubCe509_JLY_case_004_欧元兑美元日线到5分钟的整固交易",
+    "Education_-_ICT__umyCqr_0NsI_case_001_e_mini_nasdaq_100期货1分钟图结构分析",
+    "Education_-_ICT__yOPESX2aWkI_case_001_标普500期货bpr长仓交易案例",
+    "Education_-_ICT__yOPESX2aWkI_case_002_突破前期低点后的长仓设置",
+    "Education_-_ICT__ynFA6E3qHj0_case_001_nq1期货1分钟图_从高点失败突破到下跌扫盘",
+    "Education_-_ICT__yq4Z7q4E6nU_case_003_多时间框架联动的小时线到5分钟交易案例",
+    "The_Foundation__01 - Open High Low Close - Understanding Candlesticks_case_002_nq期货连续三日看跌方向性k线案例",
+    "The_Foundation__01 - Open High Low Close - Understanding Candlesticks_case_006_黄金期货2024年5月3日日线无方向性_15分钟拆解",
+    "The_Foundation__01 - Open High Low Close - Understanding Candlesticks_case_007_nq期货2024年4月15日大幅下行后犹豫k线案例",
+    "The_Foundation__04 - Discount & Premium - ICT Concepts_case_001_nasdaq_100_日线折扣溢价范围识别",
+    "The_Foundation__04 - Discount & Premium - ICT Concepts_case_002_美元指数_dxy_日线多范围折扣溢价分析",
+    "The_Foundation__23 - Candle 3 Closure： TTrades Fractal Model_case_003_nq_4小时图candle_three_closure看涨反转案"
+  ],
+  "card_id": "equilibrium",
+  "canonical_term": "Equilibrium",
   "_embedding": [
-    0.03526170924305916,
-    0.0592026561498642,
-    -0.1852003037929535,
-    -0.06451719254255295,
-    0.07057031244039536,
-    -0.0038454190362244844,
-    0.034995000809431076,
-    -0.022586733102798462,
-    0.05306016281247139,
-    0.016975412145256996,
-    -0.04162534698843956,
-    -0.0011940042022615671,
-    0.07103263586759567,
-    0.018588749691843987,
-    0.031179014593362808,
-    -0.030156387016177177,
-    -0.01994466595351696,
-    -0.039003632962703705,
-    0.03644613176584244,
-    0.04328114539384842,
-    -0.06426594406366348,
-    -0.022171659395098686,
-    -0.03056987188756466,
-    -0.02331598289310932,
-    0.05392539128661156,
-    0.04221867769956589,
-    -0.0016929054399952292,
-    -0.027856970205903053,
-    -0.03482243791222572,
-    -0.02276037260890007,
-    -0.0015806976007297635,
-    -0.0074554611928761005,
-    0.0002399032237008214,
-    0.008634217083454132,
-    -0.09951244294643402,
-    -0.05318743363022804,
-    0.033726997673511505,
-    0.06082538515329361,
-    0.010210536420345306,
-    -0.02333110012114048,
-    0.01790623553097248,
-    0.011971336789429188,
-    0.07363828271627426,
-    -0.03147226572036743,
-    0.04255012795329094,
-    0.034104350954294205,
-    0.04952424764633179,
-    0.028298554942011833,
-    0.03208179026842117,
-    -0.034683726727962494,
-    0.04711960256099701,
-    0.009914030320942402,
-    0.029738212004303932,
-    0.021498020738363266,
-    0.059698157012462616,
-    0.08310914784669876,
-    -0.006959920283406973,
-    0.02360338717699051,
-    0.039180319756269455,
-    0.0016080619534477592,
-    0.010545987635850906,
-    0.043644122779369354,
-    -0.00934615544974804,
-    0.07155392318964005,
-    0.06882640719413757,
-    0.0012731925817206502,
-    -0.04915822297334671,
-    0.05890610069036484,
-    -0.03352072462439537,
-    -0.04760083928704262,
-    0.024510042741894722,
-    0.00573852239176631,
-    -0.026798298582434654,
-    0.0021756403148174286,
-    -0.050702258944511414,
-    -0.006188211962580681,
-    -0.042537979781627655,
-    -0.012948516756296158,
-    0.009132673032581806,
-    0.006741249933838844,
-    -0.018717270344495773,
-    -0.002084496198222041,
-    0.09010786563158035,
-    0.02528551034629345,
-    0.08080857992172241,
-    -0.0368199348449707,
-    0.028367146849632263,
-    -0.01383404154330492,
-    -0.05215058848261833,
-    0.013047834858298302,
-    -0.0021428188774734735,
-    0.01973149925470352,
-    0.060959234833717346,
-    0.005278014577925205,
-    -0.09285710006952286,
-    0.030616004019975662,
-    0.03313123434782028,
-    0.027873309329152107,
-    -0.011342971585690975,
-    -0.022843563929200172,
-    -0.02908240631222725,
-    -0.03333180025219917,
-    -6.110000686021522e-05,
-    -0.008632044307887554,
-    0.004052625969052315,
-    0.04799190163612366,
-    0.007364175748080015,
-    0.0005511664203368127,
-    -0.021106895059347153,
-    0.02356557734310627,
-    -0.0738968700170517,
-    0.02841980569064617,
-    -0.056028496474027634,
-    -0.022872019559144974,
-    0.026569079607725143,
-    -0.012389020062983036,
-    0.07356742769479752,
-    -0.015483556315302849,
-    0.04511198401451111,
-    0.03711334243416786,
-    0.007895196788012981,
-    0.019224481657147408,
-    0.03387520834803581,
-    0.04742571339011192,
-    0.026382209733128548,
-    0.035483889281749725,
-    -0.06034010276198387,
-    0.002529131481423974,
-    0.004071020055562258,
-    -0.035924240946769714,
-    0.0040542492642998695,
-    -0.02093554101884365,
-    -0.022683747112751007,
-    0.009241078980267048,
-    0.026230014860630035,
-    0.07090074568986893,
-    0.027254266664385796,
-    -0.013659656047821045,
-    0.013009755872189999,
-    0.021751657128334045,
-    0.028090886771678925,
-    -0.030969062820076942,
-    0.00854204036295414,
-    -0.0166313536465168,
-    -0.014142658561468124,
-    -0.03187360614538193,
-    0.03434186428785324,
-    -0.04008796811103821,
-    -0.023169416934251785,
-    0.02720581367611885,
-    0.028956806287169456,
-    0.013406542129814625,
-    -0.007644967641681433,
-    0.027309976518154144,
-    -0.006714271381497383,
-    -0.05445043370127678,
-    -0.002175058936700225,
-    -0.009539726190268993,
-    0.02103123627603054,
-    0.017323268577456474,
-    0.04214370250701904,
-    -0.028034523129463196,
-    -0.039242662489414215,
-    0.028645386919379234,
-    -0.05083499103784561,
-    -0.026044530794024467,
-    0.007959285750985146,
-    0.018148569390177727,
-    0.02320626564323902,
-    0.03816264867782593,
-    -0.08301129192113876,
-    -0.028369996696710587,
-    0.0015696632908657193,
-    0.006593738682568073,
-    0.0600869245827198,
-    0.01295208279043436,
-    0.04250221326947212,
-    -0.01788078062236309,
-    0.012092651799321175,
-    -0.026925884187221527,
-    0.04944772645831108,
-    -0.0152131337672472,
-    0.06383915990591049,
-    0.02571089193224907,
-    -0.021146707236766815,
-    -0.014573437161743641,
-    0.01713445782661438,
-    -0.02459241822361946,
-    -0.004465262405574322,
-    -0.03203796222805977,
-    0.03877424821257591,
-    -0.005944277159869671,
-    -0.07459227740764618,
-    0.0005641180905513465,
-    -0.033381640911102295,
-    -0.05359097570180893,
-    0.07241376489400864,
-    -0.04367154836654663,
-    -0.018858497962355614,
-    -0.005163951776921749,
-    -0.02903084084391594,
-    -0.004705341067165136,
-    -0.03939971327781677,
-    -0.014296144247055054,
-    -0.04720751941204071,
-    0.061494000256061554,
-    -0.018333882093429565,
-    0.04237045347690582,
-    -0.042679350823163986,
-    0.012674248777329922,
-    0.02712412178516388,
-    -0.02772541716694832,
-    -0.005378494039177895,
-    0.041878554970026016,
-    0.02665533497929573,
-    -0.008256997913122177,
-    -0.01822769083082676,
-    -0.020399663597345352,
-    0.0033578358124941587,
-    0.025584395974874496,
-    0.03186677768826485,
-    -0.019096355885267258,
-    -0.01016680896282196,
-    0.03547120466828346,
-    0.05027339980006218,
-    -0.04084466025233269,
-    -0.03241579607129097,
-    0.009003786370158195,
-    -0.0015665657119825482,
-    0.04958715662360191,
-    -0.018751339986920357,
-    -0.09026573598384857,
-    0.008458382450044155,
-    0.01844346709549427,
-    0.012606410309672356,
-    0.034765709191560745,
-    0.03579515963792801,
-    0.013256596401333809,
-    -0.0053860959596931934,
-    0.0342545360326767,
-    -0.009836189448833466,
-    0.022348199039697647,
-    -0.03497068211436272,
-    -0.0009110101964324713,
-    -0.056823547929525375,
-    0.022802866995334625,
-    0.016447829082608223,
-    -0.03747032582759857,
-    0.026710519567131996,
-    0.04578498378396034,
-    0.011271905153989792,
-    0.003470255061984062,
-    0.044354114681482315,
-    0.024184981361031532,
-    -0.012768536806106567,
-    -0.03665560483932495,
-    -0.052817244082689285,
-    0.023673245683312416,
-    -0.029185179620981216,
-    0.018528686836361885,
-    0.003573577618226409,
-    0.002788856625556946,
-    0.08978959172964096,
-    -0.058754704892635345,
-    -0.013740952126681805,
-    -0.043516773730516434,
-    -0.025548918172717094,
-    -0.03218375891447067,
-    -0.005523541942238808,
-    0.006179125513881445,
-    0.01831038109958172,
-    0.015143237076699734,
-    0.007166496478021145,
-    0.048497650772333145,
-    0.002488834550604224,
-    -0.019442398101091385,
-    0.0373331680893898,
-    -0.0532413087785244,
-    -0.011276201345026493,
-    0.03572328761219978,
-    -0.006661273539066315,
-    -0.03773192688822746,
-    -0.04968354105949402,
-    0.011345754377543926,
-    0.02978212758898735,
-    0.040661465376615524,
-    0.020857835188508034,
-    0.061830274760723114,
-    -0.009407293051481247,
-    0.02885291911661625,
-    0.018824506551027298,
-    -0.024777766317129135,
-    -0.03537767007946968,
-    0.04270271956920624,
-    -0.007897668518126011,
-    0.009681415744125843,
-    0.031433187425136566,
-    -0.04668259248137474,
-    -0.011017990298569202,
-    0.0008564618183299899,
-    0.01905076764523983,
-    0.04098326712846756,
-    0.06404471397399902,
-    0.020089270547032356,
-    -0.015575876459479332,
-    0.008653045631945133,
-    0.03852570801973343,
-    -0.06335034966468811,
-    -0.011453413404524326,
-    -0.03237747400999069,
-    -0.06352709233760834,
-    0.011775422841310501,
-    -0.06787128746509552,
-    0.020782459527254105,
-    -0.0530872605741024,
-    0.06968382000923157,
-    0.04962145909667015,
-    0.03875666484236717,
-    0.04369195178151131,
-    -0.013878234662115574,
-    0.016796831041574478,
-    -0.03342978656291962,
-    0.0057809422723948956,
-    -0.054088979959487915,
-    0.029354091733694077,
-    0.03592246398329735,
-    -0.027449944987893105,
-    -0.014552270993590355,
-    -0.058839377015829086,
-    -0.03305649012327194,
-    0.04671497270464897,
-    -0.006223659031093121,
-    0.051051490008831024,
-    -0.013435836881399155,
-    -0.031052712351083755,
-    -0.011340552009642124,
-    -0.0026328221429139376,
-    -0.019245104864239693,
-    0.02214707061648369,
-    0.06131291016936302,
-    0.05535732954740524,
-    -0.027015365660190582,
-    0.05016404017806053,
-    -0.05533655732870102,
-    0.0006399066187441349,
-    -0.0030467903707176447,
-    -0.04325579106807709,
-    0.006403970532119274,
-    0.013394455425441265,
-    0.010043052956461906,
-    -0.01037769764661789,
-    -0.03409457579255104,
-    -0.03633789345622063,
-    -0.01804552786052227,
-    0.011207105591893196,
-    -0.013220157474279404,
-    0.03075801208615303,
-    0.01169577520340681,
-    -0.006349166855216026,
-    0.010405304841697216,
-    0.0184157807379961,
-    -0.020930305123329163,
-    0.0025780184660106897,
-    -0.019599787890911102,
-    0.008687902241945267,
-    0.010710097849369049,
-    0.04976246878504753,
-    0.02574233151972294,
-    -0.00832079816609621,
-    -0.0011771521531045437,
-    -0.040077485144138336,
-    0.00469592772424221,
-    -0.05991450697183609,
-    0.045715779066085815,
-    -0.018423350527882576,
-    -0.029209932312369347,
-    -0.06354102492332458,
-    0.03362855315208435,
-    -0.030343985185027122,
-    0.028444277122616768,
-    0.01521244365721941,
-    -0.020310867577791214,
-    -0.008665927685797215,
-    0.023650769144296646,
-    0.03021618165075779,
-    -0.004671958740800619,
-    -0.024472767487168312,
-    -0.06381195038557053,
-    -0.016786834225058556,
-    0.015249247662723064,
-    0.0011029032757505774,
-    -0.001194399781525135,
-    -0.021117722615599632,
-    0.01607300527393818,
-    0.036845989525318146,
-    0.0027149843517690897,
-    0.011344865895807743,
-    0.011402729898691177,
-    -0.020410137251019478,
-    0.05473988130688667,
-    -0.01040956936776638,
-    -0.08840560913085938,
-    0.013187450356781483,
-    0.01352667436003685,
-    0.009664974175393581,
-    0.029996061697602272,
-    -0.02795986644923687,
-    -0.06085095554590225,
-    0.016057277098298073,
-    -0.004784921184182167,
-    0.01835685782134533,
-    0.0507684126496315,
-    -0.019188344478607178,
-    -0.04779452085494995,
-    -0.0018079568399116397,
-    0.0013863450149074197,
-    0.07325401902198792,
-    -0.0273019727319479,
-    0.04055608808994293,
-    -0.0013943624217063189,
-    0.01787099428474903,
-    0.044026996940374374,
-    -0.004007250070571899,
-    -0.024970943108201027,
-    0.006902391090989113,
-    0.06068148836493492,
-    0.03227974846959114,
-    0.05137275904417038,
-    0.013921171426773071,
-    -0.060357242822647095,
-    0.00496480381116271,
-    0.015196923166513443,
-    0.02608594298362732,
-    -0.06045006588101387,
-    -0.017753832042217255,
-    0.002846218179911375,
-    -0.005443919915705919,
-    -0.015402699820697308,
-    -0.02735813520848751,
-    0.0780123621225357,
-    0.02041294239461422,
-    -0.014683280140161514,
-    -0.039365366101264954,
-    -0.04513349384069443,
-    -0.016778292134404182,
-    0.05977894365787506,
-    0.014054917730391026,
-    -0.05187404528260231,
-    -0.028262488543987274,
-    0.008072217926383018,
-    0.019174320623278618,
-    0.0550474151968956,
-    0.0228037741035223,
-    0.005435331724584103,
-    0.08294470608234406,
-    -0.09261701256036758,
-    0.0016933312872424722,
-    0.07447320967912674,
-    0.021037500351667404,
-    0.0010465009836480021,
-    0.020836826413869858,
-    0.021142927929759026,
-    -0.10101629048585892,
-    -0.012535637244582176,
-    0.04451945796608925,
-    -0.01009572297334671,
-    0.04633277282118797,
-    -0.014710838906466961,
-    0.03889697790145874,
-    0.04507556930184364,
-    -0.04593171179294586,
-    -0.001178943319246173,
-    0.04162222892045975,
-    -0.005339312367141247,
-    -0.029933741316199303,
-    -0.04303678497672081,
-    0.007121627684682608,
-    0.004155801609158516,
-    0.014670910313725471,
-    -0.0018469983479008079,
-    -0.020429542288184166,
-    -0.028218070045113564,
-    -0.03950405865907669,
-    0.03493668884038925,
-    0.003526765387505293,
-    0.02707451954483986,
-    0.0017694714479148388,
-    -0.05318420007824898,
-    0.002511718776077032,
-    -0.04397923871874809,
-    0.0261711236089468,
-    0.03023979254066944,
-    -0.00018697246559895575,
-    -0.02117718756198883,
-    -0.02789127640426159,
-    -0.03179750218987465,
-    0.0031198260840028524,
-    0.047533366829156876,
-    0.03548289090394974,
-    0.010720157995820045,
-    0.006962215062230825,
-    0.03665471449494362,
-    -0.011318008415400982,
-    0.0006747108418494463,
-    0.0396350659430027,
-    -0.05054033547639847,
-    0.0525655671954155,
-    -0.1050386056303978,
-    -0.025435568764805794,
-    0.031814977526664734,
-    0.012653940357267857,
-    -0.0028623733669519424,
-    0.04533359780907631,
-    0.02000589668750763,
-    0.06830869615077972,
-    -0.060979213565588,
-    0.0135803846642375,
-    -0.0017891112947836518,
-    -0.03212291747331619,
-    0.00558508699759841,
-    -0.0012487813364714384,
-    -0.0008095572702586651,
-    -0.034736379981040955,
-    -0.01816750504076481,
-    -0.0232669897377491,
-    0.032017845660448074,
-    0.008393299765884876,
-    -0.06635353714227676,
-    0.06891097128391266,
-    -0.0006543556810356677,
-    -0.014528803527355194,
-    0.0316585898399353,
-    -0.00215871911495924,
-    0.013382437638938427,
-    -0.006767952349036932,
-    -0.00879911333322525,
-    -0.06976669281721115,
-    0.010046948678791523,
-    0.04422655329108238,
-    0.03816956654191017,
-    0.011521399021148682,
-    0.016689345240592957,
-    -0.004154995083808899,
-    0.013365309685468674,
-    0.05530865117907524,
-    -0.0319955050945282,
-    -0.04113877937197685,
-    0.015212013386189938,
-    -0.00958635937422514,
-    -0.05332740396261215,
-    0.025038395076990128,
-    -0.03747139126062393,
-    0.004657052922993898,
-    -0.07194062322378159,
-    0.04630604386329651,
-    -0.006037209182977676,
-    -0.027227262035012245,
-    -0.024983638897538185,
-    -0.07212086766958237,
-    -0.02419387735426426,
-    0.0003655911423265934,
-    0.02947263978421688,
-    0.08147495239973068,
-    0.0655311793088913,
-    -9.326146391686052e-05,
-    -0.05808969959616661,
-    -0.023292673751711845,
-    -0.015119515359401703,
-    0.036476343870162964,
-    0.023403741419315338,
-    -0.0026446410920470953,
-    -0.03383517265319824,
-    0.006331292446702719,
-    -0.003845086321234703,
-    0.014144785702228546,
-    0.008197657763957977,
-    -0.023854561150074005,
-    -0.030486056581139565,
-    -0.056428175419569016,
-    0.0015100714517757297,
-    -0.017803095281124115,
-    -0.007339763455092907,
-    0.007711353246122599,
-    0.04303637146949768,
-    -0.06956128776073456,
-    0.013771278783679008,
-    -0.013330180197954178,
-    0.0021960390731692314,
-    0.00958184152841568,
-    -0.030982838943600655,
-    0.0025372994132339954,
-    -0.0028047061059623957,
-    0.017686864361166954,
-    -0.04052143171429634,
-    0.010701528750360012,
-    0.028615757822990417,
-    -0.022625328972935677,
-    -0.07331179082393646,
-    -0.038957808166742325,
-    -0.03097008913755417,
-    -0.045655425637960434,
-    0.041660457849502563,
-    0.02476825937628746,
-    -0.10124430060386658,
-    0.05438552051782608,
-    0.04047257453203201,
-    -0.03310197591781616,
-    0.0449967123568058,
-    -0.033192526549100876,
-    -0.0039136651903390884,
-    0.029770489782094955,
-    0.008414490148425102,
-    0.012506015598773956,
-    -0.05025721341371536,
-    0.01799990050494671,
-    0.007710675708949566,
-    0.09840132296085358,
-    0.0041083358228206635,
-    -0.027526911348104477,
-    -0.006623662542551756,
-    -0.04495379701256752,
-    -0.08640033006668091,
-    0.06861179322004318,
-    -0.0305493026971817,
-    0.07354450970888138,
-    0.014372583478689194,
-    -0.03584486246109009,
-    -0.054689809679985046,
-    0.03514108434319496,
-    0.050429362803697586,
-    -0.04084914177656174,
-    -0.03406686708331108,
-    -0.047128353267908096,
-    0.0018853575456887484,
-    -0.06780924648046494,
-    0.04557748883962631,
-    -0.06743856519460678,
-    0.023650866001844406,
-    -0.009859306737780571,
-    0.05284786596894264,
-    0.003953875042498112,
-    -0.017104439437389374,
-    0.010020486079156399,
-    0.02988130785524845,
-    0.03911382704973221,
-    -0.0470365509390831,
-    -0.003972426522523165,
-    0.05624210461974144,
-    0.014096597209572792,
-    -0.0020346834789961576,
-    0.05080718547105789,
-    0.053544964641332626,
-    4.248367258696817e-05,
-    -0.009177695959806442,
-    -0.021038589999079704,
-    0.0063520148396492004,
-    0.033640000969171524,
-    -0.02058284729719162,
-    -0.015223253518342972,
-    -0.05063928663730621,
-    -9.114557906286791e-05,
-    0.02843606099486351,
-    0.004459470976144075,
-    0.0005629835068248212,
-    0.004912829492241144,
-    -0.024906907230615616,
-    0.014395369216799736,
-    0.013241343200206757,
-    -0.05036059021949768,
-    -0.04788750410079956,
-    0.009850898757576942,
-    -0.03290354087948799,
-    -0.02154541015625,
-    -0.025216981768608093,
-    0.0031010452657938004,
-    0.013673536479473114,
-    0.01326807215809822,
-    0.05030990391969681,
-    -0.02811860293149948,
-    -0.042400263249874115,
-    -0.01798853650689125,
-    0.02087528258562088,
-    0.04250134527683258,
-    -0.06954509019851685,
-    -0.05511312931776047,
-    -0.013304849155247211,
-    0.011542083695530891,
-    -0.01827104575932026,
-    -0.0348782055079937,
-    -0.014759304001927376,
-    -0.05040093511343002,
-    -0.0005330881685949862,
-    0.03359542042016983,
-    -0.005735843442380428,
-    0.007324278820306063,
-    -0.009011620655655861,
-    0.01264894288033247,
-    -0.0032062986865639687,
-    0.00939608458429575,
-    0.008702035062015057,
-    -0.009895632043480873,
-    -0.0098284762352705,
-    0.014968615025281906,
-    -0.01868669129908085,
-    -0.056076161563396454,
-    0.009705668315291405,
-    0.01947486400604248,
-    0.014417193830013275,
-    -0.010329208336770535,
-    -0.00998244620859623,
-    0.02512417361140251,
-    0.03142698109149933,
-    0.013200957328081131,
-    0.04316789656877518,
-    -0.021282227709889412,
-    0.028548777103424072,
-    -0.013606459833681583,
-    -0.07081513851881027,
-    -0.0029379725456237793,
-    0.03715157136321068,
-    0.03600548580288887,
-    -0.006402978673577309,
-    -0.045227933675050735,
-    -0.04499201104044914,
-    -0.0010349239455536008,
-    -0.018458567559719086,
-    0.018819207325577736,
-    -0.048276618123054504,
-    0.004859118722379208,
-    -0.012425071559846401,
-    -0.008331576362252235,
-    -0.028592398390173912,
-    -0.04384836554527283,
-    0.06543470919132233,
-    -0.02762390673160553,
-    0.05388630926609039,
-    -0.024997511878609657,
-    -0.02400057204067707,
-    -0.061264004558324814,
-    0.010029157623648643,
-    -0.05038633570075035,
-    -0.0003385161980986595,
-    0.017225801944732666,
-    -0.019242234528064728,
-    -0.018603673204779625,
-    -0.060975223779678345,
-    -0.01924995891749859,
-    0.060471322387456894,
-    0.006522221025079489,
-    -0.0178766418248415,
-    0.002806575270369649,
-    -0.008631909266114235,
-    -0.04311233386397362,
-    0.024391144514083862,
-    0.03142469376325607,
-    -0.0016723262378945947,
-    -0.01012492086738348,
-    0.057441338896751404,
-    0.11158178746700287,
-    0.021271048113703728,
-    0.02135799266397953,
-    -0.06347131729125977,
-    0.05957575514912605,
-    -0.008195779286324978,
-    -0.007908874191343784,
-    -0.030820976942777634,
-    -0.05129387974739075,
-    -0.04075421765446663
+    0.0198103878647089,
+    0.05530162155628204,
+    -0.19473367929458618,
+    -0.047576069831848145,
+    0.050179373472929,
+    -0.004682200029492378,
+    0.05717379227280617,
+    0.018997162580490112,
+    0.021319745108485222,
+    0.00381896342150867,
+    -0.022229500114917755,
+    0.018324997276067734,
+    0.06219843029975891,
+    0.030339716002345085,
+    -0.030574554577469826,
+    -0.03453715518116951,
+    -0.014274874702095985,
+    -0.041991475969552994,
+    -0.02352573350071907,
+    0.024557603523135185,
+    -0.04640482738614082,
+    -0.0338931530714035,
+    -0.04227135702967644,
+    -0.037365175783634186,
+    0.0566290020942688,
+    0.036678023636341095,
+    0.017677366733551025,
+    -0.03698714077472687,
+    -0.01720529794692993,
+    -0.028782784938812256,
+    0.04472339153289795,
+    -0.018599417060613632,
+    -0.01951519027352333,
+    -0.006032108329236507,
+    -0.09858106076717377,
+    -0.02556818164885044,
+    0.03201807662844658,
+    0.07982106506824493,
+    0.017054907977581024,
+    -0.037174321711063385,
+    0.04997403919696808,
+    0.0066552977077662945,
+    0.08788519352674484,
+    -0.01767643541097641,
+    0.04391230270266533,
+    0.020456627011299133,
+    0.04322868958115578,
+    0.04122798144817352,
+    0.058552324771881104,
+    -0.0485578291118145,
+    -0.0011296762386336923,
+    -0.01639733649790287,
+    0.010968878865242004,
+    3.5557502997107804e-05,
+    0.062484536319971085,
+    0.07200395315885544,
+    -0.027919452637434006,
+    0.028404559940099716,
+    0.03672834485769272,
+    0.0015216805040836334,
+    -0.003231016919016838,
+    0.06337346136569977,
+    -0.009690914303064346,
+    0.02616920880973339,
+    0.07985759526491165,
+    -0.006069786846637726,
+    -0.025340385735034943,
+    0.06506921350955963,
+    -0.002773403888568282,
+    -0.04921803995966911,
+    0.022801663726568222,
+    0.02236049622297287,
+    -0.008268558420240879,
+    0.01295437105000019,
+    -0.03327776864171028,
+    -0.006249670404940844,
+    -0.06741051375865936,
+    -0.02017509937286377,
+    -0.002938174409791827,
+    0.017814163118600845,
+    -0.0007579668890684843,
+    -0.009874829091131687,
+    0.08166535943746567,
+    0.02693982608616352,
+    0.08178718388080597,
+    -0.04112569987773895,
+    0.023545119911432266,
+    -0.008634010329842567,
+    -0.032620370388031006,
+    -0.005599037744104862,
+    -0.0033069029450416565,
+    0.018980661407113075,
+    0.04494345188140869,
+    0.02824968472123146,
+    -0.06529297679662704,
+    0.018226129934191704,
+    0.05674126744270325,
+    -0.0001591778127476573,
+    0.023931678384542465,
+    0.014620927162468433,
+    -0.02102513611316681,
+    -0.0415741503238678,
+    -0.006683001760393381,
+    -0.007106611505150795,
+    -0.007467539981007576,
+    0.0775972306728363,
+    -0.02402753010392189,
+    0.030185574665665627,
+    -0.021100863814353943,
+    0.003441060660406947,
+    -0.040335822850465775,
+    0.0625976100564003,
+    -0.04031503573060036,
+    -0.03379245102405548,
+    0.055772799998521805,
+    -0.0011129778577014804,
+    0.053888022899627686,
+    -0.015682579949498177,
+    0.009831798262894154,
+    0.016599474474787712,
+    -0.003066608915105462,
+    -0.010647057555615902,
+    0.03725064918398857,
+    0.051243457943201065,
+    0.02827371656894684,
+    0.04465368390083313,
+    -0.05227236449718475,
+    0.00679273996502161,
+    0.007090747356414795,
+    -0.057997897267341614,
+    -0.0008214875706471503,
+    -0.01664736121892929,
+    -0.023362550884485245,
+    0.0024213765282183886,
+    0.014884074218571186,
+    0.047283537685871124,
+    0.011924576945602894,
+    -0.028269337490200996,
+    0.007813749834895134,
+    0.022952649742364883,
+    0.0061278739012777805,
+    -0.02084505558013916,
+    0.009140017442405224,
+    -0.03884841501712799,
+    -0.0009956727735698223,
+    -0.045669931918382645,
+    0.04526340216398239,
+    -0.03745827078819275,
+    -0.04328647255897522,
+    -0.014808598905801773,
+    0.005400972906500101,
+    0.0019873399287462234,
+    -0.011236617341637611,
+    0.012519553303718567,
+    0.017323825508356094,
+    -0.037940289825201035,
+    -0.0105140944942832,
+    -0.0069482456892728806,
+    0.014159240759909153,
+    0.010500668548047543,
+    -0.009526664391160011,
+    0.004992424976080656,
+    -0.0023949125315994024,
+    0.041623812168836594,
+    -0.033264532685279846,
+    -0.0628371462225914,
+    0.02614198811352253,
+    0.01020447351038456,
+    -0.0004618843668140471,
+    0.028615597635507584,
+    -0.09373746067285538,
+    -0.016313713043928146,
+    0.03464474529027939,
+    0.0012459990102797747,
+    0.04007235914468765,
+    -0.008741982281208038,
+    0.015969950705766678,
+    -0.056463368237018585,
+    0.021052079275250435,
+    -0.03061044216156006,
+    0.041966598480939865,
+    -0.05315735191106796,
+    0.043657876551151276,
+    0.019953515380620956,
+    -0.04668479040265083,
+    -0.03192158043384552,
+    0.005574243143200874,
+    -0.017651263624429703,
+    -0.015471701510250568,
+    0.007973712868988514,
+    0.02693774551153183,
+    -0.0334000438451767,
+    -0.07165259122848511,
+    -0.0011517166858538985,
+    -0.018058519810438156,
+    -0.0557125061750412,
+    0.07455907016992569,
+    -0.006486912257969379,
+    -0.0254510510712862,
+    -0.007689517457038164,
+    -0.015910957008600235,
+    0.030074400827288628,
+    -0.0189229566603899,
+    -0.025464434176683426,
+    -0.047106511890888214,
+    0.04408670961856842,
+    0.010193834081292152,
+    0.053282480686903,
+    -0.06342977285385132,
+    0.005412382539361715,
+    0.0253817830234766,
+    0.0016089477576315403,
+    0.004605070222169161,
+    0.026792293414473534,
+    0.06495582312345505,
+    0.0017312190029770136,
+    0.01486733928322792,
+    -0.06418251991271973,
+    -0.0284162238240242,
+    0.02414746768772602,
+    0.025699162855744362,
+    -0.026560859754681587,
+    -0.02945607341825962,
+    -0.004254130180925131,
+    0.03209855780005455,
+    -0.035956040024757385,
+    -0.014840842224657536,
+    0.025292139500379562,
+    0.005220416001975536,
+    0.027882669121026993,
+    -0.04099271073937416,
+    -0.07116064429283142,
+    0.015295220538973808,
+    0.0112080629914999,
+    -0.004055961966514587,
+    0.06880857050418854,
+    0.023699697107076645,
+    0.015559229999780655,
+    0.0008642564062029123,
+    0.06097681075334549,
+    0.0183306522667408,
+    0.0564512200653553,
+    -0.04835052415728569,
+    -0.045425042510032654,
+    -0.0337824746966362,
+    0.019865941256284714,
+    -0.0040027848444879055,
+    -0.033860694617033005,
+    0.021144475787878036,
+    0.04553218558430672,
+    0.02188127301633358,
+    0.0021663312800228596,
+    0.04763562232255936,
+    0.015428097918629646,
+    0.010171197354793549,
+    -0.025171538814902306,
+    -0.04969760403037071,
+    -0.020544493570923805,
+    0.011955381371080875,
+    0.01743086241185665,
+    -0.02298787608742714,
+    -0.008506717160344124,
+    0.05497010424733162,
+    -0.057251378893852234,
+    0.008065449073910713,
+    -0.024164332076907158,
+    -0.0570041686296463,
+    -0.005863592494279146,
+    -0.010239038616418839,
+    0.015588989481329918,
+    0.007456958759576082,
+    0.0044139353558421135,
+    -0.019806694239377975,
+    0.08993090689182281,
+    0.0009571908158250153,
+    -0.03231273218989372,
+    0.021335743367671967,
+    -0.03255436569452286,
+    -0.027318570762872696,
+    -0.004791427869349718,
+    -0.03743118420243263,
+    -0.02365940622985363,
+    -0.04030695930123329,
+    0.008326651528477669,
+    0.03401922062039375,
+    0.017909608781337738,
+    0.026689082384109497,
+    0.05219758301973343,
+    -0.005282143596559763,
+    0.06406909972429276,
+    0.010433776304125786,
+    -0.040078114718198776,
+    -0.002738146111369133,
+    0.06889306008815765,
+    -0.03326040878891945,
+    0.020456675440073013,
+    0.003798166522756219,
+    -0.052830956876277924,
+    -0.020500613376498222,
+    -0.0016302542062476277,
+    0.041393473744392395,
+    0.0375031940639019,
+    0.05375029891729355,
+    0.022033672779798508,
+    -0.025754811242222786,
+    -0.014840824529528618,
+    0.028812959790229797,
+    -0.026789437979459763,
+    0.013874487951397896,
+    -0.03739791363477707,
+    -0.055762581527233124,
+    -0.008775303140282631,
+    -0.03724048659205437,
+    0.0086968457326293,
+    -0.05484394729137421,
+    0.06003846973180771,
+    0.04477773606777191,
+    0.036585159599781036,
+    0.002473459579050541,
+    0.006879215128719807,
+    -0.008326010778546333,
+    -0.04289745166897774,
+    -0.026271088048815727,
+    -0.039243992418050766,
+    0.008975735865533352,
+    0.020128518342971802,
+    -0.015494856052100658,
+    -0.03315478935837746,
+    -0.031204069033265114,
+    -0.01761287823319435,
+    0.031482771039009094,
+    0.01890675537288189,
+    0.05132231488823891,
+    -0.04673914983868599,
+    0.0005924723809584975,
+    0.029877515509724617,
+    0.0068897888995707035,
+    0.000462527823401615,
+    -0.024092713370919228,
+    0.04060522839426994,
+    0.030645230785012245,
+    -0.019762856885790825,
+    0.04928497225046158,
+    -0.06055648252367973,
+    -0.0018666761461645365,
+    -0.002479017013683915,
+    -0.033468786627054214,
+    0.01780831255018711,
+    0.031175851821899414,
+    0.012492846697568893,
+    -0.007621677126735449,
+    -0.02057577669620514,
+    -0.032322946935892105,
+    -0.01273789070546627,
+    0.007530577015131712,
+    0.0036252832505851984,
+    0.0017675692215561867,
+    0.01310061477124691,
+    0.02820770815014839,
+    -0.005390562582761049,
+    0.00787514541298151,
+    -0.018922187387943268,
+    -0.004364457447081804,
+    -0.01218892727047205,
+    -0.020184334367513657,
+    0.02842600643634796,
+    0.036286722868680954,
+    0.02859390713274479,
+    -0.0025474089197814465,
+    0.02201060578227043,
+    -0.032297324389219284,
+    0.02597946673631668,
+    -0.06817890703678131,
+    0.016915589570999146,
+    -0.015241560526192188,
+    -0.011487859301269054,
+    -0.0802687332034111,
+    0.0330188162624836,
+    -0.04287755861878395,
+    0.030862774699926376,
+    0.018975496292114258,
+    -0.054382532835006714,
+    -0.0101444311439991,
+    0.017019888386130333,
+    0.038620300590991974,
+    -0.0053921714425086975,
+    0.0026825512759387493,
+    -0.050340887159109116,
+    -0.04149758070707321,
+    0.024635355919599533,
+    -0.024968920275568962,
+    0.018083449453115463,
+    -0.042665041983127594,
+    0.0320606604218483,
+    0.03336016461253166,
+    -0.03585837036371231,
+    0.018283965066075325,
+    0.017125021666288376,
+    0.009699155576527119,
+    0.057987697422504425,
+    -0.033224545419216156,
+    -0.07353360950946808,
+    0.0265620369464159,
+    0.023188140243291855,
+    -0.0029505547136068344,
+    0.017842600122094154,
+    -0.015355058014392853,
+    -0.05411278456449509,
+    0.0516701340675354,
+    -0.00882406160235405,
+    0.0029204816091805696,
+    0.045205291360616684,
+    -0.014994089491665363,
+    -0.05898818001151085,
+    0.016475854441523552,
+    0.026921242475509644,
+    0.08440578728914261,
+    0.013661528937518597,
+    0.034564513713121414,
+    0.010772106237709522,
+    0.029166895896196365,
+    0.046913519501686096,
+    -0.0013415967114269733,
+    -0.046664196997880936,
+    0.013531327247619629,
+    0.0461968332529068,
+    0.0626736730337143,
+    0.036727629601955414,
+    0.0034206409472972155,
+    -0.043850772082805634,
+    0.02267572656273842,
+    0.030596155673265457,
+    -0.0045136939734220505,
+    -0.034605201333761215,
+    -0.022967996075749397,
+    0.015169655904173851,
+    -0.008653560653328896,
+    0.009598576463758945,
+    -0.012465409003198147,
+    0.08806782215833664,
+    0.017693758010864258,
+    -0.02769864723086357,
+    -0.043598052114248276,
+    -0.05368950217962265,
+    -0.00806454848498106,
+    0.05528442561626434,
+    0.005471269600093365,
+    -0.045060936361551285,
+    -0.0338609516620636,
+    0.05470283702015877,
+    0.023759935051202774,
+    0.04217307269573212,
+    0.03409187123179436,
+    0.013550523668527603,
+    0.1010172963142395,
+    -0.0915372297167778,
+    -0.015159300528466702,
+    0.027922149747610092,
+    0.01104697771370411,
+    -0.011430350132286549,
+    0.008305554278194904,
+    0.024288831278681755,
+    -0.09174925833940506,
+    -0.006215304601937532,
+    0.0501253604888916,
+    -0.02378293313086033,
+    0.0057171969674527645,
+    -0.06494355201721191,
+    0.05669277906417847,
+    0.06157296150922775,
+    -0.0067390212789177895,
+    -0.005287477280944586,
+    0.03662339970469475,
+    -0.015703236684203148,
+    0.009351953864097595,
+    -0.030415376648306847,
+    -0.01346830278635025,
+    0.003564361482858658,
+    0.01391526497900486,
+    0.0298785213381052,
+    -0.0013796244747936726,
+    -0.03761468455195427,
+    -0.06667439639568329,
+    0.01360628753900528,
+    0.0013123423559591174,
+    0.0381365530192852,
+    0.012799955904483795,
+    -0.027867525815963745,
+    0.0006202870281413198,
+    -0.03429200127720833,
+    0.0183999165892601,
+    0.03710278868675232,
+    -0.024596812203526497,
+    -0.03012479841709137,
+    -0.015759464353322983,
+    -0.03404513746500015,
+    -0.001783390180207789,
+    0.04841388016939163,
+    0.03453601151704788,
+    0.03139340877532959,
+    -0.008209130726754665,
+    0.0011754550505429506,
+    -0.040164124220609665,
+    0.020529424771666527,
+    0.026876583695411682,
+    -0.04124860092997551,
+    0.06748019903898239,
+    -0.09773208945989609,
+    -0.02437082678079605,
+    0.01238992065191269,
+    -0.019718501716852188,
+    -0.017508355900645256,
+    0.06462575495243073,
+    -0.010811405256390572,
+    0.050706636160612106,
+    -0.05977969989180565,
+    -0.0052390992641448975,
+    -0.01630692556500435,
+    -0.013313657604157925,
+    -0.01980021223425865,
+    0.05467270687222481,
+    -0.02314780466258526,
+    -0.0451153889298439,
+    0.01943795382976532,
+    -0.055359985679388046,
+    0.04344525933265686,
+    0.027251500636339188,
+    -0.0886615440249443,
+    0.07531753927469254,
+    0.004679183475673199,
+    -0.013963988050818443,
+    0.039754316210746765,
+    -0.044175174087285995,
+    -0.010113010182976723,
+    -0.004098355304449797,
+    -0.011354958638548851,
+    -0.055401094257831573,
+    0.012863104231655598,
+    0.054206181317567825,
+    0.030244935303926468,
+    0.013216921128332615,
+    -0.00904812291264534,
+    -0.005395172163844109,
+    -0.010350028984248638,
+    0.048890355974435806,
+    -0.012756832875311375,
+    -0.018306028097867966,
+    0.03307352587580681,
+    0.006878967396914959,
+    -0.053775180131196976,
+    0.059159621596336365,
+    -0.052959393709897995,
+    0.0008123458828777075,
+    -0.050095804035663605,
+    0.06449641287326813,
+    -0.0003379748377483338,
+    -0.0034046738874167204,
+    -0.001167003414593637,
+    -0.06194720044732094,
+    -0.021718887612223625,
+    -0.015878038480877876,
+    0.014394443482160568,
+    0.07647436112165451,
+    0.0561416856944561,
+    0.028686879202723503,
+    -0.03154231235384941,
+    -0.009639807045459747,
+    0.00892733596265316,
+    0.0156791303306818,
+    -0.007480459753423929,
+    -0.013873404823243618,
+    -0.023272698745131493,
+    -0.01467358972877264,
+    -0.05477384850382805,
+    -0.004825166426599026,
+    0.0040260194800794125,
+    -0.0008272142731584609,
+    -0.004311130382120609,
+    -0.06493353843688965,
+    -0.011984746903181076,
+    -0.006409929599612951,
+    0.00014543719589710236,
+    0.020624110475182533,
+    0.02830568701028824,
+    -0.02248561382293701,
+    0.007309858221560717,
+    -0.008772047236561775,
+    -0.016662457957863808,
+    0.02854072116315365,
+    -0.021770412102341652,
+    -0.04784959927201271,
+    0.0040613203309476376,
+    0.04240751266479492,
+    -0.018312642350792885,
+    -0.02608168125152588,
+    0.028586218133568764,
+    -0.009220834821462631,
+    -0.06199347972869873,
+    -0.022411979734897614,
+    -0.009873390197753906,
+    -0.026204586029052734,
+    0.04714363440871239,
+    -0.0066721937619149685,
+    -0.07835488021373749,
+    0.01678667590022087,
+    0.0516272634267807,
+    -0.028704332187771797,
+    0.007006244268268347,
+    -0.03827948123216629,
+    -0.008658855222165585,
+    0.027602510526776314,
+    -0.00010109298455063254,
+    0.013309883885085583,
+    -0.03849073126912117,
+    -0.0062694186344742775,
+    -0.0060985577292740345,
+    0.08588527888059616,
+    -0.012422710657119751,
+    -0.030803250148892403,
+    -0.024332916364073753,
+    -0.015210752375423908,
+    -0.04169592261314392,
+    0.05846427381038666,
+    -0.02703048102557659,
+    0.06816301494836807,
+    -0.006697736214846373,
+    -0.023686585947871208,
+    -0.07232420891523361,
+    0.010739756748080254,
+    0.05769408494234085,
+    -0.01564973033964634,
+    -0.008663251996040344,
+    -0.061782993376255035,
+    -0.011000832542777061,
+    -0.08477271348237991,
+    0.07864576578140259,
+    -0.03947601467370987,
+    0.018710611388087273,
+    0.005872960668057203,
+    0.04704880714416504,
+    -0.0005303914076648653,
+    0.005145132075995207,
+    0.004343909677118063,
+    0.01684379205107689,
+    0.040356699377298355,
+    -0.07060092687606812,
+    0.010383625514805317,
+    0.08087507635354996,
+    -0.004379283636808395,
+    -0.01648162677884102,
+    0.03260774537920952,
+    0.06123197451233864,
+    0.0027493759989738464,
+    0.017248203977942467,
+    0.02352369762957096,
+    -0.015421156771481037,
+    0.05840030312538147,
+    -0.02550080232322216,
+    -0.013571072369813919,
+    -0.07360421121120453,
+    0.008506572805345058,
+    0.023463595658540726,
+    0.036131348460912704,
+    -0.004291903227567673,
+    0.031277529895305634,
+    -0.033461444079875946,
+    0.0029272204264998436,
+    -9.936920105246827e-05,
+    -0.04402514547109604,
+    -0.04327448830008507,
+    0.057006217539310455,
+    0.004195438232272863,
+    -0.012017400935292244,
+    -0.0247699785977602,
+    0.019195716828107834,
+    0.019386956468224525,
+    0.01274140179157257,
+    0.03906404972076416,
+    -0.05842939764261246,
+    -0.03225909173488617,
+    -0.047634225338697433,
+    0.020874926820397377,
+    0.04501047730445862,
+    -0.06466063857078552,
+    -0.032343875616788864,
+    0.008812953718006611,
+    0.025519471615552902,
+    -0.02676987461745739,
+    -0.008748373948037624,
+    -0.024626564234495163,
+    -0.05269863083958626,
+    0.0014009374426677823,
+    0.01579931378364563,
+    0.0036799085792154074,
+    0.003804250620305538,
+    0.02479805238544941,
+    0.003170404816046357,
+    -0.027520591393113136,
+    -0.018580088391900063,
+    0.0408036969602108,
+    -0.016241900622844696,
+    -0.0049436138942837715,
+    0.009799211286008358,
+    0.0012982587795704603,
+    -0.04915241152048111,
+    0.03041454590857029,
+    0.017437046393752098,
+    0.027536766603589058,
+    0.0016659218817949295,
+    0.018526175990700722,
+    0.039867859333753586,
+    0.009345016442239285,
+    0.003537548705935478,
+    0.04738954082131386,
+    -0.010883701033890247,
+    0.047839052975177765,
+    0.0030436289962381124,
+    -0.017889095470309258,
+    0.019811885431408882,
+    0.05270562320947647,
+    0.0437207967042923,
+    -0.010772466659545898,
+    -0.07182638347148895,
+    -0.06328445672988892,
+    -0.010568034835159779,
+    0.010718423873186111,
+    0.032968804240226746,
+    -0.018612153828144073,
+    -0.007409340236335993,
+    -0.03882117196917534,
+    -0.02125709503889084,
+    -0.0379716120660305,
+    -0.04978827387094498,
+    0.08099230378866196,
+    -0.027644578367471695,
+    0.04560808092355728,
+    0.004389388952404261,
+    -0.01387047953903675,
+    -0.05285388603806496,
+    -0.007990843616425991,
+    -0.06169655919075012,
+    0.02833051234483719,
+    0.021050328388810158,
+    -0.028451884165406227,
+    0.009542511776089668,
+    -0.0723269060254097,
+    -0.040292542427778244,
+    0.016417384147644043,
+    -0.013608762994408607,
+    -0.018602347001433372,
+    0.030338305979967117,
+    0.009330596774816513,
+    -0.05719273164868355,
+    0.041679710149765015,
+    0.01870856061577797,
+    0.008599585853517056,
+    -0.006316082552075386,
+    0.05251525714993477,
+    0.08623865246772766,
+    0.014917138032615185,
+    0.02160412259399891,
+    -0.07722488045692444,
+    0.05330319702625275,
+    0.006350975949317217,
+    -0.008033388294279575,
+    -0.046356119215488434,
+    -0.04296816512942314,
+    -0.041080184280872345
   ],
   "_embedding_model": "nomic-ai/nomic-embed-text-v1.5"
 }

@@ -1,52 +1,39 @@
 {
-  "card_id": "going_long",
+  "global_card_id": "going_long",
+  "global_canonical": "Going Long",
   "type": "merged_concept",
-  "canonical_term": "Going Long",
+  "school": "General",
   "aliases": [
     "buying",
     "long position"
   ],
-  "school": "General",
   "definition": "A Forex trading action where a trader buys a currency pair, anticipating the base currency's value will rise relative to the quote currency, thereby profiting from the resulting upward price movement.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "A Forex trading action where a trader buys a currency pair, anticipating the base currency's value will rise relative to the quote currency, thereby profiting from the resulting upward price movement."
+  },
   "identification_rules": [
     "A trader decides to go long after predicting the base currency will strengthen against the quote currency.",
     "The position is initiated by executing a buy order on the selected currency pair."
   ],
-  "trading_implication": "If the exchange rate increases, the trader profits from the upward move, typically measured in pips. Choosing to go long reflects a bullish outlook on the base currency.",
   "common_mistakes": [
     "Not explicitly stated in the material."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "If the exchange rate increases, the trader profits from the upward move, typically measured in pips. Choosing to go long reflects a bullish outlook on the base currency.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "lS-cFGrynUE",
-      "original_card_id": "lS-cFGrynUE_concept_going_long",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        0.16,
-        537.8
-      ],
-      "extraction_confidence": "medium"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "going_long",
+      "source_canonical_term": "Going Long",
+      "source_school": "General",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 0,
-    "medium_confidence_sources": 1,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.640415Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "going_long",
+  "canonical_term": "Going Long",
   "_embedding": [
     0.033443186432123184,
     0.06927880644798279,

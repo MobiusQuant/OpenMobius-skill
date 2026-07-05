@@ -1,67 +1,47 @@
 {
-  "card_id": "pullback_vs_reversal",
+  "global_card_id": "pullback_vs_reversal",
+  "global_canonical": "Pullback vs Reversal",
   "type": "merged_concept",
-  "canonical_term": "Pullback vs Reversal",
+  "school": "ICT",
   "aliases": [
     "回调 vs 反转",
     "趋势延续 vs 趋势反转"
   ],
-  "school": "ICT",
   "definition": "回调是在高时间框架市场结构未被破坏的情况下，价格沿趋势方向的短期回撤；反转是市场结构转变（MSS）被突破，预示趋势方向改变。",
+  "definition_per_source": {
+    "Education - ICT": "回调是在高时间框架市场结构未被破坏的情况下，价格沿趋势方向的短期回撤；反转是市场结构转变（MSS）被突破，预示趋势方向改变。"
+  },
   "identification_rules": [
     "检查高时间框架（如15分钟）的市场结构是否被破坏；若未破坏则为回调，若被突破则为反转。",
     "在低时间框架（如5分钟）标记短期摆动高/低点，观察其是否被突破以确认MSS。",
     "回调时应在高时间框架趋势方向寻找FVG和OB作为再入场点；反转时则预期趋势反向运行。",
     "识别Displacement（能量充足的突破伴随FVG产生）来确认MSS的有效性，避免虚假突破。"
   ],
-  "trading_implication": "区分回调与反转是确定交易方向的关键。回调时应顺势做多/做空，利用FVG和OB在折价区寻找OTE；反转时应改变头寸方向。通过多时间框架确认（低时间框架看MSS，高时间框架看结构完整性）可提高交易胜率，避免在虚假反转中逆势交易。",
   "common_mistakes": [
     "仅看低时间框架的短期摆动被破坏就判断反转，忽视高时间框架结构仍完整的事实。",
     "将没有Displacement和FVG的虚假突破误认为有效的MSS和反转信号。",
     "在高时间框架结构未破坏时逆势交易，而不是在回调中顺势寻找再入场机会。"
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [
-    {
-      "card_id": "FdRKBTz0Fps_case_001_s_p_500_e_mini期货从看跌到看涨的趋势转变",
-      "video_id": "FdRKBTz0Fps",
-      "title": "ES期货5分钟MSS确认看涨反转，15分钟验证趋势转变"
-    },
-    {
-      "card_id": "FdRKBTz0Fps_case_002_利用fvg和mss在折价区寻找做多入场",
-      "video_id": "FdRKBTz0Fps",
-      "title": "5分钟FVG内MSS反转确认1分钟Displacement精确做多入场"
-    }
-  ],
+  "trading_implication": "区分回调与反转是确定交易方向的关键。回调时应顺势做多/做空，利用FVG和OB在折价区寻找OTE；反转时应改变头寸方向。通过多时间框架确认（低时间框架看MSS，高时间框架看结构完整性）可提高交易胜率，避免在虚假反转中逆势交易。",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "FdRKBTz0Fps",
-      "original_card_id": "FdRKBTz0Fps_concept_pullback_vs_reversal",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        6.64,
-        187.12
-      ],
-      "extraction_confidence": "high"
+      "project": "Education - ICT",
+      "card_id": "pullback_vs_reversal",
+      "source_canonical_term": "Pullback vs Reversal",
+      "source_school": "ICT",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-13T15:59:04.135168Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "illustrated_by_cases": [
+    "Education_-_ICT__FdRKBTz0Fps_case_001_s_p_500_e_mini期货从看跌到看涨的趋势转变",
+    "Education_-_ICT__FdRKBTz0Fps_case_002_利用fvg和mss在折价区寻找做多入场"
+  ],
+  "card_id": "pullback_vs_reversal",
+  "canonical_term": "Pullback vs Reversal",
   "_embedding": [
     0.03304719552397728,
     0.05029727891087532,

@@ -1,49 +1,36 @@
 {
-  "card_id": "short_position_tool",
+  "global_card_id": "short_position_tool",
+  "global_canonical": "Short Position Tool",
   "type": "merged_concept",
-  "canonical_term": "Short Position Tool",
-  "aliases": [],
   "school": "General",
+  "aliases": [],
   "definition": "A TradingView drawing tool used to plan a short trade by marking entry price, stop-loss level, and profit target, while displaying the risk-to-reward ratio.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "A TradingView drawing tool used to plan a short trade by marking entry price, stop-loss level, and profit target, while displaying the risk-to-reward ratio."
+  },
   "identification_rules": [
     "Click the 'Forecasting and Measurement Tools' menu and select 'Short Position'.",
     "Click on the chart at the intended entry price to place the tool.",
     "Drag the stop-loss level to a price above the entry (e.g., above a resistance or swing high).",
     "Drag the target level downward to set a profit target based on the desired risk-to-reward ratio (e.g., 3:1)."
   ],
-  "trading_implication": "This tool helps traders plan short trades by defining entry, stop-loss, and target levels with a clear risk-to-reward ratio. It provides a visual framework for risk management, ensuring that the potential profit is at least a multiple of the risk taken (commonly 3:1).",
   "common_mistakes": [],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "This tool helps traders plan short trades by defining entry, stop-loss, and target levels with a clear risk-to-reward ratio. It provides a visual framework for risk management, ensuring that the potential profit is at least a multiple of the risk taken (commonly 3:1).",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "MBl1bKXJ2cE",
-      "original_card_id": "MBl1bKXJ2cE_concept_short_position_tool",
-      "segment_ids": [
-        "seg_003"
-      ],
-      "time_range": [
-        720.399,
-        957.079
-      ],
-      "extraction_confidence": "medium"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "short_position_tool",
+      "source_canonical_term": "Short Position Tool",
+      "source_school": "General",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 0,
-    "medium_confidence_sources": 1,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.640961Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "short_position_tool",
+  "canonical_term": "Short Position Tool",
   "_embedding": [
     0.02873297408223152,
     0.03400149941444397,

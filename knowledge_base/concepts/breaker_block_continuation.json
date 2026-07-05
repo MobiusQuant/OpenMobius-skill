@@ -1,10 +1,13 @@
 {
-  "card_id": "breaker_block_continuation",
+  "global_card_id": "breaker_block_continuation",
+  "global_canonical": "Breaker Block Continuation",
   "type": "merged_concept",
-  "canonical_term": "Breaker Block Continuation",
-  "aliases": [],
   "school": "ICT",
+  "aliases": [],
   "definition": "A continuation trade setup where, after a trend reversal, price retraces to sweep a swing low or high, forming a bullish (low-high-lower low-higher high) or bearish (high-low-higher high-lower low) breaker block. The breaker block (up-close or down-close candles) acts as support/resistance for entries in the trend direction.",
+  "definition_per_source": {
+    "Education - ICT (Updated)": "A continuation trade setup where, after a trend reversal, price retraces to sweep a swing low or high, forming a bullish (low-high-lower low-higher high) or bearish (high-low-higher high-lower low) breaker block. The breaker block (up-close or down-close candles) acts as support/resistance for entries in the trend direction."
+  },
   "identification_rules": [
     "Confirm a trend reversal via a change in state of delivery before looking for the continuation setup.",
     "Wait for price to retrace and sweep a recent swing low (bullish) or swing high (bearish) to create a lower low or higher high.",
@@ -13,47 +16,27 @@
     "Enter the trade on a retest of this breaker block zone, with a stop placed either on the swing low/high or the other side of the breaker block.",
     "Target a minimum 2R reward or the previous range high/low, aligning with the higher-time-frame bias."
   ],
-  "trading_implication": "Breaker block continuations allow traders to enter a trend after a liquidity sweep and retracement, providing a high-probability entry zone with a defined risk. The setup exploits the break of structure that traps early counter-trend traders, offering a mechanical entry aligned with the dominant trend. It is preferred over chasing price or entering during consolidation.",
   "common_mistakes": [
     "Entering before the higher high (bullish) or lower low (bearish) completes the breaker pattern, resulting in false signals.",
     "Blindly entering on the initial price move without waiting for the sweep of a swing low/high and the subsequent pattern formation.",
     "Misidentifying a simple retracement into a fair value gap as a breaker block when no sweep has occurred, unless confirmed by SMT divergence."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "Breaker block continuations allow traders to enter a trend after a liquidity sweep and retracement, providing a high-probability entry zone with a defined risk. The setup exploits the break of structure that traps early counter-trend traders, offering a mechanical entry aligned with the dominant trend. It is preferred over chasing price or entering during consolidation.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "xP-o11jRCyg",
-      "original_card_id": "xP-o11jRCyg_concept_breaker_block_continuation",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003",
-        "seg_004",
-        "seg_005"
-      ],
-      "time_range": [
-        11.0,
-        852.199
-      ],
-      "extraction_confidence": "high"
+      "project": "Education - ICT (Updated)",
+      "card_id": "breaker_block_continuation",
+      "source_canonical_term": "Breaker Block Continuation",
+      "source_school": "ICT",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-17T18:09:12.075036Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "breaker_block_continuation",
+  "canonical_term": "Breaker Block Continuation",
   "_embedding": [
     0.06826326996088028,
     0.0648331418633461,

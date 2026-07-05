@@ -1,52 +1,39 @@
 {
-  "card_id": "fvg_trading_rules",
+  "global_card_id": "fvg_trading_rules",
+  "global_canonical": "FVG Trading Rules",
   "type": "merged_concept",
-  "canonical_term": "FVG Trading Rules",
-  "aliases": [],
   "school": "ICT",
+  "aliases": [],
   "definition": "A set of criteria for using Fair Value Gaps as trade entry points: trade only after a valid Break of Structure or Change of Character; in bearish markets, only short from premium‑zone FVGs; in bullish markets, only long from discount‑zone FVGs; extreme FVGs have priority; and only use unmitigated FVGs.",
+  "definition_per_source": {
+    "SMC-Indicator-Supplement": "A set of criteria for using Fair Value Gaps as trade entry points: trade only after a valid Break of Structure or Change of Character; in bearish markets, only short from premium‑zone FVGs; in bullish markets, only long from discount‑zone FVGs; extreme FVGs have priority; and only use unmitigated FVGs."
+  },
   "identification_rules": [
     "Trade setup requires a preceding valid Break of Structure (BOS) or Change of Character (CHoCH); do not use FVGs without this signal.",
     "In a bearish trend, only consider FVGs located in the premium zone for short entries; in a bullish trend, only consider FVGs in the discount zone for long entries.",
     "FVGs at market extremes (the highest or lowest point of a move) take priority over other FVGs for trade execution.",
     "Use only unmitigated FVGs; once price has entered and filled an FVG, do not consider it for future trading opportunities."
   ],
-  "trading_implication": "FVG Trading Rules filter high‑probability entry zones that align with market structure and directional bias. They ensure entries occur only in the direction of the trend after a structural shift, within optimal premium/discount areas, and on fresh imbalances, thereby reducing false signals and improving risk‑to‑reward.",
   "common_mistakes": [
     "Executing a trade based on an FVG without first confirming a valid BOS or CHoCH, leading to entries against the market structure.",
     "Trading a mitigated FVG that has already been filled by price, expecting it to act as support or resistance again."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "FVG Trading Rules filter high‑probability entry zones that align with market structure and directional bias. They ensure entries occur only in the direction of the trend after a structural shift, within optimal premium/discount areas, and on fresh imbalances, thereby reducing false signals and improving risk‑to‑reward.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "BFfF_Lnk9T4",
-      "original_card_id": "BFfF_Lnk9T4_concept_fvg_trading_rules",
-      "segment_ids": [
-        "seg_006"
-      ],
-      "time_range": [
-        756.2,
-        874.24
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Indicator-Supplement",
+      "card_id": "fvg_trading_rules",
+      "source_canonical_term": "FVG Trading Rules",
+      "source_school": "ICT",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T09:41:38.685945Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "fvg_trading_rules",
+  "canonical_term": "FVG Trading Rules",
   "_embedding": [
     0.04151178151369095,
     0.09909839183092117,

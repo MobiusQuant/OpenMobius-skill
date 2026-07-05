@@ -1,50 +1,37 @@
 {
-  "card_id": "value_area",
+  "global_card_id": "value_area",
+  "global_canonical": "Value Area",
   "type": "merged_concept",
-  "canonical_term": "Value Area",
-  "aliases": [],
   "school": "Volume Analysis",
+  "aliases": [],
   "definition": "The price range where a specified percentage (default 70%) of total volume occurred over a given period, bounded by the Value Area High (VAH) and Value Area Low (VAL). Typically calculated using the Volume Profile indicator.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "The price range where a specified percentage (default 70%) of total volume occurred over a given period, bounded by the Value Area High (VAH) and Value Area Low (VAL). Typically calculated using the Volume Profile indicator."
+  },
   "identification_rules": [
     "Add the Volume Profile indicator to the chart (e.g., Visible Range Volume Profile on TradingView).",
     "Enable the Value Area High (VAH) and Value Area Low (VAL) lines in the indicator settings.",
     "The Value Area is the horizontal band between VAH and VAL, containing the default 70% of total volume for the viewed price range."
   ],
-  "trading_implication": "The Value Area marks the zone where most trading activity occurred, often acting as a balance range. Price acceptance within it suggests consolidation, while moves outside may signal breakouts. The boundaries (VAH/VAL) can serve as potential support/resistance, but key reversals often occur just beyond them. Used to gauge market balance and potential mean reversion.",
   "common_mistakes": [
     "Assuming the Value Area acts as definitive support or resistance; in practice, key reversals often occur just above VAH or below VAL."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "The Value Area marks the zone where most trading activity occurred, often acting as a balance range. Price acceptance within it suggests consolidation, while moves outside may signal breakouts. The boundaries (VAH/VAL) can serve as potential support/resistance, but key reversals often occur just beyond them. Used to gauge market balance and potential mean reversion.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "YM2FMtCum2g",
-      "original_card_id": "YM2FMtCum2g_concept_value_area",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        1.64,
-        361.039
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "value_area",
+      "source_canonical_term": "Value Area",
+      "source_school": "Volume Analysis",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.641320Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "value_area",
+  "canonical_term": "Value Area",
   "_embedding": [
     0.048156727105379105,
     0.05416969582438469,

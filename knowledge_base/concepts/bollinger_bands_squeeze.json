@@ -1,10 +1,13 @@
 {
-  "card_id": "bollinger_bands_squeeze",
+  "global_card_id": "bollinger_bands_squeeze",
+  "global_canonical": "Bollinger Bands Squeeze",
   "type": "merged_concept",
-  "canonical_term": "Bollinger Bands Squeeze",
-  "aliases": [],
   "school": "Indicator Based",
+  "aliases": [],
   "definition": "A pattern where Bollinger Bands contract, indicating low volatility and an impending breakout. A breakout is confirmed by a strong candle closing decisively outside the bands, ideally validated by support/resistance, volume, or chart patterns.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "A pattern where Bollinger Bands contract, indicating low volatility and an impending breakout. A breakout is confirmed by a strong candle closing decisively outside the bands, ideally validated by support/resistance, volume, or chart patterns."
+  },
   "identification_rules": [
     "The Bollinger Bands must be visibly contracting (squeezing) from a wider state to a narrow range.",
     "The price must have been trading inside the bands before the breakout.",
@@ -13,43 +16,27 @@
     "Increased volume on the breakout candle adds confirmation.",
     "A bullish or bearish chart pattern (e.g., ascending triangle) at the breakout level strengthens the signal."
   ],
-  "trading_implication": "The squeeze signals an imminent expansion in volatility and a directional breakout. Traders wait for a decisive close outside the bands to enter in the breakout direction. The strategy is strengthened by confluent support/resistance breaks, volume spikes, and chart patterns, helping capture early trend moves. It requires confirmation to avoid false signals.",
   "common_mistakes": [
     "Prematurely entering on a small push outside the bands rather than waiting for a strong candle close.",
     "Assuming all breakouts are valid without additional confirmation like support/resistance or volume.",
     "Confusing a squeeze breakout with a free bar (candle completely outside bands) that could signal reversal."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "The squeeze signals an imminent expansion in volatility and a directional breakout. Traders wait for a decisive close outside the bands to enter in the breakout direction. The strategy is strengthened by confluent support/resistance breaks, volume spikes, and chart patterns, helping capture early trend moves. It requires confirmation to avoid false signals.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "--lv7xXEAcA",
-      "original_card_id": "--lv7xXEAcA_concept_bollinger_bands_squeeze",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        1.719,
-        290.88
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "bollinger_bands_squeeze",
+      "source_canonical_term": "Bollinger Bands Squeeze",
+      "source_school": "Indicator Based",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.639748Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "bollinger_bands_squeeze",
+  "canonical_term": "Bollinger Bands Squeeze",
   "_embedding": [
     0.03163463994860649,
     0.043008215725421906,

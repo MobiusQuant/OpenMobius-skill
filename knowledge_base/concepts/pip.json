@@ -1,50 +1,37 @@
 {
-  "card_id": "pip",
+  "global_card_id": "pip",
+  "global_canonical": "Pip",
   "type": "merged_concept",
-  "canonical_term": "Pip",
-  "aliases": [],
   "school": "General",
+  "aliases": [],
   "definition": "The smallest standard price movement in a forex currency pair, typically equal to 0.0001 for most pairs, but 0.01 for pairs involving the Japanese Yen. It measures price change and profit/loss.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "The smallest standard price movement in a forex currency pair, typically equal to 0.0001 for most pairs, but 0.01 for pairs involving the Japanese Yen. It measures price change and profit/loss."
+  },
   "identification_rules": [
     "For non-JPY currency pairs, observe the fourth decimal place: one pip is a change of 0.0001.",
     "For JPY currency pairs, observe the second decimal place: one pip is a change of 0.01."
   ],
-  "trading_implication": "Pips quantify price changes, enabling traders to measure profit, loss, and movement. They are used to set stop-loss and take-profit distances, calculate risk-to-reward ratios, and communicate trade outcomes.",
   "common_mistakes": [
     "Assuming a pip always equals 0.0001, forgetting that JPY pairs use 0.01 as a pip",
     "Overcomplicating pip calculations by not recognizing the difference in decimal placement among pairs"
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "Pips quantify price changes, enabling traders to measure profit, loss, and movement. They are used to set stop-loss and take-profit distances, calculate risk-to-reward ratios, and communicate trade outcomes.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "lS-cFGrynUE",
-      "original_card_id": "lS-cFGrynUE_concept_pip",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        0.16,
-        537.8
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "pip",
+      "source_canonical_term": "Pip",
+      "source_school": "General",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.640792Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "pip",
+  "canonical_term": "Pip",
   "_embedding": [
     0.025614401325583458,
     0.06872664391994476,

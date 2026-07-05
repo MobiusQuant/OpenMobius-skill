@@ -1,54 +1,38 @@
 {
-  "card_id": "dragonfly_doji",
+  "global_card_id": "dragonfly_doji",
+  "global_canonical": "Dragonfly Doji",
   "type": "merged_concept",
-  "canonical_term": "Dragonfly Doji",
-  "aliases": [],
   "school": "Price Action",
+  "aliases": [],
   "definition": "A candlestick pattern with a long lower wick and a small real body near the top of the range, signaling a potential bullish reversal when appearing after a downtrend.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "A candlestick pattern with a long lower wick and a small real body near the top of the range, signaling a potential bullish reversal when appearing after a downtrend."
+  },
   "identification_rules": [
     "The candle has a small or nonexistent real body located at the top of its range.",
     "The lower wick is significantly longer than the body, with no or very short upper wick.",
     "Occurs after a downtrend."
   ],
-  "trading_implication": "Signals a potential bullish reversal. Traders may enter long on the candle close, with a stop loss below the candle's low or below a nearby support level. Often used alongside other confirmation signals (e.g., free bars, failure tests) for higher probability trades.",
   "common_mistakes": [],
-  "related_concepts": [],
-  "illustrated_by_cases": [
-    {
-      "card_id": "XfzRmAoz2b0_case_001_eurusd_15_minute_reversal_trade",
-      "video_id": "XfzRmAoz2b0",
-      "title": "EURUSD 15-Minute Reversal Trade Using Free Bar, Failure Test, and Dragonfly Doji"
-    }
-  ],
+  "trading_implication": "Signals a potential bullish reversal. Traders may enter long on the candle close, with a stop loss below the candle's low or below a nearby support level. Often used alongside other confirmation signals (e.g., free bars, failure tests) for higher probability trades.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "XfzRmAoz2b0",
-      "original_card_id": "XfzRmAoz2b0_concept_dragonfly_doji",
-      "segment_ids": [
-        "seg_003"
-      ],
-      "time_range": [
-        360.759,
-        441.199
-      ],
-      "extraction_confidence": "medium"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "dragonfly_doji",
+      "source_canonical_term": "Dragonfly Doji",
+      "source_school": "Price Action",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 0,
-    "medium_confidence_sources": 1,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.640243Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "illustrated_by_cases": [
+    "SMC-Strong-Weak-Supplement__XfzRmAoz2b0_case_001_eurusd_15_minute_reversal_trade"
+  ],
+  "card_id": "dragonfly_doji",
+  "canonical_term": "Dragonfly Doji",
   "_embedding": [
     0.005074681248515844,
     0.04554818198084831,

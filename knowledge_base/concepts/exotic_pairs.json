@@ -1,47 +1,34 @@
 {
-  "card_id": "exotic_pairs",
+  "global_card_id": "exotic_pairs",
+  "global_canonical": "Exotic Pairs",
   "type": "merged_concept",
-  "canonical_term": "Exotic Pairs",
-  "aliases": [],
   "school": "General",
+  "aliases": [],
   "definition": "Currency pairs that combine a major currency with a currency from an emerging market, such as USD/TRY or EUR/THB. They typically have higher transaction costs and greater volatility compared to major or minor pairs.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "Currency pairs that combine a major currency with a currency from an emerging market, such as USD/TRY or EUR/THB. They typically have higher transaction costs and greater volatility compared to major or minor pairs."
+  },
   "identification_rules": [
     "A pair is exotic if it includes one major currency (e.g., USD, EUR) and one currency from an emerging market (e.g., TRY, THB).",
     "Exotic pairs exhibit higher spreads and increased price volatility compared to major pairs."
   ],
-  "trading_implication": "Traders should expect wider spreads and larger price swings, which can increase both risk and potential reward. Proper risk management and position sizing are essential when trading exotic pairs due to their higher volatility.",
   "common_mistakes": [],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "Traders should expect wider spreads and larger price swings, which can increase both risk and potential reward. Proper risk management and position sizing are essential when trading exotic pairs due to their higher volatility.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "lS-cFGrynUE",
-      "original_card_id": "lS-cFGrynUE_concept_exotic_pairs",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        0.16,
-        537.8
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "exotic_pairs",
+      "source_canonical_term": "Exotic Pairs",
+      "source_school": "General",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.640313Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "exotic_pairs",
+  "canonical_term": "Exotic Pairs",
   "_embedding": [
     -0.008670122362673283,
     0.11798888444900513,

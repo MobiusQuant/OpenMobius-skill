@@ -1,52 +1,39 @@
 {
-  "card_id": "golden_pocket",
+  "global_card_id": "golden_pocket",
+  "global_canonical": "Golden Pocket",
   "type": "merged_concept",
-  "canonical_term": "Golden Pocket",
-  "aliases": [],
   "school": "General",
+  "aliases": [],
   "definition": "The Fibonacci retracement zone between 0.618 and 0.65, a deeper and smaller area compared to the golden zone. The 0.65 level is arbitrary and lacks mathematical basis, so it should be used with caution.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "The Fibonacci retracement zone between 0.618 and 0.65, a deeper and smaller area compared to the golden zone. The 0.65 level is arbitrary and lacks mathematical basis, so it should be used with caution."
+  },
   "identification_rules": [
     "Draw Fibonacci retracement levels on a price swing high and swing low.",
     "The golden pocket is the zone between the 0.618 and 0.65 retracement levels.",
     "Note that the default Fibonacci tool does not include 0.65, so it must be manually added."
   ],
-  "trading_implication": "It is considered a potential reversal zone where price may find support or resistance. However, because 0.65 is arbitrary, its reliability is questionable; traders should test it with paper trading and apply strict risk management before using it in live markets.",
   "common_mistakes": [
     "Assuming 0.65 has mathematical or geometric significance.",
     "Using the golden pocket blindly without backtesting or paper trading.",
     "Neglecting risk management when trading based on this zone."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "It is considered a potential reversal zone where price may find support or resistance. However, because 0.65 is arbitrary, its reliability is questionable; traders should test it with paper trading and apply strict risk management before using it in live markets.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "Vm8OLknovwQ",
-      "original_card_id": "Vm8OLknovwQ_concept_golden_pocket",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        1.719,
-        169.44
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "golden_pocket",
+      "source_canonical_term": "Golden Pocket",
+      "source_school": "General",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.640439Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "golden_pocket",
+  "canonical_term": "Golden Pocket",
   "_embedding": [
     0.06166983023285866,
     0.052435360848903656,

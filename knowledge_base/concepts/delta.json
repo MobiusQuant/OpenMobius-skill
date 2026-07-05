@@ -1,55 +1,39 @@
 {
-  "card_id": "delta",
+  "global_card_id": "delta",
+  "global_canonical": "Delta",
   "type": "merged_concept",
-  "canonical_term": "Delta",
-  "aliases": [],
   "school": "Volume Analysis",
+  "aliases": [],
   "definition": "Delta is a setting in the Volume Footprint chart that displays the net difference between buyer and seller volume at each price level, shown as green (net buying) or red (net selling) boxes, used to assess buying/selling pressure.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "Delta is a setting in the Volume Footprint chart that displays the net difference between buyer and seller volume at each price level, shown as green (net buying) or red (net selling) boxes, used to assess buying/selling pressure."
+  },
   "identification_rules": [
     "Set the Volume Footprint type to 'Delta' to display net volume differences instead of separate buy/sell columns.",
     "Green boxes represent net buying volume, indicating bullish pressure at that price level.",
     "Red boxes represent net selling volume, indicating bearish pressure at that price level.",
     "During uptrends, green boxes should dominate; during downtrends, red boxes should dominate."
   ],
-  "trading_implication": "Delta confirms trend strength and breakout validity. A surge in green boxes during an upside breakout signals strong buying interest, supporting the move. In uptrends, persistent red boxes warn of weakening momentum and potential reversal.",
   "common_mistakes": [],
-  "related_concepts": [],
-  "illustrated_by_cases": [
-    {
-      "card_id": "AzHP74SywjY_case_002_btc_pivot_point_resistance_break",
-      "video_id": "AzHP74SywjY",
-      "title": "BTC Daily Chart: Breakout Above Multi-Pivot Resistance Level Confirmed by Volume Footprint Delta"
-    }
-  ],
+  "trading_implication": "Delta confirms trend strength and breakout validity. A surge in green boxes during an upside breakout signals strong buying interest, supporting the move. In uptrends, persistent red boxes warn of weakening momentum and potential reversal.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "AzHP74SywjY",
-      "original_card_id": "AzHP74SywjY_concept_delta",
-      "segment_ids": [
-        "seg_004"
-      ],
-      "time_range": [
-        614.16,
-        825.8389999999999
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "delta",
+      "source_canonical_term": "Delta",
+      "source_school": "Volume Analysis",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.639964Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "illustrated_by_cases": [
+    "SMC-Strong-Weak-Supplement__AzHP74SywjY_case_002_btc_pivot_point_resistance_break"
+  ],
+  "card_id": "delta",
+  "canonical_term": "Delta",
   "_embedding": [
     0.011004280298948288,
     0.06749136745929718,

@@ -1,59 +1,41 @@
 {
-  "card_id": "initiation",
+  "global_card_id": "initiation",
+  "global_canonical": "Initiation",
   "type": "merged_concept",
-  "canonical_term": "Initiation",
-  "aliases": [],
   "school": "SMC",
+  "aliases": [],
   "definition": "The initial aggressive move by smart money after a manipulation, signaling the start of the real trend.",
+  "definition_per_source": {
+    "SMC-Extra-Supplement": "The initial aggressive move by smart money after a manipulation, signaling the start of the real trend."
+  },
   "identification_rules": [
     "Occurs immediately after a manipulation phase that sweeps liquidity.",
     "Characterized by a rapid, impulsive price move that breaks a key structural level (e.g., swing high/low).",
     "Often accompanied by a noticeable spike in trading volume.",
     "Results in a change of character (CHoCH) on the relevant timeframe, confirming the trend shift."
   ],
-  "trading_implication": "Initiation confirms that smart money is actively driving the market and that the manipulation phase has ended. Traders wait for this confirmation before entering, then look for a pullback (mitigation) to join the move. It prevents premature entries and aligns trades with institutional momentum.",
   "common_mistakes": [
     "Entering too early without waiting for the initiation phase, leading to trades based on incomplete confirmation."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [
-    {
-      "card_id": "wun5p5A3vYQ_case_001_gbpusd_15_minute_london_session_",
-      "video_id": "wun5p5A3vYQ",
-      "title": "GBPUSD 15-Minute London Session Long Trade: Asia Low Sweep, FVG Mitigation, 1:5 R/R"
-    }
-  ],
+  "trading_implication": "Initiation confirms that smart money is actively driving the market and that the manipulation phase has ended. Traders wait for this confirmation before entering, then look for a pullback (mitigation) to join the move. It prevents premature entries and aligns trades with institutional momentum.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "wun5p5A3vYQ",
-      "original_card_id": "wun5p5A3vYQ_concept_initiation",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003"
-      ],
-      "time_range": [
-        0.08,
-        2106.48
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Extra-Supplement",
+      "card_id": "initiation",
+      "source_canonical_term": "Initiation",
+      "source_school": "SMC",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:53:11.938363Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "illustrated_by_cases": [
+    "SMC-Extra-Supplement__wun5p5A3vYQ_case_001_gbpusd_15_minute_london_session_"
+  ],
+  "card_id": "initiation",
+  "canonical_term": "Initiation",
   "_embedding": [
     0.022166749462485313,
     0.0639222040772438,

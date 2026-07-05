@@ -1,13 +1,16 @@
 {
-  "card_id": "entry",
+  "global_card_id": "entry",
+  "global_canonical": "Entry",
   "type": "merged_concept",
-  "canonical_term": "Entry",
+  "school": "ICT",
   "aliases": [
     "低时间框架入场",
     "入场点"
   ],
-  "school": "ICT",
   "definition": "在较低时间框架（如5分钟、15分钟）上寻找的具体入场点，需与中间时间框架结构及高时间框架偏差方向一致，通常通过CISD或Order Block确认后执行。",
+  "definition_per_source": {
+    "The Foundation": "在较低时间框架（如5分钟、15分钟）上寻找的具体入场点，需与中间时间框架结构及高时间框架偏差方向一致，通常通过CISD或Order Block确认后执行。"
+  },
   "identification_rules": [
     "确认高时间框架Bias方向（如日线看涨或看跌）已明确",
     "确认中间时间框架（如1小时、4小时）已出现CISD或结构性低点/高点作为支撑/阻力",
@@ -15,73 +18,34 @@
     "在低时间框架观察到CISD（收盘穿过一系列同向K线）时确认入场信号",
     "止损设置在该低时间框架确认的低点（做多）或高点（做空）之下/上"
   ],
-  "trading_implication": "Entry是Top Down Analysis三层框架的最后一层：高时间框架提供Bias，中间时间框架提供Structure与Point of Interest，低时间框架提供精确入场。入场可选择CISD收盘时市价入场，或等待回测Order Block后入场。使用低时间框架入场可缩小止损距离，从而在相同目标下获得更高的Risk to Reward。目标位应参考高时间框架或中间时间框架的流动性水平。",
   "common_mistakes": [
     "仅凭低时间框架形态入场，未对齐高时间框架Bias，导致逆势交易被止损",
     "在中间时间框架已有足够结构确认时，强行下钻至更低时间框架寻找入场，增加不必要的复杂度",
     "在价格已过于接近目标流动性水平时仍寻找入场，风险回报比不合理"
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [
-    {
-      "card_id": "18 - Trade Like TTrades - Top Down Analysis_case_002_原油期货_cl1_日线_1小时_5分钟多头案例",
-      "video_id": "18 - Trade Like TTrades - Top Down Analysis",
-      "title": "CL1! 原油期货日线-1小时-5分钟自顶向下多头案例"
-    },
-    {
-      "card_id": "18 - Trade Like TTrades - Top Down Analysis_case_003_白银期货_si1_周线_4小时_15分钟空头案例",
-      "video_id": "18 - Trade Like TTrades - Top Down Analysis",
-      "title": "白银期货SI1!周线-4小时-15分钟三时间框架空头案例"
-    },
-    {
-      "card_id": "18 - Trade Like TTrades - Top Down Analysis_case_005_黄金期货_gc1_日线_1小时_5分钟多头案例",
-      "video_id": "18 - Trade Like TTrades - Top Down Analysis",
-      "title": "黄金期货GC1!日线-1小时-5分钟自上而下多头入场案例"
-    },
-    {
-      "card_id": "19 - Timeframe Alignment： How To Align Timeframes For Expansion_case_001_es1_周线_4小时_15分钟三层对齐空头案例",
-      "video_id": "19 - Timeframe Alignment： How To Align Timeframes For Expansion",
-      "title": "ES1! 周线旧高兴趣点驱动的三层时间框架对齐空头案例"
-    },
-    {
-      "card_id": "19 - Timeframe Alignment： How To Align Timeframes For Expansion_case_002_gc1_黄金日线_1小时_5分钟三层对齐空头案例",
-      "video_id": "19 - Timeframe Alignment： How To Align Timeframes For Expansion",
-      "title": "GC1! 黄金日线旧高扫出后1小时CISD确认空头三层时间框架对齐案例"
-    }
-  ],
+  "trading_implication": "Entry是Top Down Analysis三层框架的最后一层：高时间框架提供Bias，中间时间框架提供Structure与Point of Interest，低时间框架提供精确入场。入场可选择CISD收盘时市价入场，或等待回测Order Block后入场。使用低时间框架入场可缩小止损距离，从而在相同目标下获得更高的Risk to Reward。目标位应参考高时间框架或中间时间框架的流动性水平。",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "18 - Trade Like TTrades - Top Down Analysis",
-      "original_card_id": "18 - Trade Like TTrades - Top Down Analysis_concept_entry",
-      "segment_ids": [
-        "seg_002",
-        "seg_004",
-        "seg_005",
-        "seg_006",
-        "seg_007"
-      ],
-      "time_range": [
-        192.36,
-        1215.88
-      ],
-      "extraction_confidence": "high"
+      "project": "The Foundation",
+      "card_id": "entry",
+      "source_canonical_term": "Entry",
+      "source_school": "ICT",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-13T09:43:54.027261Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "illustrated_by_cases": [
+    "The_Foundation__18 - Trade Like TTrades - Top Down Analysis_case_002_原油期货_cl1_日线_1小时_5分钟多头案例",
+    "The_Foundation__18 - Trade Like TTrades - Top Down Analysis_case_003_白银期货_si1_周线_4小时_15分钟空头案例",
+    "The_Foundation__18 - Trade Like TTrades - Top Down Analysis_case_005_黄金期货_gc1_日线_1小时_5分钟多头案例",
+    "The_Foundation__19 - Timeframe Alignment： How To Align Timeframes For Expansion_case_001_es1_周线_4小时_15分钟三层对齐空头案例",
+    "The_Foundation__19 - Timeframe Alignment： How To Align Timeframes For Expansion_case_002_gc1_黄金日线_1小时_5分钟三层对齐空头案例"
+  ],
+  "card_id": "entry",
+  "canonical_term": "Entry",
   "_embedding": [
     0.03148944675922394,
     0.05710744857788086,

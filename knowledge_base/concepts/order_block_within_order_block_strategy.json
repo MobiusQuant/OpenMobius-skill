@@ -1,12 +1,15 @@
 {
-  "card_id": "order_block_within_order_block_strategy",
+  "global_card_id": "order_block_within_order_block_strategy",
+  "global_canonical": "Order Block within Order Block Strategy",
   "type": "merged_concept",
-  "canonical_term": "Order Block within Order Block Strategy",
+  "school": "ICT",
   "aliases": [
     "order block in order block"
   ],
-  "school": "ICT",
   "definition": "A two-timeframe trading strategy where the higher timeframe order block defines the trade zone, and after a pullback, a lower timeframe change of character confirms entry at a fresh lower timeframe order block, aligning with the higher timeframe trend.",
+  "definition_per_source": {
+    "SMC-Indicator-Supplement": "A two-timeframe trading strategy where the higher timeframe order block defines the trade zone, and after a pullback, a lower timeframe change of character confirms entry at a fresh lower timeframe order block, aligning with the higher timeframe trend."
+  },
   "identification_rules": [
     "Determine the higher timeframe trend direction using breaks of structure or changes of character.",
     "Identify a valid order block on the higher timeframe in the direction of the trend.",
@@ -15,7 +18,6 @@
     "After the change of character, mark the new order block formed on the lower timeframe.",
     "Enter the trade at the start of the lower timeframe order block with a stop loss beyond its extreme."
   ],
-  "trading_implication": "This strategy improves entry precision by combining higher timeframe directional bias with lower timeframe reversal confirmation. The higher timeframe order block acts as a key supply/demand zone, while the lower timeframe change of character and order block confirm seller/buyer intent, filtering out false moves and enhancing trade timing.",
   "common_mistakes": [
     "Entering the trade before price has reached the higher timeframe order block zone, leading to premature entries and potential traps.",
     "Using too tight a stop loss on a very small lower timeframe order block, causing premature stop-outs from normal market noise.",
@@ -23,37 +25,22 @@
     "Trading multiple order blocks simultaneously without limiting total risk to 2% of the account and restricting concurrent trades to three or fewer.",
     "Forcing trades when the higher timeframe market direction is unclear, increasing the probability of trading against the broader trend."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "This strategy improves entry precision by combining higher timeframe directional bias with lower timeframe reversal confirmation. The higher timeframe order block acts as a key supply/demand zone, while the lower timeframe change of character and order block confirm seller/buyer intent, filtering out false moves and enhancing trade timing.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "2u9oYfx5xdY",
-      "original_card_id": "2u9oYfx5xdY_concept_order_block_within_order_block_strategy",
-      "segment_ids": [
-        "seg_004"
-      ],
-      "time_range": [
-        325.12,
-        579.04
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Indicator-Supplement",
+      "card_id": "order_block_within_order_block_strategy",
+      "source_canonical_term": "Order Block within Order Block Strategy",
+      "source_school": "ICT",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T09:41:38.686280Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "order_block_within_order_block_strategy",
+  "canonical_term": "Order Block within Order Block Strategy",
   "_embedding": [
     0.015051867812871933,
     0.07686296105384827,

@@ -1,61 +1,42 @@
 {
-  "card_id": "candle_close_confirmation",
+  "global_card_id": "candle_close_confirmation",
+  "global_canonical": "Candle Close Confirmation",
   "type": "merged_concept",
-  "canonical_term": "Candle Close Confirmation",
-  "aliases": [],
   "school": "ICT",
+  "aliases": [],
   "definition": "The requirement that price must close above or below a key level to confirm a breakout; a wick beyond the level without a close indicates market rejection and disagreement, not a true structural break.",
+  "definition_per_source": {
+    "SMC-Extra-Supplement": "The requirement that price must close above or below a key level to confirm a breakout; a wick beyond the level without a close indicates market rejection and disagreement, not a true structural break."
+  },
   "identification_rules": [
     "Wait for the candle to fully close before assessing whether a level has been broken.",
     "A close above a previous swing high confirms bullish continuation; a close below a previous swing low confirms bearish continuation.",
     "If price wicks beyond a level but closes back inside the prior range, it is a rejection, not a break."
   ],
-  "trading_implication": "Use candle close confirmation to validate breakouts, avoid false entries from liquidity sweeps, and align with market structure. Closing beyond a high signals buyer control and potential long opportunities; closing below a low signals seller control and short opportunities. Never enter based on wicks alone.",
   "common_mistakes": [
     "Treating a wick that briefly surpasses a high/low as a valid break of structure.",
     "Entering trades based on intra-candle price action without waiting for the close.",
     "Assuming a wick indicates market strength when it actually signals a rejection."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [
-    {
-      "card_id": "IQHoLIinfJ4_case_001_eurusd_1h_failed_high_break",
-      "video_id": "IQHoLIinfJ4",
-      "title": "EURUSD 1H: Repeated failed high breaks with wick rejections before confirmed bullish break and close"
-    }
-  ],
+  "trading_implication": "Use candle close confirmation to validate breakouts, avoid false entries from liquidity sweeps, and align with market structure. Closing beyond a high signals buyer control and potential long opportunities; closing below a low signals seller control and short opportunities. Never enter based on wicks alone.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "IQHoLIinfJ4",
-      "original_card_id": "IQHoLIinfJ4_concept_candle_close_confirmation",
-      "segment_ids": [
-        "seg_003",
-        "seg_004",
-        "seg_005",
-        "seg_006"
-      ],
-      "time_range": [
-        930.079,
-        2464.48
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Extra-Supplement",
+      "card_id": "candle_close_confirmation",
+      "source_canonical_term": "Candle Close Confirmation",
+      "source_school": "ICT",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:53:11.938292Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "illustrated_by_cases": [
+    "SMC-Extra-Supplement__IQHoLIinfJ4_case_001_eurusd_1h_failed_high_break"
+  ],
+  "card_id": "candle_close_confirmation",
+  "canonical_term": "Candle Close Confirmation",
   "_embedding": [
     0.037011194974184036,
     0.007653779815882444,

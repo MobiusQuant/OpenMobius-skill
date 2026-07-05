@@ -1,51 +1,38 @@
 {
-  "card_id": "strong_candle_close",
+  "global_card_id": "strong_candle_close",
+  "global_canonical": "Strong Candle Close",
   "type": "merged_concept",
-  "canonical_term": "Strong Candle Close",
-  "aliases": [],
   "school": "Price Action",
+  "aliases": [],
   "definition": "A candle that closes significantly below a moving average for a downside breakout or significantly above for an upside breakout, indicating a higher probability of a sustained breakout.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "A candle that closes significantly below a moving average for a downside breakout or significantly above for an upside breakout, indicating a higher probability of a sustained breakout."
+  },
   "identification_rules": [
     "The candle's close must be clearly far below the moving average for a bearish breakout or far above for a bullish breakout.",
     "The distance between the closing price and the moving average should be noticeably larger than that of preceding candles that merely touch or cross.",
     "The candle body should not have a long wick retracing inside the moving average; the close should be decisive beyond the moving average."
   ],
-  "trading_implication": "A strong candle close increases confidence that a breakout is genuine and not a false move. It suggests strong momentum and commitment from market participants, often used as a confirmation signal before entering a breakout trade.",
   "common_mistakes": [
     "Assuming any close beyond the moving average qualifies as a strong close, ignoring the need for a substantial gap.",
     "Confusing a candle with a long wick that briefly penetrates the moving average but closes near it as a strong close."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "A strong candle close increases confidence that a breakout is genuine and not a false move. It suggests strong momentum and commitment from market participants, often used as a confirmation signal before entering a breakout trade.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "cpVDvHxY90k",
-      "original_card_id": "cpVDvHxY90k_concept_strong_candle_close",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        1.64,
-        400.12
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "strong_candle_close",
+      "source_canonical_term": "Strong Candle Close",
+      "source_school": "Price Action",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.641106Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "strong_candle_close",
+  "canonical_term": "Strong Candle Close",
   "_embedding": [
     0.0308727715164423,
     0.014599014073610306,

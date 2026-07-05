@@ -1,64 +1,45 @@
 {
-  "card_id": "opposing_setup",
+  "global_card_id": "opposing_setup",
+  "global_canonical": "Opposing Setup",
   "type": "merged_concept",
-  "canonical_term": "Opposing Setup",
+  "school": "ICT",
   "aliases": [
     "opposing formation"
   ],
-  "school": "ICT",
   "definition": "在前一日高点或低点附近形成的反向K线形态，通常表现为反向candle two伴随CSD，预示原有交易偏向失效，可交易反向方向。",
+  "definition_per_source": {
+    "Education - ICT": "在前一日高点或低点附近形成的反向K线形态，通常表现为反向candle two伴随CSD，预示原有交易偏向失效，可交易反向方向。"
+  },
   "identification_rules": [
     "价格在前一日高点（PDH）或前一日低点（PDL）附近开盘",
     "价格扫过PDH或PDL，形成Change in State of Delivery（CSD）",
     "随后形成反向的candle two或candle three收盘",
     "该形态与原有交易方向相反，表明原设置失效"
   ],
-  "trading_implication": "Opposing Setup是交易失效的两种主要信号之一。当原有看涨或看跌设置在PDH/PDL处形成反向candle two时，交易者应放弃原方向，转而寻找反向交易机会。可在CSD后寻找continuation或candle two/three收盘进行反向交易，目标通常是前一日范围内的流动性或candle two的低点。",
   "common_mistakes": [
     "混淆Opposing Setup与简单的价格盘整——盘整不会设置反向交易机会，只有Opposing Setup和EQ失效才能",
     "未等待CSD确认就提前入场反向交易",
     "忽视Opposing Setup必须在PDH/PDL附近形成的位置要求"
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [
-    {
-      "card_id": "jKuXaC84Qx4_case_001_第一个例子_日线看涨偏差失效案例",
-      "video_id": "jKuXaC84Qx4",
-      "title": "日线看涨偏差失效案例：CSD与SMT反向确认"
-    }
-  ],
+  "trading_implication": "Opposing Setup是交易失效的两种主要信号之一。当原有看涨或看跌设置在PDH/PDL处形成反向candle two时，交易者应放弃原方向，转而寻找反向交易机会。可在CSD后寻找continuation或candle two/three收盘进行反向交易，目标通常是前一日范围内的流动性或candle two的低点。",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "jKuXaC84Qx4",
-      "original_card_id": "jKuXaC84Qx4_concept_opposing_setup",
-      "segment_ids": [
-        "seg_004",
-        "seg_005",
-        "seg_013",
-        "seg_014"
-      ],
-      "time_range": [
-        146.2,
-        557.88
-      ],
-      "extraction_confidence": "high"
+      "project": "Education - ICT",
+      "card_id": "opposing_setup",
+      "source_canonical_term": "Opposing Setup",
+      "source_school": "ICT",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-13T15:59:04.134521Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "illustrated_by_cases": [
+    "Education_-_ICT__jKuXaC84Qx4_case_001_第一个例子_日线看涨偏差失效案例"
+  ],
+  "card_id": "opposing_setup",
+  "canonical_term": "Opposing Setup",
   "_embedding": [
     0.003096407512202859,
     0.046177979558706284,

@@ -1,48 +1,35 @@
 {
-  "card_id": "break_even_win_rate",
+  "global_card_id": "break_even_win_rate",
+  "global_canonical": "Break-even Win Rate",
   "type": "merged_concept",
-  "canonical_term": "Break-even Win Rate",
-  "aliases": [],
   "school": "Risk Management",
+  "aliases": [],
   "definition": "The minimum win rate required for a trading strategy to neither profit nor lose, given a fixed risk-to-reward ratio. It is calculated as 1 divided by (1 + reward-to-risk ratio). For example, a 1:2 risk-to-reward requires a win rate above 33.3% to be profitable.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "The minimum win rate required for a trading strategy to neither profit nor lose, given a fixed risk-to-reward ratio. It is calculated as 1 divided by (1 + reward-to-risk ratio). For example, a 1:2 risk-to-reward requires a win rate above 33.3% to be profitable."
+  },
   "identification_rules": [
     "Determine the risk-to-reward ratio (e.g., 1:2 means risking 1 unit to gain 2).",
     "Apply the formula: Break-even win rate = 1 / (1 + reward-to-risk).",
     "Compare the strategy's actual win rate to the break-even win rate; profitability requires actual win rate > break-even."
   ],
-  "trading_implication": "It quantifies the necessary win rate for a strategy's viability. Traders use it to assess if a strategy with a given risk-to-reward ratio and backtested win rate can be profitable. Positive expected value requires the win rate to exceed this threshold.",
   "common_mistakes": [],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "It quantifies the necessary win rate for a strategy's viability. Traders use it to assess if a strategy with a given risk-to-reward ratio and backtested win rate can be profitable. Positive expected value requires the win rate to exceed this threshold.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "w8eSCFPyGgQ",
-      "original_card_id": "w8eSCFPyGgQ_concept_break_even_win_rate",
-      "segment_ids": [
-        "seg_003"
-      ],
-      "time_range": [
-        303.759,
-        562.88
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "break_even_win_rate",
+      "source_canonical_term": "Break-even Win Rate",
+      "source_school": "Risk Management",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.639778Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "break_even_win_rate",
+  "canonical_term": "Break-even Win Rate",
   "_embedding": [
     0.034465182572603226,
     0.05627204105257988,

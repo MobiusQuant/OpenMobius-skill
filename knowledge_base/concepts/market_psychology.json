@@ -1,50 +1,37 @@
 {
-  "card_id": "market_psychology",
+  "global_card_id": "market_psychology",
+  "global_canonical": "Market Psychology",
   "type": "merged_concept",
-  "canonical_term": "Market Psychology",
-  "aliases": [],
   "school": "General",
+  "aliases": [],
   "definition": "The collective behaviour where prior support or resistance levels are remembered by traders. When support breaks and price returns, trapped buyers sell at break-even to avoid loss, while other traders anticipating the reversal add selling pressure, causing the level to flip to resistance (vice‑versa for resistance).",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "The collective behaviour where prior support or resistance levels are remembered by traders. When support breaks and price returns, trapped buyers sell at break-even to avoid loss, while other traders anticipating the reversal add selling pressure, causing the level to flip to resistance (vice‑versa for resistance)."
+  },
   "identification_rules": [
     "After a support level is broken, subsequent return to that level often results in resistance; this is observed when price approaches the broken level and stalls or reverses.",
     "Traders who bought at the broken support tend to sell when price returns to their entry, creating selling pressure that reinforces the flip.",
     "The principle is widely known, leading to self-fulfilling prophecy as additional traders short the former support, further increasing selling pressure."
   ],
-  "trading_implication": "Understanding market psychology allows traders to anticipate potential reversal zones at flipped support/resistance levels. These levels become high‑probability areas to enter trades with the trend, especially when combined with confirmations like indicators or candlestick patterns. It helps avoid false breakouts and improves timing of entries.",
   "common_mistakes": [
     "Entering a trade solely based on a support/resistance flip without confirming signals (indicators, candlestick patterns), leading to failed reversals."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "Understanding market psychology allows traders to anticipate potential reversal zones at flipped support/resistance levels. These levels become high‑probability areas to enter trades with the trend, especially when combined with confirmations like indicators or candlestick patterns. It helps avoid false breakouts and improves timing of entries.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "7bKuNphewFY",
-      "original_card_id": "7bKuNphewFY_concept_market_psychology",
-      "segment_ids": [
-        "seg_002"
-      ],
-      "time_range": [
-        182.8,
-        363.16
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "market_psychology",
+      "source_canonical_term": "Market Psychology",
+      "source_school": "General",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.640650Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "market_psychology",
+  "canonical_term": "Market Psychology",
   "_embedding": [
     0.0452437549829483,
     0.07252851128578186,

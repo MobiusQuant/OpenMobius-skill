@@ -1,50 +1,37 @@
 {
-  "card_id": "horizontal_line",
+  "global_card_id": "horizontal_line",
+  "global_canonical": "Horizontal Line",
   "type": "merged_concept",
-  "canonical_term": "Horizontal Line",
-  "aliases": [],
   "school": "General",
+  "aliases": [],
   "definition": "A charting tool used to mark key support and resistance levels by drawing a straight horizontal line at a chosen price level where price has historically reacted.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "A charting tool used to mark key support and resistance levels by drawing a straight horizontal line at a chosen price level where price has historically reacted."
+  },
   "identification_rules": [
     "Identify a price level where the market has reversed direction at least twice, such as a swing high or low.",
     "Select the Horizontal Line tool and click on the chart at that price level to draw the line.",
     "Multiple touches or reactions confirm the line as a significant support or resistance level."
   ],
-  "trading_implication": "The horizontal line highlights potential reversal or breakout zones. A sustained break above resistance can signal a bullish move, while a break below support may indicate bearish momentum. Traders often use these lines to plan entries, exits, and stop-loss placements.",
   "common_mistakes": [
     "Treating support and resistance as exact price points rather than broader zones, leading to false signals when price slightly overshoots or undershoots the drawn line."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "The horizontal line highlights potential reversal or breakout zones. A sustained break above resistance can signal a bullish move, while a break below support may indicate bearish momentum. Traders often use these lines to plan entries, exits, and stop-loss placements.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "MBl1bKXJ2cE",
-      "original_card_id": "MBl1bKXJ2cE_concept_horizontal_line",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        2.08,
-        364.08
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "horizontal_line",
+      "source_canonical_term": "Horizontal Line",
+      "source_school": "General",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.640486Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "horizontal_line",
+  "canonical_term": "Horizontal Line",
   "_embedding": [
     0.036313802003860474,
     0.04684016853570938,

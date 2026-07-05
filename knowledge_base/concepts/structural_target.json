@@ -1,53 +1,40 @@
 {
-  "card_id": "structural_target",
+  "global_card_id": "structural_target",
+  "global_canonical": "Structural Target",
   "type": "merged_concept",
-  "canonical_term": "Structural Target",
-  "aliases": [],
   "school": "ICT",
+  "aliases": [],
   "definition": "Taking profit at a pre-identified structural level (swing low/high, fair value gap, or consolidation) where price is likely to reverse, rather than using a fixed 1:1 risk-to-reward ratio, aiming for a minimum 2R return.",
+  "definition_per_source": {
+    "Education - ICT (Updated)": "Taking profit at a pre-identified structural level (swing low/high, fair value gap, or consolidation) where price is likely to reverse, rather than using a fixed 1:1 risk-to-reward ratio, aiming for a minimum 2R return."
+  },
   "identification_rules": [
     "Identify a draw on liquidity (previous swing high/low) as the directional target.",
     "Use a fair value gap or previous swing point in the discount/premium zone as the structural target.",
     "Ensure the target provides at least a 2R risk-to-reward multiple from the entry.",
     "Place the target before a point where price would logically reverse (e.g., a protected swing or order block)."
   ],
-  "trading_implication": "Setting profit targets at structural levels aligns with institutional order flow, where price seeks liquidity. It improves risk-to-reward beyond fixed 1:1 exits, increasing profitability when combined with a consistent stop placement strategy. Targets are chosen based on logical reversal points rather than arbitrary ratios.",
   "common_mistakes": [
     "Exiting at a fixed 1:1 instead of holding to the structural target, leaving potential R multiples unrealized.",
     "Targeting a level that does not offer at least 2R risk-to-reward.",
     "Ignoring that lower time frame targets may get briefly swept before reversal, requiring a slightly deeper target placement."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "Setting profit targets at structural levels aligns with institutional order flow, where price seeks liquidity. It improves risk-to-reward beyond fixed 1:1 exits, increasing profitability when combined with a consistent stop placement strategy. Targets are chosen based on logical reversal points rather than arbitrary ratios.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "q40pRwjuPYQ",
-      "original_card_id": "q40pRwjuPYQ_concept_structural_target",
-      "segment_ids": [
-        "seg_005"
-      ],
-      "time_range": [
-        418.599,
-        601.04
-      ],
-      "extraction_confidence": "high"
+      "project": "Education - ICT (Updated)",
+      "card_id": "structural_target",
+      "source_canonical_term": "Structural Target",
+      "source_school": "ICT",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-17T18:09:12.077168Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "structural_target",
+  "canonical_term": "Structural Target",
   "_embedding": [
     0.013460805639624596,
     0.063585564494133,

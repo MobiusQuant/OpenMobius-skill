@@ -1,10 +1,13 @@
 {
-  "card_id": "trend_trading_with_support_and_resistance",
+  "global_card_id": "trend_trading_with_support_and_resistance",
+  "global_canonical": "Trend Trading with Support and Resistance",
   "type": "merged_concept",
-  "canonical_term": "Trend Trading with Support and Resistance",
-  "aliases": [],
   "school": "Price Action",
+  "aliases": [],
   "definition": "A trend-following strategy that enters positions after a key support or resistance level breaks; in an uptrend, traders go long when former resistance flips to support, and in a downtrend, they go short when former support flips to resistance, using additional confirmation to validate entries.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "A trend-following strategy that enters positions after a key support or resistance level breaks; in an uptrend, traders go long when former resistance flips to support, and in a downtrend, they go short when former support flips to resistance, using additional confirmation to validate entries."
+  },
   "identification_rules": [
     "Determine the trend: an uptrend consists of higher highs and higher lows with key lows holding; a downtrend has lower highs and lower lows.",
     "Identify the most recent broken resistance (in uptrend) or broken support (in downtrend) that led to a new high or low.",
@@ -13,44 +16,27 @@
     "Enter long in an uptrend on a confirmed bounce off the new support; enter short in a downtrend on a confirmed rejection from the new resistance.",
     "The trade remains valid as long as the trend-defining low (uptrend) or high (downtrend) is not breached."
   ],
-  "trading_implication": "This strategy allows traders to align entries with the prevailing trend at high-probability zones where prior key levels are retested. It offers favorable risk-to-reward ratios by entering near support in uptrends and near resistance in downtrends, but confirmation is essential to avoid false signals.",
   "common_mistakes": [
     "Entering a trade immediately upon the level break without waiting for a pullback and confirmation, leading to failed trades.",
     "Exiting prematurely on a minor dip below the flipped support in an uptrend, even though the overall trend-defining low remains intact.",
     "Ignoring the trend context (e.g., buying a support flip in a broader downtrend)."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "This strategy allows traders to align entries with the prevailing trend at high-probability zones where prior key levels are retested. It offers favorable risk-to-reward ratios by entering near support in uptrends and near resistance in downtrends, but confirmation is essential to avoid false signals.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "7bKuNphewFY",
-      "original_card_id": "7bKuNphewFY_concept_trend_trading_with_support_and_resistanc",
-      "segment_ids": [
-        "seg_002",
-        "seg_003"
-      ],
-      "time_range": [
-        182.8,
-        542.56
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "trend_trading_with_support_and_resistance",
+      "source_canonical_term": "Trend Trading with Support and Resistance",
+      "source_school": "Price Action",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.641296Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "trend_trading_with_support_and_resistance",
+  "canonical_term": "Trend Trading with Support and Resistance",
   "_embedding": [
     0.04950086399912834,
     0.06036454439163208,

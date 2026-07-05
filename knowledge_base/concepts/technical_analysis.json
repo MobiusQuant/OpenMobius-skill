@@ -1,51 +1,38 @@
 {
-  "card_id": "technical_analysis",
+  "global_card_id": "technical_analysis",
+  "global_canonical": "Technical Analysis",
   "type": "merged_concept",
-  "canonical_term": "Technical Analysis",
-  "aliases": [],
   "school": "General",
+  "aliases": [],
   "definition": "The study of past price movements using charts, indicators, and patterns to predict future price movements, aiming for positive expected value over many trades and managing risk with stop-loss orders.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "The study of past price movements using charts, indicators, and patterns to predict future price movements, aiming for positive expected value over many trades and managing risk with stop-loss orders."
+  },
   "identification_rules": [
     "The trader uses historical price charts as the primary data source for decision-making.",
     "Mathematical indicators are applied to price data to generate signals.",
     "Specific candlestick or chart formations (patterns) are identified to anticipate future moves."
   ],
-  "trading_implication": "Technical analysis is used to make informed trading decisions by identifying buy and sell opportunities. It focuses on achieving a positive expected value over a large number of trades, not winning every trade. Risk is managed by setting stop-loss orders and profit targets.",
   "common_mistakes": [
     "Believing that technical analysis can win every trade, expecting 100% accuracy.",
     "Neglecting risk management by not placing stop-loss orders."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "Technical analysis is used to make informed trading decisions by identifying buy and sell opportunities. It focuses on achieving a positive expected value over a large number of trades, not winning every trade. Risk is managed by setting stop-loss orders and profit targets.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "Pj2HJzv3faE",
-      "original_card_id": "Pj2HJzv3faE_concept_technical_analysis",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        2.12,
-        145.0
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "technical_analysis",
+      "source_canonical_term": "Technical Analysis",
+      "source_school": "General",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.641180Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "technical_analysis",
+  "canonical_term": "Technical Analysis",
   "_embedding": [
     0.01595131866633892,
     0.02390575222671032,

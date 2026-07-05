@@ -1,57 +1,41 @@
 {
-  "card_id": "volume_footprint",
+  "global_card_id": "volume_footprint",
+  "global_canonical": "Volume Footprint",
   "type": "merged_concept",
-  "canonical_term": "Volume Footprint",
-  "aliases": [],
   "school": "Volume Analysis",
+  "aliases": [],
   "definition": "A chart type that displays net buying and selling volume at each price level, with a delta setting showing green for net buying and red for net selling; used to confirm breakout strength via increased net buying volume.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "A chart type that displays net buying and selling volume at each price level, with a delta setting showing green for net buying and red for net selling; used to confirm breakout strength via increased net buying volume."
+  },
   "identification_rules": [
     "Apply the Volume Footprint chart type and set the type to 'delta' to display net buying (green) and net selling (red) volume at each price level.",
     "For an upside move, look for green boxes indicating net buying volume to confirm strength.",
     "On a breakout of a key resistance or support level, look for a significant increase in net buying volume (green) to validate the breakout."
   ],
-  "trading_implication": "It confirms breakout strength by showing whether moves are supported by institutional buying or selling. A surge in net buying volume on an upside breakout reduces the chance of a false breakout and signals sustainment. Traders use it to assess order flow and time entries.",
   "common_mistakes": [
     "Using the 'buy and sell' setting instead of 'delta', which shows separate buy/sell volume rather than net pressure, making directional strength harder to gauge.",
     "Not checking for increased net buying volume on breakouts, leading to potential false signals."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [
-    {
-      "card_id": "AzHP74SywjY_case_002_btc_pivot_point_resistance_break",
-      "video_id": "AzHP74SywjY",
-      "title": "BTC Daily Chart: Breakout Above Multi-Pivot Resistance Level Confirmed by Volume Footprint Delta"
-    }
-  ],
+  "trading_implication": "It confirms breakout strength by showing whether moves are supported by institutional buying or selling. A surge in net buying volume on an upside breakout reduces the chance of a false breakout and signals sustainment. Traders use it to assess order flow and time entries.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "AzHP74SywjY",
-      "original_card_id": "AzHP74SywjY_concept_volume_footprint",
-      "segment_ids": [
-        "seg_004"
-      ],
-      "time_range": [
-        614.16,
-        825.8389999999999
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "volume_footprint",
+      "source_canonical_term": "Volume Footprint",
+      "source_school": "Volume Analysis",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.641332Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "illustrated_by_cases": [
+    "SMC-Strong-Weak-Supplement__AzHP74SywjY_case_002_btc_pivot_point_resistance_break"
+  ],
+  "card_id": "volume_footprint",
+  "canonical_term": "Volume Footprint",
   "_embedding": [
     0.042290098965168,
     0.06901213526725769,

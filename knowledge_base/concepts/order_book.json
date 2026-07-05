@@ -1,51 +1,38 @@
 {
-  "card_id": "order_book",
+  "global_card_id": "order_book",
+  "global_canonical": "Order Book",
   "type": "merged_concept",
-  "canonical_term": "Order Book",
-  "aliases": [],
   "school": "General",
+  "aliases": [],
   "definition": "A real-time record of all pending buy (bid) and sell (ask) orders at various price levels. It shows passive limit/stop orders waiting to be triggered versus aggressive market orders that immediately consume liquidity, moving price as imbalances between supply and demand are resolved.",
+  "definition_per_source": {
+    "SMC-Extra-Supplement": "A real-time record of all pending buy (bid) and sell (ask) orders at various price levels. It shows passive limit/stop orders waiting to be triggered versus aggressive market orders that immediately consume liquidity, moving price as imbalances between supply and demand are resolved."
+  },
   "identification_rules": [
     "The order book displays real-time bid (buy) and ask (sell) volumes at each price level, with the spread between the highest bid and lowest ask.",
     "Aggressive market orders remove liquidity from passive limit orders; when aggressive volume exceeds available passive orders at a price, price moves to the next level with sufficient volume.",
     "A candlestick's high, low, open, and close reflect the outcome of order book auctions: open is the first fill, high/low are extremes reached due to order imbalances, close is the final agreed price."
   ],
-  "trading_implication": "Understanding order book dynamics allows traders to interpret candlestick formations as real auction processes, distinguishing between genuine breakouts and failed attempts (rejections). This helps gauge the balance of power between buyers and sellers, confirming trend continuation or reversal, and avoiding traps like false breakouts where price fails to close beyond a key level.",
   "common_mistakes": [
     "Mistaking a candle's wick that briefly breaches a level for a valid breakout, ignoring the close which shows the auction's true agreement.",
     "Assuming a long upper wick is always bullish manipulation rather than a sign of seller absorption."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "Understanding order book dynamics allows traders to interpret candlestick formations as real auction processes, distinguishing between genuine breakouts and failed attempts (rejections). This helps gauge the balance of power between buyers and sellers, confirming trend continuation or reversal, and avoiding traps like false breakouts where price fails to close beyond a key level.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "IQHoLIinfJ4",
-      "original_card_id": "IQHoLIinfJ4_concept_order_book",
-      "segment_ids": [
-        "seg_002"
-      ],
-      "time_range": [
-        371.28,
-        930.079
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Extra-Supplement",
+      "card_id": "order_book",
+      "source_canonical_term": "Order Book",
+      "source_school": "General",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:53:11.938440Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "order_book",
+  "canonical_term": "Order Book",
   "_embedding": [
     -0.0016403680201619864,
     0.06357773393392563,

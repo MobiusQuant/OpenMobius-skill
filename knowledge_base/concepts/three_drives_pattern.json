@@ -1,60 +1,41 @@
 {
-  "card_id": "three_drives_pattern",
+  "global_card_id": "three_drives_pattern",
+  "global_canonical": "Three Drives Pattern",
   "type": "merged_concept",
-  "canonical_term": "Three Drives Pattern",
-  "aliases": [],
   "school": "Price Action",
+  "aliases": [],
   "definition": "A price pattern of three successive swing points in the same direction (highs in an uptrend, lows in a downtrend), each slightly higher or lower, signaling exhaustion and potential reversal.",
+  "definition_per_source": {
+    "Education - ICT (Updated)": "A price pattern of three successive swing points in the same direction (highs in an uptrend, lows in a downtrend), each slightly higher or lower, signaling exhaustion and potential reversal."
+  },
   "identification_rules": [
     "Identify three consecutive swing highs where each high is marginally higher than the previous (uptrend) or three consecutive swing lows each marginally lower (downtrend).",
     "The third drive often forms a reversal candle with a long wick that closes back inside the prior range, indicating exhaustion."
   ],
-  "trading_implication": "The pattern warns of trend exhaustion and a possible reversal. Traders may wait for confirmation such as a candle two closure or change in state of delivery before entering. Caution is needed if the pattern places entry near liquidity targets, as the move may overshoot.",
   "common_mistakes": [
     "Entering solely on the three drives pattern without waiting for confirmation (e.g., protected swing or change in state of delivery) can result in premature stop-outs."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [
-    {
-      "card_id": "4jU547ocod4_case_003_three_drive_consolidation_with_s",
-      "video_id": "4jU547ocod4",
-      "title": "Three-Drive Consolidation Sweep with Hourly Closure Back In for Bullish Reversal"
-    },
-    {
-      "card_id": "qdQYhePcvGE_case_007_apo2_hourly_reversal_fail_and_su",
-      "video_id": "qdQYhePcvGE",
-      "title": "apo2 Hourly Reversal Fail Followed by Three Drives Setup with SMT Entry"
-    }
-  ],
+  "trading_implication": "The pattern warns of trend exhaustion and a possible reversal. Traders may wait for confirmation such as a candle two closure or change in state of delivery before entering. Caution is needed if the pattern places entry near liquidity targets, as the move may overshoot.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "qdQYhePcvGE",
-      "original_card_id": "qdQYhePcvGE_concept_three_drives_pattern",
-      "segment_ids": [
-        "seg_025"
-      ],
-      "time_range": [
-        1290.159,
-        1343.44
-      ],
-      "extraction_confidence": "low"
+      "project": "Education - ICT (Updated)",
+      "card_id": "three_drives_pattern",
+      "source_canonical_term": "Three Drives Pattern",
+      "source_school": "Price Action",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 0,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 1
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-17T18:09:12.077204Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "illustrated_by_cases": [
+    "Education_-_ICT_(Updated)__4jU547ocod4_case_003_three_drive_consolidation_with_s",
+    "Education_-_ICT_(Updated)__qdQYhePcvGE_case_007_apo2_hourly_reversal_fail_and_su",
+    "Education_-_ICT__qdQYhePcvGE_case_011_spx_1小时反转与5分钟延续"
+  ],
+  "card_id": "three_drives_pattern",
+  "canonical_term": "Three Drives Pattern",
   "_embedding": [
     0.03590762987732887,
     0.037861961871385574,

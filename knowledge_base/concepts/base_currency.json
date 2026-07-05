@@ -1,48 +1,35 @@
 {
-  "card_id": "base_currency",
+  "global_card_id": "base_currency",
+  "global_canonical": "Base Currency",
   "type": "merged_concept",
-  "canonical_term": "Base Currency",
-  "aliases": [],
   "school": "General",
+  "aliases": [],
   "definition": "In currency trading, the base currency is the first currency listed in a pair. It is the unit being valued against the second currency (the quote currency). For example, in EUR/USD, EUR is the base, indicating how many US dollars equal one Euro. Trading involves buying or selling the base currency.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "In currency trading, the base currency is the first currency listed in a pair. It is the unit being valued against the second currency (the quote currency). For example, in EUR/USD, EUR is the base, indicating how many US dollars equal one Euro. Trading involves buying or selling the base currency."
+  },
   "identification_rules": [
     "In any currency pair, the base currency is always the first currency listed (e.g., EUR in EUR/USD).",
     "The exchange rate expresses the value of one unit of the base currency in terms of the quote currency.",
     "A long position means buying the base currency; a short position means selling the base currency."
   ],
-  "trading_implication": "The base currency determines which currency you are speculating on. If you go long on a pair like EUR/USD, you expect the base (EUR) to appreciate against the quote (USD), profiting from the rise. Understanding this is fundamental to analyzing price movements and executing directional trades.",
   "common_mistakes": [],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "The base currency determines which currency you are speculating on. If you go long on a pair like EUR/USD, you expect the base (EUR) to appreciate against the quote (USD), profiting from the rise. Understanding this is fundamental to analyzing price movements and executing directional trades.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "lS-cFGrynUE",
-      "original_card_id": "lS-cFGrynUE_concept_base_currency",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        0.16,
-        537.8
-      ],
-      "extraction_confidence": "medium"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "base_currency",
+      "source_canonical_term": "Base Currency",
+      "source_school": "General",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 0,
-    "medium_confidence_sources": 1,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.639703Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "base_currency",
+  "canonical_term": "Base Currency",
   "_embedding": [
     0.053016867488622665,
     0.09567625820636749,

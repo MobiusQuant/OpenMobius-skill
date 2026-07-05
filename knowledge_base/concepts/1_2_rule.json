@@ -1,54 +1,40 @@
 {
-  "card_id": "1_2_rule",
+  "global_card_id": "1_2_rule",
+  "global_canonical": "1-2% Rule",
   "type": "merged_concept",
-  "canonical_term": "1-2% Rule",
-  "aliases": [],
   "school": "Risk Management",
+  "aliases": [],
   "definition": "A risk management rule stating that a trader should never risk more than 1-2% of their total trading account on a single trade, in order to preserve capital and avoid account blowouts.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "A risk management rule stating that a trader should never risk more than 1-2% of their total trading account on a single trade, in order to preserve capital and avoid account blowouts."
+  },
   "identification_rules": [
     "Calculate the maximum dollar risk per trade as 1-2% of the account balance.",
     "Determine the stop-loss distance in price or pips.",
     "Compute position size such that the total loss if stopped out does not exceed the maximum dollar risk.",
     "Consistently apply the rule to every trade regardless of confidence level."
   ],
-  "trading_implication": "The rule limits losses to small, manageable amounts during losing streaks, allowing traders to survive and remain profitable over many trades. It enforces discipline in position sizing and is fundamental to long-term consistency, as it prevents a single bad trade from devastating the account.",
   "common_mistakes": [
     "Risking more than 2% in pursuit of quick profits.",
     "Ignoring the rule during high-conviction trades and overexposing the account.",
     "Failing to adjust position size after account balance changes."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "The rule limits losses to small, manageable amounts during losing streaks, allowing traders to survive and remain profitable over many trades. It enforces discipline in position sizing and is fundamental to long-term consistency, as it prevents a single bad trade from devastating the account.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "w8eSCFPyGgQ",
-      "original_card_id": "w8eSCFPyGgQ_concept_1_2_rule",
-      "segment_ids": [
-        "seg_001",
-        "seg_004"
-      ],
-      "time_range": [
-        0.08,
-        723.279
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "1_2_rule",
+      "source_canonical_term": "1-2% Rule",
+      "source_school": "Risk Management",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.639579Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "1_2_rule",
+  "canonical_term": "1-2% Rule",
   "_embedding": [
     0.07034482806921005,
     0.0570511668920517,

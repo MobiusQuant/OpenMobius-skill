@@ -1,10 +1,13 @@
 {
-  "card_id": "range_detector",
+  "global_card_id": "range_detector",
+  "global_canonical": "Range Detector",
   "type": "merged_concept",
-  "canonical_term": "Range Detector",
-  "aliases": [],
   "school": "Indicator Based",
+  "aliases": [],
   "definition": "A LuxAlgo indicator that automatically identifies horizontal trading ranges (price moving sideways between support and resistance). It draws shaded rectangles and horizontal lines, confirming a range after sufficient data (default 20 candles). Breakouts are signaled by line color changes: green for upside breaks, red for downside breaks. Best used with price action confirmation.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "A LuxAlgo indicator that automatically identifies horizontal trading ranges (price moving sideways between support and resistance). It draws shaded rectangles and horizontal lines, confirming a range after sufficient data (default 20 candles). Breakouts are signaled by line color changes: green for upside breaks, red for downside breaks. Best used with price action confirmation."
+  },
   "identification_rules": [
     "A gray vertical line marks the candle where the range is first detected after the required minimum length (default 20 candles).",
     "The detected range appears as a shaded rectangle bounded by horizontal support and resistance lines.",
@@ -12,42 +15,26 @@
     "A downside breakout is indicated when the horizontal line turns red.",
     "Increasing the minimum range length setting requires more historical data, filtering out weaker ranges."
   ],
-  "trading_implication": "The Range Detector helps identify consolidation zones and potential breakout opportunities. Traders can use line color changes as entry signals, but should confirm with price action (e.g., higher lows into resistance for bullish breaks, lower highs into support for bearish) to avoid false breakouts. It is suitable for higher timeframes with default settings for reliability.",
   "common_mistakes": [
     "Setting the minimum range length too low (below 20) generates many false ranges due to insufficient data.",
     "Relying solely on line color changes without price action confirmation, leading to false breakout entries."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "The Range Detector helps identify consolidation zones and potential breakout opportunities. Traders can use line color changes as entry signals, but should confirm with price action (e.g., higher lows into resistance for bullish breaks, lower highs into support for bearish) to avoid false breakouts. It is suitable for higher timeframes with default settings for reliability.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "YbKX8E8qEzg",
-      "original_card_id": "YbKX8E8qEzg_concept_range_detector",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        1.599,
-        257.2
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "range_detector",
+      "source_canonical_term": "Range Detector",
+      "source_school": "Indicator Based",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.640868Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "range_detector",
+  "canonical_term": "Range Detector",
   "_embedding": [
     0.04584205150604248,
     0.04342542588710785,

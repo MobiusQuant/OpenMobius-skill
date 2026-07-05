@@ -1,59 +1,43 @@
 {
-  "card_id": "seller_absorption",
+  "global_card_id": "seller_absorption",
+  "global_canonical": "Seller Absorption",
   "type": "merged_concept",
-  "canonical_term": "Seller Absorption",
-  "aliases": [],
   "school": "ICT",
+  "aliases": [],
   "definition": "A micro-level pattern where aggressive selling into a key area is absorbed by buyers, causing price stagnation and a shift to bullish order flow, confirming a continuation long entry.",
+  "definition_per_source": {
+    "SMC-Extra-Supplement": "A micro-level pattern where aggressive selling into a key area is absorbed by buyers, causing price stagnation and a shift to bullish order flow, confirming a continuation long entry."
+  },
   "identification_rules": [
     "Price approaches a predetermined area of interest (order block, range) with strong bearish momentum.",
     "Upon reaching the area, price decelerates and begins to stagnate instead of breaking through.",
     "Sellers fail to push price lower and are gradually absorbed, with buyers protecting the level.",
     "Confirmation occurs when price breaks a recent swing high or runs a high within the area, signaling order flow flip to buyers."
   ],
-  "trading_implication": "Used on lower timeframes (1-min, 5-min) as confirmation to enter continuation longs after a pullback. It indicates seller exhaustion and buyer dominance, allowing for tight stop placement below the absorption zone.",
   "common_mistakes": [
     "Entering long too early before confirmation of absorption and order flow shift.",
     "Misinterpreting an initial aggressive wick as a breakout rather than a potential trap (inducement).",
     "Turning bearish after a false break and selling into a liquidity run, getting trapped on the wrong side."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [
-    {
-      "card_id": "IQHoLIinfJ4_case_002_london_session_long_trade_on_eur",
-      "video_id": "IQHoLIinfJ4",
-      "title": "London Session Long Trade on EURUSD using buyer absorption at order block after liquidity sweep"
-    }
-  ],
+  "trading_implication": "Used on lower timeframes (1-min, 5-min) as confirmation to enter continuation longs after a pullback. It indicates seller exhaustion and buyer dominance, allowing for tight stop placement below the absorption zone.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "IQHoLIinfJ4",
-      "original_card_id": "IQHoLIinfJ4_concept_seller_absorption",
-      "segment_ids": [
-        "seg_007"
-      ],
-      "time_range": [
-        2464.48,
-        2769.04
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Extra-Supplement",
+      "card_id": "seller_absorption",
+      "source_canonical_term": "Seller Absorption",
+      "source_school": "ICT",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:53:11.938467Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "illustrated_by_cases": [
+    "SMC-Extra-Supplement__IQHoLIinfJ4_case_002_london_session_long_trade_on_eur"
+  ],
+  "card_id": "seller_absorption",
+  "canonical_term": "Seller Absorption",
   "_embedding": [
     0.03446291387081146,
     0.07402832061052322,

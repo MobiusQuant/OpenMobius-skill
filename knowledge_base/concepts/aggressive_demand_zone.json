@@ -1,52 +1,39 @@
 {
-  "card_id": "aggressive_demand_zone",
+  "global_card_id": "aggressive_demand_zone",
+  "global_canonical": "Aggressive Demand Zone",
   "type": "merged_concept",
-  "canonical_term": "Aggressive Demand Zone",
-  "aliases": [],
   "school": "Price Action",
+  "aliases": [],
   "definition": "A demand zone formed after a strong bullish engulfing candle that initiates a sharp upward price move; drawn as a rectangle to the right of the candle, expecting demand to re-emerge when price returns to that area.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "A demand zone formed after a strong bullish engulfing candle that initiates a sharp upward price move; drawn as a rectangle to the right of the candle, expecting demand to re-emerge when price returns to that area."
+  },
   "identification_rules": [
     "Price must show a sharp upward movement indicating a strong demand shift.",
     "Identify a bullish candle that engulfs at least two prior red candles (preferably three), opening below and closing above them.",
     "Confirm follow-through: the engulfing candle must start a sustained strong move upward, not an isolated spike.",
     "Draw the demand zone as a horizontal rectangle placed to the right of the engulfing candle."
   ],
-  "trading_implication": "Aggressive demand zones mark areas of historical strong buying, suggesting a high-probability bounce when price returns. Traders typically place buy limit orders within the zone to capitalize on expected renewed demand, with stop losses set below the zone to manage risk if the zone fails.",
   "common_mistakes": [
     "Treating any isolated strong bullish candle as an aggressive demand zone without verifying that it leads to a sustained upward move.",
     "Drawing the demand zone extending to the left of the engulfing candle instead of only to the right."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "Aggressive demand zones mark areas of historical strong buying, suggesting a high-probability bounce when price returns. Traders typically place buy limit orders within the zone to capitalize on expected renewed demand, with stop losses set below the zone to manage risk if the zone fails.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "vzTMIFcW3cM",
-      "original_card_id": "vzTMIFcW3cM_concept_aggressive_demand_zone",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        1.599,
-        182.08
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "aggressive_demand_zone",
+      "source_canonical_term": "Aggressive Demand Zone",
+      "source_school": "Price Action",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.639597Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "aggressive_demand_zone",
+  "canonical_term": "Aggressive Demand Zone",
   "_embedding": [
     0.04961303994059563,
     0.05621594935655594,

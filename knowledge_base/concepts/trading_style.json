@@ -1,48 +1,35 @@
 {
-  "card_id": "trading_style",
+  "global_card_id": "trading_style",
+  "global_canonical": "Trading Style",
   "type": "merged_concept",
-  "canonical_term": "Trading Style",
-  "aliases": [],
   "school": "General",
+  "aliases": [],
   "definition": "A classification of trading approaches based on holding period: day trading (intraday, low timeframes), swing trading (days to weeks, medium timeframes), and long-term investing (months to years, high timeframes).",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "A classification of trading approaches based on holding period: day trading (intraday, low timeframes), swing trading (days to weeks, medium timeframes), and long-term investing (months to years, high timeframes)."
+  },
   "identification_rules": [
     "Day trading involves buying and selling within the same day using time frames from 1 hour down to 1 minute (low time frame).",
     "Swing trading holds positions from a few days to a few weeks using time frames from daily down to 1 hour (medium time frame).",
     "Long-term investing holds positions from months to years using time frames from monthly down to daily (high time frame)."
   ],
-  "trading_implication": "The trading style determines the time frame selection for top-down analysis and dictates the appropriate high, medium, and low time frame combination (e.g., day traders may use 1h, 15min, 3min while swing traders use daily, 4h, 30min).",
   "common_mistakes": [],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "The trading style determines the time frame selection for top-down analysis and dictates the appropriate high, medium, and low time frame combination (e.g., day traders may use 1h, 15min, 3min while swing traders use daily, 4h, 30min).",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "CU1Fe8qznoA",
-      "original_card_id": "CU1Fe8qznoA_concept_trading_style",
-      "segment_ids": [
-        "seg_002"
-      ],
-      "time_range": [
-        183.64,
-        362.0
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "trading_style",
+      "source_canonical_term": "Trading Style",
+      "source_school": "General",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.641271Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "trading_style",
+  "canonical_term": "Trading Style",
   "_embedding": [
     0.01307697407901287,
     0.05619840323925018,

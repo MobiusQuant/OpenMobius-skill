@@ -1,58 +1,43 @@
 {
-  "card_id": "positional_entry",
+  "global_card_id": "positional_entry",
+  "global_canonical": "Positional Entry",
   "type": "merged_concept",
-  "canonical_term": "Positional Entry",
+  "school": "ICT",
   "aliases": [
     "位置性入场"
   ],
-  "school": "ICT",
   "definition": "在高时间框架新K线开盘时进场的交易方式。基于对整体市场结构的信心，而非等待低时间框架的完整确认，通过在关键时间点入场来把握趋势方向。",
+  "definition_per_source": {
+    "Education - ICT": "在高时间框架新K线开盘时进场的交易方式。基于对整体市场结构的信心，而非等待低时间框架的完整确认，通过在关键时间点入场来把握趋势方向。"
+  },
   "identification_rules": [
     "确认高时间框架（如4小时、1小时）的结构反转信号（如CSD、Protected Swing形成）",
     "在该高时间框架新K线开盘时执行入场",
     "止损设置在Protected Swing或CSD的50%位置及以上",
     "交易者对后续走势方向有较高信心，不需等待低时间框架完整形态确认"
   ],
-  "trading_implication": "Positional Entry是一种主动型入场方式，适用于交易者对市场结构有明确判断的场景。相比等待低时间框架完整确认，它能更早捕捉趋势启动。止损通常设在Protected Swing或CSD的50%位置，目标为2R或更高。该方法要求交易者具有较强的结构识别能力和风险管理纪律。",
   "common_mistakes": [
     "在没有确认CSD或Protected Swing的情况下盲目入场",
     "止损设置过紧或未基于Protected Swing/CSD的有效水平",
     "对市场结构信心不足，过度依赖低时间框架确认而错失入场时机",
     "未在高时间框架新K线开盘时执行，而是在K线中途随意入场"
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "Positional Entry是一种主动型入场方式，适用于交易者对市场结构有明确判断的场景。相比等待低时间框架完整确认，它能更早捕捉趋势启动。止损通常设在Protected Swing或CSD的50%位置，目标为2R或更高。该方法要求交易者具有较强的结构识别能力和风险管理纪律。",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "FAKWJ-1NlLE",
-      "original_card_id": "FAKWJ-1NlLE_concept_positional_entry",
-      "segment_ids": [
-        "seg_015",
-        "seg_019",
-        "seg_020"
-      ],
-      "time_range": [
-        768.72,
-        1044.559
-      ],
-      "extraction_confidence": "high"
+      "project": "Education - ICT",
+      "card_id": "positional_entry",
+      "source_canonical_term": "Positional Entry",
+      "source_school": "ICT",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-13T15:59:04.134794Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "positional_entry",
+  "canonical_term": "Positional Entry",
   "_embedding": [
     0.035511527210474014,
     0.03590646758675575,

@@ -1,10 +1,13 @@
 {
-  "card_id": "strategy_two_liquidity_zone_sweep_fvg",
+  "global_card_id": "strategy_two_liquidity_zone_sweep_fvg",
+  "global_canonical": "Strategy Two (Liquidity Zone Sweep + FVG)",
   "type": "merged_concept",
-  "canonical_term": "Strategy Two (Liquidity Zone Sweep + FVG)",
-  "aliases": [],
   "school": "ICT",
+  "aliases": [],
   "definition": "A multi-timeframe ICT strategy: identify key liquidity zones on a higher timeframe, wait for a sweep (false breakout) with price closing back inside, then enter on a lower timeframe at a fair value gap formed after the sweep, targeting opposite liquidity.",
+  "definition_per_source": {
+    "SMC-Indicator-Supplement": "A multi-timeframe ICT strategy: identify key liquidity zones on a higher timeframe, wait for a sweep (false breakout) with price closing back inside, then enter on a lower timeframe at a fair value gap formed after the sweep, targeting opposite liquidity."
+  },
   "identification_rules": [
     "Mark major buy-side and sell-side liquidity zones on a higher timeframe chart (e.g., major swing highs/lows, equal highs/lows).",
     "Wait for price to break beyond a liquidity zone and then close back inside the zone's range, confirming a liquidity sweep.",
@@ -13,44 +16,28 @@
     "Place stop loss beyond the sweep extreme: above the high for shorts, below the low for longs.",
     "Take profit at the next opposing liquidity zone (sell-side for shorts, buy-side for longs)."
   ],
-  "trading_implication": "This strategy aligns trades with institutional order flow by entering after smart money has collected liquidity and reversed price. The use of FVG on a lower timeframe provides a high-probability entry point with a defined stop and target, often yielding a favorable risk-to-reward ratio.",
   "common_mistakes": [
     "Entering before price closes back inside the liquidity zone, failing to confirm the sweep.",
     "Trading without a clear FVG on the lower timeframe, leading to premature entries.",
     "Misidentifying liquidity zones by using minor or insignificant levels instead of major, high-conviction zones.",
     "Placing stop losses too tight, getting stopped out by minor wicks before the reversal."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "This strategy aligns trades with institutional order flow by entering after smart money has collected liquidity and reversed price. The use of FVG on a lower timeframe provides a high-probability entry point with a defined stop and target, often yielding a favorable risk-to-reward ratio.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "jgJp31byklU",
-      "original_card_id": "jgJp31byklU_concept_strategy_two_liquidity_zone_sweep_fvg",
-      "segment_ids": [
-        "seg_007"
-      ],
-      "time_range": [
-        568.72,
-        684.56
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Indicator-Supplement",
+      "card_id": "strategy_two_liquidity_zone_sweep_fvg",
+      "source_canonical_term": "Strategy Two (Liquidity Zone Sweep + FVG)",
+      "source_school": "ICT",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T09:41:38.686463Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "strategy_two_liquidity_zone_sweep_fvg",
+  "canonical_term": "Strategy Two (Liquidity Zone Sweep + FVG)",
   "_embedding": [
     0.05716812238097191,
     0.05734096094965935,

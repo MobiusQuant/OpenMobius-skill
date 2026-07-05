@@ -1,48 +1,35 @@
 {
-  "card_id": "valid_pullback",
+  "global_card_id": "valid_pullback",
+  "global_canonical": "Valid Pullback",
   "type": "merged_concept",
-  "canonical_term": "Valid Pullback",
-  "aliases": [],
   "school": "General",
+  "aliases": [],
   "definition": "Not explicitly defined in the provided material.",
+  "definition_per_source": {
+    "SMC-Indicator-Supplement": "Not explicitly defined in the provided material."
+  },
   "identification_rules": [
     "Not explicitly stated in the provided material."
   ],
-  "trading_implication": "Recognizing valid pullbacks helps identify authentic order blocks and inducement zones in market structure analysis.",
   "common_mistakes": [
     "Not explicitly stated in the provided material."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "Recognizing valid pullbacks helps identify authentic order blocks and inducement zones in market structure analysis.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "JpQybUVffVI",
-      "original_card_id": "JpQybUVffVI_concept_valid_pullback",
-      "segment_ids": [
-        "seg_003"
-      ],
-      "time_range": [
-        12.48,
-        16.32
-      ],
-      "extraction_confidence": "low"
+      "project": "SMC-Indicator-Supplement",
+      "card_id": "valid_pullback",
+      "source_canonical_term": "Valid Pullback",
+      "source_school": "General",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 0,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 1
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T09:41:38.725711Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "valid_pullback",
+  "canonical_term": "Valid Pullback",
   "_embedding": [
     0.029894862323999405,
     0.048303939402103424,

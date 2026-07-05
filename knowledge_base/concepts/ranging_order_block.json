@@ -1,51 +1,38 @@
 {
-  "card_id": "ranging_order_block",
+  "global_card_id": "ranging_order_block",
+  "global_canonical": "Ranging Order Block",
   "type": "merged_concept",
-  "canonical_term": "Ranging Order Block",
-  "aliases": [],
   "school": "ICT",
+  "aliases": [],
   "definition": "An order block formed during a consolidation range before a breakout, identified by at least four consecutive candles closing inside the range. Price is expected to reject this zone upon return.",
+  "definition_per_source": {
+    "SMC-Indicator-Supplement": "An order block formed during a consolidation range before a breakout, identified by at least four consecutive candles closing inside the range. Price is expected to reject this zone upon return."
+  },
   "identification_rules": [
     "The market must be in a visible consolidation range (price appears trapped in a box).",
     "At least four consecutive candles must close inside the range to confirm the zone.",
     "The order block zone is the last candlestick (or group of candles) before a drastic breakout from the range.",
     "Price is expected to return and react at this zone after the breakout."
   ],
-  "trading_implication": "When price returns to the ranging order block zone, traders anticipate a rejection and continuation in the breakout direction, making it a potential entry point with a stop-loss placed beyond the range. It aligns with the overall market structure for higher-probability trades.",
   "common_mistakes": [
     "Assuming any small consolidation is a ranging order block without requiring the four consecutive candles closing inside the range."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "When price returns to the ranging order block zone, traders anticipate a rejection and continuation in the breakout direction, making it a potential entry point with a stop-loss placed beyond the range. It aligns with the overall market structure for higher-probability trades.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "NaWpOBxdsCY",
-      "original_card_id": "NaWpOBxdsCY_concept_ranging_order_block",
-      "segment_ids": [
-        "seg_006"
-      ],
-      "time_range": [
-        627.04,
-        706.32
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Indicator-Supplement",
+      "card_id": "ranging_order_block",
+      "source_canonical_term": "Ranging Order Block",
+      "source_school": "ICT",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T09:41:38.686331Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "ranging_order_block",
+  "canonical_term": "Ranging Order Block",
   "_embedding": [
     0.031904496252536774,
     0.0720062330365181,

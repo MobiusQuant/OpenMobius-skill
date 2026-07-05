@@ -1,57 +1,40 @@
 {
-  "card_id": "runners",
+  "global_card_id": "runners",
+  "global_canonical": "Runners",
   "type": "merged_concept",
-  "canonical_term": "Runners",
-  "aliases": [],
   "school": "Risk Management",
+  "aliases": [],
   "definition": "A portion of a position kept open after the initial profit target (e.g. 2R) is reached, allowing the remaining size to capture a larger move toward the opposite side of the range or further extension.",
+  "definition_per_source": {
+    "Education - ICT (Updated)": "A portion of a position kept open after the initial profit target (e.g. 2R) is reached, allowing the remaining size to capture a larger move toward the opposite side of the range or further extension."
+  },
   "identification_rules": [
     "Define the initial profit target (e.g. 2R) on the trade plan and treat partial position closure at that level as the trigger for runners.",
     "After taking partial profit at the initial target, identify a further objective such as the other side of the range to manage the remaining portion.",
     "Runners apply only when a structural target (e.g. opposite range extreme) exists beyond the initial R-target, as shown in the box setup example where the move extended to just over 5R."
   ],
-  "trading_implication": "Runners allow a trader to lock in a base profit (e.g. 2R) while leaving residual exposure to capture extended moves toward the opposite side of the range. In the box setup, taking 2R first and holding runners produced just over 5R when price continued to the range extreme. This balances consistent risk-to-reward execution with the ability to participate in larger expansions when bias and structure align.",
   "common_mistakes": [
     "Not explicitly stated in the material."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [
-    {
-      "card_id": "0xygpCMwxbQ_case_004_es_daily_to_5_minute_multi_timef",
-      "video_id": "0xygpCMwxbQ",
-      "title": "ES Daily-to-5min Top-Down Short Entry Using Volume Imbalance POI"
-    }
-  ],
+  "trading_implication": "Runners allow a trader to lock in a base profit (e.g. 2R) while leaving residual exposure to capture extended moves toward the opposite side of the range. In the box setup, taking 2R first and holding runners produced just over 5R when price continued to the range extreme. This balances consistent risk-to-reward execution with the ability to participate in larger expansions when bias and structure align.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "HFfChGFHD44",
-      "original_card_id": "HFfChGFHD44_concept_runners",
-      "segment_ids": [
-        "seg_003",
-        "seg_004"
-      ],
-      "time_range": [
-        366.36,
-        508.139
-      ],
-      "extraction_confidence": "medium"
+      "project": "Education - ICT (Updated)",
+      "card_id": "runners",
+      "source_canonical_term": "Runners",
+      "source_school": "Risk Management",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 0,
-    "medium_confidence_sources": 1,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-17T18:09:12.077037Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "illustrated_by_cases": [
+    "Education_-_ICT_(Updated)__0xygpCMwxbQ_case_004_es_daily_to_5_minute_multi_timef"
+  ],
+  "card_id": "runners",
+  "canonical_term": "Runners",
   "_embedding": [
     0.046820808202028275,
     0.06094298139214516,

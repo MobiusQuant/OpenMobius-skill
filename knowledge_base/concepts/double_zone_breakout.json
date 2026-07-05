@@ -1,62 +1,42 @@
 {
-  "card_id": "double_zone_breakout",
+  "global_card_id": "double_zone_breakout",
+  "global_canonical": "Double Zone Breakout",
   "type": "merged_concept",
-  "canonical_term": "Double Zone Breakout",
-  "aliases": [],
   "school": "ICT",
+  "aliases": [],
   "definition": "A pattern where price breaks and closes beyond two consecutive supply or demand zones in a single leg, confirming a change of character and providing a high-probability entry with strong confluence.",
+  "definition_per_source": {
+    "SMC-Indicator-Supplement": "A pattern where price breaks and closes beyond two consecutive supply or demand zones in a single leg, confirming a change of character and providing a high-probability entry with strong confluence."
+  },
   "identification_rules": [
     "Identify a change of character pattern with a break of a recent major swing point.",
     "Confirm price has broken and closed beyond the first supply or demand zone in the direction of the breakout.",
     "Verify that price continues and breaks with a close beyond the second, adjacent supply or demand zone in the same direction.",
     "For maximum effectiveness, the breakout should occur in a single impulsive leg without significant pullbacks between zones."
   ],
-  "trading_implication": "A double zone breakout serves as strong confluence for trend continuation or reversal trades, indicating robust momentum. It often leaves inefficiencies that price may retrace to fill, offering entry opportunities after the breakout. Traders can place limit orders at the newly formed opposite zone (extreme zone) with stops beyond it and targets at higher time frame levels or unmitigated zones.",
   "common_mistakes": [
     "Entering trades from a decisional zone (a lower supply/demand zone formed after a pullback) instead of waiting for the extreme zone to be reached, risking being stopped out by a liquidity sweep."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [
-    {
-      "card_id": "sSAGIzQAhuM_case_005_double_zone_breakout_with_single",
-      "video_id": "sSAGIzQAhuM",
-      "title": "Double Zone Breakout with Single Down Leg: Price breaks two successive demand zones in one bearish move, forming a strong supply zone for short entry"
-    },
-    {
-      "card_id": "sSAGIzQAhuM_case_006_double_zone_breakout_with_pullba",
-      "video_id": "sSAGIzQAhuM",
-      "title": "Double Zone Breakout with Pullback and Liquidity Sweep: Price breaks two demand zones, forms double top, then sweeps upper liquidity before downside continuation"
-    }
-  ],
+  "trading_implication": "A double zone breakout serves as strong confluence for trend continuation or reversal trades, indicating robust momentum. It often leaves inefficiencies that price may retrace to fill, offering entry opportunities after the breakout. Traders can place limit orders at the newly formed opposite zone (extreme zone) with stops beyond it and targets at higher time frame levels or unmitigated zones.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "sSAGIzQAhuM",
-      "original_card_id": "sSAGIzQAhuM_concept_double_zone_breakout",
-      "segment_ids": [
-        "seg_006"
-      ],
-      "time_range": [
-        685.8389999999999,
-        907.76
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Indicator-Supplement",
+      "card_id": "double_zone_breakout",
+      "source_canonical_term": "Double Zone Breakout",
+      "source_school": "ICT",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T09:41:38.685786Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "illustrated_by_cases": [
+    "SMC-Indicator-Supplement__sSAGIzQAhuM_case_005_double_zone_breakout_with_single",
+    "SMC-Indicator-Supplement__sSAGIzQAhuM_case_006_double_zone_breakout_with_pullba"
+  ],
+  "card_id": "double_zone_breakout",
+  "canonical_term": "Double Zone Breakout",
   "_embedding": [
     0.03483915701508522,
     0.06780686229467392,

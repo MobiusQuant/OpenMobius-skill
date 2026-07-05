@@ -1,51 +1,38 @@
 {
-  "card_id": "moving_average_of_volume",
+  "global_card_id": "moving_average_of_volume",
+  "global_canonical": "Moving Average of Volume",
   "type": "merged_concept",
-  "canonical_term": "Moving Average of Volume",
-  "aliases": [],
   "school": "Volume Analysis",
+  "aliases": [],
   "definition": "A moving average applied to volume bars that smooths volume data to reveal underlying trends in trading activity, helping identify whether buying or selling conviction is strengthening or weakening.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "A moving average applied to volume bars that smooths volume data to reveal underlying trends in trading activity, helping identify whether buying or selling conviction is strengthening or weakening."
+  },
   "identification_rules": [
     "The indicator is displayed as a line overlaying the volume histogram, with a configurable length (e.g., 14 periods).",
     "Falling volume (volume bars consistently below the moving average) during a downtrend signals diminishing selling pressure and a potential upside reversal.",
     "Rising volume (volume bars consistently above the moving average) during a trend confirms conviction in the move."
   ],
-  "trading_implication": "Used to confirm trend strength: rising volume supports continuation, while declining volume warns of fading momentum and possible reversals. In a downtrend, decreasing volume foreshadowed a bullish reversal in the example; conversely, an uptrend with falling volume could indicate a bearish reversal.",
   "common_mistakes": [
     "Assuming falling volume alone signals an immediate reversal without considering price action and market structure.",
     "Relying solely on the moving average line instead of understanding raw volume patterns, as the line only smooths the data."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "Used to confirm trend strength: rising volume supports continuation, while declining volume warns of fading momentum and possible reversals. In a downtrend, decreasing volume foreshadowed a bullish reversal in the example; conversely, an uptrend with falling volume could indicate a bearish reversal.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "aKuuhQ_7GXQ",
-      "original_card_id": "aKuuhQ_7GXQ_concept_moving_average_of_volume",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        1.599,
-        448.199
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "moving_average_of_volume",
+      "source_canonical_term": "Moving Average of Volume",
+      "source_school": "Volume Analysis",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.640745Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "moving_average_of_volume",
+  "canonical_term": "Moving Average of Volume",
   "_embedding": [
     0.0399329699575901,
     0.04924098029732704,

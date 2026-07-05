@@ -1,55 +1,40 @@
 {
-  "card_id": "expected_value",
+  "global_card_id": "expected_value",
+  "global_canonical": "Expected Value",
   "type": "merged_concept",
-  "canonical_term": "Expected Value",
-  "aliases": [],
   "school": "Risk Management",
+  "aliases": [],
   "definition": "The average profit or loss per trade over many trades. Calculated as (win rate × average win) − (loss rate × average loss). A positive expected value indicates that the strategy is profitable in the long run.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "The average profit or loss per trade over many trades. Calculated as (win rate × average win) − (loss rate × average loss). A positive expected value indicates that the strategy is profitable in the long run."
+  },
   "identification_rules": [
     "Calculate win rate by dividing the number of winning trades by total trades over a representative sample.",
     "Determine average win and average loss in currency or percentage terms from historical trades.",
     "Compute expected value using the formula: (win rate × average win) − (loss rate × average loss).",
     "Interpret the result: a positive value means the strategy is expected to be profitable; a negative value means it is unprofitable."
   ],
-  "trading_implication": "Expected value is the foundation for evaluating strategy profitability. Traders should only take trades when the strategy's expected value is positive, indicating a statistical edge. Even with a positive EV, short-term losses are possible, so consistency and a large sample of trades are required to realize the expected gains. It integrates win rate and risk/reward into a single decision metric.",
   "common_mistakes": [
     "Expecting positive expected value to guarantee profits over a small number of trades.",
     "Focusing solely on win rate without considering average win/loss sizes.",
     "Failing to collect enough trade samples to verify that the expected value is reliable."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "Expected value is the foundation for evaluating strategy profitability. Traders should only take trades when the strategy's expected value is positive, indicating a statistical edge. Even with a positive EV, short-term losses are possible, so consistency and a large sample of trades are required to realize the expected gains. It integrates win rate and risk/reward into a single decision metric.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "w8eSCFPyGgQ",
-      "original_card_id": "w8eSCFPyGgQ_concept_expected_value",
-      "segment_ids": [
-        "seg_003",
-        "seg_005",
-        "seg_006"
-      ],
-      "time_range": [
-        303.759,
-        1093.28
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "expected_value",
+      "source_canonical_term": "Expected Value",
+      "source_school": "Risk Management",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.640328Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "expected_value",
+  "canonical_term": "Expected Value",
   "_embedding": [
     0.008338977582752705,
     0.04698063060641289,

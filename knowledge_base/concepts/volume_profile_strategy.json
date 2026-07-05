@@ -1,10 +1,13 @@
 {
-  "card_id": "volume_profile_strategy",
+  "global_card_id": "volume_profile_strategy",
+  "global_canonical": "Volume Profile Strategy",
   "type": "merged_concept",
-  "canonical_term": "Volume Profile Strategy",
-  "aliases": [],
   "school": "Volume Analysis",
+  "aliases": [],
   "definition": "A trading strategy that uses the Volume Profile indicator to identify key levels where price may accelerate. It focuses on low volume areas (fast historical moves) and places resistance just above high volume nodes, as breakouts often occur above heavy volume zones, leading to rapid price movement.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "A trading strategy that uses the Volume Profile indicator to identify key levels where price may accelerate. It focuses on low volume areas (fast historical moves) and places resistance just above high volume nodes, as breakouts often occur above heavy volume zones, leading to rapid price movement."
+  },
   "identification_rules": [
     "Apply the Visible Range Volume Profile to the chart, showing volume by price.",
     "Identify high volume nodes (tall horizontal bars) indicating areas of heavy trading activity.",
@@ -12,42 +15,26 @@
     "Place horizontal resistance lines just above high volume nodes, and support lines just below.",
     "Look for price breakouts at these levels; the low volume areas serve as potential fast-move zones."
   ],
-  "trading_implication": "The strategy helps traders anticipate where price may accelerate after breaking key levels derived from volume distribution. Instead of treating high volume areas themselves as support/resistance, these areas are seen as ranges that, once breached, often lead to rapid moves through low volume zones, offering high-reward opportunities.",
   "common_mistakes": [
     "Mistaking high volume areas as immediate support/resistance, when they are more like trading ranges and true key levels lie just above or below them.",
     "Failing to adjust the Volume Profile's visible range to match the trading timeframe, which can misrepresent volume distribution."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "The strategy helps traders anticipate where price may accelerate after breaking key levels derived from volume distribution. Instead of treating high volume areas themselves as support/resistance, these areas are seen as ranges that, once breached, often lead to rapid moves through low volume zones, offering high-reward opportunities.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "YM2FMtCum2g",
-      "original_card_id": "YM2FMtCum2g_concept_volume_profile_strategy",
-      "segment_ids": [
-        "seg_002"
-      ],
-      "time_range": [
-        361.039,
-        540.56
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "volume_profile_strategy",
+      "source_canonical_term": "Volume Profile Strategy",
+      "source_school": "Volume Analysis",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.641357Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "volume_profile_strategy",
+  "canonical_term": "Volume Profile Strategy",
   "_embedding": [
     0.059181686490774155,
     0.06047273799777031,

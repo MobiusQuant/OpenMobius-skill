@@ -1,10 +1,13 @@
 {
-  "card_id": "basic_order_block_entry",
+  "global_card_id": "basic_order_block_entry",
+  "global_canonical": "Basic Order Block Entry",
   "type": "merged_concept",
-  "canonical_term": "Basic Order Block Entry",
-  "aliases": [],
   "school": "ICT",
+  "aliases": [],
   "definition": "An ICT trade entry technique using a fresh order block formed by a sharp imbalance with a fair value gap that breaks structure. Entry is placed a spread above the order block, stop below the swing low, first target at 2:1 risk-to-reward, second target the next key level, traded only with trend direction.",
+  "definition_per_source": {
+    "SMC-Indicator-Supplement": "An ICT trade entry technique using a fresh order block formed by a sharp imbalance with a fair value gap that breaks structure. Entry is placed a spread above the order block, stop below the swing low, first target at 2:1 risk-to-reward, second target the next key level, traded only with trend direction."
+  },
   "identification_rules": [
     "Identify a fresh order block that recently formed with a fair value gap and a break of structure.",
     "Confirm the order block shows obvious inefficiency with a fair value gap between wicks.",
@@ -12,44 +15,28 @@
     "Check higher timeframe key levels to gauge room before the next potential reversal zone.",
     "Analyze the left side of the chart to avoid liquidity traps, overlapping order blocks, or gaps that increase risk."
   ],
-  "trading_implication": "Provides a high-probability trend-following entry after a retracement to a fresh order block. The trader scales out half at 2:1 risk-to-reward and lets the rest run to the next structural level, with a stop below the swing low. The method enforces disciplined entries aligned with institutional order flow and robust risk management.",
   "common_mistakes": [
     "Entering on an order block without a clear fair value gap or break of structure.",
     "Trading against the prevailing trend, reducing probability.",
     "Ignoring higher timeframe levels that could cause reversals.",
     "Failing to check the left side for liquidity grabs or overlapping order blocks, leading to stop-outs."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "Provides a high-probability trend-following entry after a retracement to a fresh order block. The trader scales out half at 2:1 risk-to-reward and lets the rest run to the next structural level, with a stop below the swing low. The method enforces disciplined entries aligned with institutional order flow and robust risk management.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "ECMYxWuir0A",
-      "original_card_id": "ECMYxWuir0A_concept_basic_order_block_entry",
-      "segment_ids": [
-        "seg_005"
-      ],
-      "time_range": [
-        491.599,
-        631.519
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Indicator-Supplement",
+      "card_id": "basic_order_block_entry",
+      "source_canonical_term": "Basic Order Block Entry",
+      "source_school": "ICT",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T09:41:38.685566Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "basic_order_block_entry",
+  "canonical_term": "Basic Order Block Entry",
   "_embedding": [
     -0.011167100630700588,
     0.0958266630768776,

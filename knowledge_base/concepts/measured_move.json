@@ -1,64 +1,40 @@
 {
-  "card_id": "measured_move",
+  "global_card_id": "measured_move",
+  "global_canonical": "Measured Move",
   "type": "merged_concept",
-  "canonical_term": "Measured Move",
-  "aliases": [],
   "school": "Price Action",
+  "aliases": [],
   "definition": "A target projection method that measures the vertical distance of a prior impulsive move and applies that same distance from the lowest point of a consolidation pattern to estimate a profit target.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "A target projection method that measures the vertical distance of a prior impulsive move and applies that same distance from the lowest point of a consolidation pattern to estimate a profit target."
+  },
   "identification_rules": [
     "Identify the impulsive move that preceded the consolidation pattern.",
     "Measure the full vertical distance (in price) of that impulsive move.",
     "Project the measured distance upward from the lowest point within the pattern to set the target level."
   ],
-  "trading_implication": "Provides a predetermined profit target for breakout trades from consolidation patterns. It helps traders set objectives based on historical price movement, offering a systematic way to manage exits alongside risk/reward ratios.",
   "common_mistakes": [],
-  "related_concepts": [],
-  "illustrated_by_cases": [
-    {
-      "card_id": "GFDwPBdYHwA_case_001_first_swing_on_xauusd_with_fib_e",
-      "video_id": "GFDwPBdYHwA",
-      "title": "First Swing on XAUUSD with Fib Extension: Price Rejected at 1.0 and 1.618 Targets"
-    },
-    {
-      "card_id": "GFDwPBdYHwA_case_002_second_swing_on_xauusd_with_fib_",
-      "video_id": "GFDwPBdYHwA",
-      "title": "Second Swing on XAUUSD with Fib Extension: Price rejection at 1.0 and 1.618 levels"
-    },
-    {
-      "card_id": "PP7vnXpL4oc_case_001_audusd_pullback_trade_example",
-      "video_id": "PP7vnXpL4oc",
-      "title": "AUDUSD 15-minute pullback trade with hammer entry at support, wider stop loss, and measured move target"
-    }
-  ],
+  "trading_implication": "Provides a predetermined profit target for breakout trades from consolidation patterns. It helps traders set objectives based on historical price movement, offering a systematic way to manage exits alongside risk/reward ratios.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "huL5If0h9RM",
-      "original_card_id": "huL5If0h9RM_concept_measured_move",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        1.64,
-        293.4
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "measured_move",
+      "source_canonical_term": "Measured Move",
+      "source_school": "Price Action",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.640661Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "illustrated_by_cases": [
+    "SMC-Strong-Weak-Supplement__GFDwPBdYHwA_case_001_first_swing_on_xauusd_with_fib_e",
+    "SMC-Strong-Weak-Supplement__GFDwPBdYHwA_case_002_second_swing_on_xauusd_with_fib_",
+    "SMC-Strong-Weak-Supplement__PP7vnXpL4oc_case_001_audusd_pullback_trade_example"
+  ],
+  "card_id": "measured_move",
+  "canonical_term": "Measured Move",
   "_embedding": [
     0.04207029566168785,
     0.0340036079287529,

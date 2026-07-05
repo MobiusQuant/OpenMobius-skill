@@ -1,13 +1,16 @@
 {
-  "card_id": "imbalance_multi_timeframe_analysis",
+  "global_card_id": "imbalance_multi_timeframe_analysis",
+  "global_canonical": "Imbalance (Multi-Timeframe Analysis)",
   "type": "merged_concept",
-  "canonical_term": "Imbalance (Multi-Timeframe Analysis)",
+  "school": "ICT",
   "aliases": [
     "多时间框架不平衡分析",
     "小时间框架不平衡"
   ],
-  "school": "ICT",
   "definition": "在大时间框架的公允价值缺口（FVG）内寻找小时间框架的不平衡区域，进一步缩小和精化交易入场点，降低风险敞口。",
+  "definition_per_source": {
+    "Education - ICT": "在大时间框架的公允价值缺口（FVG）内寻找小时间框架的不平衡区域，进一步缩小和精化交易入场点，降低风险敞口。"
+  },
   "identification_rules": [
     "首先在高时间框架（如日线）识别一个明确的FVG区域",
     "在该FVG范围内切换到较低时间框架（如小时线、5分钟线）",
@@ -15,42 +18,26 @@
     "进一步下钻至更低时间框架（如1分钟线）确认是否存在额外的不平衡点",
     "标记这些不平衡区域的开盘价作为精化后的参考点"
   ],
-  "trading_implication": "多时间框架不平衡分析通过逐级缩小入场范围来改进交易执行。交易者不在整个FVG区域入场，而是利用低时间框架的不平衡（通常是订单块或破坏块）来精确定位入场点，从而显著降低风险敞口。这种方法允许交易者接受更低的胜率，因为单笔风险已被大幅压缩。",
   "common_mistakes": [
     "在高时间框架FVG内直接入场，未利用低时间框架不平衡进一步精化，导致风险敞口过大",
     "在低时间框架寻找不平衡时忽视其与高时间框架FVG的对齐关系，破坏了多时间框架的逻辑连贯性"
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "多时间框架不平衡分析通过逐级缩小入场范围来改进交易执行。交易者不在整个FVG区域入场，而是利用低时间框架的不平衡（通常是订单块或破坏块）来精确定位入场点，从而显著降低风险敞口。这种方法允许交易者接受更低的胜率，因为单笔风险已被大幅压缩。",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "fwUUkJ5q6tc",
-      "original_card_id": "fwUUkJ5q6tc_concept_imbalance_multi_timeframe_analysis",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        6.24,
-        143.84
-      ],
-      "extraction_confidence": "high"
+      "project": "Education - ICT",
+      "card_id": "imbalance_multi_timeframe_analysis",
+      "source_canonical_term": "Imbalance (Multi-Timeframe Analysis)",
+      "source_school": "ICT",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-13T15:59:04.133443Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "imbalance_multi_timeframe_analysis",
+  "canonical_term": "Imbalance (Multi-Timeframe Analysis)",
   "_embedding": [
     0.02448621764779091,
     0.04276777803897858,

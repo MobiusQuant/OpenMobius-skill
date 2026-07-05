@@ -1,51 +1,37 @@
 {
-  "card_id": "position_sizing_for_multiple_trades",
+  "global_card_id": "position_sizing_for_multiple_trades",
+  "global_canonical": "Position Sizing for Multiple Trades",
   "type": "merged_concept",
-  "canonical_term": "Position Sizing for Multiple Trades",
-  "aliases": [],
   "school": "Risk Management",
+  "aliases": [],
   "definition": "A rule limiting simultaneous open positions to a maximum of three, with each subsequent entry sized at half the first trade's position to reduce cumulative risk exposure.",
+  "definition_per_source": {
+    "SMC-Indicator-Supplement": "A rule limiting simultaneous open positions to a maximum of three, with each subsequent entry sized at half the first trade's position to reduce cumulative risk exposure."
+  },
   "identification_rules": [
     "Count open positions when considering a new trade; do not exceed three total at any time.",
     "For the second and third trades, calculate position size as exactly 50% of the first entry's size."
   ],
-  "trading_implication": "This concept mitigates risk when multiple trade setups occur concurrently, preventing overexposure from large aggregate positions while still capitalizing on valid opportunities.",
   "common_mistakes": [
     "Opening more than three simultaneous trades, violating the exposure limit.",
     "Using the same position size for all entries instead of halving subsequent ones, leading to excessive risk."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "This concept mitigates risk when multiple trade setups occur concurrently, preventing overexposure from large aggregate positions while still capitalizing on valid opportunities.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "WkuE2lHwsbo",
-      "original_card_id": "WkuE2lHwsbo_concept_position_sizing_for_multiple_trades",
-      "segment_ids": [
-        "seg_005",
-        "seg_010"
-      ],
-      "time_range": [
-        487.599,
-        994.0
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Indicator-Supplement",
+      "card_id": "position_sizing_for_multiple_trades",
+      "source_canonical_term": "Position Sizing for Multiple Trades",
+      "source_school": "Risk Management",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T09:41:38.686307Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "position_sizing_for_multiple_trades",
+  "canonical_term": "Position Sizing for Multiple Trades",
   "_embedding": [
     0.048559240996837616,
     0.06553864479064941,

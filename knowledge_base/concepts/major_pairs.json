@@ -1,50 +1,37 @@
 {
-  "card_id": "major_pairs",
+  "global_card_id": "major_pairs",
+  "global_canonical": "Major Pairs",
   "type": "merged_concept",
-  "canonical_term": "Major Pairs",
+  "school": "General",
   "aliases": [
     "major currency pairs",
     "major pair"
   ],
-  "school": "General",
   "definition": "The largest currency pairs in the forex market, such as EUR/USD, USD/JPY, and GBP/USD. Major pairs involve the US dollar, have massive trading volume, high liquidity, and generally lower transaction costs (spreads).",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "The largest currency pairs in the forex market, such as EUR/USD, USD/JPY, and GBP/USD. Major pairs involve the US dollar, have massive trading volume, high liquidity, and generally lower transaction costs (spreads)."
+  },
   "identification_rules": [
     "Check if the currency pair includes the US dollar paired with a major currency (Euro, Japanese Yen, British Pound).",
     "Verify that the pair is among the most actively traded pairs with high daily volume and tight spreads."
   ],
-  "trading_implication": "Major pairs are recommended for beginners due to high liquidity and lower volatility. They allow for easier entry and exit with reduced slippage. Traders are advised to start with major pairs and use small position sizes.",
   "common_mistakes": [],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "Major pairs are recommended for beginners due to high liquidity and lower volatility. They allow for easier entry and exit with reduced slippage. Traders are advised to start with major pairs and use small position sizes.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "lS-cFGrynUE",
-      "original_card_id": "lS-cFGrynUE_concept_major_pairs",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        0.16,
-        537.8
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "major_pairs",
+      "source_canonical_term": "Major Pairs",
+      "source_school": "General",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.640638Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "major_pairs",
+  "canonical_term": "Major Pairs",
   "_embedding": [
     0.005473547615110874,
     0.1086069643497467,

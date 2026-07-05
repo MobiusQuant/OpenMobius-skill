@@ -1,52 +1,39 @@
 {
-  "card_id": "moving_average_breakout",
+  "global_card_id": "moving_average_breakout",
+  "global_canonical": "Moving Average Breakout",
   "type": "merged_concept",
-  "canonical_term": "Moving Average Breakout",
-  "aliases": [],
   "school": "Indicator Based",
+  "aliases": [],
   "definition": "A moving average breakout occurs when price clearly crosses below or above a moving average, distinguishing from failed breakouts where price briefly pierces and reverses.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "A moving average breakout occurs when price clearly crosses below or above a moving average, distinguishing from failed breakouts where price briefly pierces and reverses."
+  },
   "identification_rules": [
     "A momentum candle appears with a real body at least twice the size of preceding candles, indicating increased momentum.",
     "The breakout candle closes far below or above the moving average, not just with a wick, showing a strong candle close.",
     "Volume is higher than previous candles, confirming broader market participation in the move.",
     "Price action confirmation is obtained by waiting for another candle to close beyond the moving average or by a break of a key market structure level."
   ],
-  "trading_implication": "A moving average breakout signals a potential new trend. Traders may enter on the breakout candle or after confirmation (e.g., a second close or structure break) and can combine with volume, momentum, or retests of the moving average as support/resistance.",
   "common_mistakes": [
     "Mistaking a failed breakout, where price briefly dips and reverses above the moving average, for a true breakout.",
     "Entering a breakout without confirmation from momentum, volume, or price action."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "A moving average breakout signals a potential new trend. Traders may enter on the breakout candle or after confirmation (e.g., a second close or structure break) and can combine with volume, momentum, or retests of the moving average as support/resistance.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "cpVDvHxY90k",
-      "original_card_id": "cpVDvHxY90k_concept_moving_average_breakout",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        1.64,
-        400.12
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "moving_average_breakout",
+      "source_canonical_term": "Moving Average Breakout",
+      "source_school": "Indicator Based",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.640731Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "moving_average_breakout",
+  "canonical_term": "Moving Average Breakout",
   "_embedding": [
     0.020250575616955757,
     0.03911645710468292,

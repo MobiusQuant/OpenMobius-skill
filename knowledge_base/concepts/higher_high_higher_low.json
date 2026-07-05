@@ -1,55 +1,42 @@
 {
-  "card_id": "higher_high_higher_low",
+  "global_card_id": "higher_high_higher_low",
+  "global_canonical": "Higher High / Higher Low",
   "type": "merged_concept",
-  "canonical_term": "Higher High / Higher Low",
-  "aliases": [],
   "school": "Price Action",
+  "aliases": [],
   "definition": "In an uptrend, price forms a sequence of progressively higher swing highs and higher swing lows. A higher high exceeds the previous swing high; a higher low stays above the prior swing low.",
+  "definition_per_source": {
+    "Education - ICT (Updated)": "In an uptrend, price forms a sequence of progressively higher swing highs and higher swing lows. A higher high exceeds the previous swing high; a higher low stays above the prior swing low."
+  },
   "identification_rules": [
     "Identify swing highs and swing lows; an uptrend is present when each new swing high is above the prior swing high.",
     "Each subsequent swing low must be above the prior swing low, forming a series of higher lows.",
     "If a higher low fails to form and price drops below the previous swing low, the uptrend may be in jeopardy."
   ],
-  "trading_implication": "Higher highs and higher lows confirm a bullish trend, giving a long bias. Traders seek entries on pullbacks to higher lows, expecting continuation to new higher highs. A break below a higher low warns of a potential trend change.",
   "common_mistakes": [
     "Attempting to short after a lower low forms without considering the higher-timeframe trend, which may still be bullish.",
     "Assuming a higher high or low has formed before the swing point is completed, leading to premature trend confirmation.",
     "Misinterpreting sideways consolidation as a higher high/low sequence, which can generate false signals."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "Higher highs and higher lows confirm a bullish trend, giving a long bias. Traders seek entries on pullbacks to higher lows, expecting continuation to new higher highs. A break below a higher low warns of a potential trend change.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "sgAnVR6RSDg",
-      "original_card_id": "sgAnVR6RSDg_concept_higher_high_higher_low",
-      "segment_ids": [
-        "seg_001",
-        "seg_002",
-        "seg_003",
-        "seg_004"
-      ],
-      "time_range": [
-        10.48,
-        532.08
-      ],
-      "extraction_confidence": "high"
+      "project": "Education - ICT (Updated)",
+      "card_id": "higher_high_higher_low",
+      "source_canonical_term": "Higher High / Higher Low",
+      "source_school": "Price Action",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-17T18:09:12.075511Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "illustrated_by_cases": [
+    "Education_-_ICT__sgAnVR6RSDg_case_004_原油_oil_5分钟图的结构分析"
+  ],
+  "card_id": "higher_high_higher_low",
+  "canonical_term": "Higher High / Higher Low",
   "_embedding": [
     0.06300251930952072,
     0.041319556534290314,

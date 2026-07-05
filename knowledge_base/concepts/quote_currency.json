@@ -1,49 +1,36 @@
 {
-  "card_id": "quote_currency",
+  "global_card_id": "quote_currency",
+  "global_canonical": "Quote Currency",
   "type": "merged_concept",
-  "canonical_term": "Quote Currency",
-  "aliases": [],
   "school": "General",
+  "aliases": [],
   "definition": "In a currency pair, the second currency listed; it indicates how much of that currency is required to purchase one unit of the base currency. For example, in EUR/USD at 1.25, USD is the quote currency, meaning €1 costs $1.25.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "In a currency pair, the second currency listed; it indicates how much of that currency is required to purchase one unit of the base currency. For example, in EUR/USD at 1.25, USD is the quote currency, meaning €1 costs $1.25."
+  },
   "identification_rules": [
     "In a forex pair notation (e.g., EUR/USD), the quote currency appears after the base currency, usually following a slash.",
     "The exchange rate quoted for a pair represents the value of one base currency unit expressed in terms of the quote currency."
   ],
-  "trading_implication": "The quote currency is the currency you sell when going long a pair and buy when going short. Profit and loss are measured in quote currency units, so a rising exchange rate means the base currency strengthens against the quote currency.",
   "common_mistakes": [
     "Not explicitly stated in the material."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "The quote currency is the currency you sell when going long a pair and buy when going short. Profit and loss are measured in quote currency units, so a rising exchange rate means the base currency strengthens against the quote currency.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "lS-cFGrynUE",
-      "original_card_id": "lS-cFGrynUE_concept_quote_currency",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        0.16,
-        537.8
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "quote_currency",
+      "source_canonical_term": "Quote Currency",
+      "source_school": "General",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.640854Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "quote_currency",
+  "canonical_term": "Quote Currency",
   "_embedding": [
     0.032870374619960785,
     0.08730462938547134,

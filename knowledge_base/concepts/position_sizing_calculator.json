@@ -1,13 +1,16 @@
 {
-  "card_id": "position_sizing_calculator",
+  "global_card_id": "position_sizing_calculator",
+  "global_canonical": "Position Sizing Calculator",
   "type": "merged_concept",
-  "canonical_term": "Position Sizing Calculator",
+  "school": "Risk Management",
   "aliases": [
     "仓位计算器",
     "合约数计算工具"
   ],
-  "school": "Risk Management",
   "definition": "通过输入账户规模、单笔风险金额和止损点数，自动计算期货或外汇交易所需合约数或手数的电子表格工具，确保每笔交易风险一致。",
+  "definition_per_source": {
+    "Education - ICT": "通过输入账户规模、单笔风险金额和止损点数，自动计算期货或外汇交易所需合约数或手数的电子表格工具，确保每笔交易风险一致。"
+  },
   "identification_rules": [
     "工具包含账户规模、单笔风险金额、止损点数等输入字段",
     "输出结果为具体的合约数或手数（支持小数或微型合约）",
@@ -15,45 +18,28 @@
     "外汇计算器需预设各货币对的每点或每pip价值",
     "可通过调整止损点数快速查看对应的仓位大小"
   ],
-  "trading_implication": "确保交易者在不同止损距离下保持一致的固定风险（美元或百分比），避免因仓位不一致导致风险回报比失效。通过自动化计算减少手工错误，支持期货微型合约和外汇小数手数的灵活仓位调整，使风率与风险回报比的盈利关系得以成立。",
   "common_mistakes": [
     "未复制表格副本直接编辑，导致无法修改数据",
     "期货交易中使用固定合约数而非固定风险，造成不同止损距离下风险金额波动",
     "未根据经纪商的点值设置正确填写计算器参数，导致计算结果错误",
     "忽视微型合约的优势，在无法取整的情况下被迫向上取整，增加实际风险"
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "确保交易者在不同止损距离下保持一致的固定风险（美元或百分比），避免因仓位不一致导致风险回报比失效。通过自动化计算减少手工错误，支持期货微型合约和外汇小数手数的灵活仓位调整，使风率与风险回报比的盈利关系得以成立。",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "0OjlQ91TZiU",
-      "original_card_id": "0OjlQ91TZiU_concept_position_sizing_calculator",
-      "segment_ids": [
-        "seg_002",
-        "seg_003"
-      ],
-      "time_range": [
-        190.799,
-        461.68
-      ],
-      "extraction_confidence": "high"
+      "project": "Education - ICT",
+      "card_id": "position_sizing_calculator",
+      "source_canonical_term": "Position Sizing Calculator",
+      "source_school": "Risk Management",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-13T15:59:04.134772Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "position_sizing_calculator",
+  "canonical_term": "Position Sizing Calculator",
   "_embedding": [
     0.06597759574651718,
     0.07002663612365723,

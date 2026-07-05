@@ -1,13 +1,16 @@
 {
-  "card_id": "projection_as_standalone_target",
+  "global_card_id": "projection_as_standalone_target",
+  "global_canonical": "Projection as Standalone Target",
   "type": "merged_concept",
-  "canonical_term": "Projection as Standalone Target",
+  "school": "ICT",
   "aliases": [
     "投影作为单独目标",
     "独立投影目标"
   ],
-  "school": "ICT",
   "definition": "当缺乏流动性目标时，利用斐波那契投影（如-2、-2.5、-4、-4.5等）作为独立交易目标，特别适用于历史高点或无流动性区域的价格预测。",
+  "definition_per_source": {
+    "Education - ICT": "当缺乏流动性目标时，利用斐波那契投影（如-2、-2.5、-4、-4.5等）作为独立交易目标，特别适用于历史高点或无流动性区域的价格预测。"
+  },
   "identification_rules": [
     "识别反转点或摆动点（Candle 2 closure或Change in State of Delivery）",
     "标记操纵腿（Manipulation Leg）：从该反转点找到形成该低点的摆动高点",
@@ -15,45 +18,28 @@
     "当该区域缺乏历史流动性或处于历史高点时，投影可单独用作目标",
     "检查投影是否与左侧历史价格水平产生汇聚（confluence）"
   ],
-  "trading_implication": "投影作为独立目标适用于两种场景：（1）缺乏流动性的区域，如历史高点附近；（2）操纵腿较大时，使用负一标准差等替代目标。相比直接使用投影，优先寻求投影与其他目标（流动性、历史高点）的汇聚以提高概率。当投影目标过大（如500-600点）且不合理时，应考虑使用标准差等替代工具。",
   "common_mistakes": [
     "将投影作为唯一目标，而不寻求与流动性或历史水平的汇聚",
     "在操纵腿过大的情况下盲目使用投影，导致目标不切实际",
     "未能识别Change in State of Delivery，导致投影基础错误",
     "忽视左侧历史价格水平的对齐验证"
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "投影作为独立目标适用于两种场景：（1）缺乏流动性的区域，如历史高点附近；（2）操纵腿较大时，使用负一标准差等替代目标。相比直接使用投影，优先寻求投影与其他目标（流动性、历史高点）的汇聚以提高概率。当投影目标过大（如500-600点）且不合理时，应考虑使用标准差等替代工具。",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "upHS7SDL9kg",
-      "original_card_id": "upHS7SDL9kg_concept_projection_as_standalone_target",
-      "segment_ids": [
-        "seg_007",
-        "seg_009"
-      ],
-      "time_range": [
-        235.68,
-        330.88
-      ],
-      "extraction_confidence": "high"
+      "project": "Education - ICT",
+      "card_id": "projection_as_standalone_target",
+      "source_canonical_term": "Projection as Standalone Target",
+      "source_school": "ICT",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-13T15:59:04.135081Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "projection_as_standalone_target",
+  "canonical_term": "Projection as Standalone Target",
   "_embedding": [
     0.01627948135137558,
     0.04352395609021187,

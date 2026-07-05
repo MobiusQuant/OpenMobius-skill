@@ -1,10 +1,13 @@
 {
-  "card_id": "candlestick_anatomy",
+  "global_card_id": "candlestick_anatomy",
+  "global_canonical": "Candlestick Anatomy",
   "type": "merged_concept",
-  "canonical_term": "Candlestick Anatomy",
-  "aliases": [],
   "school": "General",
+  "aliases": [],
   "definition": "A candlestick represents price movement over a specific time period, defined by four points: open (first trade), close (last trade), high (peak), and low (trough). In a bullish candle, close is above open; in a bearish candle, close is below open. The body shows the range between open and close, while wicks show rejected extremes.",
+  "definition_per_source": {
+    "SMC-Extra-Supplement": "A candlestick represents price movement over a specific time period, defined by four points: open (first trade), close (last trade), high (peak), and low (trough). In a bullish candle, close is above open; in a bearish candle, close is below open. The body shows the range between open and close, while wicks show rejected extremes."
+  },
   "identification_rules": [
     "For any candlestick, identify the open as the first traded price and close as the last traded price of the period.",
     "The high is the maximum price reached, and the low is the minimum price reached, regardless of the body.",
@@ -12,45 +15,28 @@
     "In a bearish candle, the open is at the top of the body and close at the bottom; wicks extend to high and low.",
     "A green body indicates bullish (close > open), a red body indicates bearish (close < open)."
   ],
-  "trading_implication": "Candlestick anatomy is the foundation for reading order flow and market sentiment. The close relative to open reveals intra-period momentum, while wicks show price rejection. Comparing close to previous levels confirms market acceptance or rejection, aiding in identifying true breaks of structure and avoiding false signals. It enables traders to gauge buying and selling pressure behind each price move.",
   "common_mistakes": [
     "Mistaking a wick beyond a key level as a valid break, without waiting for a close above/below the level.",
     "Assuming a long upper wick on a bullish candle indicates continuation of the uptrend, when it may signal rejection.",
     "Ignoring the close and focusing only on the high/low, leading to misreading market structure.",
     "Treating all candles with large wicks as reversals without context from subsequent candles and closes."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "Candlestick anatomy is the foundation for reading order flow and market sentiment. The close relative to open reveals intra-period momentum, while wicks show price rejection. Comparing close to previous levels confirms market acceptance or rejection, aiding in identifying true breaks of structure and avoiding false signals. It enables traders to gauge buying and selling pressure behind each price move.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "IQHoLIinfJ4",
-      "original_card_id": "IQHoLIinfJ4_concept_candlestick_anatomy",
-      "segment_ids": [
-        "seg_001",
-        "seg_003"
-      ],
-      "time_range": [
-        0.08,
-        1489.279
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Extra-Supplement",
+      "card_id": "candlestick_anatomy",
+      "source_canonical_term": "Candlestick Anatomy",
+      "source_school": "General",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:53:11.938306Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "candlestick_anatomy",
+  "canonical_term": "Candlestick Anatomy",
   "_embedding": [
     0.03668731451034546,
     0.046600036323070526,

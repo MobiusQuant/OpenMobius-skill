@@ -1,10 +1,13 @@
 {
-  "card_id": "order_block_liquidity_sweep_entry",
+  "global_card_id": "order_block_liquidity_sweep_entry",
+  "global_canonical": "Order Block Liquidity Sweep Entry",
   "type": "merged_concept",
-  "canonical_term": "Order Block Liquidity Sweep Entry",
-  "aliases": [],
   "school": "ICT",
+  "aliases": [],
   "definition": "A bullish entry setup in an uptrend where, after a break of structure with no inefficiency, price sweeps below a minor swing low to grab liquidity, then enters an underlying order block, triggering a long entry above the block with a stop below the swing low.",
+  "definition_per_source": {
+    "SMC-Indicator-Supplement": "A bullish entry setup in an uptrend where, after a break of structure with no inefficiency, price sweeps below a minor swing low to grab liquidity, then enters an underlying order block, triggering a long entry above the block with a stop below the swing low."
+  },
   "identification_rules": [
     "In an uptrend, after a break of structure to the upside that created no fair value gap on the impulse move, identify a swing low with a fair value gap and valid order block just below it.",
     "Price must break below that swing low to sweep liquidity, then retrace into the order block zone.",
@@ -13,43 +16,27 @@
     "Target the next key resistance level in the trend direction.",
     "For a bearish setup, mirror the rules: look for a downtrend, sweep above a swing high with inefficiency and order block, sell below the order block, stop above the swing high."
   ],
-  "trading_implication": "This setup offers a high-probability trend continuation entry by confirming that stop-losses behind a swing low have been cleared and price is reacting from a demand order block. It provides a precise entry with a tight stop, improving risk-to-reward.",
   "common_mistakes": [
     "Failing to analyze the left side for additional liquidity zones or order blocks below, which may cause further liquidity grabs and stop out the trade early.",
     "Entering before price actually taps into the order block, risking premature entry during the sweep.",
     "Ignoring the quality of the order block (e.g., lacking obvious inefficiency) leading to a weak reaction."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "This setup offers a high-probability trend continuation entry by confirming that stop-losses behind a swing low have been cleared and price is reacting from a demand order block. It provides a precise entry with a tight stop, improving risk-to-reward.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "ECMYxWuir0A",
-      "original_card_id": "ECMYxWuir0A_concept_order_block_liquidity_sweep_entry",
-      "segment_ids": [
-        "seg_006"
-      ],
-      "time_range": [
-        631.519,
-        693.279
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Indicator-Supplement",
+      "card_id": "order_block_liquidity_sweep_entry",
+      "source_canonical_term": "Order Block Liquidity Sweep Entry",
+      "source_school": "ICT",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T09:41:38.686265Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "order_block_liquidity_sweep_entry",
+  "canonical_term": "Order Block Liquidity Sweep Entry",
   "_embedding": [
     0.03335162252187729,
     0.090184286236763,

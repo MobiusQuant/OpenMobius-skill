@@ -1,48 +1,35 @@
 {
-  "card_id": "long_short_and_leverage",
+  "global_card_id": "long_short_and_leverage",
+  "global_canonical": "Long, Short, and Leverage",
   "type": "merged_concept",
-  "canonical_term": "Long, Short, and Leverage",
-  "aliases": [],
   "school": "General",
+  "aliases": [],
   "definition": "not explicitly stated",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "not explicitly stated"
+  },
   "identification_rules": [
     "not explicitly stated"
   ],
-  "trading_implication": "not explicitly stated",
   "common_mistakes": [
     "not explicitly stated"
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "not explicitly stated",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "6wQWBGVOhck",
-      "original_card_id": "6wQWBGVOhck_concept_long_short_and_leverage",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        1.76,
-        8.92
-      ],
-      "extraction_confidence": "low"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "long_short_and_leverage",
+      "source_canonical_term": "Long, Short, and Leverage",
+      "source_school": "General",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 0,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 1
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.640612Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "long_short_and_leverage",
+  "canonical_term": "Long, Short, and Leverage",
   "_embedding": [
     0.05183523893356323,
     0.056653961539268494,

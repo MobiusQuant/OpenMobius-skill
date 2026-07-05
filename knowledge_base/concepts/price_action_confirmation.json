@@ -1,48 +1,35 @@
 {
-  "card_id": "price_action_confirmation",
+  "global_card_id": "price_action_confirmation",
+  "global_canonical": "Price Action Confirmation",
   "type": "merged_concept",
-  "canonical_term": "Price Action Confirmation",
-  "aliases": [],
   "school": "Price Action",
+  "aliases": [],
   "definition": "A confirmation technique where, after an initial breakout candle closes beyond a moving average, traders wait for an additional candle to close beyond that same moving average before entering a trade, aiming to filter false breakouts.",
+  "definition_per_source": {
+    "SMC-Strong-Weak-Supplement": "A confirmation technique where, after an initial breakout candle closes beyond a moving average, traders wait for an additional candle to close beyond that same moving average before entering a trade, aiming to filter false breakouts."
+  },
   "identification_rules": [
     "After an initial candle closes decisively beyond a moving average (breakout candle), wait for the next full candle to also close on the breakout side of the moving average; only then is the breakout confirmed."
   ],
-  "trading_implication": "This rule delays entry until a second candle close confirms the breakout, reducing the likelihood of being trapped by failed breakouts. It increases trade reliability at the cost of missing the very start of a move.",
   "common_mistakes": [
     "Entering a trade immediately on the first breakout candle without waiting for confirmation, which often results in being caught in a false breakout."
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "This rule delays entry until a second candle close confirms the breakout, reducing the likelihood of being trapped by failed breakouts. It increases trade reliability at the cost of missing the very start of a move.",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "cpVDvHxY90k",
-      "original_card_id": "cpVDvHxY90k_concept_price_action_confirmation",
-      "segment_ids": [
-        "seg_001"
-      ],
-      "time_range": [
-        1.64,
-        400.12
-      ],
-      "extraction_confidence": "high"
+      "project": "SMC-Strong-Weak-Supplement",
+      "card_id": "price_action_confirmation",
+      "source_canonical_term": "Price Action Confirmation",
+      "source_school": "Price Action",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-23T12:28:28.640844Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "price_action_confirmation",
+  "canonical_term": "Price Action Confirmation",
   "_embedding": [
     0.05427835136651993,
     0.0406770184636116,

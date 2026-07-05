@@ -1,56 +1,42 @@
 {
-  "card_id": "swing_point_trading",
+  "global_card_id": "swing_point_trading",
+  "global_canonical": "Swing Point Trading",
   "type": "merged_concept",
-  "canonical_term": "Swing Point Trading",
+  "school": "Price Action",
   "aliases": [
     "摆动点交易"
   ],
-  "school": "Price Action",
   "definition": "仅在确认形成新摆动点时才建立头寸的交易方法。交易者等待价格扫荡前期摆动高/低点后出现反向变化，以新摆动点的形成作为入场信号。",
+  "definition_per_source": {
+    "Education - ICT": "仅在确认形成新摆动点时才建立头寸的交易方法。交易者等待价格扫荡前期摆动高/低点后出现反向变化，以新摆动点的形成作为入场信号。"
+  },
   "identification_rules": [
     "确认存在至少两个已形成的摆动低点或摆动高点作为参考结构",
     "观察价格是否扫荡（sweep）前期摆动高点或低点",
     "在扫荡后寻找交付状态改变（CSD）信号，表明新摆动点正在形成",
     "仅在新摆动点确认形成后才考虑入场，不提前预判"
   ],
-  "trading_implication": "该方法强调等待确认而非预测。交易者通过识别摆动点的形成来确定反转或延续的高概率时点。结合高低时间框架分析，在高时间框架摆动点被扫荡后，下探低时间框架寻找CSD信号和具体入场点。目标通常为前期摆动高/低点、日开盘价或会话低点等流动性区域。",
   "common_mistakes": [
     "在摆动点尚未确认形成时提前入场，导致被诱导（Inducement）",
     "忽视日内K线结构（如wick大小）对价格扩展能力的影响，设置不切实际的目标",
     "未能根据已实现的日内范围调整预期，仍期望价格继续大幅扩展"
   ],
-  "related_concepts": [],
-  "illustrated_by_cases": [],
+  "trading_implication": "该方法强调等待确认而非预测。交易者通过识别摆动点的形成来确定反转或延续的高概率时点。结合高低时间框架分析，在高时间框架摆动点被扫荡后，下探低时间框架寻找CSD信号和具体入场点。目标通常为前期摆动高/低点、日开盘价或会话低点等流动性区域。",
+  "merge_notes": null,
   "source_cards": [
     {
-      "video_id": "m4k_1pF5zFI",
-      "original_card_id": "m4k_1pF5zFI_concept_swing_point_trading",
-      "segment_ids": [
-        "seg_007",
-        "seg_019"
-      ],
-      "time_range": [
-        354.15999999999997,
-        945.44
-      ],
-      "extraction_confidence": "high"
+      "project": "Education - ICT",
+      "card_id": "swing_point_trading",
+      "source_canonical_term": "Swing Point Trading",
+      "source_school": "Price Action",
+      "source_merge_strategy": "single_source"
     }
   ],
-  "stats": {
-    "source_count": 1,
-    "source_videos": 1,
-    "high_confidence_sources": 1,
-    "medium_confidence_sources": 0,
-    "low_confidence_sources": 0
-  },
-  "merge_strategy": "single_source",
-  "merged_at": "2026-05-13T15:59:04.136162Z",
+  "merge_strategy": "single_source_passthrough",
+  "merged_at": "2026-06-26T18:53:01.251807+00:00",
   "merge_model": null,
-  "review_status": "pending",
-  "notes": null,
-  "warnings": [],
-  "merge_notes": null,
-  "error": null,
+  "card_id": "swing_point_trading",
+  "canonical_term": "Swing Point Trading",
   "_embedding": [
     0.06464081257581711,
     0.056390486657619476,
