@@ -4,7 +4,7 @@
 
 **给 AI 编程 Agent 的 ICT/SMC 交易知识 Skill**
 
-符合 `SKILL.md` 标准的能力包，把 2014 张精选知识卡 + 实时行情 + 技术指标 +
+符合 `SKILL.md` 标准的能力包，把 2008 张精选知识卡 + 实时行情 + 技术指标 +
 图表生成 带给 **Claude Code**、**Codex**、**OpenClaw**、**Hermes** 四个平台。
 
 <br>
@@ -13,7 +13,7 @@
 [![Python](https://img.shields.io/badge/python-3.10%2B-3776ab.svg)](https://www.python.org/)
 [![Website](https://img.shields.io/badge/🌐_website-mobiusquant.ai-FF7E29.svg)](https://www.mobiusquant.ai/)
 [![Platforms](https://img.shields.io/badge/platforms-Claude_Code_·_Codex_·_OpenClaw_·_Hermes-9333ea.svg)](#平台支持)
-[![Knowledge Base](https://img.shields.io/badge/knowledge_base-2014_cards-22c55e.svg)](#核心能力)
+[![Knowledge Base](https://img.shields.io/badge/knowledge_base-2008_cards-22c55e.svg)](#核心能力)
 
 [English](./README.md) · [中文](./README.zh.md) · 📜 [更新日志](./CHANGELOG.zh.md)
 
@@ -136,7 +136,7 @@ N 倍下载。
 
 ## 核心能力
 
-### 知识库 —— 726 概念 + 1288 案例
+### 知识库 —— 726 概念 + 1282 案例
 
 从 12 个精选来源合集（300+ 教学视频与直播课程）跨合集融合萃取，经模型
 抽样审计与内容级去重。覆盖 13 个流派 —— ICT、SMC、Price Action、
@@ -215,7 +215,7 @@ OpenMobius-skill/
 │   ├── kb_doctor.py                  # 环境健康检查
 │   ├── chart_render/                 # lightweight-charts + headless chromium
 │   └── _lib/                         # embedder + retriever
-├── knowledge_base/                   # 726 概念 + 1288 案例
+├── knowledge_base/                   # 726 概念 + 1282 案例
 ├── install.py                        # 跨平台安装器
 └── README.md / INSTALL.md
 ```

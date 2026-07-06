@@ -93,7 +93,7 @@ installing all four platforms doesn't quadruple the download.
 | 4 | Playwright chromium (~280 MB, user-global cache) | ~1 min | skip if cached |
 | 5 | CJK font check (warn only) | <1 s | <1 s |
 | 6 | Pre-warm nomic-embed model (~274 MB, user-global cache) | ~30 s | skip if cached |
-| 7 | Build vector index from precomputed embeddings (2014 cards) | ~2 s | skip if exists |
+| 7 | Build vector index from precomputed embeddings (2008 cards) | ~2 s | skip if exists |
 | 8 | Generate `<target>/SKILL.md` (platform frontmatter + shared body) | <1 s | overwrites |
 | 9 | Run `kb_doctor` health check | ~5 s | ~5 s |
 

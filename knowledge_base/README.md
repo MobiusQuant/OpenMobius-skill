@@ -6,7 +6,7 @@ answers. Two card types:
 ```
 knowledge_base/
 ├── concepts/          # 726 trading-concept cards (JSON)
-├── cases/             # 1288 case-study cards (JSON)
+├── cases/             # 1282 case-study cards (JSON)
 ├── index.json         # card catalog (id + canonical term / title)
 └── term_aliases.json  # canonical-term → aliases map (incl. legacy terms)
 ```

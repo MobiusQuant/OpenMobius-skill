@@ -4,7 +4,7 @@
 
 **ICT/SMC trading-knowledge skill for AI coding agents**
 
-A `SKILL.md`-standard skill bringing 2014 curated knowledge cards, real-time
+A `SKILL.md`-standard skill bringing 2008 curated knowledge cards, real-time
 market data, technical indicators, and chart generation to
 **Claude Code**, **Codex**, **OpenClaw**, and **Hermes**.
 
@@ -14,7 +14,7 @@ market data, technical indicators, and chart generation to
 [![Python](https://img.shields.io/badge/python-3.10%2B-3776ab.svg)](https://www.python.org/)
 [![Website](https://img.shields.io/badge/🌐_website-mobiusquant.ai-FF7E29.svg)](https://www.mobiusquant.ai/)
 [![Platforms](https://img.shields.io/badge/platforms-Claude_Code_·_Codex_·_OpenClaw_·_Hermes-9333ea.svg)](#platform-support)
-[![Knowledge Base](https://img.shields.io/badge/knowledge_base-2014_cards-22c55e.svg)](#features)
+[![Knowledge Base](https://img.shields.io/badge/knowledge_base-2008_cards-22c55e.svg)](#features)
 
 [English](./README.md) · [中文](./README.zh.md) · 📜 [Changelog](./CHANGELOG.md)
 
@@ -131,7 +131,7 @@ doesn't N× the download.
 
 ## Features
 
-### Knowledge base — 726 concepts + 1288 cases
+### Knowledge base — 726 concepts + 1282 cases
 
 Distilled from 300+ teaching videos and live lessons across 12 curated
 source collections, cross-merged with model-audited term fusion and
@@ -216,7 +216,7 @@ OpenMobius-skill/
 │   ├── kb_doctor.py                  # env health check
 │   ├── chart_render/                 # lightweight-charts + headless chromium
 │   └── _lib/                         # embedder + retriever
-├── knowledge_base/                   # 726 concepts + 1288 cases
+├── knowledge_base/                   # 726 concepts + 1282 cases
 ├── install.py                        # cross-platform installer
 └── README.md / INSTALL.md
 ```

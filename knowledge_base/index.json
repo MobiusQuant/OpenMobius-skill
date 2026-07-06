@@ -1,7 +1,7 @@
 {
   "generated_at": "2026-07-05T16:33:51.093472+00:00",
   "n_concepts": 726,
-  "n_cases": 1288,
+  "n_cases": 1282,
   "concepts": [
     {
       "card_id": "10_00_am_four_hour_candle_open",
@@ -3422,10 +3422,6 @@
       "title": "Bearish Unicorn Model on EURUSD Hourly Targeting Equal Lows Sell-Side Liquidity"
     },
     {
-      "card_id": "Education_-_ICT_(Updated)__75S4vwD4P1U_case_007_es_60_minute_to_5_minute_breaker",
-      "title": "ES 60-Minute to 5-Minute Breaker Block Long After Sell Side Liquidity Sweep (Stopped Out)"
-    },
-    {
       "card_id": "Education_-_ICT_(Updated)__7p9MBFk8EEM_case_001_dxy_daily_reversal_using_order_b",
       "title": "DXY Daily Bullish Reversal Using Order Block and Fair Value Gap"
     },
@@ -3858,10 +3854,6 @@
       "title": "CL Hourly High Sweep Fails as 5-Minute Disrespects Wick and Expands Higher"
     },
     {
-      "card_id": "Education_-_ICT_(Updated)__LKNQDAdId4s_case_005_es_consolidation_with_wick_disre",
-      "title": "Gold consolidation: 5-minute wick disrespect leads to breakout of consolidation low"
-    },
-    {
       "card_id": "Education_-_ICT_(Updated)__LKNQDAdId4s_case_006_gold_consolidation_with_wick_res",
       "title": "Gold Hourly Consolidation: Wick Disrespect on 5M Confirms Lower Expansion"
     },
@@ -4126,10 +4118,6 @@
       "title": "Gold 4H Reaccumulation Using Old Bearish Order Blocks as Mitigation Zones After Smart Money Reversal"
     },
     {
-      "card_id": "Education_-_ICT_(Updated)__bbWPoajy2MY_case_004_es_eth_breaker_as_mitigation",
-      "title": "ES/ETH Breaker Block Used as Mitigation Zone for Bullish Continuation"
-    },
-    {
       "card_id": "Education_-_ICT_(Updated)__bbWPoajy2MY_case_005_oil_daily_mitigation_blocks",
       "title": "USOIL Daily Chart: Short Setups Using Old Bearish Order Blocks as Mitigation Blocks with FVG Confluence"
     },
@@ -4308,10 +4296,6 @@
     {
       "card_id": "Education_-_ICT_(Updated)__sgAnVR6RSDg_case_003_eth_5_minute_hourly_fvg_retracem",
       "title": "ETH 5-minute hourly FVG retracement failure: lower TF structure shift invalidated by HTF fair value gap"
-    },
-    {
-      "card_id": "Education_-_ICT_(Updated)__uDJI2AbyyCs_case_002_nq_2_minute_inversion_in_trend",
-      "title": "NQ 2-Minute Inversion at Propulsion Block During Uptrend Continuation"
     },
     {
       "card_id": "Education_-_ICT_(Updated)__uDJI2AbyyCs_case_003_gold_daily_old_fvg_reaccumulatio",
@@ -4502,10 +4486,6 @@
       "title": "油品三角套利（CL/RB/HO）的模型内模型交易"
     },
     {
-      "card_id": "Education_-_ICT__3eVxTV_7L2U_case_002_黄金三角_gc_gbpusd_的psp反转确认",
-      "title": "黄金三角SMT与PSP反转确认交易"
-    },
-    {
       "card_id": "Education_-_ICT__3eVxTV_7L2U_case_003_两阶段smt跨时间框架确认_gbpusd_eurusd",
       "title": "4H FVG与30M SMT二阶段确认交易至外部范围"
     },
@@ -4624,10 +4604,6 @@
     {
       "card_id": "Education_-_ICT__CHIK5oBRKiw_case_003_es期货10月11日双向交易案例",
       "title": "ES期货10月11日双向交易案例：操纵-CISD-订单块完整设置"
-    },
-    {
-      "card_id": "Education_-_ICT__CqMIh-Vvhbg_case_002_eur_aud小时线与5分钟线的多时间框架分析",
-      "title": "EUR/AUD多时间框架Fractal模型分析与指标参数调整"
     },
     {
       "card_id": "Education_-_ICT__DMUiDBnTYc8_case_001_nq_5分钟图_订单块验证失败案例",

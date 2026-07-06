@@ -12,7 +12,7 @@ the project adheres to [Semantic Versioning](https://semver.org/).
 
 ### 📚 Knowledge base — full rebuild & expansion
 
-1. **KB expanded: 665 concepts + 1,246 cases → 726 concepts + 1,288
+1. **KB expanded: 665 concepts + 1,246 cases → 726 concepts + 1,282
    cases**, now merged from 12 curated source collections (300+ teaching
    videos & live lessons) through an audited cross-collection pipeline.
 

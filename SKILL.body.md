@@ -1,7 +1,7 @@
 
 # OpenMobius-skill — ICT/SMC Trading Knowledge Skill
 
-A unified skill for four interaction modes with a curated knowledge base (726 concept cards + 1288 case cards) distilled from 300+ ICT/SMC/ChanLun(缠论) trading videos and live lessons across 12 curated source collections.
+A unified skill for four interaction modes with a curated knowledge base (726 concept cards + 1282 case cards) distilled from 300+ ICT/SMC/ChanLun(缠论) trading videos and live lessons across 12 curated source collections.
 
 **Core principle**: every claim must be grounded in (a) visible chart evidence OR (b) a retrieved knowledge-base rule. **No fabrication** — when uncertain, state so explicitly.
 
