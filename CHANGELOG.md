@@ -8,6 +8,16 @@ the project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [Unreleased]
+
+### Fixed
+
+- Corrected uninstall CLI and documentation semantics: standard uninstall
+  removes the entire self-contained platform target, while `--full` is now
+  explicitly documented as a deprecated compatibility no-op.
+
+---
+
 ## [0.3.0] — 2026-07-05
 
 ### 📚 Knowledge base — full rebuild & expansion

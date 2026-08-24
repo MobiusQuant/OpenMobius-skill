@@ -182,29 +182,27 @@ All four commands should succeed.
 The installer handles uninstall too — same `install.py`, different flag.
 
 ```bash
-# Soft uninstall: remove only the platform registration (~/.claude/skills/...)
+# Standard uninstall: remove the entire self-contained platform install,
+# including its .venv and vector index
 python install.py --uninstall                           # current platform (default claude-code)
 python install.py --uninstall --platform codex          # specific platform
 python install.py --uninstall --platform all            # all 4 platforms at once
 
-# Full uninstall: also remove local build artifacts (.venv + vector index)
-python install.py --uninstall --full
-
 # Full purge: also remove global caches (chromium ~280MB + nomic model ~274MB)
 # WARNING: these caches may be shared by other projects on your machine!
 python install.py --uninstall --purge --yes-i-know
-
-# Combine: full + purge on all platforms
-python install.py --uninstall --platform all --full --purge --yes-i-know
 ```
 
 Cleanup levels:
 
 | Flag | Removes |
 |---|---|
-| (default) | `~/.<platform>/skills/OpenMobius-skill/` registration only |
-| `--full` | + `.venv/` + `knowledge_base/_index/` |
+| (default) | Entire `~/.<platform>/skills/OpenMobius-skill/` target, including `.venv/` and `knowledge_base/_index/` |
 | `--purge --yes-i-know` | + Playwright browser cache `chromium*` (`~/.cache/ms-playwright` Linux · `~/Library/Caches/ms-playwright` macOS · `%LOCALAPPDATA%\ms-playwright` Windows) + `~/.cache/huggingface/hub/models--nomic-*` |
+
+`--full` is deprecated. It remains accepted for backward compatibility but
+has no effect because standard uninstall already removes all per-platform
+files and build artifacts.
 
 **Not removed** (you delete manually if you want):
 - The cloned repo at `<your-clone-dir>` — just `rm -rf` it

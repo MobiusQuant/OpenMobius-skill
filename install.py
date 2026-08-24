@@ -640,9 +640,9 @@ def cmd_uninstall(platforms: list[str], target_dir: Optional[Path],
     --purge --yes-i-know: also delete user-global caches (Playwright chromium
         ~280MB and the nomic embedding model ~274MB). Other tools / projects
         on your machine may share these — only purge if you are sure.
-    --full: kept for backward-compat. In standalone install mode it's a
-        no-op (the target dir already contains .venv and _index, which are
-        removed by the default uninstall).
+    --full: deprecated backward-compatibility flag. It has no effect because
+        the default uninstall already removes the self-contained target,
+        including .venv and _index.
     """
     if purge and not yes_i_know:
         fail("--purge needs --yes-i-know (removes global caches that other "
@@ -677,8 +677,9 @@ def cmd_uninstall(platforms: list[str], target_dir: Optional[Path],
             overall_ok = False
 
     if full:
-        info("--full: standalone install removes everything by default; "
-             "--full is now a no-op")
+        warn("--full is deprecated and has no effect; standard uninstall "
+             "already removes the entire target directory, including .venv "
+             "and the built vector index")
 
     # ── 2. --purge: user-global caches (shared across platforms) ────────────
     if purge:
@@ -999,7 +1000,8 @@ def main() -> int:
     # Mode (mutually exclusive) — default is install
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--uninstall", action="store_true",
-                      help="Uninstall the skill (see --full / --purge for cleanup levels)")
+                      help="Remove the entire platform install (use --purge "
+                           "to also remove shared caches)")
     mode.add_argument("--update", action="store_true",
                       help="Update the skill (git pull + re-install --resume + regenerate SKILL.md)")
 
@@ -1033,7 +1035,8 @@ def main() -> int:
 
     # Uninstall-specific options
     parser.add_argument("--full", action="store_true",
-                        help="(uninstall) also remove .venv and built vector index")
+                        help="(deprecated no-op) standard uninstall already removes "
+                             ".venv and the built vector index")
     parser.add_argument("--purge", action="store_true",
                         help="(uninstall) also remove global caches "
                              "(chromium ~280MB + nomic model ~274MB). "

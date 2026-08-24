@@ -229,17 +229,17 @@ OpenMobius-skill/
 python install.py --update
 python install.py --update --rebuild-index    # 同时强制重建向量索引
 
-# 卸载（soft —— 只删平台注册）
+# 卸载整个自包含的平台安装（包括 .venv + 索引）
 python install.py --uninstall
 python install.py --uninstall --platform all  # 所有平台
-
-# 完全卸载（同时删 .venv + 索引）
-python install.py --uninstall --full
 
 # 完全清除（同时删共享的 chromium + nomic 缓存 —— 这些可能被你机器上
 # 其他项目使用，请确认后再运行）
 python install.py --uninstall --purge --yes-i-know
 ```
+
+`--full` 为了向后兼容仍可使用，但已弃用且不会改变卸载行为：
+普通卸载已会删除 `.venv` 和向量索引。
 
 所有参数详见 [INSTALL.md](./INSTALL.md)。
 

@@ -230,17 +230,17 @@ OpenMobius-skill/
 python install.py --update
 python install.py --update --rebuild-index    # also rebuild vector index
 
-# Uninstall (soft — remove platform registration only)
+# Uninstall the entire self-contained platform install (.venv + index included)
 python install.py --uninstall
 python install.py --uninstall --platform all  # all platforms
-
-# Uninstall fully (.venv + index too)
-python install.py --uninstall --full
 
 # Full purge (also delete shared chromium + nomic caches — these may be
 # used by other projects on your machine, so confirm before running)
 python install.py --uninstall --purge --yes-i-know
 ```
+
+`--full` is still accepted for backward compatibility, but is deprecated and
+has no effect: standard uninstall already removes `.venv` and the vector index.
 
 See [INSTALL.md](./INSTALL.md) for all flags.
 
