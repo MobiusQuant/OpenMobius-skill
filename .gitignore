@@ -1,4 +1,10 @@
 # Virtual env
+# Temporary files
+tmp/
+Tmp/
+temp/
+*.tmp
+
 .venv/
 venv/
 .env/
