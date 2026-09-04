@@ -1,0 +1,6 @@
+name: openmobius-skill
+description: 多流派交易问答、能力查询（可用分析视角/School）、图表/OHLCV 与实时行情；覆盖 Wyckoff、Order Flow，Phase 1 compare 仅问答；默认 strict ICT/SMC。
+description_zh: 用于交易概念问答、可用 School/模式查询、图表标注、OHLCV 分析和实时行情分析。
+description_en: Multi-school trading Q&A, capability discovery, chart annotation, OHLCV analysis, and fresh-market workflows; defaults to strict ICT/SMC when no School is selected.
+version: 0.3.0
+author: MobiusQuant

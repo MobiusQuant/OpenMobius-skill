@@ -10,11 +10,123 @@ the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Added current Agent Skills compatibility contracts for Claude Code, Codex,
+  OpenClaw, Hermes, Cursor, and WorkBuddy. Cursor now has user/project skill
+  support, Codex includes optional `agents/openai.yaml` interface metadata,
+  and WorkBuddy has a deterministic ZIP builder for local desktop import and
+  separate Open Platform publication submission.
+- Added three retrieval layers: backward-compatible fused `canonical`,
+  attributable `school`, and atomic exact-source `evidence`. `kb_retrieve.py`
+  now supports hard School/source/type/exclusion intersections, School aliases,
+  inventory/scope diagnostics, and deterministic exact term/alias boosting.
+- Added multi-school analysis-profile orchestration. The default route is strict
+  ICT/SMC, explicit School selectors never silently fall back, and Phase 1
+  compare mode is available for knowledge Q&A while unsupported native market
+  analyzers fail closed before fetching data or generating artifacts.
+- Added a machine-readable 15-label School registry, published JSON Schemas,
+  and a deterministic evidence builder. The current corpus produces 2,144
+  School projections and 18,645 exact-source evidence records; ambiguous fused
+  content is skipped with auditable reason counts.
+- Added safe v2 index upgrades with a versioned manifest, input fingerprint,
+  staging verification/rollback, and doctor checks. School/evidence records now
+  receive independent document embeddings backed by a content-addressed,
+  model-isolated incremental cache; parent-vector inheritance remains an
+  explicit emergency/testing option only.
+- Added a verified float32 release seed for native v2 embeddings, split into 16
+  content-addressed shards. Builds use persistent cache, then exact seed hits,
+  then compute only misses; a guarded exporter refuses incomplete caches and
+  atomically publishes only a fully re-verified seed.
+- Added hybrid v2 retrieval: hard-filtered BM25 candidates and semantic
+  candidates are fused with reciprocal-rank fusion, exact canonical terms and
+  aliases stay first, and per-canonical diversity prevents repeated atomic
+  evidence from crowding out other relevant concepts. Lexical-only retrieval
+  works without loading an embedding model.
+- Added a versioned retrieval-evaluation dataset and CLI reporting Recall@K,
+  MRR, scope/source purity, fail-closed behavior, duplicate-parent rate, and
+  latency, plus a checked-in `auto` release baseline. This makes retrieval
+  changes measurable before release.
+- Added a checksummed WorkBuddy compact corpus that losslessly reconstructs all
+  2,144 School projections and 18,645 exact-source evidence records with only
+  the Python standard library, preserving hard School/source lexical retrieval.
+  Generated package prose derives both counts from the same verified build
+  result instead of relying on stale literals.
+
+### Changed
+
+- Standardized the skill slug and installed directory name as lowercase
+  `openmobius-skill` while retaining **OpenMobius-skill** as the product and
+  repository name. Codex now installs to `~/.agents/skills`, OpenClaw respects
+  `OPENCLAW_STATE_DIR`, Hermes respects `HERMES_HOME`, and Cursor installs to
+  `~/.cursor/skills` for local user use.
+- On Linux/macOS, `--platform all` means the five hosts with documented local
+  discovery paths: Claude Code, Codex, OpenClaw, Hermes, and Cursor. OpenClaw
+  and Hermes are not advertised by this release on Windows; Windows users
+  select Claude Code, Codex, or Cursor explicitly.
+- WorkBuddy setup now distinguishes local ZIP import, installation of a
+  published marketplace copy, and Open Platform publication. Its public docs
+  do not define a fixed third-party-writable directory for automatic discovery;
+  explicit `--target-dir` mode is therefore developer staging/validation only
+  and no longer reports installation success. The deterministic builder
+  enforces WorkBuddy's documented 3 MB maximum using a conservative
+  3,000,000-byte ceiling; its compact package omits canonical/vector artifacts
+  and fails those unsupported routes closed.
+- Pinned the Nomic embedding model to a verified immutable revision and weight
+  digest, disabled model-repository remote code, and raised the supported
+  Sentence Transformers / Transformers dependency ranges to their current
+  major versions.
+
 ### Fixed
 
+- Made School inventory discovery work on read-only skill mounts by reading
+  verified manifest counts or deterministically deriving legacy v2 counts
+  without opening Chroma for writes.
+- Made POSIX generation readers open pre-initialized external lock files with
+  read-only descriptors, so Codex read-only sandboxes can acquire shared
+  leases. Lock-infrastructure errors are now reported separately from genuine
+  lock contention. WorkBuddy's immutable compact package now also binds every
+  runtime knowledge input by size and SHA-256, and only that verified package
+  may fall back when a sandbox forbids first-run lock-file initialization.
+- Closed an index-upgrade path that could report success without checking a
+  legacy-only index against changed canonical cards. Standalone install/update
+  now also keeps its fail-closed generation marker until both populated v2
+  collections and a valid SQLite database have been verified; a missing marker
+  is rejected instead of being treated as an already-completed generation.
+- Made `kb_doctor.py` platform-neutral: it validates the active copy's
+  frontmatter, lowercase slug, and optional expected directory instead of
+  assuming the Claude Code home layout.
 - Corrected uninstall CLI and documentation semantics: standard uninstall
   removes the entire self-contained platform target, while `--full` is now
   explicitly documented as a deprecated compatibility no-op.
+- Made card projection and Chroma promotion one durable transaction with an
+  integrity-checked journal, deterministic crash recovery, and fail-fast
+  cross-process generation leases. Readers now hold one generation lease from
+  scope resolution through result serialization, so they cannot mix old index
+  data with newly promoted or recovering cards.
+- Made standalone install/update a synchronized atomic mirror: guarded target
+  validation rejects broad, overlapping, symlinked, or unrelated directories;
+  upstream deletions are reflected while runtime/user-owned data is preserved;
+  interrupted switches recover from a verified journal. Install/update,
+  uninstall, indexing, retrieval, and WorkBuddy export now coordinate on the
+  same external knowledge-base lock.
+- Made malformed, unreadable, non-object, and empty v2 knowledge cards fail
+  closed instead of being silently skipped. Read-only retrieval now uses the
+  existing Chroma tenant/database without creating state, keeps SQLite query
+  temporary storage in memory for immutable sandboxes, and retains an explicit
+  lexical fallback for packages that intentionally omit an index.
+- Prevented WorkBuddy compact export from following symlinked registries,
+  aliases, card directories, card files, composition inputs, or output targets;
+  unfinished knowledge generations and oversized builds also leave any existing
+  output untouched.
+- Restricted the legacy card-School-only projection exception to its actual
+  ChanLun import shape, preventing incomplete ICT/SMC provenance from entering
+  a strict School scope.
+- Duplicate canonical identities across different card files now fail closed
+  instead of silently merging content under the first file's provenance.
+- Installation and uninstall examples now clone into unique `mktemp`/GUID
+  directories and only remove the captured path, avoiding fixed temporary
+  directory names that could collide with pre-existing data.
 
 ---
 

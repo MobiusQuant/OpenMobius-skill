@@ -2,6 +2,12 @@
 
 For when the user **attaches a trading chart image** and asks anything about it.
 
+Use the host-neutral placeholders from `SKILL.md`: resolve the attachment as
+`<INPUT_IMAGE>`, create a task-specific `<TEMP_DIR>`, choose a writable
+`<USER_OUTPUT_DIR>` for returned artifacts, and derive a filesystem-safe
+`<IMAGE_STEM>` from the input name. Every `kb_retrieve.py` command is shorthand
+that must be expanded to `<PYTHON> scripts/kb_retrieve.py` before execution.
+
 ## When this workflow applies
 
 - User attaches a chart image (TradingView / MT4 / Binance / 火币 / OKX / Bybit / any exchange UI screenshot)
@@ -14,7 +20,46 @@ For when the user **attaches a trading chart image** and asks anything about it.
 - Non-trading images (memes, code screenshots) → not this skill
 - User explicitly wants only annotation, no analysis → use `annotate.md`
 
-## Mandatory Workflow (7 steps)
+## Mandatory Workflow (route + 7 steps)
+
+### Step 0: Resolve or inherit the analysis route
+
+Use the route contract summarized in `SKILL.md`. Read
+`workflows/analysis_profiles.md` only when the user explicitly names or
+excludes a lens/School/source, requests augment/compare, or capability support
+is uncertain. If a caller or an earlier workflow supplied a route, inherit its `mode`,
+`primary_lens`, `secondary_lenses`, `schools`, and `sources`; set
+`intent=analyze` and recompute `capabilities` for chart analysis. An explicit
+lens, school, source, or mode in the current request overrides the
+corresponding inherited selector. If no route or selector exists, use the
+exact default route: `intent=analyze`, `mode=strict`,
+`primary_lens=ict_smc`, `secondary_lenses=[]`, `schools=[ICT, SMC]`,
+`sources=[]`, with `capabilities` populated by the profile capability check.
+
+The route mode controls the whole run:
+
+- **strict** — use the exact School projection layer for School-scoped
+  grounding, or the evidence layer when a source is selected. Only the
+  resulting scoped records and supported analyzers may contribute to
+  conclusions.
+- **augment** — `primary_lens` alone controls bias, trade levels, and the
+  primary overlay. Secondary lenses/sources may only provide labelled
+  confirmation, challenges, or risk context and may not overwrite it.
+- **compare** — unsupported for chart/market analysis in Phase 1. Fail the
+  capability gate before network calls, JSON creation, or annotation.
+
+Before analysis, verify that the available visual/data analyzer can produce
+the concepts required by the route. The current structural indicator and local
+extractor provide ICT/SMC-style BOS/CHoCH/FVG/OB/liquidity evidence; their
+output is not proof of a different school such as ChanLun. If the requested
+lens requires unsupported signals, or the route uses `mode=compare`, fail
+closed: do not issue a directional bias, setup, or annotation under that lens.
+State the missing capability; do not infer a partial comparison from another
+school.
+
+A capability-gap response must still print the requested lens/schools/sources
+and failed capability; because the gate precedes network calls, do not invent a
+freshness footer for such a stopped run.
 
 ### Step 1: Examine the chart
 
@@ -82,8 +127,9 @@ Map to Mobius API canonical form:
 | `NASDAQ:AAPL` | `stock / us / AAPL` |
 
 If you can identify symbol but **not** the exchange/market explicitly, use:
-```bash
-.venv/bin/python scripts/kb_klines.py resolve "<natural name or ticker>"
+
+```text
+<PYTHON> scripts/kb_klines.py resolve "<natural name or ticker>"
 ```
 
 If asset identification fails (resolution low, no visible ticker, unrecognized) → **skip Step 1e**, proceed with visual-only analysis, and add "high-resolution single-panel chart" / "clearly visible ticker label" to `missing_information`.
@@ -92,12 +138,8 @@ If asset identification fails (resolution low, no visible ticker, unrecognized) 
 
 If Step 1d succeeded, **fetch real data**:
 
-```bash
-.venv/bin/python scripts/kb_klines.py fetch \
-    --exchange <ex> --market <mkt> --symbol <sym> \
-    --interval <tf> --limit 200 \
-    --with-htf \
-    --output <image_dir>/<image_stem>.klines.json
+```text
+<PYTHON> scripts/kb_klines.py fetch --exchange <ex> --market <mkt> --symbol <sym> --interval <tf> --limit 200 --with-htf --output <TEMP_DIR>/<IMAGE_STEM>.klines.json
 ```
 
 ### Step 1f: Fetch SMC structural indicator (default)
@@ -105,11 +147,12 @@ If Step 1d succeeded, **fetch real data**:
 The SMC indicator gives a structural ground-truth reading to complement
 the visual chart analysis:
 
-```bash
-.venv/bin/python scripts/kb_klines.py indicators \
-    --exchange <ex> --market <mkt> --symbol <sym> \
-    --interval <tf> --limit 200 --format compact \
-    --output <image_dir>/<image_stem>.smc.txt
+Run this only when the resolved route permits ICT/SMC structural evidence.
+In `augment` mode label it as secondary when ICT/SMC is not the primary lens;
+in `strict` mode never use it as a substitute for an unsupported school.
+
+```text
+<PYTHON> scripts/kb_klines.py indicators --exchange <ex> --market <mkt> --symbol <sym> --interval <tf> --limit 200 --format compact --output <TEMP_DIR>/<IMAGE_STEM>.smc.txt
 ```
 
 **Read the .smc.txt** with the `Read` tool. It contains exact prices for:
@@ -142,10 +185,8 @@ If `is_stale=True`, prepend a warning line to the final reply.
 
 **Fallback to local extraction** (only if SMC API unreachable):
 
-```bash
-.venv/bin/python scripts/kb_klines.py analyze \
-    --input <image_dir>/<image_stem>.klines.json \
-    --output <image_dir>/<image_stem>.features.txt
+```text
+<PYTHON> scripts/kb_klines.py analyze --input <TEMP_DIR>/<IMAGE_STEM>.klines.json --output <TEMP_DIR>/<IMAGE_STEM>.features.txt
 ```
 
 **Sanity check** — compare data to chart:
@@ -198,27 +239,38 @@ If a pattern looks possible but you're unsure, **still retrieve** — let the ca
 
 ### Step 3: Retrieve concepts from the knowledge base
 
-```bash
-.venv/bin/python scripts/kb_retrieve.py "<keywords>" --top-k 5
+```text
+kb_retrieve.py "<keywords>" --layer school --schools ICT SMC --top-k 5
 ```
+
+Replace `ICT SMC` with the route's exact canonical School tags and quote tags
+containing spaces. Keep the default explicit.
+If `route.sources` is non-empty, switch to `--layer evidence --sources ...`
+and retain the route's School filter when present. Retrieve only when the
+capability check confirms that exact intersection; never post-filter an
+unscoped top-K and call it source-specific.
 
 Examples:
 
-```bash
+```text
 # Generic chart with long wicks
-kb_retrieve.py "long lower wick liquidity sweep reversal" --top-k 5
+kb_retrieve.py "long lower wick liquidity sweep reversal" --layer school --schools ICT SMC --top-k 5
 
 # FVG + entry
-kb_retrieve.py "Fair Value Gap entry OTE CISD confirmation" --top-k 5
+kb_retrieve.py "Fair Value Gap entry OTE CISD confirmation" --layer school --schools ICT SMC --top-k 5
 
 # Similar historical case
-kb_retrieve.py "BTC 4H liquidity sweep entry reversal" --type case --top-k 3
+kb_retrieve.py "BTC 4H liquidity sweep entry reversal" --layer school --schools ICT SMC --type case --top-k 3
 
-# Single school
-kb_retrieve.py "smart money concepts market structure" --school ICT --top-k 5
+# Strict single-school route
+kb_retrieve.py "smart money concepts market structure" --layer school --schools ICT --top-k 5
 ```
 
 **Multiple retrievals are encouraged** for complex charts.
+
+For `augment`, retrieve the primary schools first and any permitted secondary
+schools separately so provenance remains visible. A `compare` market route
+must already have stopped at Step 0 in Phase 1.
 
 ### Step 4: Apply rules to chart + data (dual-source)
 
@@ -227,28 +279,40 @@ For each retrieved card:
 1. Read its `identification_rules`
 2. Match each rule against **two evidence sources** (when both available):
    - **Visual evidence** from the chart (candle features, structure events)
-   - **Data evidence** from the features.txt produced by Step 1e (exact prices, mitigation %, sweep wicks, displacement strength)
+   - **Data evidence** from the `.smc.txt` produced by Step 1f, or the
+     `.features.txt` produced by the local fallback (exact prices, mitigation
+     %, sweep wicks, displacement strength)
 3. **Confirm** the pattern only if at least one source clearly satisfies the rule. Strong confirmation = both sources agree.
 4. **Reject** if both sources fail the rule.
 5. Note `common_mistakes` to avoid.
 
-**Data takes precedence on price levels**: when the user asks "where's the FVG", quote the exact range from features.txt, NOT a visual estimate.
+Apply those checks within the route boundary. `strict` rejects any claim whose
+support is outside the selected lens. `augment` labels primary versus secondary
+support. Record the school, source label, and card ID beside every accepted or
+rejected knowledge claim. A `compare` market route does not reach this step in
+Phase 1.
+
+**Data takes precedence on price levels**: when the user asks "where's the FVG",
+quote the exact range from the SMC output or local feature output, NOT a visual
+estimate.
 
 **Visual takes precedence on subjective features**: chart annotations / drawn lines / user notes only exist in the image.
 
-**Conflict handling**: if features.txt says "no FVG at level X" but the chart visually looks like there might be one, you likely misread the chart. Trust data; mention the conflict in the Analysis section.
+**Conflict handling**: if the SMC/local feature output says "no FVG at level X"
+but the chart visually looks like there might be one, you likely misread the
+chart. Trust data; mention the conflict in the Analysis section.
 
 **Citation format**:
 - Visual: `"Rule 2 of FVG: 'high of first candle below low of third' — visible at candles 12:00 / 16:00 / 20:00 forming gap"`
-- Data-grounded: `"Bullish FVG confirmed at 73,182 - 74,210 (features.txt), 33% mitigated. Rule 2 satisfied: c0.high (73182) < c2.low (74210)."`
+- Data-grounded: `"Bullish FVG confirmed at 73,182 - 74,210 (SMC/local feature output), 33% mitigated. Rule 2 satisfied: c0.high (73182) < c2.low (74210)."`
 
-**Reject example**: `"Rejected Order Block hypothesis — features.txt shows no displacement > 1.5× ATR in next 3 candles; Rule 3 fails"`
+**Reject example**: `"Rejected Order Block hypothesis — SMC/local feature output shows no displacement > 1.5× ATR in next 3 candles; Rule 3 fails"`
 
 ### Step 5: Save structured JSON (silent, NOT shown to user)
 
-Save to: `<image_directory>/<image_stem>.analysis.json`
+Save to: `<USER_OUTPUT_DIR>/<IMAGE_STEM>.analysis.json`
 
-Example: `/home/Codes/QuantKnowledge/test-charts/eth_5m.png` → `/home/Codes/QuantKnowledge/test-charts/eth_5m.analysis.json`
+Example: `<INPUT_IMAGE>` → `<USER_OUTPUT_DIR>/eth_5m.analysis.json`
 
 Use the `Write` tool. **DO NOT paste the JSON content in your reply.** It's for downstream tools.
 
@@ -256,7 +320,25 @@ JSON schema:
 
 ```json
 {
-  "input_image": "<absolute path of original image>",
+  "input_image": "<INPUT_IMAGE>",
+  "route": {
+    "intent": "analyze",
+    "mode": "strict" | "augment",
+    "primary_lens": "<resolved primary profile>",
+    "secondary_lenses": ["<resolved secondary profile>"],
+    "schools": ["<resolved school>"],
+    "sources": ["<resolved source, if constrained>"],
+    "capabilities": {
+      "exact_primary_school_filter": true,
+      "native_market_analyzer": "supported",
+      "source_filter": "not_requested",
+      "intent_supported": true,
+      "reason": null
+    }
+  },
+  "knowledge_sources": [
+    {"school": "<school>", "source": "<source label>", "card_id": "<card id>"}
+  ],
   "asset": "<ticker or null>",
   "timeframe": "<e.g. 4H or null>",
   "visible_price_range": [<low>, <high>] | null,
@@ -264,7 +346,7 @@ JSON schema:
 
   "data_source": "visual+api" | "visual_only" | "api_only",
   "klines_json_path": "<path to .klines.json if Step 1e succeeded>" | null,
-  "features_path": "<path to .features.txt if Step 1e succeeded>" | null,
+  "features_path": "<path to .smc.txt from Step 1f, or .features.txt from the local fallback>" | null,
   "data_chart_consistency": "match" | "mismatch_warn" | "n/a",
 
   "chart_bbox": {"x": <int>, "y": <int>, "width": <int>, "height": <int>} | null,
@@ -279,7 +361,9 @@ JSON schema:
       "range": [<low>, <high>],
       "label": "<short label>",
       "confidence": "very_high" | "high" | "medium" | "low" | "very_low",
-      "source_card": "<card id from retrieval>"
+      "source_card": "<card id from retrieval>",
+      "source_school": "<school>",
+      "source_label": "<source collection/card label>"
     }
   ],
   "trade_setup": {
@@ -317,11 +401,8 @@ You have **two paths** to produce a chart image. Pick based on user intent and i
 
 Use when the user wants markup on **their own** chart (their TradingView screenshot, existing drawings, etc.).
 
-```bash
-.venv/bin/python scripts/kb_phase_b_to_c.py \
-    --input <image_dir>/<image_stem>.analysis.json \
-    --image <original_image_path> \
-    --output <image_dir>/<image_stem>.annotated.png
+```text
+<PYTHON> scripts/kb_phase_b_to_c.py --input <USER_OUTPUT_DIR>/<IMAGE_STEM>.analysis.json --image <INPUT_IMAGE> --output <USER_OUTPUT_DIR>/<IMAGE_STEM>.annotated.png
 ```
 
 Reads `chart_bbox` / `y_axis_range` / `theme` from JSON, maps `patterns` + `trade_setup` to annotations, renders on top of the original image.
@@ -337,12 +418,9 @@ Use when:
 - User's image is low-resolution (Step 1b judged low)
 - Step 1e fetched real data (Option B is more accurate since it uses the SAME data)
 
-```bash
-# 1. Pull pure K-lines → panels payload skeleton (items=[])
-.venv/bin/python scripts/kb_klines.py chart \
-    --exchange <ex> --market <mkt> --symbol <sym> --interval <tf> \
-    --limit 200 \
-    --output <image_dir>/<image_stem>.chart.json
+```text
+# 1. Pull K-lines + auto-filled SMC structural overlay
+<PYTHON> scripts/kb_klines.py chart --exchange <ex> --market <mkt> --symbol <sym> --interval <tf> --limit 200 --output <TEMP_DIR>/<IMAGE_STEM>.chart.json
 ```
 
 `kb_klines.py chart` auto-fills the structural overlay from the SMC
@@ -350,8 +428,15 @@ indicator — no manual `panels[0].items` authoring needed. If you have a
 trade-setup (entry / SL / target) to draw, write a small JSON file with
 only those hlines:
 
-```bash
-cat > <image_dir>/<image_stem>.setup.json <<'JSON'
+The auto-overlay is an ICT/SMC analyzer output and remains subject to Step 0.
+In `strict`, do not generate it for another lens. In `augment`, it may appear
+only as a labelled secondary overlay when permitted. A `compare` market route
+must stop before artifact generation in Phase 1.
+
+Using the host's file-writing tool or a JSON serializer, save this object to
+`<TEMP_DIR>/<IMAGE_STEM>.setup.json`:
+
+```json
 {"items": [
   {"type": "hline", "value": 78500, "label": "Short 78500",
    "style": {"role": "entry_short", "width": 2}},
@@ -360,17 +445,12 @@ cat > <image_dir>/<image_stem>.setup.json <<'JSON'
   {"type": "hline", "value": 77000, "label": "T1 77000",
    "style": {"role": "target", "width": 2}}
 ]}
-JSON
 ```
 
 Render (pass `--trade-setup` only if you authored a setup file):
 
-```bash
-.venv/bin/python scripts/kb_klines.py render \
-    --input <image_dir>/<image_stem>.chart.json \
-    --trade-setup <image_dir>/<image_stem>.setup.json \
-    --output <image_dir>/<image_stem>.chart.png \
-    --theme dark --width 1400 --height 900
+```text
+<PYTHON> scripts/kb_klines.py render --input <TEMP_DIR>/<IMAGE_STEM>.chart.json --trade-setup <TEMP_DIR>/<IMAGE_STEM>.setup.json --output <USER_OUTPUT_DIR>/<IMAGE_STEM>.chart.png --theme dark --width 1400 --height 900
 ```
 
 See `workflows/klines.md` Step 4 for the auto-overlay knobs
@@ -402,6 +482,7 @@ Reply structure (verbatim) in the user's language:
 
 ```markdown
 ## 结论 / Conclusion
+- **分析视角 / Lens**: <route.primary_lens + secondary_lenses> (<route.mode>)
 - **Bias**: <long-leaning / short-leaning / neutral / uncertain>
 - **Confidence**: <very_high / high / medium / low / very_low>
 - **操作建议 / Action**: <one-line concrete recommendation, e.g. "等 2245 retest 后做空，SL 2270，目标 2210/2200">
@@ -456,6 +537,7 @@ come directly from Step 1g's API response, do NOT fabricate them:
 ⏱️  K 线年龄 / Bar age:        <freshness.last_bar_age_seconds>s (is_stale=<freshness.is_stale>)
 📂 分析数据 / Analysis JSON:   <absolute path>
 🖼️ 标注图 / Annotated chart:  <absolute path>  ← only if Step 7 succeeded
+📚 知识来源 / Knowledge sources: <schools/source labels + card IDs actually used>
 ```
 
 If `freshness.is_stale == true`, prepend a top-level warning line at the
@@ -481,6 +563,8 @@ If Step 7 was skipped, omit the annotated chart line and optionally add:
 9. **Resolution-aware** — downgrade to approximate / relative when low res
 10. **JSON is internal** — silently save; NEVER paste in conversational reply
 11. **Don't force outcome_cases** — if too ambiguous, skip Cases and explain what's needed
+12. **Route fidelity** — expose lens/source provenance and fail closed when the
+    requested profile lacks a native analysis capability
 
 ## Examples
 
@@ -489,19 +573,21 @@ If Step 7 was skipped, omit the annotated chart line and optionally add:
 User: [attaches ETH 5m chart] "查看一下这个图片，给我分析一下当前的行情"
 
 **Internal workflow**:
-1. Step 1: ETHUSDT.P 5m, image 1316×708, range 2200-2280, current 2226.5
-2. Step 1c: chart_bbox = {x:50, y:30, w:1186, h:510}, y_axis_range = {top:2280, bottom:2200}, theme="dark"
-3. Step 2: hypotheses → Liquidity Sweep at 2245, Bearish Displacement, Breaker Block
-4. Step 3: `kb_retrieve.py "liquidity sweep breakdown displacement breaker 5m short setup"`
-5. Step 4: confirm all three; reject V-shape rebound (multi-candle, not 1-3 candles)
-6. Step 5: silently save JSON to `/home/Codes/QuantKnowledge/test-charts/eth_5m.analysis.json`
-7. Step 7: run `kb_phase_b_to_c.py` → saves `eth_5m.annotated.png`
-8. Step 6: 5-section reply in Chinese
+1. Step 0: default strict `ict_smc` route, `schools=[ICT, SMC]`
+2. Step 1: ETHUSDT.P 5m, image 1316×708, range 2200-2280, current 2226.5
+3. Step 1c: chart_bbox = {x:50, y:30, w:1186, h:510}, y_axis_range = {top:2280, bottom:2200}, theme="dark"
+4. Step 2: hypotheses → Liquidity Sweep at 2245, Bearish Displacement, Breaker Block
+5. Step 3: `kb_retrieve.py "liquidity sweep breakdown displacement breaker 5m short setup" --layer school --schools ICT SMC`
+6. Step 4: confirm all three; reject V-shape rebound (multi-candle, not 1-3 candles)
+7. Step 5: silently save JSON to `<USER_OUTPUT_DIR>/eth_5m.analysis.json`
+8. Step 7: run `<PYTHON> scripts/kb_phase_b_to_c.py` → saves `<USER_OUTPUT_DIR>/eth_5m.annotated.png`
+9. Step 6: 5-section reply in Chinese
 
 **Reply** (Chinese prose, English technical terms):
 
 ```markdown
 ## 结论 / Conclusion
+- **分析视角 / Lens**: ict_smc (strict)
 - **Bias**: short-leaning（短期）
 - **Confidence**: medium
 - **操作建议**: 等 2245 retest + LTF CISD 后做空，SL 2270，目标 2210 → 2200
@@ -556,8 +642,9 @@ User: [attaches ETH 5m chart] "查看一下这个图片，给我分析一下当�
 - **整体 setup 失效**: 5m 收盘上破 2270
 - **监控**: 等 5m K 线接近 2245 时的反应（rejection 还是 break-through）
 
-📂 分析数据 / Analysis JSON: `/home/Codes/QuantKnowledge/test-charts/eth_5m.analysis.json`
-🖼️ 标注图 / Annotated chart: `/home/Codes/QuantKnowledge/test-charts/eth_5m.annotated.png`
+📂 分析数据 / Analysis JSON: `<USER_OUTPUT_DIR>/eth_5m.analysis.json`
+🖼️ 标注图 / Annotated chart: `<USER_OUTPUT_DIR>/eth_5m.annotated.png`
+📚 知识来源 / Knowledge sources: ICT/SMC → Liquidity Sweep, Displacement, Breaker Block card IDs
 ```
 
 ### Example 2 — English user, ambiguous chart
@@ -604,7 +691,7 @@ User: [attaches BTC 1D long-range chart] "What's happening here?"
 - Weekly / Monthly for macro bias
 - Pre-Nov-2025 history to confirm 60K as macro swing low
 
-📂 Analysis JSON: `/home/Codes/QuantKnowledge/test-charts/btc_1d.analysis.json`
+📂 Analysis JSON: `<USER_OUTPUT_DIR>/btc_1d.analysis.json`
 (标注图未生成：无可执行的 trade_setup，跳过自动 annotation)
 ```
 

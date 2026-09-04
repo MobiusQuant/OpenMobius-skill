@@ -1,0 +1,6 @@
+interface:
+  display_name: "OpenMobius Trading Analysis"
+  short_description: "Multi-school trading analysis and chart workflows"
+  default_prompt: "Use $openmobius-skill to analyze BTC on the 1-hour timeframe with the default ICT/SMC model."
+policy:
+  allow_implicit_invocation: true

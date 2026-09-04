@@ -1,0 +1,228 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openmobius.local/schemas/school_projection_v2.schema.json",
+  "title": "OpenMobius School Projection v2",
+  "description": "A canonical concept or case projected into one School without cross-School rule synthesis.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "layer",
+    "id",
+    "record_id",
+    "canonical_id",
+    "canonical_term",
+    "type",
+    "school",
+    "aliases",
+    "content_by_type",
+    "evidence_ids",
+    "source_names",
+    "source_collection_count",
+    "file_path",
+    "derivation",
+    "search_text",
+    "embedding_strategy"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "layer": {
+      "const": "school_projection"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "record_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "canonical_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "canonical_term": {
+      "type": "string",
+      "minLength": 1
+    },
+    "type": {
+      "enum": [
+        "concept",
+        "case"
+      ]
+    },
+    "school": {
+      "type": "string",
+      "minLength": 1
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "content_by_type": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "properties": {
+        "definition": {
+          "$ref": "#/$defs/contentItems"
+        },
+        "identification_rule": {
+          "$ref": "#/$defs/contentItems"
+        },
+        "common_mistake": {
+          "$ref": "#/$defs/contentItems"
+        },
+        "trading_implication": {
+          "$ref": "#/$defs/contentItems"
+        },
+        "market_context": {
+          "$ref": "#/$defs/contentItems"
+        },
+        "key_observation": {
+          "$ref": "#/$defs/contentItems"
+        },
+        "analysis_step": {
+          "$ref": "#/$defs/contentItems"
+        },
+        "outcome": {
+          "$ref": "#/$defs/contentItems"
+        },
+        "lesson": {
+          "$ref": "#/$defs/contentItems"
+        }
+      }
+    },
+    "evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "source_names": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "source_collection_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "file_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "derivation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "strategy",
+        "school_attribution"
+      ],
+      "properties": {
+        "strategy": {
+          "enum": [
+            "single_school_card",
+            "source_definitions_only",
+            "case_card"
+          ]
+        },
+        "school_attribution": {
+          "enum": [
+            "card_and_sources_agree",
+            "explicit_source_mapping",
+            "card_school_only",
+            "direct_case"
+          ]
+        },
+        "skipped_content_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "review_status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "search_text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "embedding_strategy": {
+      "const": "native_document"
+    }
+  },
+  "$defs": {
+    "contentItems": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "content",
+          "ref",
+          "attribution_level"
+        ],
+        "properties": {
+          "content": {
+            "type": "string",
+            "minLength": 1
+          },
+          "ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "attribution_level": {
+            "enum": [
+              "source",
+              "school"
+            ]
+          },
+          "evidence_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "attribution_level": {
+                  "const": "source"
+                }
+              },
+              "required": [
+                "attribution_level"
+              ]
+            },
+            "then": {
+              "required": [
+                "evidence_id",
+                "source"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

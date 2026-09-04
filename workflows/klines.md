@@ -2,6 +2,11 @@
 
 For when the user provides **structured K-line data** (pasted) or just **asset name + timeframe**, without necessarily attaching a chart image.
 
+Use the host-neutral placeholders from `SKILL.md`. Create one task-specific
+`<TEMP_DIR>` for intermediate inputs/results and choose `<USER_OUTPUT_DIR>` for
+the chart returned to the user. Every `kb_retrieve.py` command is shorthand
+that must be expanded to `<PYTHON> scripts/kb_retrieve.py` before execution.
+
 ## When this workflow applies
 
 - User pastes OHLCV data (CSV / JSON / Markdown table / TradingView export)
@@ -25,23 +30,53 @@ This workflow accepts **two data sources**:
 
 Both result in standard OHLCV → feed to feature extractor → 5-section output.
 
-## Mandatory Workflow (4 steps)
+## Mandatory Workflow (route + 4 steps)
 
-### Step 1: Acquire FRESH data (every turn, no caching)
+### Step 0: Resolve or inherit the analysis route
 
-For ANY market question — **even if you answered the same asset
-recently in this conversation** — call the API fresh. Never reuse
-older-than-current-turn prices.
+Use the route contract summarized in `SKILL.md`. Read
+`workflows/analysis_profiles.md` only when the user explicitly names or
+excludes a lens/School/source, requests augment/compare, or capability support
+is uncertain. If a caller or previous workflow supplied a route, inherit its `mode`,
+`primary_lens`, `secondary_lenses`, `schools`, and `sources`; set
+`intent=klines` and recompute `capabilities` for data-driven market analysis.
+An explicit lens, school, source, or mode in the current request overrides the
+corresponding inherited selector. If no route or selector exists, use
+`intent=klines`, `mode=strict`, `primary_lens=ict_smc`,
+`secondary_lenses=[]`, `schools=[ICT, SMC]`, `sources=[]`, with
+`capabilities` populated by the profile capability check.
+
+- **strict** — use the exact School projection layer for School-scoped
+  grounding, or the evidence layer when a source is selected. Only those
+  scoped records and compatible analyzers may drive the result.
+- **augment** — `primary_lens` alone controls bias, trade levels, and the
+  primary chart. Secondary lenses/sources may only add labelled confirmation,
+  challenges, or risk context and cannot override it.
+- **compare** — unsupported for data-driven market analysis in Phase 1. Fail
+  the capability gate before data acquisition or artifact generation.
+
+Perform an analyzer-capability gate before producing market conclusions. The
+current indicator and local extractor implement ICT/SMC-style structure. They
+must not be presented as ChanLun, Wyckoff, Elliott Wave, or another unsupported
+lens. In `strict`, fail closed with a capability-gap response. Any market
+`compare` route also fails closed in Phase 1; do not produce a partial
+comparison. `augment` may use the structural output only as labelled secondary
+evidence when the profile permits it.
+A stopped capability-gap response still names the requested
+lens/schools/sources and failed capability. Because this gate precedes data
+acquisition, do not fabricate freshness or chart artifacts for that response.
+
+### Step 1: Acquire the requested data
+
+For a supported current-market route that passed Step 0 — **even if you
+answered the same asset recently in this conversation** — call the API fresh.
+Never reuse older-than-current-turn prices. If the user explicitly supplied
+OHLCV for analysis, preserve that snapshot and use Path B instead.
 
 **Path A — fetch from API**:
 
-```bash
-.venv/bin/python scripts/kb_klines.py fetch \
-    --query "<asset natural name, e.g. '比特币' or 'BTC' or 'ETH' or '茅台'>" \
-    --interval <1m|5m|15m|30m|1h|4h|1d> \
-    --limit 200 \
-    --with-htf \
-    --output /tmp/<symbol>_<interval>.json
+```text
+<PYTHON> scripts/kb_klines.py fetch --query "<asset natural name, e.g. '比特币' or 'BTC' or 'ETH' or '茅台'>" --interval <1m|5m|15m|30m|1h|4h|1d> --limit 200 --with-htf --output <TEMP_DIR>/<symbol>_<interval>.json
 ```
 
 If the API is unreachable, fall back to Path B (ask user to paste OHLCV).
@@ -51,25 +86,28 @@ If the API is unreachable, fall back to Path B (ask user to paste OHLCV).
 - API supports: crypto (binance/bybit/okx/hyperliquid), stocks (cn/hk/us), forex
 
 If user gave a canonical symbol directly (e.g. "BTCUSDT spot"), use:
-```bash
-kb_klines.py fetch --exchange binance --market spot --symbol BTCUSDT --interval 1h ...
+```text
+<PYTHON> scripts/kb_klines.py fetch --exchange binance --market spot --symbol BTCUSDT --interval 1h ...
 ```
 
 **Path B — parse user-pasted data**:
 
-```bash
-echo "<user pasted text>" | \
-.venv/bin/python scripts/kb_klines.py parse \
-    --symbol <symbol> \
-    --interval <tf> \
-    --output /tmp/parsed.json
+Use the `Write` tool to save the user's text verbatim to a temporary input file;
+do not interpolate untrusted text into a shell command. Then run:
+
+```text
+<PYTHON> scripts/kb_klines.py parse --input <TEMP_DIR>/<symbol>_<interval>_user_input.txt --symbol <symbol> --interval <tf> --output <TEMP_DIR>/<symbol>_<interval>.json
 ```
 
 The parser auto-detects: JSON array (binance-style), CSV with header, Markdown table, whitespace-separated table.
 
-**If parser fails** (rare unusual format): you (the LLM) can convert the user's text into a JSON object array `[{"time": ..., "open": ..., "high": ..., "low": ..., "close": ..., "volume": ...}]` and feed via stdin to `parse`.
+**If parser fails** (rare unusual format): convert the user's text into a JSON
+object array `[{"time": ..., "open": ..., "high": ..., "low": ...,
+"close": ..., "volume": ...}]`, save it through the host's file-writing tool,
+and pass that file with `--input`. Do not interpolate user data into a pipe or
+shell command.
 
-### Step 1b: Verify freshness from the API response
+### Step 1b: Verify freshness for Path A
 
 Every API response (`fetch` / `indicators` / `chart`) now includes a
 top-level `freshness` block:
@@ -97,13 +135,18 @@ You MUST:
    data or from older turns in the conversation. Step 2 (SMC indicator
    fetch) re-grounds you in fresh data; do not narrate ahead of it.
 
-### Step 2: Fetch SMC structural indicator (default)
+Path B has no API `freshness` block. Preserve `time_range_ms`, `current_price`,
+and `count` from the parser output, label the data as user-provided, and state
+that recency and upstream provenance were not independently verified.
 
-```bash
-.venv/bin/python scripts/kb_klines.py indicators \
-    --query "<asset>" --interval <tf> \
-    --limit 200 --format compact \
-    --output /tmp/<symbol>_smc.txt
+### Step 2: Obtain ICT/SMC structural features
+
+For Path A, run the server-side analyzer only when permitted by the resolved
+route and the capability gate above. Its output is authoritative structural
+data for ICT/SMC routes, not a universal implementation of every school.
+
+```text
+<PYTHON> scripts/kb_klines.py indicators --query "<asset>" --interval <tf> --limit 200 --format compact --output <TEMP_DIR>/<symbol>_smc.txt
 ```
 
 This is the structural source of truth for the analysis. Output covers:
@@ -120,19 +163,19 @@ This is the structural source of truth for the analysis. Output covers:
 Read the output via `Read` — it's compact text, ~30-80 lines. Use the
 field-semantics map in `SKILL.body.md` to consume each section.
 
-### Step 2 (fallback): Local feature extraction
+### Step 2B: Local feature extraction
 
-If the SMC API is unreachable (network error / 5xx), fall back to:
+For user-pasted Path B data, or if the SMC API is unreachable (network error /
+5xx), run:
 
-```bash
-.venv/bin/python scripts/kb_klines.py analyze \
-    --input /tmp/<symbol>_<interval>.json \
-    --output /tmp/<symbol>_features.txt
+```text
+<PYTHON> scripts/kb_klines.py analyze --input <TEMP_DIR>/<symbol>_<interval>.json --output <TEMP_DIR>/<symbol>_features.txt
 ```
 
-This computes BOS/CHoCH / Order Blocks / Fair Value Gaps / Liquidity
-Sweeps / Displacement locally from OHLCV. State explicitly in the reply
-that the data came from local extraction rather than the SMC API.
+This computes BOS/CHoCH / Order Blocks / Fair Value Gaps / Liquidity Sweeps /
+Displacement locally from OHLCV. State explicitly that the **structure** came
+from local extraction; separately identify whether the OHLCV came from Mobius
+or the user.
 
 If HTF was fetched, the local analyze output includes both **primary**
 and **HTF** sections.
@@ -141,9 +184,17 @@ and **HTF** sections.
 
 Based on what the feature extractor surfaced, retrieve relevant ICT/SMC concepts:
 
-```bash
-.venv/bin/python scripts/kb_retrieve.py "<keywords>" --top-k 5
+```text
+kb_retrieve.py "<keywords>" --layer school --schools ICT SMC --top-k 5
 ```
+
+Replace `ICT SMC` with the resolved route's exact canonical School tags and
+quote tags containing spaces. The default schools must always be passed
+explicitly.
+If `route.sources` is non-empty, switch to `--layer evidence --sources ...`
+and keep the route's School filter when present. Retrieve only when that exact
+intersection is available in `route.capabilities`; do not post-filter a
+broader top-K.
 
 Pick keywords from the surfaced features:
 - If sweeps detected → "liquidity sweep reversal CISD"
@@ -153,37 +204,54 @@ Pick keywords from the surfaced features:
 
 Multiple retrievals encouraged when several patterns surface.
 
+For `augment`, retrieve primary and secondary schools separately and keep
+their provenance distinct. A `compare` market route must already have stopped
+at Step 0 in Phase 1.
+
 ### Step 4: Generate a fresh chart image (default ON)
 
-**This step is REQUIRED** for asset + timeframe queries (e.g. "BTC 1h 怎么样",
-"ETH 4h 现在如何", "茅台日线分析"). A market-analysis answer without a
-chart is **incomplete** — users expect to see the K-lines plus the
+For API-backed Path A, **this step is REQUIRED** for asset + timeframe queries
+(e.g. "BTC 1h 怎么样", "ETH 4h 现在如何", "茅台日线分析"). A Path A answer
+without a chart is **incomplete** — users expect to see the K-lines plus the
 FVG/OB/sweep overlays that the analysis cites.
 
 Skip this step ONLY if the user explicitly opts out
 ("只要文字" / "skip chart" / "不用画图" / "no image").
 
-Build the chart from pure K-lines + knowledge-base overlays (no indicators —
-those are out of scope for this skill).
+For user-pasted Path B, do not call `chart` merely to produce an image: that
+command fetches a live series that may differ from the supplied snapshot.
+Render only when a panels payload has been constructed from the supplied
+candles; otherwise state `Chart: not generated for user-pasted snapshot` in the
+Path B footer. Never label a live chart as if it depicted the pasted data.
+
+Build the chart from K-lines plus structural overlays. Do not render oscillator
+sub-panels; the structural overlay is derived from the SMC `objects` sidecar
+for an ICT/SMC-capable route.
 
 **Generate the chart in one command**: `kb_klines.py chart` now auto-fills
 the structural overlay from the SMC indicator (BOS/CHoCH markers,
-trailing-extreme labels, active Order Blocks, active Fair Value Gaps,
-equal H/L, premium/equilibrium/discount zone bands, internal OBs,
-mitigated OBs/FVGs as muted history) — no manual JSON authoring needed.
+trailing-extreme labels, active Order Blocks, active Fair Value Gaps, equal
+H/L, internal OBs, and mitigated OBs/FVGs as muted history) — no manual JSON
+authoring needed. Premium/equilibrium/discount bands are optional and require
+`--include-zones`.
 
-```bash
-.venv/bin/python scripts/kb_klines.py chart \
-    --query "<asset>" --interval <tf> --limit 200 \
-    --output /tmp/<sym>_chart.json
+This auto-overlay is valid only for an ICT/SMC-capable route. In `augment`,
+label it as secondary if ICT/SMC is not primary. A `compare` market route must
+stop before artifact generation in Phase 1. Never use the auto-overlay to fill
+an unsupported lens.
+
+```text
+<PYTHON> scripts/kb_klines.py chart --query "<asset>" --interval <tf> --limit 200 --output <TEMP_DIR>/<sym>_chart.json
 ```
 
 **Trade-setup**: if you have entry / SL / target prices to draw, write a
 small JSON file and pass it at render time. **You only ever author hline
 items** — the structural geometry is handled for you.
 
-```bash
-cat > /tmp/<sym>_setup.json <<'JSON'
+Using the host's file-writing tool or a JSON serializer, save this object to
+`<TEMP_DIR>/<sym>_setup.json`:
+
+```json
 {"items": [
   {"type": "hline", "value": 78500, "label": "Short 78500",
    "style": {"role": "entry_short", "width": 2}},
@@ -192,7 +260,6 @@ cat > /tmp/<sym>_setup.json <<'JSON'
   {"type": "hline", "value": 77000, "label": "T1 77000",
    "style": {"role": "target", "width": 2}}
 ]}
-JSON
 ```
 
 Available `style.role` values for trade-setup hlines: `entry_long`,
@@ -211,19 +278,17 @@ plain K-line chart, OR (if you ran a local `analyze` in Step 2) drop in
 its `suggested_overlay_items` via the trade-setup JSON.
 
 **Auto-overlay knobs** (defaults shown):
-- `--max-items 8` — caps non-zone overlay items
+- `--max-items 400` — safety cap for auto-filled overlay items
 - `--no-auto-overlay` — disable SMC fetch (items will be empty)
-- `--no-include-mitigated` / `--no-include-zones` / `--no-include-internal`
-  — turn off the matching item category
+- `--no-include-mitigated` / `--no-include-internal` — turn off the matching
+  item category
+- `--include-zones` — opt in to premium/equilibrium/discount bands (default
+  OFF)
 
 Then render to PNG (pass `--trade-setup` only if you authored a setup file):
 
-```bash
-.venv/bin/python scripts/kb_klines.py render \
-    --input /tmp/<sym>_chart.json \
-    --trade-setup /tmp/<sym>_setup.json \
-    --output /tmp/<sym>_chart.png \
-    --theme dark --width 1400 --height 900
+```text
+<PYTHON> scripts/kb_klines.py render --input <TEMP_DIR>/<sym>_chart.json --trade-setup <TEMP_DIR>/<sym>_setup.json --output <USER_OUTPUT_DIR>/<sym>_chart.png --theme dark --width 1400 --height 900
 ```
 
 Output is a TradingView-grade PNG ready to include in your reply.
@@ -249,6 +314,7 @@ image input, so the auto-annotation step from `analyze.md` is omitted):
 
 ```markdown
 ## 结论 / Conclusion
+- **分析视角 / Lens**: <route.primary_lens + secondary_lenses> (<route.mode>)
 - **Bias**: <long-leaning / short-leaning / neutral / uncertain>
 - **Confidence**: <very_high / high / medium / low / very_low>
 - **操作建议 / Action**: <one-line concrete recommendation with PRECISE prices from data>
@@ -278,9 +344,10 @@ image input, so the auto-annotation step from `analyze.md` is omitted):
 ## 信息缺失 / Missing Information (optional, only if confidence ≤ medium)
 ```
 
-After the 5 sections, append the **mandatory freshness footer** —
-values come directly from the API response's `freshness` block, do NOT
-fabricate them:
+After the 5 sections, append the footer matching the data path.
+
+For **Path A**, append the mandatory freshness footer. Values come directly
+from the API response's `freshness` block; do not fabricate them:
 
 ```
 📅 数据时点 / Data as of (UTC): <freshness.last_bar_open_time_utc>
@@ -290,6 +357,7 @@ fabricate them:
 ⏱️  K 线年龄 / Bar age:        <freshness.last_bar_age_seconds>s (is_stale=<freshness.is_stale>)
 📂 结构摘要 / Structure:       <path to SMC output, or local features.txt if fallback>
 🖼️ 行情图 / Chart:            <path to rendered PNG>   ← REQUIRED unless user opted out
+📚 知识来源 / Knowledge sources: <schools/source labels + card IDs actually used>
 ```
 
 If `freshness.is_stale == true`, also add a top-level warning line at
@@ -301,8 +369,22 @@ the start of the reply:
    API delayed; treat prices as last-known, not live.
 ```
 
-The footer is non-negotiable. A reply without these freshness fields is
-incomplete and must be revised before sending.
+For **Path B**, do not invent API freshness fields. Append this parsed-data
+provenance footer using exact values from `parsed.json`:
+
+```
+📅 用户数据范围 / Supplied range (ms): <time_range_ms[0]> → <time_range_ms[1]>
+🕐 最后收盘 / Last supplied close:      <current_price>
+📡 数据源 / Source:                       User-provided OHLCV (not independently verified), <count> candles @ <interval>
+⏱️  新鲜度 / Freshness:                    unavailable — no Mobius API freshness block
+📂 结构摘要 / Structure:                <path to local features.txt>
+🖼️ 行情图 / Chart:                     <path if rendered; otherwise state not generated>
+📚 知识来源 / Knowledge sources:       <schools/source labels + card IDs actually used>
+```
+
+The applicable footer is non-negotiable. A reply missing API freshness for
+Path A, or pretending Path B has API-verified freshness, is incomplete and must
+be revised before sending.
 
 ## Key advantages over visual-only
 
@@ -325,6 +407,8 @@ Use these precise numbers in your reply — they're the core value-add.
 4. **State the data source explicitly** — tell the user whether you used API data or parsed data
 5. **If parse failed** — tell the user the format issue and ask for one of: CSV with header / JSON / Markdown table
 6. **API failure handling** — if fetch returns error, tell the user and ask if they want to paste data manually instead
+7. **Route fidelity** — state the lens/mode and cited school/source for every
+   conclusion; never backfill an unsupported school with SMC analyzer output
 
 ## Examples
 
@@ -333,11 +417,13 @@ Use these precise numbers in your reply — they're the core value-add.
 User: "BTC 1h 现在怎么样"
 
 Steps:
-1. `kb_klines.py fetch --query "BTC" --interval 1h --limit 200 --with-htf --output /tmp/btc.json`
-2. `kb_klines.py indicators --query "BTC" --interval 1h --limit 200 --format compact --output /tmp/btc_smc.txt` (default = SMC)
-3. Read `/tmp/btc_smc.txt`
-4. Retrieve relevant concepts (e.g. `kb_retrieve.py "liquidity sweep FVG market structure"`)
-5. Output 5-section reply with **exact** prices from the SMC objects sidecar
+1. Resolve default strict `ict_smc` route with `schools=[ICT, SMC]`.
+2. `<PYTHON> scripts/kb_klines.py fetch --query "BTC" --interval 1h --limit 200 --with-htf --output <TEMP_DIR>/btc.json`
+3. `<PYTHON> scripts/kb_klines.py indicators --query "BTC" --interval 1h --limit 200 --format compact --output <TEMP_DIR>/btc_smc.txt` (default = SMC)
+4. Read `<TEMP_DIR>/btc_smc.txt`
+5. Retrieve relevant concepts (e.g. `kb_retrieve.py "liquidity sweep FVG market structure" --layer school --schools ICT SMC`)
+6. Output 5-section reply with **exact** prices from the SMC objects sidecar,
+   plus `Lens: ict_smc (strict)` and the knowledge school/source/card IDs used.
 
 ### Example 2 — Pasted CSV
 
@@ -350,10 +436,10 @@ time,open,high,low,close,volume
 帮我分析一下"
 
 Steps:
-1. Save the pasted text to `/tmp/eth_paste.csv`
-2. `kb_klines.py parse --input /tmp/eth_paste.csv --symbol ETHUSDT --interval 5m --output /tmp/eth.json`
+1. Save the pasted text with the host's file-writing tool to `<TEMP_DIR>/eth_paste.csv`
+2. `<PYTHON> scripts/kb_klines.py parse --input <TEMP_DIR>/eth_paste.csv --symbol ETHUSDT --interval 5m --output <TEMP_DIR>/eth.json`
 3. SMC indicator API works on a live symbol+timeframe, not on pasted data. Fall back to local extraction:
-   `kb_klines.py analyze --input /tmp/eth.json --output /tmp/eth_features.txt`
+   `<PYTHON> scripts/kb_klines.py analyze --input <TEMP_DIR>/eth.json --output <TEMP_DIR>/eth_features.txt`
 4. Read features + retrieve + 5-section output. State explicitly that the structure came from local extraction.
 5. **NOTE**: user-pasted data has no HTF fetched (since asset may be from any source); state this and offer to fetch HTF from Mobius if applicable
 
@@ -362,7 +448,7 @@ Steps:
 User: "茅台日线最近怎么样"
 
 Steps:
-1. `kb_klines.py fetch --query "茅台" --interval 1d --limit 100 --with-htf` → may return 600519 (stock:cn)
+1. `<PYTHON> scripts/kb_klines.py fetch --query "茅台" --interval 1d --limit 100 --with-htf` → may return 600519 (stock:cn)
 2. `--with-htf` for daily → no HTF (1d is top), skip
 3. Continue as Example 1
 
@@ -373,31 +459,33 @@ User: "数据：[some malformed text]"
 If parser returns "无法识别格式":
 - You (the LLM) extract structure: "I see these are OHLC values for ETH. Let me convert..."
 - Build a JSON object array yourself: `[{"time": ..., "open": ..., ...}]`
-- Pipe via stdin: `echo '<json>' | kb_klines.py parse --symbol ETH --interval 5m --output ...`
+- Save it to `<TEMP_DIR>/normalized.json` with the host's file-writing tool,
+  then run `<PYTHON> scripts/kb_klines.py parse --input <TEMP_DIR>/normalized.json --symbol ETH --interval 5m --output <TEMP_DIR>/eth.json`
 - Continue as Example 2
 
 ## Tool reference
 
-```bash
+```text
 # Resolve natural name only
-kb_klines.py resolve "比特币"
+<PYTHON> scripts/kb_klines.py resolve "比特币"
 
 # Fetch with HTF
-kb_klines.py fetch --query "BTC" --interval 1h --with-htf --output /tmp/x.json
+<PYTHON> scripts/kb_klines.py fetch --query "BTC" --interval 1h --with-htf --output <TEMP_DIR>/x.json
 
 # Fetch with canonical symbol
-kb_klines.py fetch --exchange binance --market perp --symbol BTCUSDT --interval 1h ...
+<PYTHON> scripts/kb_klines.py fetch --exchange binance --market perp --symbol BTCUSDT --interval 1h ...
 
 # Parse pasted text
-kb_klines.py parse --input <file> --symbol <s> --interval <tf> --output <json>
-echo '<text>' | kb_klines.py parse --symbol <s> --interval <tf>
+<PYTHON> scripts/kb_klines.py parse --input <file> --symbol <s> --interval <tf> --output <json>
 
 # Fetch SMC structural indicator (default — primary structural source)
-kb_klines.py indicators --query "<name>" --interval <tf> --format compact \
-    --output <smc.txt>
+<PYTHON> scripts/kb_klines.py indicators --query "<name>" --interval <tf> --format compact --output <smc.txt>
 
 # Local fallback: extract features from OHLCV when API unreachable
-kb_klines.py analyze --input <json> --output <features.txt>
+<PYTHON> scripts/kb_klines.py analyze --input <json> --output <features.txt>
 ```
 
-All paths are **relative to the skill directory**. Always `cd "${SKILL_DIR}"` before running commands so that `scripts/` and `.venv/` resolve correctly.
+Resolve `<PYTHON>`, `<TEMP_DIR>`, and `<USER_OUTPUT_DIR>` as defined in the
+loaded `SKILL.md`, and run commands from `<SKILL_ROOT>`. OpenClaw can resolve
+that root from `{baseDir}` and Hermes from `${HERMES_SKILL_DIR}`; other hosts
+must resolve the loaded file directly. Never execute any placeholder literally.

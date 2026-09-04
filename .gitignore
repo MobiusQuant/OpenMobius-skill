@@ -15,8 +15,15 @@ venv/
 *credentials*
 *secret*
 
-# Built vector index (rebuilt by install.sh)
+# Built vector index and local embedding cache (rebuilt by install.py)
 knowledge_base/_index/
+knowledge_base/_embedding_cache/
+knowledge_base/._index.build-*/
+knowledge_base/._index.backup-*/
+knowledge_base/._cards.build-*/
+knowledge_base/._cards.backup-*/
+knowledge_base/.embedding_seed_v2.build-*/
+knowledge_base/.embedding_seed_v2.backup-*/
 
 # Python cache
 __pycache__/

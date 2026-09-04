@@ -1,6 +1,7 @@
 """Embedding utilities — text → vector.
 
-Default: local `nomic-embed-text-v1.5` (Apache 2.0, multilingual, ~274MB).
+Default: local `nomic-embed-text-v1.5` (Apache 2.0, multilingual,
+~547 MB / 522 MiB weight file).
 Users need no API key. An optional OpenAI-compatible provider is also
 available; see `get_embedder('openai')`.
 """
@@ -43,12 +44,15 @@ class LocalNomicEmbedder:
     """本地 nomic-embed-text-v1.5。
 
     特点：
-    - 274MB 模型，~4GB 内存
+    - 约 547 MB / 522 MiB 权重，~4GB 内存
     - 支持中英文跨语言（实测）
     - 需要给文本加前缀 "search_query: " / "search_document: " 才能正确工作
     """
 
     DEFAULT_MODEL = "nomic-ai/nomic-embed-text-v1.5"
+    # Pin the exact model snapshot. With transformers >=5.5 the text model has
+    # a built-in implementation, so loading explicitly disables remote code.
+    DEFAULT_REVISION = "e9b6763023c676ca8431644204f50c2b100d9aab"
 
     def __init__(self, model_name: Optional[str] = None) -> None:
         # 显式压低 transformers logger
@@ -61,14 +65,25 @@ class LocalNomicEmbedder:
         from sentence_transformers import SentenceTransformer  # noqa: PLC0415
         name = model_name or self.DEFAULT_MODEL
         self.model_name = name
-        log.info("加载 embedding model: %s（首次使用会自动下载 ~274MB）", name)
+        self.model_revision = (
+            self.DEFAULT_REVISION if name == self.DEFAULT_MODEL else None
+        )
+        identity = (
+            f"{name}@{self.model_revision[:12]}"
+            if self.model_revision
+            else name
+        )
+        log.info("加载 embedding model: %s（首次使用会下载约 547 MB / 522 MiB 权重）", identity)
         # 加载模型时全局压制 <ERROR 级别日志 + 重定向 stderr
         # ("<All keys matched successfully>" 等无害噪音不应打到用户屏幕)
         import contextlib  # noqa: PLC0415
         logging.disable(logging.ERROR - 1)  # 抑制所有 < ERROR 级别
         try:
             with open(os.devnull, "w") as _devnull, contextlib.redirect_stderr(_devnull):
-                self.model = SentenceTransformer(name, trust_remote_code=True)
+                kwargs = {"trust_remote_code": False}
+                if self.model_revision:
+                    kwargs["revision"] = self.model_revision
+                self.model = SentenceTransformer(name, **kwargs)
         finally:
             logging.disable(logging.NOTSET)  # 恢复
         # Pillow / sentence-transformers 新版改名；优先用新方法，旧版本回退
@@ -78,14 +93,19 @@ class LocalNomicEmbedder:
             self.dim = self.model.get_sentence_embedding_dimension()
         log.info("embedding dim = %d", self.dim)
 
-    def embed_documents(self, texts: list[str], batch_size: int = 32) -> np.ndarray:
+    def embed_documents(
+        self,
+        texts: list[str],
+        batch_size: int = 32,
+        show_progress_bar: bool = True,
+    ) -> np.ndarray:
         """对入库的文档批量 embed。"""
         prefixed = [f"search_document: {t}" for t in texts]
         return self.model.encode(
             prefixed,
             batch_size=batch_size,
             normalize_embeddings=True,
-            show_progress_bar=True,
+            show_progress_bar=show_progress_bar,
         )
 
     def embed_query(self, query: str) -> np.ndarray:
@@ -115,14 +135,21 @@ class OpenAIEmbedder:
     ) -> None:
         from openai import OpenAI  # noqa: PLC0415
         self.model_name = model_name or self.DEFAULT_MODEL
+        self.model_revision = None  # provider-managed service model identity
         self.client = OpenAI(
             base_url=base_url,
             api_key=api_key or os.environ.get("OPENAI_API_KEY"),
         )
         self.dim = 1536  # text-embedding-3-small 默认 1536
 
-    def embed_documents(self, texts: list[str], batch_size: int = 100) -> np.ndarray:
+    def embed_documents(
+        self,
+        texts: list[str],
+        batch_size: int = 100,
+        show_progress_bar: bool = True,
+    ) -> np.ndarray:
         """OpenAI API 支持批量，单次最多 ~2048 个，分批跑。"""
+        del show_progress_bar  # Common document-embedder API; no local bar here.
         all_vecs = []
         for i in range(0, len(texts), batch_size):
             batch = texts[i : i + batch_size]

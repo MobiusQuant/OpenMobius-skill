@@ -1,0 +1,322 @@
+{
+  "benchmark_version": 1,
+  "breakdown": {
+    "language": {
+      "en": {
+        "mrr": 0.945098,
+        "queries": 85,
+        "recall_at_1": 0.917647,
+        "recall_at_5": 0.976471
+      },
+      "mixed": {
+        "mrr": 0.84875,
+        "queries": 40,
+        "recall_at_1": 0.775,
+        "recall_at_5": 0.95
+      },
+      "zh": {
+        "mrr": 0.914286,
+        "queries": 35,
+        "recall_at_1": 0.885714,
+        "recall_at_5": 0.942857
+      }
+    },
+    "layer": {
+      "canonical": {
+        "mrr": 0.930556,
+        "queries": 60,
+        "recall_at_1": 0.916667,
+        "recall_at_5": 0.95
+      },
+      "evidence": {
+        "mrr": 0.81125,
+        "queries": 40,
+        "recall_at_1": 0.7,
+        "recall_at_5": 0.95
+      },
+      "school": {
+        "mrr": 0.966667,
+        "queries": 60,
+        "recall_at_1": 0.95,
+        "recall_at_5": 0.983333
+      }
+    },
+    "query_kind": {
+      "alias": {
+        "mrr": 1.0,
+        "queries": 40,
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0
+      },
+      "canonical_term": {
+        "mrr": 0.9875,
+        "queries": 40,
+        "recall_at_1": 0.975,
+        "recall_at_5": 1.0
+      },
+      "evidence_text": {
+        "mrr": 0.81125,
+        "queries": 40,
+        "recall_at_1": 0.7,
+        "recall_at_5": 0.95
+      },
+      "natural_language": {
+        "mrr": 0.858333,
+        "queries": 40,
+        "recall_at_1": 0.825,
+        "recall_at_5": 0.9
+      }
+    },
+    "type": {
+      "case": {
+        "mrr": 0.910377,
+        "queries": 53,
+        "recall_at_1": 0.867925,
+        "recall_at_5": 0.962264
+      },
+      "concept": {
+        "mrr": 0.916199,
+        "queries": 107,
+        "recall_at_1": 0.878505,
+        "recall_at_5": 0.962617
+      }
+    }
+  },
+  "config": {
+    "effective_max_per_canonical": {
+      "canonical": null,
+      "evidence": 2,
+      "school": 2
+    },
+    "effective_search_modes": {
+      "canonical": "semantic",
+      "evidence": "hybrid",
+      "school": "hybrid"
+    },
+    "embedder": "local",
+    "evaluated_cases": 180,
+    "exact_match": true,
+    "exact_match_by_layer": {
+      "canonical": true,
+      "evidence": true,
+      "school": true
+    },
+    "max_per_canonical": null,
+    "query_embeddings": {
+      "canonical": {
+        "dimension": 768,
+        "model": "nomic-ai/nomic-embed-text-v1.5",
+        "provider": "local",
+        "revision": "e9b6763023c676ca8431644204f50c2b100d9aab"
+      },
+      "evidence": {
+        "dimension": 768,
+        "model": "nomic-ai/nomic-embed-text-v1.5",
+        "provider": "local",
+        "revision": "e9b6763023c676ca8431644204f50c2b100d9aab"
+      },
+      "school": {
+        "dimension": 768,
+        "model": "nomic-ai/nomic-embed-text-v1.5",
+        "provider": "local",
+        "revision": "e9b6763023c676ca8431644204f50c2b100d9aab"
+      }
+    },
+    "search_mode": "auto",
+    "top_k": 5
+  },
+  "dataset": "evals/retrieval_benchmark_v1.jsonl",
+  "dataset_sha256": "3a088f6399497d3e2c43c137d750b64a2f1c68265d84998b9f8c64a47dd730a6",
+  "distribution": {
+    "cases": 180,
+    "content_types": {
+      "analysis_step": 11,
+      "common_mistake": 3,
+      "definition": 9,
+      "identification_rule": 3,
+      "key_observation": 3,
+      "lesson": 3,
+      "market_context": 4,
+      "outcome": 1,
+      "trading_implication": 3
+    },
+    "languages": {
+      "en": 105,
+      "mixed": 40,
+      "zh": 35
+    },
+    "layers": {
+      "canonical": 63,
+      "evidence": 49,
+      "school": 68
+    },
+    "negative_reasons": {
+      "empty_intersection": 4,
+      "overlapping_schools": 4,
+      "unknown_school": 4,
+      "unknown_source": 4,
+      "unsupported_source_layer": 4
+    },
+    "outcomes": {
+      "fail_closed": 20,
+      "hit": 160
+    },
+    "positive_layers": {
+      "canonical": 60,
+      "evidence": 40,
+      "school": 60
+    },
+    "query_kinds": {
+      "alias": 40,
+      "canonical_term": 40,
+      "evidence_text": 40,
+      "natural_language": 40,
+      "negative_scope": 20
+    },
+    "schools": {
+      "Elliott Wave": 8,
+      "General": 11,
+      "ICT": 27,
+      "Indicator Based": 13,
+      "Market Structure": 7,
+      "On-chain": 7,
+      "Order Flow": 9,
+      "Price Action": 17,
+      "Risk Management": 9,
+      "SMC": 12,
+      "Scalping": 1,
+      "The Strat": 9,
+      "Volume Analysis": 9,
+      "Wyckoff": 10,
+      "缠论": 11
+    },
+    "sources": {
+      "ChanLun-MeiguJikenneng-PL_Xv5qFM": 3,
+      "Daily Profiles": 3,
+      "Education - ICT": 4,
+      "Education - ICT (Updated)": 5,
+      "SMC-Extra-Supplement": 3,
+      "SMC-Indicator-Supplement": 3,
+      "SMC-Strong-Weak-Supplement": 3,
+      "SMC-Supplement-PLb0LJvd-CX1wZ": 3,
+      "SMC-Supplement-PLv-X125": 2,
+      "Strat + ICT": 3,
+      "Teach-Wuyuan": 4,
+      "The Foundation": 4
+    },
+    "types": {
+      "case": 53,
+      "concept": 107
+    }
+  },
+  "index": {
+    "canonical_embedding_input_profile": {
+      "max_seq_length": 8192,
+      "model_revision": "e9b6763023c676ca8431644204f50c2b100d9aab",
+      "provider": "local",
+      "task": "search_document",
+      "version": "search-document-v1-maxseq8192"
+    },
+    "canonical_input_fingerprint": "782179650a8ea9d7df0f1aa5bbbf82b0b99947a0b4a5af3faf5e9cbf59f6e982",
+    "collections": {
+      "knowledge_base": {
+        "count": 2008,
+        "created": true,
+        "embedding_dimension": 768,
+        "embedding_model": "nomic-ai/nomic-embed-text-v1.5",
+        "embedding_revision": "e9b6763023c676ca8431644204f50c2b100d9aab",
+        "embedding_strategy": "bundled_card_embeddings",
+        "layer": "legacy",
+        "schema_version": 3
+      },
+      "school_knowledge_v2": {
+        "count": 2144,
+        "created": true,
+        "embedding_dimension": 768,
+        "embedding_model": "nomic-ai/nomic-embed-text-v1.5",
+        "embedding_revision": "e9b6763023c676ca8431644204f50c2b100d9aab",
+        "embedding_strategy": "native_document",
+        "layer": "school",
+        "schema_version": 3
+      },
+      "source_evidence_v2": {
+        "count": 18645,
+        "created": true,
+        "embedding_dimension": 768,
+        "embedding_model": "nomic-ai/nomic-embed-text-v1.5",
+        "embedding_revision": "e9b6763023c676ca8431644204f50c2b100d9aab",
+        "embedding_strategy": "native_document",
+        "layer": "evidence",
+        "schema_version": 3
+      }
+    },
+    "index_schema_version": 3,
+    "manifest_path": "knowledge_base/_index/index_manifest.json",
+    "manifest_present": true,
+    "manifest_version": 2,
+    "v2_embedding_input_profile": {
+      "max_seq_length": 512,
+      "model_revision": "e9b6763023c676ca8431644204f50c2b100d9aab",
+      "provider": "local",
+      "strategy": "native_document",
+      "task": "search_document",
+      "version": "search-document-v2-maxseq512"
+    },
+    "v2_input_fingerprint": "86d870f645ea48544a56c673b30dbb998a1c7a8338f307a4ac29efc36e1df5e3"
+  },
+  "kb": "knowledge_base",
+  "metrics": {
+    "adapter_errors": 0,
+    "duplicate_canonical_ratio": 0.06156,
+    "fail_closed": {
+      "by_expected_scope_category": {
+        "empty_intersection": {
+          "passed": 4,
+          "rate": 1.0,
+          "total": 4
+        },
+        "overlapping_schools": {
+          "passed": 4,
+          "rate": 1.0,
+          "total": 4
+        },
+        "unknown_school": {
+          "passed": 4,
+          "rate": 1.0,
+          "total": 4
+        },
+        "unknown_source": {
+          "passed": 4,
+          "rate": 1.0,
+          "total": 4
+        },
+        "unsupported_source_layer": {
+          "passed": 4,
+          "rate": 1.0,
+          "total": 4
+        }
+      },
+      "passed": 20,
+      "rate": 1.0,
+      "total": 20
+    },
+    "latency_ms": {
+      "max": 1568.434,
+      "mean": 216.311366,
+      "p50": 118.594,
+      "p95": 695.785,
+      "queries": 180
+    },
+    "mrr": 0.914271,
+    "queries": 160,
+    "recall_at_1": 0.875,
+    "recall_at_5": 0.9625,
+    "returned_results": 731,
+    "runtime_errors": 0,
+    "scope_purity": 1.0,
+    "scope_results": 731,
+    "source_purity": 1.0,
+    "source_results": 193
+  },
+  "status": "evaluated"
+}

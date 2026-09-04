@@ -15,7 +15,10 @@ class UninstallTests(unittest.TestCase):
         index = target / "knowledge_base" / "_index"
         index.mkdir(parents=True)
         (index / "chroma.sqlite3").write_text("test", encoding="utf-8")
-        (target / "SKILL.md").write_text("test", encoding="utf-8")
+        (target / "SKILL.md").write_text(
+            "---\nname: openmobius-skill\ndescription: test\n---\n",
+            encoding="utf-8",
+        )
         return target
 
     def test_standard_uninstall_removes_entire_self_contained_target(self) -> None:

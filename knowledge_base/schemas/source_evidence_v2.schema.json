@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openmobius.local/schemas/source_evidence_v2.schema.json",
+  "title": "OpenMobius Source Evidence v2",
+  "description": "An atomic knowledge statement with an exact source collection and School attribution.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "layer",
+    "id",
+    "evidence_id",
+    "canonical_id",
+    "canonical_term",
+    "type",
+    "school",
+    "source",
+    "content_type",
+    "content",
+    "content_hash",
+    "file_path",
+    "ref",
+    "source_material_ids",
+    "attribution",
+    "search_text",
+    "embedding_strategy"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "layer": {
+      "const": "source_evidence"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "canonical_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "canonical_term": {
+      "type": "string",
+      "minLength": 1
+    },
+    "type": {
+      "enum": [
+        "concept",
+        "case"
+      ]
+    },
+    "school": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "content_type": {
+      "enum": [
+        "definition",
+        "identification_rule",
+        "common_mistake",
+        "trading_implication",
+        "market_context",
+        "key_observation",
+        "analysis_step",
+        "outcome",
+        "lesson"
+      ]
+    },
+    "content": {
+      "type": "string",
+      "minLength": 1
+    },
+    "content_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "file_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_material_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "attribution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "confidence"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "definition_per_source",
+            "single_school_single_source",
+            "direct_case"
+          ]
+        },
+        "confidence": {
+          "const": "exact"
+        },
+        "match_key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "match_strategy": {
+          "enum": [
+            "project",
+            "project_and_school",
+            "project_and_card_id",
+            "project_card_id_and_canonical_term",
+            "project_and_canonical_term",
+            "case_project_origin"
+          ]
+        }
+      }
+    },
+    "review_status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "extraction_confidence": {
+      "type": [
+        "string",
+        "number",
+        "null"
+      ]
+    },
+    "search_text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "embedding_strategy": {
+      "const": "native_document"
+    }
+  }
+}

@@ -1,9 +1,11 @@
+# OpenMobius-skill — Multi-School Trading Knowledge Skill
 
-# OpenMobius-skill — ICT/SMC Trading Knowledge Skill
+A unified skill for four interaction intents with a curated multi-school knowledge base (726 concept cards + 1282 case cards) distilled from 300+ trading videos and live lessons across 12 curated source collections.
 
-A unified skill for four interaction modes with a curated knowledge base (726 concept cards + 1282 case cards) distilled from 300+ ICT/SMC/ChanLun(缠论) trading videos and live lessons across 12 curated source collections.
-
-**Core principle**: every claim must be grounded in (a) visible chart evidence OR (b) a retrieved knowledge-base rule. **No fabrication** — when uncertain, state so explicitly.
+**Core principle**: every trading-analysis claim must be grounded in (a)
+visible chart evidence or (b) a retrieved knowledge-base rule. Capability
+claims must be grounded in the installed inventory and declared profile
+contract. **No fabrication** — when uncertain, state so explicitly.
 
 ## Freshness mandate — NEVER answer market questions from memory
 
@@ -18,6 +20,24 @@ or `kb_klines.py chart` call **in the current turn**. Examples:
 - "BTC 还在跌吗" — yes, even though no timeframe given (default to user's
   implied tf or ask), the freshness rule still applies
 
+This live-fetch mandate applies to current-market requests. If the user
+explicitly asks to analyze OHLCV they supplied, preserve that snapshot instead
+of replacing it with live data; use the parsed-data provenance footer from
+`workflows/klines.md` and state that its freshness is not independently
+verified.
+
+**Control-plane exception**: a question about which analysis model/School/mode
+the installed skill supports, or whether a named School *can* analyze a market,
+is capability discovery rather than a request to analyze that market. Route it
+to the Q&A capability-discovery branch before applying asset/timeframe rules;
+do not fetch market data even when the question names an asset or timeframe.
+
+**Capability-gate exception**: first resolve the requested market-analysis
+route. If its required native analyzer/filter is unsupported, stop before any
+network call or artifact generation, report the capability gap, and do not add
+a fabricated freshness footer. The freshness requirements below apply only
+after a market route passes that gate.
+
 **Hard rules**:
 
 1. **DO NOT** cite prices, levels, swing pivots, BOS/CHoCH events, or
@@ -25,15 +45,18 @@ or `kb_klines.py chart` call **in the current turn**. Examples:
 2. **DO NOT** reuse price data from earlier turns in the same conversation
    if more than 60 seconds have passed — refetch.
 3. **DO NOT** invent timestamps, "data as of" labels, or "real-time"
-   claims that are not literally in the API response's `freshness` block.
-4. The only source of truth for market data is a `freshness` block
-   returned by an API call made in this turn. If you have not yet
-   called the API in this turn, you must say:
+   claims that are not literally in the API response's `freshness` block or
+   the user-supplied dataset.
+4. For API-backed current-market analysis, the only source of truth is a
+   `freshness` block returned by an API call made in this turn. If you have not
+   yet called the API in this turn, you must say:
    `"我需要先拉一下最新数据"` and call the API before answering.
 
-**Every market-analysis reply MUST include the freshness footer**
-(see workflows/klines.md Step 5 / workflows/analyze.md Step 6 for
-the exact format). A reply without the footer is incomplete.
+**Every market-analysis reply that proceeds past the capability gate MUST use
+the matching footer**: API-backed analysis uses the freshness footer; analysis
+of user-pasted OHLCV uses the parsed-data provenance footer (see
+`workflows/klines.md` Step 5). A reply without the applicable footer is
+incomplete.
 
 If the API response's `freshness.is_stale == true` (latest bar older
 than 2 × interval), explicitly tell the user the market may be closed
@@ -95,17 +118,115 @@ https://www.mobiusquant.ai/ for details.
 
 ---
 
+## Host-neutral runtime and artifact paths
+
+Resolve these placeholders for the current host before running a workflow.
+They are documentation tokens, not literal paths or shell variables:
+
+- `<SKILL_ROOT>` — the directory containing the loaded `SKILL.md`. Run all
+  commands with this directory as the working directory so relative `scripts/`
+  paths resolve without depending on the user's current directory.
+- `<PYTHON>` — the Python executable selected for this installed skill. Resolve
+  it from the platform/installer-managed runtime; Windows and POSIX executable
+  paths differ, and a managed host may expose its own runner. Do not assume
+  `python` or `python3` is available on `PATH`.
+- `<TEMP_DIR>` — a writable, task-specific temporary directory created through
+  the current host's temporary-directory facility. Do not assume a particular
+  POSIX or Windows system path exists.
+- `<USER_OUTPUT_DIR>` — a writable directory selected by the user or exposed by
+  the host for durable artifacts that must be returned. Do not use a repository
+  checkout or developer-machine path as the implicit output location.
+- `<INPUT_IMAGE>` — the host-resolved path to the user's attached chart.
+
+Never execute the angle-bracket placeholders literally. Quote each resolved
+path according to the current command runner when it contains spaces. Command
+blocks use logical argument lists and avoid shell-only pipes, heredocs, and
+continuation syntax. Create JSON/text inputs with the host's file-writing tool
+or a JSON serializer, then pass the resulting file path to the script.
+
+For WorkBuddy packaging compatibility, a command line that begins with
+`kb_retrieve.py` is launcher-neutral shorthand only. Before execution it
+**must** be expanded to `<PYTHON> scripts/kb_retrieve.py`; never assume
+`kb_retrieve.py` is on `PATH`.
+
 ## Always retrieve from the knowledge base first
 
-The knowledge base contains rule-based identification criteria and documented pitfalls that generic training data lacks. **Always retrieve first, then synthesize** — don't answer trading questions from memory alone.
+The knowledge base contains rule-based identification criteria and documented pitfalls that generic training data lacks. Resolve the route and confirm its capabilities, then **retrieve within that route before synthesizing** — don't answer trading questions from memory alone and don't widen a selected school/source boundary silently.
 
-## Output format is mandatory
+The semantic-card retrieval mandate applies to trading-knowledge answers, not
+to control-plane capability discovery. Capability discovery inspects the
+installed School inventory and declared profile contract without running a
+normal query/top-K search; follow the special case in `workflows/qna.md`.
 
-Every workflow ends in a synthesis step with `##` section headings (see
-each `workflows/<name>.md`'s final step). **Those headings MUST appear
-verbatim in your user-facing reply**, in the order specified, in the
-user's language. Free-form prose that omits the headings is an
-**incomplete reply** and must be revised before sending.
+## Analysis profile orchestration
+
+First detect capability-discovery questions about the installed skill's
+available models/profiles, lenses, Schools, modes, supported intents, or a
+named School's market-analysis support. They remain `intent=qna`, but take
+priority over the default `strict` ICT/SMC route and any asset/timeframe or
+chart routing. Read both `workflows/qna.md` and
+`workflows/analysis_profiles.md`, inspect the installed inventory with
+`kb_retrieve.py --layer school --list-schools --format json` (expanded through
+the launcher-neutral rule above),
+then answer immediately from that inventory and the declared profile contract.
+This is an intentionally bounded, single-agent control-plane operation: do not
+delegate to a subagent/background task, recursively invoke this skill, run Git,
+scan source code/cards/manifests, or verify analyzer implementations. Do not
+construct or inherit an analytical School route for this branch, and stop after
+the capability response.
+
+For all normal analysis and knowledge requests, resolve a route before
+retrieval, indicator calls, analysis, or drawing:
+
+`route = {intent, mode, primary_lens, secondary_lenses, schools, sources, capabilities}`
+
+- `intent` must be exactly one of `qna`, `analyze`, `annotate`, or `klines`.
+  Do not emit aliases such as `kline_analysis`.
+- `capabilities` must always be an object, never a list or string. Use the
+  canonical fields and values defined in `workflows/analysis_profiles.md`.
+- For the plain default route, set `exact_primary_school_filter=true`,
+  `source_filter=not_requested`, `intent_supported=true`, and `reason=null`;
+  set `native_market_analyzer=not_required` for Q&A or `supported` for a market
+  intent. This default does not require loading the profile reference.
+- `lens` (also called a profile) is an analytical methodology such as
+  `ict_smc` or `chanlun`; `source` is a corpus/teacher collection such as
+  `Teach-Wuyuan`. A source does not automatically select a lens.
+- With **no explicit lens, school, source, or composition selector**, use
+  `mode=strict`, `primary_lens=ict_smc`, and `schools=[ICT, SMC]`; retrieve
+  with `--layer school --schools ICT SMC`.
+- A single explicit selector is strict by default. In Phase 1, `compare` is
+  supported for Q&A only; market-analysis, chart, and annotation comparisons
+  fail closed before network or artifact work. `augment` gives one primary lens
+  authority over bias and trade levels while secondary lenses only confirm,
+  challenge, or add risk context.
+- School-scoped grounding uses `school_knowledge_v2`, which omits
+  cross-School fused rules that cannot be attributed. Any requested source
+  uses `source_evidence_v2` with `--layer evidence --sources ...`; combine it
+  with `--schools ...` for an exact intersection. Never use the fused
+  canonical layer to claim strict School/source isolation.
+- School/evidence queries use hard-filtered hybrid retrieval by default
+  (BM25 + semantic RRF over independently embedded scoped documents). Keep
+  `--search-mode auto` unless diagnosing retrieval; exact terms/aliases stay
+  first and the hard School/source boundary is never widened.
+- **Never silently fall back** from an explicit lens/source to `ict_smc` or to
+  an unfiltered search. Check `capabilities` before doing work and report an
+  unsupported or empty route plainly.
+- ChanLun knowledge Q&A is supported, but this skill currently has no native
+  ChanLun market-structure analyzer or overlay. Never present SMC indicator
+  output as ChanLun analysis.
+
+Read [workflows/analysis_profiles.md](workflows/analysis_profiles.md) whenever
+the user names a lens/school/source, requests comparison or augmentation,
+excludes a profile, or the selected capability is uncertain. Plain default
+`ict_smc` requests can proceed directly to the intent workflow below.
+
+## Market-analysis output format is mandatory
+
+The Analyze and Kline workflows end in a synthesis step with mandatory `##`
+section headings. Those headings must appear verbatim and in the specified
+order. Q&A and Annotate use the output structures defined in their own workflow
+documents. A capability-gap response that stops before analysis is also exempt
+from the market-analysis template and freshness footer.
 
 ## Scenario Router
 
@@ -113,6 +234,7 @@ Pick the right sub-workflow based on the user's input. Each workflow has detaile
 
 | User input | Workflow | Document to read |
 |---|---|---|
+| Installed-skill capability question ("当前有哪些分析模型", "which Schools are available", "缠论能分析 BTC 1h 吗") — even with an asset/timeframe or chart reference | **Q&A capability discovery** | `workflows/qna.md` + `workflows/analysis_profiles.md` |
 | Concept question, **no chart, no data, no asset name** ("什么是 FVG", "how to identify OB", "止损放哪里") | **Q&A** | `workflows/qna.md` |
 | **Chart attached** + any question about it ("分析", "看一下", "走势", "where to enter", "what's happening") | **Analyze** (auto-fetches real OHLCV + annotation) | `workflows/analyze.md` |
 | User explicitly asks to **draw/annotate** an image, OR follows up after analysis with "把这个标在图上" | **Annotate** | `workflows/annotate.md` |
@@ -121,14 +243,19 @@ Pick the right sub-workflow based on the user's input. Each workflow has detaile
 > **Chart output is part of the standard reply** for the **Analyze** and
 > **Kline analysis** workflows — render a PNG and include its path in the
 > output. Skip the chart step ONLY when the user explicitly opts out
-> ("只要文字" / "skip chart" / "no image" / "不用画图").
+> ("只要文字" / "skip chart" / "no image" / "不用画图"). For
+> user-pasted OHLCV, follow the Path B exception in `workflows/klines.md` and
+> never fetch a different live series merely to satisfy chart output.
 
 **How to route**:
 
-1. Read this SKILL.md to understand the routing
-2. Identify which scenario the user is in
-3. Use the `Read` tool to load the relevant workflow document (relative to this SKILL.md: `workflows/<name>.md`)
-4. Follow that workflow's steps
+1. Detect capability discovery first; if matched, follow its Q&A control-plane
+   special case and stop without applying an analytical route
+2. Otherwise resolve the route above; load `analysis_profiles.md` when its
+   trigger applies
+3. Identify the user's intent in the scenario table
+4. Use the `Read` tool to load the relevant workflow document (relative to this SKILL.md: `workflows/<name>.md`)
+5. Follow that workflow while preserving the route's lens/source boundaries
 
 > **Important — Analyze workflow now auto-fetches data**: If a chart is attached AND the asset/timeframe is identifiable from the chart, `analyze.md` will fetch real OHLCV from Mobius API to **complement visual analysis with precise prices**. This is on by default; user can opt out by saying "只看图不拉数据" / "skip data fetch".
 
@@ -141,45 +268,33 @@ When the user wants a visual chart, choose the right tool:
 | Situation | Tool | Output |
 |---|---|---|
 | User uploaded their own chart image; wants markup ON that image | `scripts/kb_draw_annotation.py` (PIL) | Annotated copy of original image |
-| No chart image, OR user wants a clean new chart | `scripts/kb_klines.py chart` + `render` | Fresh TradingView-grade chart: pure K-lines + knowledge-base overlays (FVG/OB rectangles, sweep lines, swing markers, trade-setup lines) |
+| No chart image, OR user wants a clean new chart | `scripts/kb_klines.py chart` + `render` | Fresh TradingView-grade chart: K-lines + structural overlays (FVG/OB rectangles, sweep lines, swing markers, trade-setup lines) |
 
 For path #2, the typical pipeline is:
 
-```bash
-# 1. Pull pure K-lines (no indicators) → panels payload skeleton (items=[])
-.venv/bin/python scripts/kb_klines.py chart \
-    --query "BTC" --interval 1h --limit 200 \
-    --output /tmp/chart.json
+```text
+# 1. Pull K-lines + auto-filled SMC structural overlay for an ict_smc route
+<PYTHON> scripts/kb_klines.py chart --query "BTC" --interval 1h --limit 200 --output <TEMP_DIR>/chart.json
 
-# 2. Run analyze (on fetch output) to get suggested_overlay_items
-.venv/bin/python scripts/kb_klines.py fetch --query "BTC" --interval 1h --limit 200 --output /tmp/data.json
-.venv/bin/python scripts/kb_klines.py analyze --input /tmp/data.json --format json --output /tmp/features.json
+# 2. Optionally create a separate trade-setup JSON containing only entry/SL/
+#    target hlines; do not duplicate the structural items already auto-filled.
 
-# 3. (LLM step) Merge selected suggested_overlay_items + your trade_setup hlines
-#    into /tmp/chart.json's panels[0].items. Item types:
-#      - rectangle:  FVG / Order Block / Killzone zones  (price_top + price_bottom + time_start [+ time_end])
-#      - hline:      Entry / SL / Target / Swept levels
-#      - markers:    Swing points, sweep candles
-#    All items use style.role from this set (see "Style role reference" below).
-
-# 4. Render PNG
-.venv/bin/python scripts/kb_klines.py render \
-    --input /tmp/chart.json --output /tmp/chart.png \
-    --theme dark --width 1400 --height 900
+# 3. Render PNG (add --trade-setup <TEMP_DIR>/setup.json only when one exists)
+<PYTHON> scripts/kb_klines.py render --input <TEMP_DIR>/chart.json --output <USER_OUTPUT_DIR>/chart.png --theme dark --width 1400 --height 900
 ```
 
 ## Indicator fetching
 
-### Default: SMC structural indicator
+### Default `ict_smc` profile: SMC structural indicator
 
-For any market-analysis trigger (asset+timeframe query, pasted OHLCV, or
-chart attached), fetch the **SMC structural indicator** first. It is the
-default — and only — indicator that should be fetched automatically.
+For a market-analysis branch whose lens is `ict_smc`, fetch the **SMC
+structural indicator** first. A request with no explicit selector creates this
+default branch. Do not fetch or use SMC as structural evidence for a strict
+non-`ict_smc` branch; in `augment`, keep its evidence within the labelled
+secondary role assigned to that branch.
 
-```bash
-.venv/bin/python scripts/kb_klines.py indicators \
-    --query "BTC" --interval 1h \
-    --limit 200 --format compact
+```text
+<PYTHON> scripts/kb_klines.py indicators --query "BTC" --interval 1h --limit 200 --format compact
 ```
 
 No `--inds` flag means SMC by default. The response covers, in one call:
@@ -230,7 +345,7 @@ Order of consultation for the 5-section output:
    current price in? Bull-favored entries are in `discount`; short-
    favored entries are in `premium`; `equilibrium` is wait-and-see.
 
-### Caveats (always disclose in the 5-section output)
+### Caveats (always disclose when an SMC branch is used)
 
 - Swing pivots are confirmed only `swing_size` bars after they form
   (typically ~50 bars); recent pivots may still adjust.
@@ -241,7 +356,7 @@ Order of consultation for the 5-section output:
 - All events are structural signals, not entry triggers. They complement
   but do not replace risk management.
 
-### Cross-referencing the ICT knowledge base
+### Cross-referencing the ICT/SMC knowledge base
 
 Each SMC field maps directly to a KB concept card. After identifying the
 structural pattern, retrieve the corresponding card for rule citations:
@@ -262,11 +377,8 @@ structural pattern, retrieve the corresponding card for rule citations:
 If — and **only if** — the user's message contains a specific indicator
 name (whatever the abbreviation), pass that name through as `--inds`:
 
-```bash
-.venv/bin/python scripts/kb_klines.py indicators \
-    --query "BTC" --interval 1h \
-    --inds "<exact-name-user-said>" \
-    --format compact
+```text
+<PYTHON> scripts/kb_klines.py indicators --query "BTC" --interval 1h --inds "<exact-name-user-said>" --format compact
 ```
 
 For multi-param indicators use the compact form `name:p1:p2` (e.g. one
@@ -278,18 +390,21 @@ positional param after the name); the server interprets the rest.
    Do not "complement the SMC reading" with another indicator on your
    own initiative.
 2. **Do not suggest specific indicator names to the user.** If the user
-   did not ask for an indicator, do not mention any. The SMC indicator is
-   sufficient as the structural ground truth.
+   did not ask for an indicator, do not mention any. Within an `ict_smc`
+   branch, the SMC indicator is sufficient as the structural ground truth;
+   it is not a substitute for another lens's native analyzer.
 3. **Text-only**: indicator output is reported in prose / tables; chart
    rendering stays structure-only (FVG/OB/Sweep overlays from the SMC
    `objects` sidecar). Do not draw oscillator-style sub-panels.
 
 ## Chart authoring (LLM responsibility is small)
 
-`kb_klines.py chart` auto-fills `panels[0].items` with the SMC indicator's
-structural overlay (BOS/CHoCH markers, trailing-extreme labels, active
-Order Blocks, active Fair Value Gaps, equal H/L, premium/equilibrium/
-discount bands, internal OBs, mitigated history). You do **not** author
+For an `ict_smc` branch, `kb_klines.py chart` auto-fills
+`panels[0].items` with the SMC indicator's structural overlay (BOS/CHoCH
+markers, trailing-extreme labels, active
+Order Blocks, active Fair Value Gaps, equal H/L, internal OBs, and mitigated
+history). Premium/equilibrium/discount bands are optional and require
+`--include-zones`. You do **not** author
 rectangles, markers, or structural hlines.
 
 **The only items the LLM ever writes** are trade-setup hlines (entry /
@@ -316,7 +431,7 @@ the chart label.
 Skip the trade-setup file when you have no specific trade levels to draw
 — the SMC structural overlay alone is a valid market chart.
 
-## Shared Rules (apply to all three workflows)
+## Shared Rules (apply to all workflows)
 
 1. **No fabrication** — every price level cited must be visible on the chart or computed from a retrieved rule applied to a visible price.
 2. **Cite the knowledge base** — every confirmed pattern must reference a retrieved card. Format: `"Rule N of <concept>: '<rule text>' — visible at <evidence>"`.
@@ -340,57 +455,39 @@ Skip the trade-setup file when you have no specific trade levels to draw
 
 ## Tools
 
-All scripts live in `${SKILL_DIR}/scripts/` and run via `${SKILL_DIR}/.venv/bin/python`. `${SKILL_DIR}` is the directory containing this SKILL.md (typically `~/.claude/skills/OpenMobius-skill/` after install, or the repo root after `git clone`). When invoking shell commands, **always `cd "${SKILL_DIR}"` first** so relative paths resolve correctly.
+Use the host-neutral placeholders defined above. OpenClaw can resolve
+`<SKILL_ROOT>` from `{baseDir}` and Hermes from `${HERMES_SKILL_DIR}`; on other
+hosts resolve it from the loaded `SKILL.md`. Do not execute an undefined
+`${SKILL_DIR}` variable or assume that a virtual environment is on `PATH`.
 
 | Tool | Purpose |
 |---|---|
-| `scripts/kb_retrieve.py "<query>" --top-k 5` | Vector retrieval from knowledge base |
+| `scripts/kb_retrieve.py "<query>" --layer school --schools ICT SMC --top-k 5` | Default/School-scoped retrieval from attributable School projections |
+| `scripts/kb_retrieve.py "<query>" --layer evidence --sources <SOURCE>` | Exact source-evidence retrieval; optionally combine with `--schools` and `--type` |
 | `scripts/kb_klines.py resolve "<name>"` | Natural name → canonical asset spec |
 | `scripts/kb_klines.py fetch --query "<name>" --interval <tf> --with-htf` | Pull real OHLCV (+ HTF) from Mobius API |
 | `scripts/kb_klines.py parse --input <file>` | Parse pasted CSV/JSON/Markdown → standard OHLCV |
 | `scripts/kb_klines.py analyze --input <ohlcv.json>` | Extract features (swing/FVG/OB/sweep/displacement/structure). Add `--format json` to get structured features + `suggested_overlay_items` |
-| `scripts/kb_klines.py chart --query <name> --interval <tf>` | Pull pure K-lines (no indicators) → panels payload (items empty, ready for LLM to fill with KB overlays) |
+| `scripts/kb_klines.py chart --query <name> --interval <tf>` | Pull K-lines and auto-fill the SMC structural overlay for an `ict_smc` route; use `--no-auto-overlay` for an empty overlay |
 | `scripts/kb_klines.py render --input <panels.json> --output <png>` | Render panels JSON → PNG via Playwright + lightweight-charts (TradingView-grade chart) |
 | `scripts/kb_klines.py indicators --query <name> --interval <tf>` | Default: fetch the SMC structural indicator (BOS/CHoCH, Order Blocks, FVGs, equal H/L, premium/discount zones, trailing pivot labels). Pass `--inds <exact-name>` only when the user explicitly named a specific indicator. Text output only, NOT rendered on chart. |
 | `scripts/kb_draw_annotation.py --json <path>` | Render annotation JSON onto chart (PIL, for **user-uploaded** images) |
 | `scripts/kb_phase_b_to_c.py --input <analysis.json> --image <png> --output <annotated.png>` | Convert analysis JSON → annotated image (one shot) |
-| `scripts/build_index.py` | Build the vector index from `knowledge_base/{concepts,cases}/` (one-time) |
+| `scripts/build_knowledge_v2.py` | Audit/export deterministic School projections and exact-source evidence |
+| `scripts/build_index.py` | Build canonical + independently embedded v2 collections; unchanged v2 documents reuse the local content cache |
 | `scripts/kb_doctor.py` | Environment health check (run if anything's broken) |
 
 Common options for `scripts/kb_retrieve.py`:
 - `--top-k N` (default 5)
 - `--type concept|case` (filter by card type)
-- `--school <NAME>` (e.g. `--school ICT`)
+- `--layer canonical|school|evidence` (`canonical` is compatibility-only for strict routing)
+- `--schools <NAME...>` (multi-value OR filter; default route uses `--layer school --schools ICT SMC`)
+- `--school <NAME>` (single-school compatibility form)
+- `--sources <NAME...>` (exact OR filter; evidence layer only)
+- `--exclude-schools <NAME...>` (hard exclusion)
+- `--all-schools` (explicitly unscoped retrieval; never an automatic fallback)
+- `--search-mode auto|hybrid|semantic|lexical` (`auto` uses hybrid for v2;
+  lexical does not load the embedding model)
+- `--max-per-canonical N` (v2 default 2; `0` disables diversity limiting)
+- `--list-schools` / `--explain-scope` (no embedding model load)
 - `--format markdown|json|compact`
-
-## Setup (one-time)
-
-```bash
-cd /path/to/OpenMobius-skill       # the skill directory
-bash install.sh                  # creates .venv, installs deps, builds index, checks fonts
-```
-
-The installer auto-registers the skill with Claude Code. If anything breaks
-(CJK label garbling, retrieval errors, missing index, etc.):
-
-```bash
-cd "${SKILL_DIR}" && .venv/bin/python scripts/kb_doctor.py
-```
-
-## Examples (quick reference; full examples in each workflow doc)
-
-**Example 1 — Concept Q&A** (no chart, no asset name):
-> User: "什么是 Fair Value Gap，怎么交易"
-> → Read `workflows/qna.md` → run kb_retrieve → synthesize answer in Chinese with English technical terms
-
-**Example 2 — Chart analysis** (with chart, identifiable asset):
-> User: [attaches BTC 4H chart] "分析一下当前行情"
-> → Read `workflows/analyze.md` → identify asset → auto-fetch real OHLCV from Mobius → 5-section reply with **precise prices** + auto-annotated image
-
-**Example 3 — Annotation only** (follow-up):
-> User: [after analysis JSON exists] "把刚才分析的画到图上"
-> → Read `workflows/annotate.md` → call kb_phase_b_to_c.py → output annotated image
-
-**Example 4 — Kline analysis** (no user-supplied chart):
-> User: "BTC 1h 现在怎么样" (or pastes a CSV of OHLCV)
-> → Read `workflows/klines.md` → fetch/parse → analyze (extract features) → retrieve → **generate fresh chart PNG** → 5-section reply citing precise data-grounded prices + chart path

@@ -1,0 +1,187 @@
+{
+  "registry_version": 1,
+  "knowledge_schema_version": 2,
+  "normalization": {
+    "trim_whitespace": true,
+    "case_insensitive_aliases": true,
+    "unknown_school_behavior": "fail_closed"
+  },
+  "default_profile": {
+    "id": "ict_smc",
+    "schools": [
+      "ICT",
+      "SMC"
+    ]
+  },
+  "schools": [
+    {
+      "id": "ict",
+      "name": "ICT",
+      "aliases": [
+        "Inner Circle Trader"
+      ],
+      "kind": "analysis_lens",
+      "availability": "top_level",
+      "knowledge_qna": true,
+      "native_market_analyzer": "smc"
+    },
+    {
+      "id": "smc",
+      "name": "SMC",
+      "aliases": [
+        "Smart Money Concepts"
+      ],
+      "kind": "analysis_lens",
+      "availability": "top_level",
+      "knowledge_qna": true,
+      "native_market_analyzer": "smc"
+    },
+    {
+      "id": "chanlun",
+      "name": "缠论",
+      "aliases": [
+        "ChanLun",
+        "Chan Lun"
+      ],
+      "kind": "analysis_lens",
+      "availability": "top_level",
+      "knowledge_qna": true,
+      "native_market_analyzer": null
+    },
+    {
+      "id": "price_action",
+      "name": "Price Action",
+      "aliases": [
+        "PA"
+      ],
+      "kind": "analysis_lens",
+      "availability": "top_level",
+      "knowledge_qna": true,
+      "native_market_analyzer": null
+    },
+    {
+      "id": "indicator_based",
+      "name": "Indicator Based",
+      "aliases": [
+        "Indicator Strategies",
+        "指标策略"
+      ],
+      "kind": "knowledge_category",
+      "availability": "top_level",
+      "knowledge_qna": true,
+      "native_market_analyzer": null
+    },
+    {
+      "id": "risk_management",
+      "name": "Risk Management",
+      "aliases": [
+        "Risk",
+        "风险管理"
+      ],
+      "kind": "knowledge_category",
+      "availability": "top_level",
+      "knowledge_qna": true,
+      "native_market_analyzer": null
+    },
+    {
+      "id": "general",
+      "name": "General",
+      "aliases": [
+        "General Trading"
+      ],
+      "kind": "knowledge_category",
+      "availability": "top_level",
+      "knowledge_qna": true,
+      "native_market_analyzer": null
+    },
+    {
+      "id": "order_flow",
+      "name": "Order Flow",
+      "aliases": [
+        "订单流"
+      ],
+      "kind": "analysis_lens",
+      "availability": "top_level",
+      "knowledge_qna": true,
+      "native_market_analyzer": null
+    },
+    {
+      "id": "volume_analysis",
+      "name": "Volume Analysis",
+      "aliases": [
+        "VSA",
+        "Volume Spread Analysis",
+        "成交量分析"
+      ],
+      "kind": "analysis_lens",
+      "availability": "top_level",
+      "knowledge_qna": true,
+      "native_market_analyzer": null
+    },
+    {
+      "id": "elliott_wave",
+      "name": "Elliott Wave",
+      "aliases": [
+        "Elliott",
+        "波浪理论"
+      ],
+      "kind": "analysis_lens",
+      "availability": "top_level",
+      "knowledge_qna": true,
+      "native_market_analyzer": null
+    },
+    {
+      "id": "wyckoff",
+      "name": "Wyckoff",
+      "aliases": [
+        "威科夫"
+      ],
+      "kind": "analysis_lens",
+      "availability": "top_level",
+      "knowledge_qna": true,
+      "native_market_analyzer": null
+    },
+    {
+      "id": "the_strat",
+      "name": "The Strat",
+      "aliases": [],
+      "kind": "analysis_lens",
+      "availability": "top_level",
+      "knowledge_qna": true,
+      "native_market_analyzer": null
+    },
+    {
+      "id": "on_chain",
+      "name": "On-chain",
+      "aliases": [
+        "Onchain",
+        "On Chain",
+        "链上"
+      ],
+      "kind": "knowledge_category",
+      "availability": "top_level",
+      "knowledge_qna": true,
+      "native_market_analyzer": null
+    },
+    {
+      "id": "market_structure",
+      "name": "Market Structure",
+      "aliases": [
+        "市场结构"
+      ],
+      "kind": "knowledge_category",
+      "availability": "top_level",
+      "knowledge_qna": true,
+      "native_market_analyzer": null
+    },
+    {
+      "id": "scalping",
+      "name": "Scalping",
+      "aliases": [],
+      "kind": "knowledge_category",
+      "availability": "evidence_only",
+      "knowledge_qna": true,
+      "native_market_analyzer": null
+    }
+  ]
+}
