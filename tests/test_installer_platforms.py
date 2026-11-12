@@ -28,14 +28,17 @@ class InstallerPlatformRegistryTests(unittest.TestCase):
             re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$"),
         )
 
-    def test_registry_is_the_single_six_platform_catalog(self) -> None:
+    def test_registry_is_the_single_nine_platform_catalog(self) -> None:
         expected = (
             "claude-code",
             "codex",
+            "agy",
             "openclaw",
             "hermes",
             "cursor",
             "workbuddy",
+            "grok-bot",
+            "muse",
         )
         self.assertEqual(install.PLATFORM_NAMES, expected)
         self.assertEqual(tuple(install.PLATFORM_REGISTRY), expected)
@@ -58,25 +61,30 @@ class InstallerPlatformRegistryTests(unittest.TestCase):
             {
                 "claude-code": home / ".claude/skills/openmobius-skill",
                 "codex": home / ".agents/skills/openmobius-skill",
+                "agy": home / ".gemini/config/skills/openmobius-skill",
                 "openclaw": home / ".openclaw/skills/openmobius-skill",
                 "hermes": home
                 / ".hermes/skills/market-data/openmobius-skill",
                 "cursor": home / ".cursor/skills/openmobius-skill",
                 "workbuddy": None,
+                "grok-bot": None,
+                "muse": None,
             },
         )
 
-    def test_backward_compatible_defaults_exclude_explicit_only_host(self) -> None:
+    def test_backward_compatible_defaults_exclude_explicit_only_hosts(self) -> None:
         expected = (
             "claude-code",
             "codex",
+            "agy",
             "openclaw",
             "hermes",
             "cursor",
         )
         self.assertEqual(install.DEFAULT_TARGET_PLATFORMS, expected)
         self.assertEqual(tuple(install.PLATFORM_DEFAULTS), expected)
-        self.assertNotIn("workbuddy", install.PLATFORM_DEFAULTS)
+        for staging_only in ("workbuddy", "grok-bot", "muse"):
+            self.assertNotIn(staging_only, install.PLATFORM_DEFAULTS)
         for target in install.PLATFORM_DEFAULTS.values():
             self.assertEqual(target.name, "openmobius-skill")
 
@@ -123,7 +131,15 @@ class InstallerPlatformRegistryTests(unittest.TestCase):
             install.PLATFORM_REGISTRY["hermes"].supported_host_systems,
             expected,
         )
-        for name in ("claude-code", "codex", "cursor", "workbuddy"):
+        for name in (
+            "claude-code",
+            "codex",
+            "agy",
+            "cursor",
+            "workbuddy",
+            "grok-bot",
+            "muse",
+        ):
             with self.subTest(platform=name):
                 self.assertIsNone(
                     install.PLATFORM_REGISTRY[name].supported_host_systems
@@ -186,11 +202,19 @@ class InstallerPlatformRegistryTests(unittest.TestCase):
 
 
 class InstallerPlatformDetectionTests(unittest.TestCase):
-    def test_auto_detection_includes_cursor_and_never_guesses_workbuddy(self) -> None:
+    def test_auto_detection_includes_agy_and_cursor_and_never_guesses_hosted(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             home = Path(tmp)
-            for directory in (".claude", ".codex", ".cursor", ".workbuddy"):
-                (home / directory).mkdir()
+            for directory in (
+                ".claude",
+                ".codex",
+                ".gemini/antigravity-cli",
+                ".cursor",
+                ".workbuddy",
+                ".grok",
+                ".muse",
+            ):
+                (home / directory).mkdir(parents=True, exist_ok=True)
 
             with (
                 patch.object(install.Path, "home", return_value=home),
@@ -202,8 +226,27 @@ class InstallerPlatformDetectionTests(unittest.TestCase):
             ):
                 detected = install.detect_platforms()
 
-        self.assertEqual(detected, ["claude-code", "codex", "cursor"])
-        self.assertNotIn("workbuddy", detected)
+        self.assertEqual(detected, ["claude-code", "codex", "agy", "cursor"])
+        for hosted in ("workbuddy", "grok-bot", "muse"):
+            self.assertNotIn(hosted, detected)
+
+    def test_agy_detection_distinguishes_antigravity_from_bare_gemini_dir(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp)
+            (home / ".gemini").mkdir()
+            spec = install.PLATFORM_REGISTRY["agy"]
+            self.assertEqual(
+                spec.default_target(home=home, environ={}),
+                home / ".gemini/config/skills/openmobius-skill",
+            )
+            self.assertFalse(spec.detection_root(home=home, environ={}).is_dir())
+
+            (home / ".gemini" / "antigravity").mkdir()
+            self.assertEqual(
+                spec.detection_root(home=home, environ={}),
+                home / ".gemini/antigravity",
+            )
+            self.assertTrue(spec.detection_root(home=home, environ={}).is_dir())
 
     def test_auto_detection_respects_configured_state_roots(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -385,6 +428,31 @@ class InstallerWorkBuddyTests(unittest.TestCase):
         run.assert_called_once()
         self.assertEqual(run.call_args.args[0].platform, "workbuddy")
         self.assertEqual(run.call_args.args[0].target_dir, str(target))
+
+    def test_grok_bot_and_muse_require_explicit_target_and_report_hosted_staging(self) -> None:
+        for platform_name, brand in (("grok-bot", "Grok Bot"), ("muse", "Muse")):
+            with self.subTest(platform=platform_name):
+                self.assertIsNone(install._resolve_target(platform_name, None))
+                with self.assertRaises(install.PlatformTargetError) as caught:
+                    install._resolve_target_for_operation(platform_name, None)
+                message = str(caught.exception)
+                self.assertIn("--target-dir", message)
+                self.assertIn("build_hosted_package.py", message)
+
+                stdout = io.StringIO()
+                target = Path(f"/selected/by/user/{platform_name}-stage")
+                with redirect_stdout(stdout):
+                    install.print_summary(
+                        {"Doctor": True},
+                        all_ok=True,
+                        platform_name=platform_name,
+                        target_dir=target,
+                    )
+                output = stdout.getvalue()
+                self.assertIn(f"{brand} staging validation complete", output)
+                self.assertIn("build_hosted_package.py", output)
+                self.assertIn(f"--platform {platform_name}", output)
+                self.assertNotIn("Installation complete", output)
 
 
 class InstallerMutationSafetyTests(unittest.TestCase):
@@ -1163,11 +1231,14 @@ class InstallerLegacyTargetTests(unittest.TestCase):
         expected = {
             "claude-code": home / ".claude/skills/OpenMobius-skill",
             "codex": home / ".codex/skills/OpenMobius-skill",
+            "agy": None,
             "openclaw": home / ".openclaw/skills/OpenMobius-skill",
             "hermes": home
             / ".hermes/skills/market-data/OpenMobius-skill",
             "cursor": None,
             "workbuddy": None,
+            "grok-bot": None,
+            "muse": None,
         }
         self.assertEqual(
             {
@@ -1342,10 +1413,10 @@ class InstallerCliRegistryTests(unittest.TestCase):
             rf"all\s+{len(install.DEFAULT_TARGET_PLATFORMS)}\s+platforms",
         )
         help_text_flat = " ".join(help_text.split())
-        self.assertIn("WorkBuddy is excluded", help_text_flat)
-        self.assertIn(
-            "requires --target-dir only for developer staging",
+        self.assertIn("WorkBuddy, Grok Bot, and Muse are excluded", help_text_flat)
+        self.assertRegex(
             help_text_flat,
+            r"require --target-\s*dir only for explicit staging",
         )
         self.assertIn("~/.claude/skills/openmobius-skill", help_text)
         self.assertNotIn("SKILL.md symlink", help_text)
@@ -1432,6 +1503,9 @@ class InstallerProgressTests(unittest.TestCase):
         stdout = io.StringIO()
         with (
             patch.object(install, "_step_num", 0),
+            patch.object(install, "CYAN", ""),
+            patch.object(install, "BOLD", ""),
+            patch.object(install, "RESET", ""),
             redirect_stdout(stdout),
         ):
             install.step("First")

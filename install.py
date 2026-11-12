@@ -110,6 +110,7 @@ class PlatformSpec:
     default_root: Optional[tuple[str, ...]]
     skill_parent: tuple[str, ...] = ("skills",)
     detect_root: Optional[tuple[str, ...]] = None
+    detect_alt_roots: tuple[tuple[str, ...], ...] = ()
     root_env: Optional[str] = None
     auto_detect: bool = True
     legacy_root: Optional[tuple[str, ...]] = None
@@ -147,21 +148,40 @@ class PlatformSpec:
             return None
         return root.joinpath(*self.skill_parent, SKILL_SLUG)
 
+    def detection_roots(
+        self,
+        *,
+        home: Optional[Path] = None,
+        environ: Optional[Mapping[str, str]] = None,
+    ) -> tuple[Path, ...]:
+        if not self.auto_detect:
+            return ()
+        env = os.environ if environ is None else environ
+        if self.root_env and env.get(self.root_env, "").strip():
+            configured = self._configured_root(home=home, environ=env)
+            return (configured,) if configured is not None else ()
+        parts = self.detect_root if self.detect_root is not None else self.default_root
+        if parts is None:
+            return ()
+        base = self._home(home)
+        return (
+            base.joinpath(*parts),
+            *(base.joinpath(*alt) for alt in self.detect_alt_roots),
+        )
+
     def detection_root(
         self,
         *,
         home: Optional[Path] = None,
         environ: Optional[Mapping[str, str]] = None,
     ) -> Optional[Path]:
-        if not self.auto_detect:
+        roots = self.detection_roots(home=home, environ=environ)
+        if not roots:
             return None
-        env = os.environ if environ is None else environ
-        if self.root_env and env.get(self.root_env, "").strip():
-            return self._configured_root(home=home, environ=env)
-        parts = self.detect_root if self.detect_root is not None else self.default_root
-        if parts is None:
-            return None
-        return self._home(home).joinpath(*parts)
+        for candidate in roots:
+            if candidate.is_dir():
+                return candidate
+        return roots[0]
 
     def legacy_target(
         self,
@@ -198,11 +218,33 @@ WORKBUDDY_TARGET_HELP = (
     "The installer will not guess a ~/.workbuddy path."
 )
 
+GROK_BOT_TARGET_HELP = (
+    "Grok Bot runs in xAI's hosted cloud environment and does not publish a "
+    "fixed local filesystem directory for automatic cloud synchronization. "
+    "Pass --target-dir only to create an explicitly selected local CLI or "
+    "developer staging tree (for example ~/.grok/skills/openmobius-skill). "
+    "For hosted Grok Bot use, build the compact ZIP with "
+    "scripts/build_hosted_package.py --platform grok-bot --output <path.zip> "
+    "and upload it to your Grok Bot workspace or custom skills. "
+    "The installer will not guess a ~/.grok path."
+)
+
+MUSE_TARGET_HELP = (
+    "Muse runs in Meta's hosted personal assistant environment and does not "
+    "publish a fixed local filesystem directory for automatic cloud "
+    "synchronization. Pass --target-dir only to create an explicitly selected "
+    "developer staging tree. For hosted Muse use, build the compact ZIP with "
+    "scripts/build_hosted_package.py --platform muse --output <path.zip> and "
+    "attach or import it into your Muse workspace. "
+    "The installer will not guess a ~/.muse path."
+)
+
 
 # Single source of truth for choices, display names, targets and detection.
-# WorkBuddy is explicit-only because its public docs do not define a fixed
-# third-party-writable automatic-discovery target. Its explicit target is a
-# developer staging tree, not a WorkBuddy installation.
+# WorkBuddy, Grok Bot, and Muse are explicit-only because hosted/marketplace
+# environments do not define a fixed third-party-writable automatic-discovery
+# target on the local machine. Their explicit targets are developer/local CLI
+# staging trees rather than hosted installations.
 PLATFORM_REGISTRY: dict[str, PlatformSpec] = {
     "claude-code": PlatformSpec(
         display_name="Claude Code",
@@ -214,6 +256,12 @@ PLATFORM_REGISTRY: dict[str, PlatformSpec] = {
         default_root=(".agents",),
         detect_root=(".codex",),
         legacy_root=(".codex",),
+    ),
+    "agy": PlatformSpec(
+        display_name="Antigravity (agy)",
+        default_root=(".gemini", "config"),
+        detect_root=(".gemini", "antigravity"),
+        detect_alt_roots=((".gemini", "antigravity-cli"),),
     ),
     "openclaw": PlatformSpec(
         display_name="OpenClaw",
@@ -241,12 +289,33 @@ PLATFORM_REGISTRY: dict[str, PlatformSpec] = {
         auto_detect=False,
         explicit_target_help=WORKBUDDY_TARGET_HELP,
     ),
+    "grok-bot": PlatformSpec(
+        display_name="Grok Bot",
+        default_root=None,
+        auto_detect=False,
+        explicit_target_help=GROK_BOT_TARGET_HELP,
+    ),
+    "muse": PlatformSpec(
+        display_name="Muse",
+        default_root=None,
+        auto_detect=False,
+        explicit_target_help=MUSE_TARGET_HELP,
+    ),
 }
 
 PLATFORM_NAMES = tuple(PLATFORM_REGISTRY)
 PLATFORM_DISPLAY_NAMES = {
     name: spec.display_name for name, spec in PLATFORM_REGISTRY.items()
 }
+
+
+def _is_staging_platform(platform_name: str) -> bool:
+    spec = PLATFORM_REGISTRY.get(platform_name)
+    return spec is not None and spec.default_root is None
+
+
+def _staging_display_name(platform_name: str) -> str:
+    return PLATFORM_DISPLAY_NAMES.get(platform_name, platform_name)
 
 # Backward-compatible public mapping. It contains only hosts with a documented
 # default local automatic-discovery target; WorkBuddy developer staging must
@@ -1612,7 +1681,7 @@ def _resolve_target_for_operation(
     source = SOURCE_DIR.resolve(strict=False)
     cwd = Path.cwd().resolve(strict=False)
 
-    unsafe_exact: set[Path] = {anchor, home, tmp_root}
+    unsafe_exact: set[Path] = {anchor, home, tmp_root, (home / ".gemini").resolve(strict=False)}
     # Reject agent/state containers themselves. Only a directory below the
     # documented skills parent may be an install target.
     for spec in PLATFORM_REGISTRY.values():
@@ -1622,9 +1691,8 @@ def _resolve_target_for_operation(
         default_target = spec.default_target()
         if default_target is not None:
             unsafe_exact.add(default_target.parent.resolve(strict=False))
-        detection_root = spec.detection_root()
-        if detection_root is not None:
-            unsafe_exact.add(detection_root.resolve(strict=False))
+        for detection_candidate in spec.detection_roots():
+            unsafe_exact.add(detection_candidate.resolve(strict=False))
 
     # Defense in depth for explicit absolute paths outside the user's home.
     for broad_name in (
@@ -1712,11 +1780,12 @@ def cmd_uninstall(platforms: list[str], target_dir: Optional[Path],
              "~/.cache/huggingface/hub/models--nomic-*/)")
         return 2
 
-    workbuddy_staging = platforms == ["workbuddy"]
+    staging_only = len(platforms) == 1 and _is_staging_platform(platforms[0])
+    staging_brand = _staging_display_name(platforms[0]) if staging_only else ""
     print()
     print(f"{DIM}{'═' * 64}{RESET}")
-    if workbuddy_staging:
-        print(f"{BOLD}  {DISPLAY_NAME} — WorkBuddy staging remover{RESET}")
+    if staging_only:
+        print(f"{BOLD}  {DISPLAY_NAME} — {staging_brand} staging remover{RESET}")
     else:
         print(f"{BOLD}  {DISPLAY_NAME} — uninstaller{RESET}")
     print(f"{DIM}{'═' * 64}{RESET}")
@@ -1738,7 +1807,7 @@ def cmd_uninstall(platforms: list[str], target_dir: Optional[Path],
             fail(str(exc))
             overall_ok = False
             continue
-        if pname == "workbuddy":
+        if _is_staging_platform(pname):
             step(f"[{pname}] Removing developer staging tree {target}")
         else:
             step(f"[{pname}] Removing {target}")
@@ -1752,7 +1821,7 @@ def cmd_uninstall(platforms: list[str], target_dir: Optional[Path],
                     mode="write",
                 ):
                     if not target.exists() and not target.is_symlink():
-                        if pname == "workbuddy":
+                        if _is_staging_platform(pname):
                             info("no developer staging tree, nothing to remove")
                         else:
                             info("not installed, nothing to remove")
@@ -1796,14 +1865,14 @@ def cmd_uninstall(platforms: list[str], target_dir: Optional[Path],
     print()
     print(f"{DIM}{'═' * 64}{RESET}")
     if overall_ok:
-        if workbuddy_staging:
-            print(f"{GREEN}{BOLD}  ✓ WorkBuddy developer staging removed{RESET}")
+        if staging_only:
+            print(f"{GREEN}{BOLD}  ✓ {staging_brand} developer staging removed{RESET}")
         else:
             print(f"{GREEN}{BOLD}  ✓ Uninstall complete{RESET}")
     else:
-        if workbuddy_staging:
+        if staging_only:
             print(
-                f"{YELLOW}{BOLD}  ⚠ WorkBuddy staging removal finished "
+                f"{YELLOW}{BOLD}  ⚠ {staging_brand} staging removal finished "
                 f"with some issues{RESET}"
             )
         else:
@@ -1813,15 +1882,21 @@ def cmd_uninstall(platforms: list[str], target_dir: Optional[Path],
         print(f"  {DIM}User-global caches kept{RESET} (Playwright chromium / nomic). "
               f"Other tools may need them; pass --purge --yes-i-know to remove.")
     launcher = "py -3" if IS_WIN else "python3"
-    if workbuddy_staging:
+    if staging_only:
         print(
             f"  {DIM}Re-create staging:{RESET}  {launcher} install.py "
-            "--platform workbuddy --target-dir <path>"
+            f"--platform {platforms[0]} --target-dir <path>"
         )
-        print(
-            f"  {DIM}WorkBuddy status:{RESET} removing staging did not uninstall "
-            "an imported or marketplace Skill. Manage that under Skills > Installed."
-        )
+        if platforms[0] == "workbuddy":
+            print(
+                f"  {DIM}WorkBuddy status:{RESET} removing staging did not uninstall "
+                "an imported or marketplace Skill. Manage that under Skills > Installed."
+            )
+        else:
+            print(
+                f"  {DIM}{staging_brand} status:{RESET} removing local staging did not "
+                f"uninstall any uploaded or hosted Skill in {staging_brand}."
+            )
     else:
         print(f"  {DIM}Re-install:{RESET}  {launcher} install.py [--platform <name>]")
     print()
@@ -1870,11 +1945,12 @@ def cmd_update(platforms: list[str], target_dir: Optional[Path],
     saved_source = SOURCE_DIR
     tmp_source: Optional[Path] = None
 
-    workbuddy_staging = platforms == ["workbuddy"]
+    staging_only = len(platforms) == 1 and _is_staging_platform(platforms[0])
+    staging_brand = _staging_display_name(platforms[0]) if staging_only else ""
     print()
     print(f"{DIM}{'═' * 64}{RESET}")
-    if workbuddy_staging:
-        print(f"{BOLD}  {DISPLAY_NAME} — WorkBuddy staging updater{RESET}")
+    if staging_only:
+        print(f"{BOLD}  {DISPLAY_NAME} — {staging_brand} staging updater{RESET}")
     else:
         print(f"{BOLD}  {DISPLAY_NAME} — updater{RESET}")
     print(f"{DIM}{'═' * 64}{RESET}")
@@ -1909,7 +1985,7 @@ def cmd_update(platforms: list[str], target_dir: Optional[Path],
                 overall_ok = False
                 continue
             if not target.exists():
-                if pname == "workbuddy":
+                if _is_staging_platform(pname):
                     info(
                         f"[{pname}] no developer staging tree at {target}; "
                         "creating one"
@@ -1917,9 +1993,10 @@ def cmd_update(platforms: list[str], target_dir: Optional[Path],
                 else:
                     info(f"[{pname}] not installed at {target}; running fresh install")
             print()
-            if pname == "workbuddy":
+            if _is_staging_platform(pname):
+                pbrand = _staging_display_name(pname)
                 print(
-                    f"{CYAN}{BOLD}━━━ Updating WorkBuddy developer staging "
+                    f"{CYAN}{BOLD}━━━ Updating {pbrand} developer staging "
                     f"@ {target} ━━━{RESET}"
                 )
             else:
@@ -1942,14 +2019,14 @@ def cmd_update(platforms: list[str], target_dir: Optional[Path],
     print()
     print(f"{DIM}{'═' * 64}{RESET}")
     if overall_ok:
-        if workbuddy_staging:
-            print(f"{GREEN}{BOLD}  ✓ WorkBuddy staging update complete{RESET}")
+        if staging_only:
+            print(f"{GREEN}{BOLD}  ✓ {staging_brand} staging update complete{RESET}")
         else:
             print(f"{GREEN}{BOLD}  ✓ Update complete{RESET}")
     else:
-        if workbuddy_staging:
+        if staging_only:
             print(
-                f"{YELLOW}{BOLD}  ⚠ WorkBuddy staging update finished "
+                f"{YELLOW}{BOLD}  ⚠ {staging_brand} staging update finished "
                 f"with issues{RESET}"
             )
         else:
@@ -2053,7 +2130,9 @@ def _run_single_install_under_operation_lock(
 
     print()
     target_label = (
-        "Developer staging target" if args.platform == "workbuddy" else "Install target"
+        "Developer staging target"
+        if _is_staging_platform(args.platform)
+        else "Install target"
     )
     print(f"  {target_label} : {target}")
     print(f"  Source clone   : {SOURCE_DIR}{'  (in-place)' if in_place else ''}")
@@ -2176,18 +2255,19 @@ def run_doctor(
 
 def print_summary(results: dict, all_ok: bool, platform_name: str = "claude-code",
                   target_dir: Optional[Path] = None) -> None:
-    workbuddy_staging = platform_name == "workbuddy"
+    staging_only = _is_staging_platform(platform_name)
+    staging_brand = _staging_display_name(platform_name) if staging_only else ""
     print()
     print(f"{DIM}{'═' * 64}{RESET}")
     if all_ok:
-        if workbuddy_staging:
-            print(f"{GREEN}{BOLD}  ✓ WorkBuddy staging validation complete{RESET}")
+        if staging_only:
+            print(f"{GREEN}{BOLD}  ✓ {staging_brand} staging validation complete{RESET}")
         else:
             print(f"{GREEN}{BOLD}  ✓ Installation complete{RESET}")
     else:
-        if workbuddy_staging:
+        if staging_only:
             print(
-                f"{YELLOW}{BOLD}  ⚠ WorkBuddy staging validation "
+                f"{YELLOW}{BOLD}  ⚠ {staging_brand} staging validation "
                 f"finished with issues{RESET}"
             )
         else:
@@ -2199,7 +2279,7 @@ def print_summary(results: dict, all_ok: bool, platform_name: str = "claude-code
 
     if all_ok:
         installed_at = target_dir or PLATFORM_DEFAULTS.get(platform_name)
-        if workbuddy_staging:
+        if platform_name == "workbuddy":
             if installed_at:
                 print(f"  {DIM}Staged at:{RESET} {installed_at}")
             print(
@@ -2215,6 +2295,23 @@ def print_summary(results: dict, all_ok: bool, platform_name: str = "claude-code
             print(
                 f"    {launcher} scripts/build_workbuddy_package.py "
                 f"--output \"{archive}\""
+            )
+        elif staging_only:
+            if installed_at:
+                print(f"  {DIM}Staged at:{RESET} {installed_at}")
+            print(
+                f"  {DIM}Status:{RESET} this did not upload, import, or activate "
+                f"the Skill in hosted {staging_brand}."
+            )
+            print(
+                f"  {DIM}Next:{RESET} build the compact hosted ZIP, then upload or "
+                f"attach it in {staging_brand}:"
+            )
+            launcher = "py -3" if IS_WIN else "python3"
+            archive = Path(tempfile.gettempdir()) / f"openmobius-skill-{platform_name}.zip"
+            print(
+                f"    {launcher} scripts/build_hosted_package.py "
+                f"--platform {platform_name} --output \"{archive}\""
             )
         else:
             agent_name = PLATFORM_DISPLAY_NAMES.get(platform_name, platform_name)
@@ -2269,14 +2366,14 @@ def _build_parser() -> argparse.ArgumentParser:
         help="Target agent platform (default: claude-code; "
              "'auto' = detect installed agents; "
              f"'all' = apply to all {len(DEFAULT_TARGET_PLATFORMS)} platforms "
-             "with documented local targets; WorkBuddy is excluded and "
-             "requires --target-dir only for developer staging)",
+             "with documented local targets; WorkBuddy, Grok Bot, and Muse "
+             "are excluded and require --target-dir only for explicit staging)",
     )
     parser.add_argument(
         "--target-dir", default=None,
         help="Override install path (default: platform-specific, e.g. "
-             "~/.claude/skills/openmobius-skill; required only for explicit "
-             "WorkBuddy developer staging)",
+             "~/.claude/skills/openmobius-skill; required for explicit "
+             "WorkBuddy, Grok Bot, or Muse staging)",
     )
     parser.add_argument("--no-register", action="store_true",
                         help="Skip platform SKILL.md generation")

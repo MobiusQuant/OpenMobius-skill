@@ -5,10 +5,11 @@ Calls the Mobius Quant API for real OHLCV, or parses user-pasted data,
 then extracts features to give the skill ground truth for analysis.
 
 Network policy: this module makes outbound HTTP requests to exactly one
-domain — api.mobiusquant.ai — a public OHLCV/indicator service operated
-by MobiusQuant (https://www.mobiusquant.ai/). No credentials are
-collected or transmitted; the endpoint is publicly accessible and
-rate-limited at the network layer.
+domain — api.mobiusquant.ai (or an operator-configured MOBIUS_API_BASE) —
+a public OHLCV/indicator service operated by MobiusQuant
+(https://www.mobiusquant.ai/). No credentials are required or collected by
+default; if MOBIUS_API_TOKEN is explicitly set in the environment, it is sent
+as a Bearer header for higher rate limits.
 
 Sub-commands:
   resolve     natural name → canonical (exchange, market, symbol)
@@ -93,8 +94,11 @@ class MobiusClient:
     def _headers(self, content_type: Optional[str] = None) -> dict[str, str]:
         h: dict[str, str] = {
             "Accept": "application/json",
-            "User-Agent": "OpenMobius-skill/0.1",
+            "User-Agent": "OpenMobius-skill/0.4",
         }
+        token = os.environ.get("MOBIUS_API_TOKEN", "").strip()
+        if token:
+            h["Authorization"] = f"Bearer {token}"
         if content_type:
             h["Content-Type"] = content_type
         return h
@@ -372,8 +376,25 @@ def _fetch_one(
     )
 
 
-def _htf_for(interval: str) -> Optional[str]:
-    """LTF → HTF 一档大；返回 None 表示已是最大档。"""
+HOURLY_DAILY_ONLY_VENUES = frozenset({
+    ("stock", "hk"),
+    ("stock", "us"),
+    ("forex", "spot"),
+})
+
+
+def _htf_for(interval: str, asset: Optional[AssetSpec] = None) -> Optional[str]:
+    """LTF → HTF 一档大；返回 None 表示已是最大档。
+
+    stock:hk / stock:us / forex:spot 在 KlineSync Engine v2.0 仅支持 1h 与 1d
+    （不支持 4h），因此这些市场的 1h 直接映射到 1d。
+    """
+    if (
+        asset is not None
+        and interval == "1h"
+        and (asset.exchange.lower(), asset.market.lower()) in HOURLY_DAILY_ONLY_VENUES
+    ):
+        return "1d"
     return HTF_LADDER.get(interval)
 
 
@@ -417,15 +438,25 @@ def cmd_fetch(args: argparse.Namespace) -> int:
 
     # 3) 自动联拉 HTF
     if args.with_htf:
-        htf_interval = _htf_for(args.interval)
+        htf_interval = _htf_for(args.interval, asset)
         if htf_interval is None:
             log.info("--with-htf: %s is top, no HTF to fetch", args.interval)
             out["htf"] = None
         else:
-            htf = _fetch_one(client, asset, htf_interval, args.htf_limit)
-            log.info("fetched HTF %s @ %s: %d candles",
-                     asset.symbol, htf_interval, htf.count)
-            out["htf"] = htf.to_dict()
+            try:
+                htf = _fetch_one(client, asset, htf_interval, args.htf_limit)
+                log.info("fetched HTF %s @ %s: %d candles",
+                         asset.symbol, htf_interval, htf.count)
+                out["htf"] = htf.to_dict()
+            except MobiusError as exc:
+                if exc.status in (400, 422):
+                    log.warning(
+                        "HTF %s is unsupported for %s:%s:%s (%s); continuing without HTF",
+                        htf_interval, asset.exchange, asset.market, asset.symbol, exc.detail,
+                    )
+                    out["htf"] = None
+                else:
+                    raise
 
     # 4) 输出
     if args.output:
@@ -2029,9 +2060,12 @@ def cmd_chart(args: argparse.Namespace) -> int:
                 "auto-overlay: SMC fetch failed (%s); falling back to empty items.", e,
             )
 
-    # Volume panel: per-bar histogram, red/green by close vs open
+    # Volume panel: per-bar histogram, red/green by close vs open.
+    # Placeholder-volume series (e.g. commodity:spot:XAUUSD with volume=0) skip
+    # the empty sub-panel so the main chart retains full vertical space.
     volume_items: list[dict] = []
-    if getattr(args, "volume_panel", True):
+    has_nonzero_volume = any((k.get("volume") or 0) > 0 for k in klines)
+    if getattr(args, "volume_panel", True) and has_nonzero_volume:
         vol_color_up   = "rgba(38, 166, 154, 0.6)"
         vol_color_down = "rgba(239, 83, 80, 0.6)"
         vol_data = [
@@ -2048,6 +2082,8 @@ def cmd_chart(args: argparse.Namespace) -> int:
             "label": "Volume",
             "style": {"role": "muted", "lastValueVisible": False},
         }]
+    elif getattr(args, "volume_panel", True) and klines:
+        log.info("volume panel skipped: all %d candles report zero volume", len(klines))
 
     panels = [
         {
@@ -2516,15 +2552,28 @@ def cmd_indicators(args: argparse.Namespace) -> int:
     log.info("indicators: %s", [c["name"] for c in calc])
 
     # explain block is always suppressed; field semantics live in SKILL.body.md
-    resp = client.indicators(
-        exchange=asset.exchange,
-        market=asset.market,
-        symbol=asset.symbol,
-        interval=args.interval,
-        calc=calc,
-        limit=args.limit,
-        explain=False,
-    )
+    volume_required_inds = frozenset({"vwap", "obv", "cvd"})
+    requested_names = {c["name"] for c in calc}
+    try:
+        resp = client.indicators(
+            exchange=asset.exchange,
+            market=asset.market,
+            symbol=asset.symbol,
+            interval=args.interval,
+            calc=calc,
+            limit=args.limit,
+            explain=False,
+        )
+    except MobiusError as exc:
+        if exc.status == 400 and (requested_names & volume_required_inds):
+            log.error(
+                "volume-based indicator(s) %s rejected by API (%s) — "
+                "placeholder-volume series such as commodity:spot:XAUUSD do not "
+                "carry real traded volume",
+                sorted(requested_names & volume_required_inds),
+                exc.detail,
+            )
+        raise
     log.info("got %s @ %s: %d candles, %d indicators",
              asset.symbol, args.interval,
              resp.get("count", 0), len(resp.get("indicators") or {}))

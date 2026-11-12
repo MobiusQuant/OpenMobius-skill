@@ -8,14 +8,28 @@ English: [CHANGELOG.md](./CHANGELOG.md)
 
 ---
 
-## [未发布]
+## [0.4.0] — 2026-11-12
 
 ### 新增
 
-- 新增对 Claude Code、Codex、OpenClaw、Hermes、Cursor 和 WorkBuddy
-  当前 Agent Skills 规范的兼容契约。Cursor 现支持 user/project 两级
-  Skill；Codex 新增可选 `agents/openai.yaml` 界面元数据；WorkBuddy 新增
+- 新增对九个平台当前 Agent Skills 规范的兼容契约：Claude Code、Codex、
+  Antigravity (`agy`)、OpenClaw、Hermes、Cursor、WorkBuddy、Grok Bot 和
+  Muse。Antigravity（`--platform agy`）默认将自包含副本安装到
+  `~/.gemini/config/skills/openmobius-skill/`（同时提供工作区
+  `.agents/skills/openmobius-skill/` 指引以及针对 `~/.gemini/antigravity`
+  / `~/.gemini/antigravity-cli` 的专属自动检测）；Cursor 现支持 user/project
+  两级 Skill；Codex 新增可选 `agents/openai.yaml` 界面元数据；WorkBuddy 新增
   确定性 ZIP 构建器，分别用于桌面端本地导入和开放平台发布提交。
+- 新增 `scripts/build_hosted_package.py`，面向 **Grok Bot**（`--platform grok-bot`，
+  xAI 托管 Agent 助手）与 **Muse**（`--platform muse`，Meta 托管个人 AI 助手）
+  构建小于 3 MB、零第三方依赖的确定性紧凑 ZIP 包（`openmobius-skill/` 根目录、
+  覆盖完整 2,144 条 School 投影与 18,645 条精确来源证据的 `compact_v2` 词法语料，
+  以及 `.openmobius-readonly-bundle.json` SHA-256 只读校验清单），并在
+  `install.py` 中支持显式 `--target-dir` 开发者暂存与校验。
+- 对齐 **KlineSync Engine v2.0** 更新 `scripts/kb_klines.py`、`SKILL.body.md` 与
+  `workflows/klines.md`：扩展交易所与品种覆盖（`gate`、`coinbase`、跨所聚合
+  `composite` 以及现货/期货黄金白银 `XAUUSD` / `XAUF` / `XAGF`），支持可选
+  `MOBIUS_API_TOKEN` Bearer 认证头，并更新客户端标识为 `OpenMobius-skill/0.4`。
 - 新增三层检索：兼容用融合 `canonical`、可归属 `school`、原子级精确来源
   `evidence`。`kb_retrieve.py` 支持 School/source/type/排除项硬过滤交集、
   School 别名、范围诊断以及规范术语/别名精确置顶。
@@ -47,16 +61,18 @@ English: [CHANGELOG.md](./CHANGELOG.md)
 
 - Skill slug 与安装目录统一为小写 `openmobius-skill`，同时保留
   **OpenMobius-skill** 作为产品和仓库名称。Codex 改为安装到
-  `~/.agents/skills`；OpenClaw 遵循 `OPENCLAW_STATE_DIR`；Hermes 遵循
-  `HERMES_HOME`；Cursor 本地 user skill 安装到 `~/.cursor/skills`。
-- 在 Linux/macOS 上，`--platform all` 表示 5 个有官方本地发现路径的 host：
-  Claude Code、Codex、OpenClaw、Hermes 和 Cursor。本版本不宣称在 Windows
-  支持 OpenClaw/Hermes；Windows 用户需显式选择 Claude Code、Codex 或 Cursor。
-- WorkBuddy 配置现明确区分本地 ZIP 导入、已发布版本的技能市场安装，以及开放
-  平台发布。其公开文档未定义可供第三方写入并自动发现的固定目录；因此显式
-  `--target-dir` 仅用于开发者暂存/校验，且不再报告“安装成功”。确定性构建器按
-  更保守的 3,000,000 字节边界执行官方文档规定的 3 MB 上限；紧凑包省略
-  canonical/向量产物，并对这些不支持的路由 fail closed。
+  `~/.agents/skills`；Antigravity (`agy`) 安装到 `~/.gemini/config/skills`；
+  OpenClaw 遵循 `OPENCLAW_STATE_DIR`；Hermes 遵循 `HERMES_HOME`；Cursor 本地
+  user skill 安装到 `~/.cursor/skills`。
+- 在 Linux/macOS 上，`--platform all` 表示 6 个有官方本地发现路径的 host：
+  Claude Code、Codex、Antigravity (`agy`)、OpenClaw、Hermes 和 Cursor。本版本不宣称在
+  Windows 支持 OpenClaw/Hermes；Windows 用户需显式选择 Claude Code、Codex、
+  Antigravity (`agy`) 或 Cursor。
+- WorkBuddy、Grok Bot 和 Muse 均未定义可供第三方写入并自动发现的本机固定目录；因此
+  `install.py` 中的显式 `--target-dir` 仅用于开发者暂存/校验，且绝不会报告“本机安装成功”。
+  WorkBuddy 配置明确区分本地 ZIP 导入、已发布版本的技能市场安装，以及开放平台发布。
+  `build_workbuddy_package.py` 与 `build_hosted_package.py` 均按更保守的 3,000,000
+  字节边界执行 3 MB 上限，省略 canonical/向量产物，并对不支持的路由 fail closed。
 - Nomic embedding 模型现固定到经过校验的不可变 revision 与权重摘要，禁用
   模型仓库远程代码，并把 Sentence Transformers / Transformers 的支持范围
   更新到当前主版本。
@@ -98,6 +114,11 @@ English: [CHANGELOG.md](./CHANGELOG.md)
   合并到首个文件的来源路径下。
 - 安装/卸载示例改用唯一的 `mktemp`/GUID 目录，并只删除捕获到的精确路径，
   避免固定临时目录名与既有数据冲突。
+- 修复 `kb_klines.py` 在仅支持小时/日线的市场（`stock:hk`、`stock:us`、`forex:spot`）
+  使用 `--with-htf` 时请求不支持的 `4h` 周期的问题（现自动映射 `1h → 1d`，并在
+  HTF 返回 400/422 时优雅降级，不中断主周期数据拉取）。
+- 在零成交量序列（如 `commodity:spot:XAUUSD`）制图时自动隐藏空白成交量子面板，并为
+  成交量依赖型指标（`vwap`、`obv`、`cvd`）在占位零成交量品种上返回 400 时补充明确提示。
 
 ---
 

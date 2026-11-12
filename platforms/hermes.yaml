@@ -1,6 +1,6 @@
 name: openmobius-skill
 description: Trading Q&A, School capability list, charts, live markets.
-version: 0.3.0
+version: 0.4.0
 author: MobiusQuant
 license: Apache-2.0
 platforms:

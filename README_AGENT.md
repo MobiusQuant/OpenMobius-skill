@@ -1,9 +1,9 @@
 # Agent Install Guide for OpenMobius-skill
 
-This file is written for **AI agents** (Claude Code / Codex / OpenClaw /
-Hermes / Cursor / WorkBuddy) that the user has asked to install OpenMobius-skill on
-their machine. Read it end-to-end before executing, then run the steps
-in order. **Do not skip steps.**
+This file is written for **AI agents** (Claude Code / Codex / Antigravity (`agy`) /
+OpenClaw / Hermes / Cursor / WorkBuddy / Grok Bot / Muse) that the user has asked
+to install OpenMobius-skill on their machine or prepare for their hosted agent.
+Read it end-to-end before executing, then run the steps in order. **Do not skip steps.**
 
 If you are a human, see [`README.md`](./README.md) and
 [`INSTALL.md`](./INSTALL.md) instead — they're optimised for human
@@ -88,6 +88,9 @@ Otherwise, detect installed platforms:
 if [ -d ~/.agents ] || [ -d ~/.codex ]; then
     echo "found: Codex"
 fi
+if [ -d ~/.gemini/antigravity ] || [ -d ~/.gemini/antigravity-cli ]; then
+    echo "found: Antigravity (agy)"
+fi
 [ -d ~/.openclaw ] && echo "found: OpenClaw"
 [ -d ~/.hermes ] && echo "found: Hermes"
 [ -d ~/.cursor ] && echo "found: Cursor"
@@ -100,7 +103,7 @@ fi
 - **0 found** → ask user which agent they're using.
 - **1 found** → use it.
 - **2+ found** → ask user which one to install into (or, on Linux/macOS, offer
-  `--platform all`, which covers the five hosts with official local paths).
+  `--platform all`, which covers the six hosts with official local paths).
 
 Map the user's answer to a flag:
 
@@ -108,21 +111,25 @@ Map the user's answer to a flag:
 |---|---|---|
 | Claude Code | `claude-code` | `~/.claude/skills/openmobius-skill/` |
 | Codex | `codex` | `~/.agents/skills/openmobius-skill/` |
+| Antigravity (`agy`) | `agy` | `~/.gemini/config/skills/openmobius-skill/` |
 | OpenClaw *(Linux/macOS)* | `openclaw` | `<OPENCLAW_STATE_DIR or ~/.openclaw>/skills/openmobius-skill/` |
 | Hermes *(Linux/macOS)* | `hermes` | `<HERMES_HOME or ~/.hermes>/skills/market-data/openmobius-skill/` |
 | Cursor | `cursor` | `~/.cursor/skills/openmobius-skill/` |
 | WorkBuddy | local ZIP import / marketplace | Use **Skills → Add Skill → Upload Skill**, or install a published copy from the Skill Marketplace |
-| All local hosts *(Linux/macOS)* | `all` | the five local targets above; excludes WorkBuddy |
+| Grok Bot *(xAI hosted)* | hosted compact ZIP / `--target-dir` | Build with `scripts/build_hosted_package.py --platform grok-bot --output ...` and upload to Grok Bot |
+| Muse *(Meta hosted)* | hosted compact ZIP / `--target-dir` | Build with `scripts/build_hosted_package.py --platform muse --output ...` and attach to Muse |
+| All local hosts *(Linux/macOS)* | `all` | the six local targets above; excludes WorkBuddy, Grok Bot, and Muse |
 
 For a local-path host, save the chosen flag as `<FLAG>` for the next steps.
 
 The current OpenClaw and Hermes host adapters/manifests target Linux and
-macOS. On Windows, choose Claude Code, Codex, or Cursor explicitly. Do not use
-`all`: its preflight fails rather than silently skipping unsupported hosts.
+macOS. On Windows, choose Claude Code, Codex, Antigravity (`agy`), or Cursor
+explicitly. Do not use `all`: its preflight fails rather than silently skipping
+unsupported hosts.
 
-If the user chose WorkBuddy, do not invent a local target and do not confuse
-WorkBuddy with CodeBuddy. Follow the matching WorkBuddy route below instead of
-Steps 3–6.
+If the user chose WorkBuddy, Grok Bot, or Muse, do not invent an undocumented
+local cloud-sync directory. Follow the matching hosted/package route below
+instead of Steps 3–6.
 
 ### WorkBuddy installation and publishing routes
 
@@ -205,6 +212,29 @@ Playwright/Chromium or Pillow.
 `python3 install.py --platform workbuddy --target-dir <path>` exists only for
 developer staging and validation. It does not register a locally discoverable
 WorkBuddy skill and is not the normal user installation flow.
+
+### Grok Bot and Muse hosted package routes
+
+xAI's hosted **Grok Bot** and Meta's hosted **Muse** assistant run in cloud
+sandboxes rather than reading a local home directory automatically. Build a
+deterministic `<3 MB` compact ZIP containing all 2,144 School projections and
+18,645 exact-source evidence records:
+
+```bash
+OPENMOBIUS_HOSTED_SRC="$(mktemp -d "${TMPDIR:-/tmp}/openmobius-hosted.XXXXXX")"
+git clone --depth 1 https://github.com/MobiusQuant/OpenMobius-skill "$OPENMOBIUS_HOSTED_SRC"
+cd "$OPENMOBIUS_HOSTED_SRC"
+python3 scripts/build_hosted_package.py \
+  --platform <grok-bot|muse> \
+  --output /tmp/openmobius-skill-<grok-bot|muse>.zip
+cd "${TMPDIR:-/tmp}"
+rm -rf -- "$OPENMOBIUS_HOSTED_SRC"
+```
+
+Hand the generated `.zip` path to the user to upload/attach into their Grok Bot
+custom skills/workspace or Muse sandbox workspace. Do not claim cloud activation
+until the user imports it into the hosted assistant. For local CLI or developer
+staging only, pass `--platform <grok-bot|muse> --target-dir <path>` explicitly.
 
 ---
 
@@ -321,6 +351,7 @@ Use the exact target for the user's platform:
 |---|---|
 | Claude Code | `~/.claude/skills/openmobius-skill/` |
 | Codex | `~/.agents/skills/openmobius-skill/` |
+| Antigravity (`agy`) | `~/.gemini/config/skills/openmobius-skill/` |
 | OpenClaw | `<OPENCLAW_STATE_DIR or ~/.openclaw>/skills/openmobius-skill/` |
 | Hermes | `<HERMES_HOME or ~/.hermes>/skills/market-data/openmobius-skill/` |
 | Cursor | `~/.cursor/skills/openmobius-skill/` |

@@ -116,6 +116,7 @@ EXCLUDED_NAMES = frozenset({
     ".npmrc",
     ".pypirc",
     INSTALL_GENERATION_MARKER,
+    "build_hosted_package.py",
     "build_workbuddy_package.py",
     "credentials.json",
     "secret.json",
@@ -132,6 +133,7 @@ WORKBUDDY_OMITTED_KB_FILES = frozenset({
 WORKBUDDY_OMITTED_SCRIPT_FILES = frozenset({
     "_lib/embedder.py",
     "_lib/embedding_cache.py",
+    "build_hosted_package.py",
     "build_index.py",
     "build_knowledge_v2.py",
     "evaluate_retrieval.py",

@@ -5,15 +5,15 @@
 **给 AI 编程 Agent 的多流派交易知识 Skill —— 默认严格使用 ICT/SMC 行情分析**
 
 符合 `SKILL.md` 标准的能力包，把 2008 张精选知识卡 + 实时行情 + 技术指标 +
-图表生成带给 **Claude Code**、**Codex**、**OpenClaw**、**Hermes**、
-**Cursor** 和 **WorkBuddy** 六个平台。
+图表生成带给 **Claude Code**、**Codex**、**Antigravity (`agy`)**、**OpenClaw**、
+**Hermes**、**Cursor**、**WorkBuddy**、**Grok Bot** 和 **Muse** 九个平台。
 
 <br>
 
 [![License](https://img.shields.io/badge/license-Apache_2.0-blue.svg)](./LICENSE)
 [![Python](https://img.shields.io/badge/python-3.10%2B-3776ab.svg)](https://www.python.org/)
 [![Website](https://img.shields.io/badge/🌐_website-mobiusquant.ai-FF7E29.svg)](https://www.mobiusquant.ai/)
-[![Platforms](https://img.shields.io/badge/platforms-6_hosts-9333ea.svg)](#平台支持)
+[![Platforms](https://img.shields.io/badge/platforms-9_hosts-9333ea.svg)](#平台支持)
 [![Knowledge Base](https://img.shields.io/badge/knowledge_base-2008_cards-22c55e.svg)](#核心能力)
 
 [English](./README.md) · [中文](./README.zh.md) · 📜 [更新日志](./CHANGELOG.zh.md)
@@ -47,7 +47,7 @@
 <div align="center">
   <img src="./docs/assets/demo.gif" alt="OpenMobius-skill 演示" width="780">
   <br>
-  <sub>支持 <b>Claude Code</b>、<b>Codex</b>、<b>OpenClaw</b>、<b>Hermes</b>、<b>Cursor</b> 和 <b>WorkBuddy</b> 六个平台。</sub>
+  <sub>支持 <b>Claude Code</b>、<b>Codex</b>、<b>Antigravity (agy)</b>、<b>OpenClaw</b>、<b>Hermes</b>、<b>Cursor</b>、<b>WorkBuddy</b>、<b>Grok Bot</b> 和 <b>Muse</b> 九个平台。</sub>
 </div>
 
 <br>
@@ -79,8 +79,8 @@
 OPENMOBIUS_SRC="$(mktemp -d "${TMPDIR:-/tmp}/openmobius-src.XXXXXX")"
 git clone https://github.com/MobiusQuant/OpenMobius-skill.git "$OPENMOBIUS_SRC"
 cd "$OPENMOBIUS_SRC"
-python3 install.py --platform claude-code     # 或 codex / openclaw / hermes / cursor
-# Linux/macOS 可用 `all` 安装 5 个本地 host；WorkBuddy 走本地 ZIP 导入流程。
+python3 install.py --platform claude-code     # 或 codex / agy / openclaw / hermes / cursor
+# Linux/macOS 可用 `all` 安装 6 个本地 host；WorkBuddy、Grok Bot 和 Muse 使用紧凑 ZIP 包。
 
 cd "${TMPDIR:-/tmp}"
 rm -rf -- "$OPENMOBIUS_SRC"                    # ✓ 只删除本次 mktemp 目录
@@ -209,12 +209,15 @@ python3 install.py --platform <name>
 |:---|:---|:---|
 | **Claude Code** | `--platform claude-code` *（默认）* | `~/.claude/skills/openmobius-skill/` |
 | **Codex** | `--platform codex` | `~/.agents/skills/openmobius-skill/` |
+| **Antigravity (`agy`)** | `--platform agy` | `~/.gemini/config/skills/openmobius-skill/` *（项目级：`.agents/skills/openmobius-skill/`）* |
 | **OpenClaw** *（Linux/macOS）* | `--platform openclaw` | `<OPENCLAW_STATE_DIR 或 ~/.openclaw>/skills/openmobius-skill/` |
 | **Hermes** *（Linux/macOS）* | `--platform hermes` | `<HERMES_HOME 或 ~/.hermes>/skills/market-data/openmobius-skill/` |
 | **Cursor** | `--platform cursor` | `~/.cursor/skills/openmobius-skill/` |
 | **WorkBuddy** | 本地 ZIP 导入 / 技能市场 | `技能 → 添加技能 → 上传技能`；已发布版本从技能市场安装 |
+| **Grok Bot** *（xAI）* | 紧凑 ZIP 上传 | `python3 scripts/build_hosted_package.py --platform grok-bot --output ...` |
+| **Muse** *（Meta）* | 紧凑 ZIP 上传 | `python3 scripts/build_hosted_package.py --platform muse --output ...` |
 | 自动检测 | `--platform auto` | 检测受支持的本地 host 根目录 |
-| 所有本地 host *（Linux/macOS）* | `--platform all` | 安装到上述 5 个本地路径；不含 WorkBuddy |
+| 所有本地 host *（Linux/macOS）* | `--platform all` | 安装到上述 6 个本地路径；不含 WorkBuddy、Grok Bot 和 Muse |
 
 </div>
 
@@ -224,8 +227,12 @@ N 倍下载。
 
 如果设置了 `OPENCLAW_STATE_DIR` 或 `HERMES_HOME`，安装器会分别以它们
 作为 OpenClaw 或 Hermes 的根目录。当前 OpenClaw 与 Hermes 的 adapter/manifest
-面向 Linux 和 macOS；Windows 请显式选择 Claude Code、Codex 或 Cursor，
-不要使用 `--platform all`。Cursor Cloud Agents、remote SSH 等远程
+面向 Linux 和 macOS；Windows 请显式选择 Claude Code、Codex、Antigravity
+(`agy`) 或 Cursor，不要使用 `--platform all`。Antigravity（Google
+Antigravity CLI `agy`、Antigravity IDE 及 Antigravity 2.0）默认从
+`~/.gemini/config/skills/` 加载用户级全局 Skill，从项目根目录
+`.agents/skills/openmobius-skill/` 加载工作区级 Skill（同时兼容旧版
+`.gemini/skills/`）。Cursor Cloud Agents、remote SSH 等远程
 环境不会同步本机 `~/.cursor/skills` 中的 user skills；请把 Skill 放到
 项目内 `.cursor/skills/openmobius-skill/`。
 
@@ -267,6 +274,15 @@ ZIP 不会捆绑 Python、创建虚拟环境或自动安装依赖；脚本能力
 若找不到合适的 Python launcher，必须把依赖脚本的知识/行情操作报告为不可用。
 知识问答与文字行情仅需标准库；PNG 渲染和图片标注还分别需要 host 已提供的
 Playwright/Chromium 或 Pillow。
+
+**Grok Bot**（xAI 托管云端 Agent 助手）和 **Muse**（Meta 托管个人 AI 助手）在受管云端容器中运行上传的 Skill 包，不会读取本机固定目录，因此 `--platform all` 和 `--platform auto` 同样有意不包含它们。请使用以下命令构建小于 3 MB、零第三方依赖的确定性紧凑包（`openmobius-skill/` 根目录，包含完整 2,144 条 School 投影与 18,645 条精确来源 evidence 的 `compact_v2` 语料及 SHA-256 只读清单）：
+
+```bash
+python3 scripts/build_hosted_package.py --platform grok-bot --output /tmp/openmobius-skill-grok-bot.zip
+python3 scripts/build_hosted_package.py --platform muse --output /tmp/openmobius-skill-muse.zip
+```
+
+将生成的 ZIP（或解压后的 `openmobius-skill/` 目录）上传到 Grok Bot 或 Muse 工作区即可。`install.py` 也提供 `--platform <grok-bot|muse> --target-dir <路径>`，仅用于开发者暂存与校验。
 
 实现遵循通用 [Agent Skills 规范](https://agentskills.io/specification)，并对齐各平台官方文档：
 [Claude Code](https://code.claude.com/docs/en/skills)、
@@ -316,7 +332,7 @@ BM25 与语义候选都在硬过滤范围内生成，再通过 RRF 融合，规�
 
 ### 实时行情 + 60+ 技术指标
 
-加密货币（Binance、Bybit、OKX、Hyperliquid）、中国 A 股、港股、美股、外汇。
+加密货币（Binance、Bybit、OKX、Gate、Coinbase、Hyperliquid 及跨所聚合 `composite`）、大宗商品（现货黄金 `XAUUSD` 与黄金/白银期货 `XAUF` / `XAGF`）、中国 A 股、港股、美股、外汇 —— 底层由 KlineSync Engine v2.0 驱动。
 每个指标自带分析维度（`summary_focus`）—— Agent 看到后会结构化回答，
 不会只甩个数字。
 
@@ -380,7 +396,7 @@ OpenMobius-skill/
 ├── SKILL.md                          # 主入口（LLM 读这个）
 ├── SKILL.body.md                     # 公共 body（平台无关）
 ├── platforms/                        # 每平台 frontmatter
-│   └── claude-code.yaml / codex.yaml / openclaw.yaml / hermes.yaml / cursor.yaml / workbuddy.yaml
+│   └── agy.yaml / claude-code.yaml / codex.yaml / cursor.yaml / grok-bot.yaml / hermes.yaml / muse.yaml / openclaw.yaml / workbuddy.yaml
 ├── agents/
 │   └── openai.yaml                      # Codex UI 与调用元数据
 ├── workflows/
@@ -395,6 +411,7 @@ OpenMobius-skill/
 │   ├── build_index.py                # 构建三个向量 collection
 │   ├── export_v2_embedding_seed.py   # 发布经校验的原生向量分片
 │   ├── build_workbuddy_package.py    # 确定性 WorkBuddy 本地导入 ZIP 构建器
+│   ├── build_hosted_package.py       # 确定性 Grok Bot / Muse 紧凑 ZIP 构建器
 │   ├── evaluate_retrieval.py         # 可复现检索基准
 │   ├── kb_doctor.py                  # 环境健康检查
 │   ├── chart_render/                 # lightweight-charts + headless chromium
@@ -416,7 +433,7 @@ python3 install.py --update --rebuild-index    # 同时强制重建向量索引
 
 # 卸载整个自包含的平台安装（包括 .venv + 索引）
 python3 install.py --uninstall
-python3 install.py --uninstall --platform all  # Linux/macOS：5 个本地 host
+python3 install.py --uninstall --platform all  # Linux/macOS：6 个本地 host
 
 # 完全清除（同时删共享的 chromium + nomic 缓存 —— 这些可能被你机器上
 # 其他项目使用，请确认后再运行）
@@ -447,9 +464,11 @@ API 连通性。
 | API 请求失败 | 检查网络；看 `api.mobiusquant.ai/api/health` |
 | Skill 在 Claude Code 里不自动触发 | 检查 `~/.claude/skills/openmobius-skill` 存在。Claude Code 会实时监视已存在的 skills 目录；如果刚新建顶层目录，请开启新会话。 |
 | Codex 找不到 Skill | 检查 `~/.agents/skills/openmobius-skill` 存在；重启 Codex |
+| Antigravity (`agy`) 找不到 Skill | 检查 `~/.gemini/config/skills/openmobius-skill`（或工作区 `.agents/skills/openmobius-skill`）存在，并运行 `kb_doctor.py --platform agy` |
 | OpenClaw 或 Hermes 找不到 Skill | 检查实际生效的 `OPENCLAW_STATE_DIR` 或 `HERMES_HOME`，再在安装副本中运行 `kb_doctor.py` |
 | Cursor Cloud/远程环境看不到 user skill | 安装或复制到项目的 `.cursor/skills/openmobius-skill/`；本机 `~/.cursor/skills` 不会同步 |
 | WorkBuddy 无法发现本地目录 | 不要猜测本地路径。生成 ZIP 后进入**技能 → 添加技能 → 上传技能**并选择该文件，再确认它出现在**已安装**列表 |
+| Grok Bot 或 Muse 无法发现本地目录 | 通过 `scripts/build_hosted_package.py --platform <grok-bot\|muse> --output ...` 生成紧凑 ZIP 并上传到对应云端助手工作区 |
 | 找不到 `chroma.sqlite3` | `.venv/bin/python scripts/build_index.py` |
 | 缠论/Wyckoff 行情分析停止 | 这些 School 可用于知识问答，但尚无原生行情分析器；请改用知识问答或受支持的 lens |
 | 行情 `compare` 在获取数据前停止 | Phase 1 仅支持知识问答的 `compare`；这是能力门禁的预期行为 |

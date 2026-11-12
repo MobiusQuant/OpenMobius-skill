@@ -1,6 +1,6 @@
 ---
 name: openmobius-skill
-description: Provides multi-school trading Q&A, chart/OHLCV analysis, annotation, and fresh-market workflows covering ICT/SMC, ChanLun, Wyckoff, Price Action, Order Flow, VSA, and Elliott Wave. Use for trading concepts; capability-discovery questions about available analysis lenses, Schools, models, modes, or data sources; attached charts; pasted OHLCV; chart annotation; or asset-plus-timeframe requests across crypto, stocks, or forex. Defaults unselected market analysis to strict ICT/SMC, honors explicit School/source selectors, and fails closed when no native analyzer exists. Phase 1 comparison is Q&A-only; fetch fresh Mobius Quant API data only after the capability gate.
+description: Provides multi-school trading Q&A, chart/OHLCV analysis, annotation, and fresh-market workflows covering ICT/SMC, ChanLun, Wyckoff, Price Action, Order Flow, VSA, and Elliott Wave. Use for trading concepts; capability-discovery questions about available analysis lenses, Schools, models, modes, or data sources; attached charts; pasted OHLCV; chart annotation; or asset-plus-timeframe requests across crypto, stocks, commodities (gold/silver), or forex. Defaults unselected market analysis to strict ICT/SMC, honors explicit School/source selectors, and fails closed when no native analyzer exists. Phase 1 comparison is Q&A-only; fetch fresh Mobius Quant API data only after the capability gate.
 ---
 # OpenMobius-skill — Multi-School Trading Knowledge Skill
 
@@ -83,7 +83,7 @@ below. **Substitute the live values** from the most recent API call's
 
 Current request / 本次请求:
 - exchange = `<exchange from response>`
-- market   = `<market from response>` (spot / perp / cn / hk / us / forex)
+- market   = `<market from response>` (spot / perp / futures / cn / hk / us / forex)
 - symbol   = `<symbol from response>`
 - fetched_at (UTC)      = `<freshness.fetched_at>`
 - last_bar_open (UTC)   = `<freshness.last_bar_open_time_utc>`
@@ -101,8 +101,9 @@ https://www.mobiusquant.ai/ for details.
 - **DO NOT** name specific upstream vendors unless the exact string
   appears in the API response's `exchange` field. Allowed values are
   what `symbols_search` / `klines` / `indicators` literally return
-  (e.g. `binance`, `bybit`, `okx`, `hyperliquid` for crypto; `cn`/`hk`/`us`
-  for stocks).
+  (e.g. `binance`, `bybit`, `okx`, `gate`, `coinbase`, `hyperliquid`,
+  `composite` for crypto; `stock` for `cn`/`hk`/`us`; `commodity` for
+  `XAUUSD`/`XAUF`/`XAGF`; `forex` for FX spot).
 - **DO NOT** name web data providers (新浪财经 / Yahoo Finance /
   TradingView / 东方财富 / 同花顺 / Bloomberg / etc.) — you cannot
   verify any of these.
@@ -460,8 +461,9 @@ Skip the trade-setup file when you have no specific trade levels to draw
 ## Tools
 
 Use the host-neutral placeholders defined above. OpenClaw can resolve
-`<SKILL_ROOT>` from `{baseDir}` and Hermes from `${HERMES_SKILL_DIR}`; on other
-hosts resolve it from the loaded `SKILL.md`. Do not execute an undefined
+`<SKILL_ROOT>` from `{baseDir}` and Hermes from `${HERMES_SKILL_DIR}`; on
+Antigravity (`agy`), Claude Code, Codex, Cursor, Grok Bot, Muse, and WorkBuddy
+resolve it from the loaded `SKILL.md`. Do not execute an undefined
 `${SKILL_DIR}` variable or assume that a virtual environment is on `PATH`.
 
 | Tool | Purpose |

@@ -17,18 +17,18 @@ hostname can change over time.
 | Hugging Face Hub (`huggingface.co` and its download/storage CDN, or a configured `HF_ENDPOINT`) | Install/update | Download the pinned open-source `nomic-embed-text-v1.5` model snapshot (Apache 2.0) when it is not already cached | Standard model-resolution and file-download requests; runtime loading uses the libraries' built-in implementation with `trust_remote_code` disabled |
 | Playwright's browser download service/CDN (for example `cdn.playwright.dev` or `playwright.azureedge.net`) | Install/update | Download Chromium used for chart rendering when it is not already cached | Standard Playwright browser-download requests |
 | `github.com` | Explicit `--update`, or when the user follows the documented clone workflow | Obtain the current OpenMobius-skill source | Standard Git HTTPS requests; no trading query is included |
-| `api.mobiusquant.ai` | Install doctor + runtime | Health check and public symbol-resolution, OHLCV, indicator, or playbook requests | The health check sends no trading query. Runtime requests contain the explicitly requested asset, timeframe, indicator, and related public query parameters. **No authentication is required and no credentials are collected.** |
+| `api.mobiusquant.ai` | Install doctor + runtime | Health check and public symbol-resolution, OHLCV, indicator, or playbook requests | The health check sends no trading query. Runtime requests contain the explicitly requested asset, timeframe, indicator, and related public query parameters. **No authentication is required or collected by default**; if an operator explicitly sets `MOBIUS_API_TOKEN`, it is sent as a `Bearer` header for higher rate limits. |
 
 Setting `MOBIUS_API_BASE` intentionally replaces the default Mobius API host;
 the scripts then contact the operator-supplied endpoint. Likewise, pip,
 Hugging Face, and Playwright environment configuration can redirect their
 downloads to user-selected mirrors.
 
-The WorkBuddy builder only writes a local ZIP. Importing that ZIP through the
-WorkBuddy desktop UI, or submitting it to the Open Platform for publication,
-is a separate, explicit user action governed by WorkBuddy's privacy terms. The
-builder excludes local indexes, embedding/model caches, environments,
-credentials, and symlinked knowledge inputs. Its compact corpus contains the
+The WorkBuddy and hosted (`grok-bot` / `muse`) builders only write local ZIPs.
+Importing or uploading those ZIPs into WorkBuddy, xAI Grok Bot, or Meta Muse
+is a separate, explicit user action governed by that host's privacy terms. The
+builders exclude local indexes, embedding/model caches, environments,
+credentials, and symlinked knowledge inputs. Their compact corpus contains the
 project's published attributable School and source-evidence text, registry,
 aliases, and schemas.
 
@@ -53,6 +53,7 @@ user-level caches, and short-lived operating-system temporary directories:
 Default local targets are lowercase copied directories, not registration
 symlinks: `~/.claude/skills/openmobius-skill/`,
 `~/.agents/skills/openmobius-skill/`,
+`~/.gemini/config/skills/openmobius-skill/`,
 `<OPENCLAW_STATE_DIR or ~/.openclaw>/skills/openmobius-skill/`,
 `<HERMES_HOME or ~/.hermes>/skills/market-data/openmobius-skill/`, and
 `~/.cursor/skills/openmobius-skill/`. OpenClaw and Hermes targets are currently

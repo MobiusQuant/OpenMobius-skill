@@ -83,7 +83,7 @@ If the API is unreachable, fall back to Path B (ask user to paste OHLCV).
 
 - `--query` accepts Chinese natural names ("比特币" "以太坊" "茅台") + English aliases ("BTC" "ETH" "TSLA")
 - `--with-htf` auto-fetches one timeframe up for HTF bias (1h → 4h, 5m → 15m, etc.)
-- API supports: crypto (binance/bybit/okx/hyperliquid), stocks (cn/hk/us), forex
+- API supports: crypto (binance/bybit/okx/gate/coinbase/hyperliquid/composite), stocks (cn/hk/us), commodities (XAUUSD/XAUF/XAGF), forex
 
 If user gave a canonical symbol directly (e.g. "BTCUSDT spot"), use:
 ```text

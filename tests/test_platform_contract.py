@@ -9,15 +9,22 @@ ROOT = Path(__file__).resolve().parents[1]
 PLATFORMS_DIR = ROOT / "platforms"
 
 EXPECTED_PLATFORMS = {
+    "agy",
     "claude-code",
     "codex",
     "cursor",
+    "grok-bot",
     "hermes",
+    "muse",
     "openclaw",
     "workbuddy",
 }
 
 PLATFORM_FIELDS = {
+    "agy": {
+        "required": {"name", "description"},
+        "allowed": {"name", "description"},
+    },
     "claude-code": {
         "required": {"name", "description"},
         "allowed": {"name", "description"},
@@ -27,6 +34,14 @@ PLATFORM_FIELDS = {
         "allowed": {"name", "description"},
     },
     "cursor": {
+        "required": {"name", "description"},
+        "allowed": {"name", "description"},
+    },
+    "grok-bot": {
+        "required": {"name", "description"},
+        "allowed": {"name", "description"},
+    },
+    "muse": {
         "required": {"name", "description"},
         "allowed": {"name", "description"},
     },
@@ -220,8 +235,8 @@ class PlatformContractTests(unittest.TestCase):
                 if platform == "openclaw":
                     self.assertLess(len(description.encode("utf-8")), 160)
 
-    def test_claude_codex_and_cursor_use_portable_minimal_frontmatter(self):
-        for platform in ("claude-code", "codex", "cursor"):
+    def test_portable_minimal_frontmatter_hosts(self):
+        for platform in ("agy", "claude-code", "codex", "cursor", "grok-bot", "muse"):
             with self.subTest(platform=platform):
                 self.assertEqual(
                     set(self.platforms[platform]), {"name", "description"}
@@ -259,7 +274,7 @@ class PlatformContractTests(unittest.TestCase):
                 self.assertTrue(document[field].strip())
         self.assertNotIn("allowed-tools", document)
 
-    def test_agent_install_guide_detects_current_codex_root(self):
+    def test_agent_install_guide_detects_current_codex_and_agy_roots(self):
         guide = (ROOT / "README_AGENT.md").read_text(encoding="utf-8")
         detection = guide.split(
             "Otherwise, detect installed platforms:", 1
@@ -267,6 +282,8 @@ class PlatformContractTests(unittest.TestCase):
         self.assertIn("~/.agents", detection)
         self.assertIn("~/.codex", detection)
         self.assertIn('echo "found: Codex"', detection)
+        self.assertIn("~/.gemini/antigravity", detection)
+        self.assertIn('echo "found: Antigravity (agy)"', detection)
 
     def test_openai_interface_metadata_and_policy(self):
         path = ROOT / "agents" / "openai.yaml"

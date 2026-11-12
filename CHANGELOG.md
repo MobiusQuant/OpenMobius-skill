@@ -8,15 +8,32 @@ the project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
-## [Unreleased]
+## [0.4.0] — 2026-11-12
 
 ### Added
 
-- Added current Agent Skills compatibility contracts for Claude Code, Codex,
-  OpenClaw, Hermes, Cursor, and WorkBuddy. Cursor now has user/project skill
-  support, Codex includes optional `agents/openai.yaml` interface metadata,
-  and WorkBuddy has a deterministic ZIP builder for local desktop import and
-  separate Open Platform publication submission.
+- Added current Agent Skills compatibility contracts across nine hosts:
+  Claude Code, Codex, Antigravity (`agy`), OpenClaw, Hermes, Cursor, WorkBuddy,
+  Grok Bot, and Muse. Antigravity (`--platform agy`) installs self-contained
+  user-global copies to `~/.gemini/config/skills/openmobius-skill/` (with
+  workspace `.agents/skills/openmobius-skill/` documentation and
+  Antigravity-specific `~/.gemini/antigravity` / `~/.gemini/antigravity-cli`
+  auto-detection), Cursor has user/project skill support, Codex includes
+  optional `agents/openai.yaml` interface metadata, and WorkBuddy has a
+  deterministic ZIP builder for local desktop import and separate Open Platform
+  publication submission.
+- Added `scripts/build_hosted_package.py` for **Grok Bot** (`--platform grok-bot`,
+  xAI's hosted Agent assistant) and **Muse** (`--platform muse`, Meta's hosted
+  personal AI assistant), generating deterministic `<3 MB` stdlib-only compact
+  ZIP packages (`openmobius-skill/` archive root, `compact_v2` lexical corpus
+  with all 2,144 School projections and 18,645 source-evidence records, and
+  `.openmobius-readonly-bundle.json` SHA-256 verification manifest), plus
+  explicit `--target-dir` developer staging/validation in `install.py`.
+- Aligned `scripts/kb_klines.py`, `SKILL.body.md`, and `workflows/klines.md`
+  with **KlineSync Engine v2.0**: expanded venue coverage (`gate`, `coinbase`,
+  cross-exchange `composite`, and `commodity` spot/futures gold & silver
+  `XAUUSD` / `XAUF` / `XAGF`), optional `MOBIUS_API_TOKEN` Bearer header
+  support, and `OpenMobius-skill/0.4` client identification.
 - Added three retrieval layers: backward-compatible fused `canonical`,
   attributable `school`, and atomic exact-source `evidence`. `kb_retrieve.py`
   now supports hard School/source/type/exclusion intersections, School aliases,
@@ -57,21 +74,23 @@ the project adheres to [Semantic Versioning](https://semver.org/).
 
 - Standardized the skill slug and installed directory name as lowercase
   `openmobius-skill` while retaining **OpenMobius-skill** as the product and
-  repository name. Codex now installs to `~/.agents/skills`, OpenClaw respects
+  repository name. Codex now installs to `~/.agents/skills`, Antigravity (`agy`)
+  installs to `~/.gemini/config/skills`, OpenClaw respects
   `OPENCLAW_STATE_DIR`, Hermes respects `HERMES_HOME`, and Cursor installs to
   `~/.cursor/skills` for local user use.
-- On Linux/macOS, `--platform all` means the five hosts with documented local
-  discovery paths: Claude Code, Codex, OpenClaw, Hermes, and Cursor. OpenClaw
-  and Hermes are not advertised by this release on Windows; Windows users
-  select Claude Code, Codex, or Cursor explicitly.
-- WorkBuddy setup now distinguishes local ZIP import, installation of a
-  published marketplace copy, and Open Platform publication. Its public docs
-  do not define a fixed third-party-writable directory for automatic discovery;
-  explicit `--target-dir` mode is therefore developer staging/validation only
-  and no longer reports installation success. The deterministic builder
-  enforces WorkBuddy's documented 3 MB maximum using a conservative
-  3,000,000-byte ceiling; its compact package omits canonical/vector artifacts
-  and fails those unsupported routes closed.
+- On Linux/macOS, `--platform all` means the six hosts with documented local
+  discovery paths: Claude Code, Codex, Antigravity (`agy`), OpenClaw, Hermes,
+  and Cursor. OpenClaw and Hermes are not advertised by this release on Windows;
+  Windows users select Claude Code, Codex, Antigravity (`agy`), or Cursor
+  explicitly.
+- WorkBuddy, Grok Bot, and Muse do not define a fixed third-party-writable local
+  directory for automatic discovery; explicit `--target-dir` mode in
+  `install.py` is therefore developer staging/validation only and never reports
+  local installation success. WorkBuddy setup distinguishes local ZIP import,
+  installation of a published marketplace copy, and Open Platform publication.
+  Both `build_workbuddy_package.py` and `build_hosted_package.py` enforce a
+  conservative 3,000,000-byte ceiling, omit canonical/vector artifacts, and fail
+  unsupported canonical or hybrid/semantic routes closed.
 - Pinned the Nomic embedding model to a verified immutable revision and weight
   digest, disabled model-repository remote code, and raised the supported
   Sentence Transformers / Transformers dependency ranges to their current
@@ -127,6 +146,13 @@ the project adheres to [Semantic Versioning](https://semver.org/).
 - Installation and uninstall examples now clone into unique `mktemp`/GUID
   directories and only remove the captured path, avoiding fixed temporary
   directory names that could collide with pre-existing data.
+- Fixed `kb_klines.py` higher-timeframe (`--with-htf`) fetching on hourly/daily-only
+  venues (`stock:hk`, `stock:us`, `forex:spot`) by mapping `1h → 1d` instead of
+  unsupported `4h` and gracefully degrading 400/422 HTF errors without aborting
+  primary candle fetches.
+- Suppressed empty volume sub-panels when charting zero-volume series (such as
+  `commodity:spot:XAUUSD`) and added explicit diagnostics when volume-dependent
+  indicators (`vwap`, `obv`, `cvd`) fail on placeholder-volume series.
 
 ---
 

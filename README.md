@@ -6,15 +6,15 @@
 
 A `SKILL.md`-standard skill bringing 2008 curated knowledge cards, real-time
 market data, technical indicators, and chart generation to
-**Claude Code**, **Codex**, **OpenClaw**, **Hermes**, **Cursor**, and
-**WorkBuddy**.
+**Claude Code**, **Codex**, **Antigravity (`agy`)**, **OpenClaw**, **Hermes**,
+**Cursor**, **WorkBuddy**, **Grok Bot**, and **Muse**.
 
 <br>
 
 [![License](https://img.shields.io/badge/license-Apache_2.0-blue.svg)](./LICENSE)
 [![Python](https://img.shields.io/badge/python-3.10%2B-3776ab.svg)](https://www.python.org/)
 [![Website](https://img.shields.io/badge/🌐_website-mobiusquant.ai-FF7E29.svg)](https://www.mobiusquant.ai/)
-[![Platforms](https://img.shields.io/badge/platforms-6_hosts-9333ea.svg)](#platform-support)
+[![Platforms](https://img.shields.io/badge/platforms-9_hosts-9333ea.svg)](#platform-support)
 [![Knowledge Base](https://img.shields.io/badge/knowledge_base-2008_cards-22c55e.svg)](#features)
 
 [English](./README.md) · [中文](./README.zh.md) · 📜 [Changelog](./CHANGELOG.md)
@@ -42,7 +42,7 @@ market data, technical indicators, and chart generation to
 <div align="center">
   <img src="./docs/assets/demo.gif" alt="OpenMobius-skill demo" width="780">
   <br>
-  <sub>Works on <b>Claude Code</b>, <b>Codex</b>, <b>OpenClaw</b>, <b>Hermes</b>, <b>Cursor</b>, and <b>WorkBuddy</b>.</sub>
+  <sub>Works on <b>Claude Code</b>, <b>Codex</b>, <b>Antigravity (agy)</b>, <b>OpenClaw</b>, <b>Hermes</b>, <b>Cursor</b>, <b>WorkBuddy</b>, <b>Grok Bot</b>, and <b>Muse</b>.</sub>
 </div>
 
 <br>
@@ -76,8 +76,8 @@ silently borrowing another School's analysis.
 OPENMOBIUS_SRC="$(mktemp -d "${TMPDIR:-/tmp}/openmobius-src.XXXXXX")"
 git clone https://github.com/MobiusQuant/OpenMobius-skill.git "$OPENMOBIUS_SRC"
 cd "$OPENMOBIUS_SRC"
-python3 install.py --platform claude-code     # or codex / openclaw / hermes / cursor
-# On Linux/macOS, `all` installs all five local-path hosts. WorkBuddy uses local ZIP import.
+python3 install.py --platform claude-code     # or codex / agy / openclaw / hermes / cursor
+# On Linux/macOS, `all` installs all six local-path hosts. WorkBuddy, Grok Bot, and Muse use compact ZIP packages.
 
 cd "${TMPDIR:-/tmp}"
 rm -rf -- "$OPENMOBIUS_SRC"                    # ✓ exact mktemp directory only
@@ -217,12 +217,15 @@ python3 install.py --platform <name>
 |:---|:---|:---|
 | **Claude Code** | `--platform claude-code` *(default)* | `~/.claude/skills/openmobius-skill/` |
 | **Codex** | `--platform codex` | `~/.agents/skills/openmobius-skill/` |
+| **Antigravity (`agy`)** | `--platform agy` | `~/.gemini/config/skills/openmobius-skill/` *(workspace: `.agents/skills/openmobius-skill/`)* |
 | **OpenClaw** *(Linux/macOS)* | `--platform openclaw` | `<OPENCLAW_STATE_DIR or ~/.openclaw>/skills/openmobius-skill/` |
 | **Hermes** *(Linux/macOS)* | `--platform hermes` | `<HERMES_HOME or ~/.hermes>/skills/market-data/openmobius-skill/` |
 | **Cursor** | `--platform cursor` | `~/.cursor/skills/openmobius-skill/` |
 | **WorkBuddy** | local ZIP import / marketplace | `Skills → Add Skill → Upload Skill`; published copies install from the marketplace |
+| **Grok Bot** *(xAI)* | compact ZIP upload | `python3 scripts/build_hosted_package.py --platform grok-bot --output ...` |
+| **Muse** *(Meta)* | compact ZIP upload | `python3 scripts/build_hosted_package.py --platform muse --output ...` |
 | Auto-detect | `--platform auto` | detects supported local host roots |
-| All local hosts *(Linux/macOS)* | `--platform all` | installs to the five local paths above; excludes WorkBuddy |
+| All local hosts *(Linux/macOS)* | `--platform all` | installs to the six local paths above; excludes WorkBuddy, Grok Bot, and Muse |
 
 </div>
 
@@ -233,8 +236,12 @@ doesn't N× the download.
 
 `OPENCLAW_STATE_DIR` and `HERMES_HOME` override the corresponding roots when
 set. The current OpenClaw and Hermes adapters/manifests target Linux and
-macOS; on Windows, select Claude Code, Codex, or Cursor explicitly instead of
-using `--platform all`. Cursor Cloud Agents, remote SSH sessions, and other
+macOS; on Windows, select Claude Code, Codex, Antigravity (`agy`), or Cursor
+explicitly instead of using `--platform all`. Antigravity (Google Antigravity
+CLI `agy`, Antigravity IDE, and Antigravity 2.0) discovers user-global skills
+from `~/.gemini/config/skills/` and workspace-level skills from
+`.agents/skills/openmobius-skill/` (with `.gemini/skills/` legacy
+compatibility). Cursor Cloud Agents, remote SSH sessions, and other
 remote environments do not receive local user skills from `~/.cursor/skills`;
 place the skill in the repository's `.cursor/skills/openmobius-skill/` for
 those environments.
@@ -287,6 +294,23 @@ knowledge/market operations must be reported unavailable. Q&A and text-market
 workflows need only the standard library, while PNG rendering and image
 annotation additionally require host-provided Playwright/Chromium or Pillow,
 respectively.
+
+**Grok Bot** (xAI's hosted Agent assistant) and **Muse** (Meta's hosted
+personal AI assistant) run uploaded skill bundles inside managed cloud
+containers rather than reading a fixed directory on your local workstation, so
+`--platform all` and `--platform auto` intentionally exclude them. Build
+deterministic `<3 MB` stdlib-only compact packages (`openmobius-skill/` root,
+`compact_v2` corpus with all 2,144 School projections and 18,645
+source-evidence records, plus SHA-256 read-only bundle manifest) with:
+
+```bash
+python3 scripts/build_hosted_package.py --platform grok-bot --output /tmp/openmobius-skill-grok-bot.zip
+python3 scripts/build_hosted_package.py --platform muse --output /tmp/openmobius-skill-muse.zip
+```
+
+Upload the resulting ZIP (or extracted `openmobius-skill/` folder) into your
+Grok Bot or Muse workspace. `--platform <grok-bot|muse> --target-dir <path>` is
+also available in `install.py` for developer staging and validation only.
 
 The implementation follows the common [Agent Skills specification](https://agentskills.io/specification)
 and each host's official documentation:
@@ -343,10 +367,12 @@ the vector-only baseline.
 
 ### Real-time data + 60+ indicators
 
-Crypto (Binance, Bybit, OKX, Hyperliquid), China A-shares, Hong Kong stocks,
-US stocks, forex. Each indicator carries built-in analysis dimensions
-(`summary_focus`) that the agent reads to structure its answer rather than
-dumping raw numbers.
+Crypto (Binance, Bybit, OKX, Gate, Coinbase, Hyperliquid, and cross-exchange
+`composite`), commodities (spot gold `XAUUSD` and gold/silver futures
+`XAUF` / `XAGF`), China A-shares, Hong Kong stocks, US stocks, and forex —
+powered by KlineSync Engine v2.0. Each indicator carries built-in analysis
+dimensions (`summary_focus`) that the agent reads to structure its answer
+rather than dumping raw numbers.
 
 ### Two chart-generation paths
 
@@ -415,7 +441,7 @@ OpenMobius-skill/
 ├── SKILL.md                          # main entry (LLM reads this)
 ├── SKILL.body.md                     # shared body (platform-neutral)
 ├── platforms/                        # per-platform frontmatter
-│   └── claude-code.yaml / codex.yaml / openclaw.yaml / hermes.yaml / cursor.yaml / workbuddy.yaml
+│   └── agy.yaml / claude-code.yaml / codex.yaml / cursor.yaml / grok-bot.yaml / hermes.yaml / muse.yaml / openclaw.yaml / workbuddy.yaml
 ├── agents/
 │   └── openai.yaml                      # Codex UI and invocation metadata
 ├── workflows/
@@ -430,6 +456,7 @@ OpenMobius-skill/
 │   ├── build_index.py                # build all three vector collections
 │   ├── export_v2_embedding_seed.py   # publish verified native-vector shards
 │   ├── build_workbuddy_package.py    # deterministic WorkBuddy local-import ZIP builder
+│   ├── build_hosted_package.py       # deterministic Grok Bot / Muse compact ZIP builder
 │   ├── evaluate_retrieval.py         # reproducible retrieval benchmark
 │   ├── kb_doctor.py                  # env health check
 │   ├── chart_render/                 # lightweight-charts + headless chromium
@@ -451,7 +478,7 @@ python3 install.py --update --rebuild-index    # also rebuild vector index
 
 # Uninstall the entire self-contained platform install (.venv + index included)
 python3 install.py --uninstall
-python3 install.py --uninstall --platform all  # Linux/macOS: all five local hosts
+python3 install.py --uninstall --platform all  # Linux/macOS: all six local hosts
 
 # Full purge (also delete shared chromium + nomic caches — these may be
 # used by other projects on your machine, so confirm before running)
@@ -482,9 +509,11 @@ Common issues:
 | API request fails | Check network; see `api.mobiusquant.ai/api/health` |
 | Skill not auto-invoking in Claude Code | Check `~/.claude/skills/openmobius-skill` exists. Claude Code watches an existing skills directory live; if that top-level directory was newly created, start a new session. |
 | Skill missing in Codex | Check `~/.agents/skills/openmobius-skill` exists; restart Codex |
+| Skill missing in Antigravity (`agy`) | Check `~/.gemini/config/skills/openmobius-skill` (or workspace `.agents/skills/openmobius-skill`) exists, then run `kb_doctor.py --platform agy` |
 | Skill missing in OpenClaw or Hermes | Check the effective `OPENCLAW_STATE_DIR` or `HERMES_HOME`, then run `kb_doctor.py` from that installed copy |
 | Cursor Cloud/remote cannot see the user skill | Copy/install it under the repository's `.cursor/skills/openmobius-skill/`; local `~/.cursor/skills` is not synchronized |
 | WorkBuddy cannot discover a local folder | Do not guess a local path. Build the ZIP, then use **Skills → Add Skill → Upload Skill** and select it; confirm it appears under **Installed** |
+| Grok Bot or Muse cannot discover a local folder | Build the compact ZIP via `scripts/build_hosted_package.py --platform <grok-bot\|muse> --output ...` and upload it to the hosted assistant workspace |
 | `chroma.sqlite3` not found | `.venv/bin/python scripts/build_index.py` |
 | ChanLun/Wyckoff market analysis stops | These Schools are retrievable for Q&A but do not yet have a native market analyzer; use Q&A or a supported lens |
 | Market `compare` stops before fetching data | Phase 1 supports `compare` for Q&A only; this is the capability gate working as designed |

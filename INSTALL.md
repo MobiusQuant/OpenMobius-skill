@@ -69,19 +69,22 @@ Pick your platform:
 |---|---|---|
 | **Claude Code** (default) | `--platform claude-code` (or omit) | `~/.claude/skills/openmobius-skill/` |
 | **Codex** | `--platform codex` | `~/.agents/skills/openmobius-skill/` |
+| **Antigravity (`agy`)** | `--platform agy` | `~/.gemini/config/skills/openmobius-skill/` |
 | **OpenClaw** *(Linux/macOS)* | `--platform openclaw` | `<OPENCLAW_STATE_DIR or ~/.openclaw>/skills/openmobius-skill/` |
 | **Hermes** *(Linux/macOS)* | `--platform hermes` | `<HERMES_HOME or ~/.hermes>/skills/market-data/openmobius-skill/` |
 | **Cursor** | `--platform cursor` | `~/.cursor/skills/openmobius-skill/` |
 | **WorkBuddy** | local ZIP import / marketplace | `Skills → Add Skill → Upload Skill`; published copies install from the marketplace |
+| **Grok Bot** *(xAI hosted)* | hosted compact ZIP / `--target-dir` | `scripts/build_hosted_package.py --platform grok-bot --output ...` then upload to Grok Bot |
+| **Muse** *(Meta hosted)* | hosted compact ZIP / `--target-dir` | `scripts/build_hosted_package.py --platform muse --output ...` then attach/import in Muse |
 
 Other options:
 
 - `--platform auto` — Detect supported local agent roots.
-- `--target-dir <path>` — Override the default install path.
-- `--platform all` — On Linux/macOS, install to all five platforms with
-  documented local paths in one go. It intentionally excludes WorkBuddy.
-  On Windows this preflight fails; select Claude Code, Codex, or Cursor
-  explicitly instead.
+- `--target-dir <path>` — Override the default install path (e.g. `.agents/skills/openmobius-skill` for workspace-scoped Antigravity/Codex, or `~/.grok/skills/openmobius-skill` for local CLI staging).
+- `--platform all` — On Linux/macOS, install to all six platforms with
+  documented local paths in one go. It intentionally excludes WorkBuddy,
+  Grok Bot, and Muse. On Windows this preflight fails; select Claude Code,
+  Codex, Antigravity (`agy`), or Cursor explicitly instead.
 
 If set, `OPENCLAW_STATE_DIR` replaces `~/.openclaw` as OpenClaw's state root,
 and `HERMES_HOME` replaces `~/.hermes` as Hermes's root. The skill slug and
@@ -94,13 +97,20 @@ python3 install.py --platform all
 ```
 
 This command is supported on Linux/macOS. On Windows, select Claude Code,
-Codex, or Cursor explicitly because the current OpenClaw and Hermes adapters
-do not declare Windows support.
+Codex, Antigravity (`agy`), or Cursor explicitly because the current OpenClaw
+and Hermes adapters do not declare Windows support.
 
 Each platform gets its own complete install (its own `.venv`, its own
 `_index`). The shared caches (nomic weights ~547 MB / 522 MiB, Playwright chromium ~280MB)
 are downloaded **once** and shared via your OS's user-global cache, so
-installing all five local-path platforms doesn't multiply the download.
+installing all six local-path platforms doesn't multiply the download.
+
+### Antigravity (`agy`) global and workspace installs
+
+`--platform agy` installs into Antigravity's machine-local global configuration
+directory at `~/.gemini/config/skills/openmobius-skill/`, making the skill
+available across all workspaces on your machine. To scope the skill to a single
+project repository instead, pass `--target-dir .agents/skills/openmobius-skill`.
 
 ### Cursor Cloud and remote environments
 
@@ -162,6 +172,31 @@ The installer also accepts `--platform workbuddy --target-dir <path>` for
 developer staging and validation only. That command does not create a
 locally discoverable WorkBuddy installation; normal users should use the local
 ZIP import or marketplace route above.
+
+### Grok Bot and Muse hosted package routes
+
+xAI's hosted **Grok Bot** and Meta's hosted **Muse** personal AI assistant run
+in isolated cloud sandboxes rather than scanning a fixed local filesystem path.
+Build a deterministic `<3 MB` compact ZIP containing all 2,144 School
+projections and 18,645 exact-source evidence records:
+
+```bash
+# For xAI Grok Bot (hosted cloud workspace / custom skills)
+python3 scripts/build_hosted_package.py \
+  --platform grok-bot \
+  --output /tmp/openmobius-skill-grok-bot.zip
+
+# For Meta Muse (hosted assistant sandbox / workspace)
+python3 scripts/build_hosted_package.py \
+  --platform muse \
+  --output /tmp/openmobius-skill-muse.zip
+```
+
+Upload or attach the generated ZIP in your hosted Grok Bot or Muse workspace.
+Inside a cloud Python 3.10+ sandbox, lexical retrieval (`--search-mode lexical`)
+and live Mobius Quant API fetches run using the Python standard library alone.
+For local CLI or developer staging, pass `--platform grok-bot --target-dir <path>`
+(for example `~/.grok/skills/openmobius-skill`) or `--platform muse --target-dir <path>`.
 
 ## Installation stages
 

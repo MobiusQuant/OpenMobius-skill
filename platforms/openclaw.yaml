@@ -1,6 +1,6 @@
 name: openmobius-skill
 description: Trading Q&A, capability discovery, charts, OHLCV, and live-market analysis; defaults to ICT/SMC and rejects unsupported School analyzers.
-version: 0.3.0
+version: 0.4.0
 homepage: https://github.com/MobiusQuant/OpenMobius-skill
 compatibility: Requires Linux or macOS host execution with Python 3.10+; live market workflows require network access to the Mobius Quant API, and chart rendering requires a locally available Playwright Chromium runtime.
 metadata:
